@@ -1,0 +1,420 @@
+# getMultipleCompressedAccounts
+
+> Returns multiple compressed accounts with the given addresses or hashes.
+
+## OpenAPI
+
+````yaml openapi/zk-compression/getMultipleCompressedAccounts.yaml post /
+paths:
+  path: /
+  method: post
+  servers:
+    - url: https://mainnet.helius-rpc.com
+      description: Mainnet RPC endpoint
+    - url: https://devnet.helius-rpc.com
+      description: Devnet RPC endpoint
+  request:
+    security:
+      - title: ApiKeyQuery
+        parameters:
+          query:
+            api-key:
+              type: apiKey
+              description: >-
+                Your Helius API key. You can get one for free in the
+                [dashboard](https://dashboard.helius.dev/api-keys).
+          header: {}
+          cookie: {}
+    parameters:
+      path: {}
+      query: {}
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    description: The version of the JSON-RPC protocol.
+                    enum:
+                      - '2.0'
+                    default: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: An ID to identify the request.
+                    default: '1'
+              method:
+                allOf:
+                  - type: string
+                    description: The name of the method to invoke.
+                    enum:
+                      - getMultipleCompressedAccounts
+                    default: getMultipleCompressedAccounts
+              params:
+                allOf:
+                  - type: object
+                    description: >
+                      Request parameters for batch retrieving multiple
+                      compressed Solana accounts data,
+
+                      supporting lookups by either addresses or cryptographic
+                      hashes
+                    default:
+                      addresses: null
+                      hashes:
+                        - 1111111QLbz7JHiBTspS962RLKV8GndWFwiEaqKM
+                        - 1111111ogCyDbaRMvkdsHB3qfdyFYaG1WtRUAfdh
+                    properties:
+                      addresses:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/SerializablePubkey'
+                        nullable: true
+                        description: >-
+                          Array of Solana public keys for the compressed
+                          accounts to retrieve
+                      hashes:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Hash'
+                        nullable: true
+                        description: >-
+                          Array of data hashes identifying the compressed Solana
+                          accounts to retrieve
+                    additionalProperties: false
+                    example:
+                      addresses: null
+                      hashes:
+                        - 1111111QLbz7JHiBTspS962RLKV8GndWFwiEaqKM
+                        - 1111111ogCyDbaRMvkdsHB3qfdyFYaG1WtRUAfdh
+            required: true
+            requiredProperties:
+              - jsonrpc
+              - id
+              - method
+              - params
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              method: getMultipleCompressedAccounts
+              params:
+                addresses: null
+                hashes:
+                  - 1111111QLbz7JHiBTspS962RLKV8GndWFwiEaqKM
+                  - 1111111ogCyDbaRMvkdsHB3qfdyFYaG1WtRUAfdh
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              context:
+                allOf:
+                  - $ref: '#/components/schemas/Context'
+              value:
+                allOf:
+                  - $ref: '#/components/schemas/AccountList'
+            requiredProperties:
+              - context
+              - value
+            additionalProperties: false
+        examples:
+          example:
+            value:
+              context:
+                slot: 100
+              value:
+                items:
+                  - address: 11111115RidqCHAoz6dzmXxGcfWLNzevYqNpaRAUo
+                    data:
+                      data: SGVsbG8sIFdvcmxkIQ==
+                      dataHash: 11111112cMQwSC9qirWGjZM6gLGwW69X22mqwLLGP
+                      discriminator: 100
+                    hash: 11111112cMQwSC9qirWGjZM6gLGwW69X22mqwLLGP
+                    lamports: 100
+                    leafIndex: 100
+                    owner: 11111115RidqCHAoz6dzmXxGcfWLNzevYqNpaRAUo
+                    seq: 100
+                    slotCreated: 100
+                    tree: 11111115RidqCHAoz6dzmXxGcfWLNzevYqNpaRAUo
+        description: >-
+          Successfully retrieved multiple compressed Solana accounts in a single
+          batch operation
+    '400':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - &ref_0
+                    type: string
+                    description: The JSON-RPC protocol version.
+                    enum:
+                      - '2.0'
+                    example: '2.0'
+              error:
+                allOf:
+                  - &ref_1
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        description: The error code.
+                        example: -32602
+                      message:
+                        type: string
+                        description: The error message.
+                      data:
+                        type: object
+                        description: Additional data about the error.
+              id:
+                allOf:
+                  - &ref_2
+                    type: string
+                    description: Identifier matching the request.
+                    example: '1'
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32602
+                message: Invalid params
+              id: '1'
+        description: Bad Request - Invalid request parameters or malformed request.
+    '401':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32001
+                message: Unauthorized
+              id: '1'
+        description: Unauthorized - Invalid or missing API key.
+    '429':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32005
+                message: Too many requests
+              id: '1'
+        description: Too Many Requests - Rate limit exceeded.
+    '500':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32603
+                message: Internal error
+              id: '1'
+        description: Internal Server Error - An error occurred on the server.
+    '503':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32002
+                message: Service unavailable
+              id: '1'
+        description: Service Unavailable - The service is temporarily unavailable.
+    '504':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: Gateway timeout
+              id: '1'
+        description: Gateway Timeout - The request timed out.
+  deprecated: false
+  type: path
+components:
+  schemas:
+    Account:
+      type: object
+      required:
+        - hash
+        - owner
+        - lamports
+        - tree
+        - leafIndex
+        - seq
+        - slotCreated
+      properties:
+        address:
+          $ref: '#/components/schemas/SerializablePubkey'
+          description: The unique Solana address of the compressed account
+        data:
+          $ref: '#/components/schemas/AccountData'
+          description: Compressed account data in an efficient storage format
+        hash:
+          $ref: '#/components/schemas/Hash'
+          description: Cryptographic hash of the compressed account data for verification
+        lamports:
+          $ref: '#/components/schemas/UnsignedInteger'
+          description: Balance in lamports associated with the compressed account
+        leafIndex:
+          $ref: '#/components/schemas/UnsignedInteger'
+          description: >-
+            Index position in the merkle tree where the compressed account is
+            stored
+        owner:
+          $ref: '#/components/schemas/SerializablePubkey'
+          description: Solana program that owns this compressed account
+        seq:
+          $ref: '#/components/schemas/UnsignedInteger'
+          description: Sequence number for tracking updates to the compressed account
+        slotCreated:
+          $ref: '#/components/schemas/UnsignedInteger'
+          description: Solana blockchain slot when the compressed account was created
+        tree:
+          $ref: '#/components/schemas/SerializablePubkey'
+          description: Address of the merkle tree containing this compressed account
+      additionalProperties: false
+    AccountData:
+      type: object
+      required:
+        - discriminator
+        - data
+        - dataHash
+      properties:
+        data:
+          $ref: '#/components/schemas/Base64String'
+        dataHash:
+          $ref: '#/components/schemas/Hash'
+        discriminator:
+          $ref: '#/components/schemas/UnsignedInteger'
+      additionalProperties: false
+    AccountList:
+      type: object
+      required:
+        - items
+      properties:
+        items:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/Account'
+            nullable: true
+      additionalProperties: false
+    Base64String:
+      type: string
+      description: A base64 encoded string containing compressed Solana account data.
+      default: SGVsbG8sIFdvcmxkIQ==
+      example: SGVsbG8sIFdvcmxkIQ==
+    Context:
+      type: object
+      required:
+        - slot
+      properties:
+        slot:
+          type: integer
+          default: 100
+          example: 100
+          description: Current Solana blockchain slot at the time of the request
+    Hash:
+      type: string
+      description: >-
+        A 32-byte cryptographic hash represented as a base58 string, used to
+        verify Solana compressed account data integrity.
+      example: 11111112cMQwSC9qirWGjZM6gLGwW69X22mqwLLGP
+    SerializablePubkey:
+      type: string
+      description: >-
+        A Solana public key represented as a base58 string, used to identify
+        compressed accounts, merkle trees, and owners.
+      default: 11111115RidqCHAoz6dzmXxGcfWLNzevYqNpaRAUo
+      example: 11111115RidqCHAoz6dzmXxGcfWLNzevYqNpaRAUo
+    UnsignedInteger:
+      type: integer
+      default: 100
+      example: 100
+      description: >-
+        Non-negative integer value used for various parameters in Solana
+        compressed account structures
+
+````

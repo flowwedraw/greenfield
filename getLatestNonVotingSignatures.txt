@@ -1,0 +1,335 @@
+# getLatestNonVotingSignatures
+
+ Returns the signatures of the latest transactions that are not voting transactions.
+
+## OpenAPI
+
+````yaml openapizk-compressiongetLatestNonVotingSignatures.yaml post 
+paths
+  path 
+  method post
+  servers
+    - url httpsmainnet.helius-rpc.com
+      description Mainnet RPC endpoint
+    - url httpsdevnet.helius-rpc.com
+      description Devnet RPC endpoint
+  request
+    security
+      - title ApiKeyQuery
+        parameters
+          query
+            api-key
+              type apiKey
+              description -
+                Your Helius API key. You can get one for free in the
+                [dashboard](httpsdashboard.helius.devapi-keys).
+          header {}
+          cookie {}
+    parameters
+      path {}
+      query {}
+      header {}
+      cookie {}
+    body
+      applicationjson
+        schemaArray
+          - type object
+            properties
+              jsonrpc
+                allOf
+                  - type string
+                    description The version of the JSON-RPC protocol.
+                    enum
+                      - '2.0'
+                    default '2.0'
+              id
+                allOf
+                  - type string
+                    description An ID to identify the request.
+                    default '1'
+              method
+                allOf
+                  - type string
+                    description The name of the method to invoke.
+                    enum
+                      - getLatestNonVotingSignatures
+                    default getLatestNonVotingSignatures
+              params
+                allOf
+                  - type object
+                    properties
+                      cursor
+                        type string
+                        nullable true
+                      limit
+                        allOf
+                          - $ref '#componentsschemasLimit'
+                        nullable true
+                    additionalProperties false
+            required true
+            requiredProperties
+              - jsonrpc
+              - id
+              - method
+              - params
+        examples
+          example
+            value
+              jsonrpc '2.0'
+              id '1'
+              method getLatestNonVotingSignatures
+              params
+                cursor string
+                limit 1
+  response
+    '200'
+      applicationjson
+        schemaArray
+          - type object
+            properties
+              context
+                allOf
+                  - $ref '#componentsschemasContext'
+              value
+                allOf
+                  - $ref '#componentsschemasSignatureInfoListWithError'
+            requiredProperties
+              - context
+              - value
+            additionalProperties false
+        examples
+          example
+            value
+              context
+                slot 100
+              value
+                items
+                  - blockTime 1714081554
+                    error string
+                    signature 5J8H5sTvEhnGcB4R8K1n7mfoiWUD9RzPVGES7e3WxC7c
+                    slot 100
+        description -
+          Successfully retrieved latest non-voting signatures from the Solana
+          compression service
+    '400'
+      applicationjson
+        schemaArray
+          - type object
+            properties
+              jsonrpc
+                allOf
+                  - &ref_0
+                    type string
+                    description The JSON-RPC protocol version.
+                    enum
+                      - '2.0'
+                    example '2.0'
+              error
+                allOf
+                  - &ref_1
+                    type object
+                    properties
+                      code
+                        type integer
+                        description The error code.
+                        example -32602
+                      message
+                        type string
+                        description The error message.
+                      data
+                        type object
+                        description Additional data about the error.
+              id
+                allOf
+                  - &ref_2
+                    type string
+                    description Identifier matching the request.
+                    example '1'
+            refIdentifier '#componentsschemasErrorResponse'
+        examples
+          example
+            value
+              jsonrpc '2.0'
+              error
+                code -32602
+                message Invalid params
+              id '1'
+        description Bad Request - Invalid request parameters or malformed request.
+    '401'
+      applicationjson
+        schemaArray
+          - type object
+            properties
+              jsonrpc
+                allOf
+                  - ref_0
+              error
+                allOf
+                  - ref_1
+              id
+                allOf
+                  - ref_2
+            refIdentifier '#componentsschemasErrorResponse'
+        examples
+          example
+            value
+              jsonrpc '2.0'
+              error
+                code -32001
+                message Unauthorized
+              id '1'
+        description Unauthorized - Invalid or missing API key.
+    '429'
+      applicationjson
+        schemaArray
+          - type object
+            properties
+              jsonrpc
+                allOf
+                  - ref_0
+              error
+                allOf
+                  - ref_1
+              id
+                allOf
+                  - ref_2
+            refIdentifier '#componentsschemasErrorResponse'
+        examples
+          example
+            value
+              jsonrpc '2.0'
+              error
+                code -32005
+                message Too many requests
+              id '1'
+        description Too Many Requests - Rate limit exceeded.
+    '500'
+      applicationjson
+        schemaArray
+          - type object
+            properties
+              jsonrpc
+                allOf
+                  - ref_0
+              error
+                allOf
+                  - ref_1
+              id
+                allOf
+                  - ref_2
+            refIdentifier '#componentsschemasErrorResponse'
+        examples
+          example
+            value
+              jsonrpc '2.0'
+              error
+                code -32603
+                message Internal error
+              id '1'
+        description Internal Server Error - An error occurred on the server.
+    '503'
+      applicationjson
+        schemaArray
+          - type object
+            properties
+              jsonrpc
+                allOf
+                  - ref_0
+              error
+                allOf
+                  - ref_1
+              id
+                allOf
+                  - ref_2
+            refIdentifier '#componentsschemasErrorResponse'
+        examples
+          example
+            value
+              jsonrpc '2.0'
+              error
+                code -32002
+                message Service unavailable
+              id '1'
+        description Service Unavailable - The service is temporarily unavailable.
+    '504'
+      applicationjson
+        schemaArray
+          - type object
+            properties
+              jsonrpc
+                allOf
+                  - ref_0
+              error
+                allOf
+                  - ref_1
+              id
+                allOf
+                  - ref_2
+            refIdentifier '#componentsschemasErrorResponse'
+        examples
+          example
+            value
+              jsonrpc '2.0'
+              error
+                code -32003
+                message Gateway timeout
+              id '1'
+        description Gateway Timeout - The request timed out.
+  deprecated false
+  type path
+components
+  schemas
+    Context
+      type object
+      required
+        - slot
+      properties
+        slot
+          type integer
+          default 100
+          example 100
+    Limit
+      type integer
+      format int64
+      minimum 0
+    SerializableSignature
+      type string
+      description A Solana transaction signature.
+      default 5J8H5sTvEhnGcB4R8K1n7mfoiWUD9RzPVGES7e3WxC7c
+      example 5J8H5sTvEhnGcB4R8K1n7mfoiWUD9RzPVGES7e3WxC7c
+    SignatureInfoListWithError
+      type object
+      required
+        - items
+      properties
+        items
+          type array
+          items
+            $ref '#componentsschemasSignatureInfoWithError'
+    SignatureInfoWithError
+      type object
+      required
+        - signature
+        - slot
+        - blockTime
+      properties
+        blockTime
+          $ref '#componentsschemasUnixTimestamp'
+        error
+          type string
+          nullable true
+        signature
+          $ref '#componentsschemasSerializableSignature'
+        slot
+          $ref '#componentsschemasUnsignedInteger'
+    UnixTimestamp
+      type integer
+      description An Unix timestamp (seconds)
+      default 1714081554
+      example 1714081554
+    UnsignedInteger
+      type integer
+      default 100
+      example 100
+
+````

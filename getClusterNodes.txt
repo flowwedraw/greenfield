@@ -1,0 +1,327 @@
+# getClusterNodes
+
+> Returns information about all the nodes participating in the cluster.
+
+## OpenAPI
+
+````yaml openapi/rpc-http/getClusterNodes.yaml post /
+paths:
+  path: /
+  method: post
+  servers:
+    - url: https://mainnet.helius-rpc.com
+      description: Mainnet RPC endpoint
+    - url: https://devnet.helius-rpc.com
+      description: Devnet RPC endpoint
+  request:
+    security:
+      - title: ApiKeyQuery
+        parameters:
+          query:
+            api-key:
+              type: apiKey
+              description: >-
+                Your Helius API key. You can get one for free in the
+                [dashboard](https://dashboard.helius.dev/api-keys).
+          header: {}
+          cookie: {}
+    parameters:
+      path: {}
+      query: {}
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    description: The JSON-RPC protocol version.
+                    enum:
+                      - '2.0'
+                    example: '2.0'
+                    default: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: A unique identifier for the request.
+                    example: '1'
+                    default: '1'
+              method:
+                allOf:
+                  - type: string
+                    description: The name of the RPC method to invoke.
+                    enum:
+                      - getClusterNodes
+                    example: getClusterNodes
+                    default: getClusterNodes
+            required: true
+            requiredProperties:
+              - jsonrpc
+              - id
+              - method
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              method: getClusterNodes
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    description: The JSON-RPC protocol version.
+                    enum:
+                      - '2.0'
+                    example: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: Identifier matching the request.
+                    example: '1'
+              result:
+                allOf:
+                  - type: array
+                    description: >-
+                      Comprehensive list of all discoverable Solana validator
+                      nodes currently participating in the network.
+                    items:
+                      type: object
+                      properties:
+                        pubkey:
+                          type: string
+                          description: >-
+                            Unique validator identity public key (base-58
+                            encoded) that identifies this node on the Solana
+                            network.
+                          example: 9QzsJf7LPLj8GkXbYT3LFDKqsj2hHG7TA3xinJHu8epQ
+                        gossip:
+                          type: string
+                          nullable: true
+                          description: >-
+                            IP address and port for connecting to this
+                            validator's gossip protocol endpoint for peer
+                            discovery.
+                          example: 10.239.6.48:8001
+                        tpu:
+                          type: string
+                          nullable: true
+                          description: >-
+                            Transaction Processing Unit address where clients
+                            can directly submit transactions to this validator.
+                          example: 10.239.6.48:8856
+                        rpc:
+                          type: string
+                          nullable: true
+                          description: >-
+                            JSON-RPC API endpoint address if this validator
+                            offers public RPC services, or null if not publicly
+                            available.
+                          example: 10.239.6.48:8899
+                        version:
+                          type: string
+                          nullable: true
+                          description: >-
+                            Solana software version and build identifier running
+                            on this validator node.
+                          example: 1.0.0 c375ce1f
+                        featureSet:
+                          type: integer
+                          nullable: true
+                          description: >-
+                            Numeric identifier of the feature set enabled on
+                            this validator, used to track protocol
+                            compatibility.
+                        shredVersion:
+                          type: integer
+                          nullable: true
+                          description: >-
+                            Network compatibility version number used for shred
+                            processing and routing between validator nodes.
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              result:
+                - pubkey: 9QzsJf7LPLj8GkXbYT3LFDKqsj2hHG7TA3xinJHu8epQ
+                  gossip: 10.239.6.48:8001
+                  tpu: 10.239.6.48:8856
+                  rpc: 10.239.6.48:8899
+                  version: 1.0.0 c375ce1f
+                  featureSet: 123
+                  shredVersion: 123
+        description: Successfully retrieved cluster node information.
+    '400':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - &ref_0
+                    type: string
+                    description: The JSON-RPC protocol version.
+                    enum:
+                      - '2.0'
+                    example: '2.0'
+              error:
+                allOf:
+                  - &ref_1
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        description: Error code.
+                      message:
+                        type: string
+                        description: Error message.
+              id:
+                allOf:
+                  - &ref_2
+                    type: string
+                    description: Identifier matching the request.
+                    example: '1'
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32602
+                message: Invalid params
+              id: '1'
+        description: Bad Request - Invalid request parameters or malformed request.
+    '401':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32001
+                message: Unauthorized
+              id: '1'
+        description: Unauthorized - Invalid or missing API key.
+    '429':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32005
+                message: Too many requests
+              id: '1'
+        description: Too Many Requests - Rate limit exceeded.
+    '500':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32603
+                message: Internal error
+              id: '1'
+        description: Internal Server Error - An error occurred on the server.
+    '503':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32002
+                message: Service unavailable
+              id: '1'
+        description: Service Unavailable - The service is temporarily unavailable.
+    '504':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: Gateway timeout
+              id: '1'
+        description: Gateway Timeout - The request timed out.
+  deprecated: false
+  type: path
+components:
+  schemas: {}
+
+````

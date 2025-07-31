@@ -1,0 +1,113 @@
+Solana Dev 101 - Making a Solana Discord Bot with Webhooks
+
+Tidelaw
+Tidelaw
+3 min read
+September 28, 2023
+Introduction
+Interested in creating a Discord Sales Bot for an NFT collection? This blog post will guide you through setting up a Discord Sales Bot using Helius Webhooks.
+
+Discord Sales Bot Notification
+Discord Sales Bot Notification
+
+Setting up the Discord Webhook
+To set up the sales bot on the server, navigate to the Server Settings. Remember, you'll need admin permissions to do this.
+
+Discord Server Settings
+
+Select Integrations from the menu:
+
+Discord integrations
+
+Click New Webhook and adjust the settings as you see fit:
+
+new webhook
+
+Make sure to copy the Webhook URL, as it will be needed when we set up the Helius Webhook.
+
+Setting up the Helius Webhook
+Head to the Helius Dashboard and select the webhook section on the left. Once there, you can add a new webhook. Ensure you keep the network and webhook type the same as shown in the image, which should be Mainnet and Discord, respectively. 
+
+We add "Discord" as the Webhook type because it will format the transaction message according to the transaction and relay it directly to Discord without requiring you to write any code. You can choose which types of transactions you want to include. In our case, select NFT_SALES, as we'll only allow NFT sales to be sent.
+
+The webhook URL will be the URL you previously copied from Discord. Keep this tab open, as we'll need to add the appropriate addresses into the Account Address field that the webhook will monitor.
+
+Configuration for Webhook
+Configuration for Webhook
+
+Adding Account Address
+We’ll start from an NFT, keep in mind some NFT collections may have been created from a different standard, which would change these steps. Starting from a Solscan link pointing to an NFT(example below):
+
+NFT metadata example
+
+Select the Metadata section, and scroll until you see the Creators property. From the array, select the address with a share value of 100. You may see one or more creators, but usually, only one creator will have a share value of 100. Copy this address and return it to the Helius Dashboard. In this case, the address is:
+
+HAryckvjyViFQEmhmMoCtqqBMJnpXEYViamyDhZUJfnG
+
+Copy and paste it into the dashboard.
+
+Account Address for Webhook
+Account Address for Webhook
+
+
+Once you hit confirm, you're done! When an NFT is sold from the collection, you should receive a webhook message like this:
+
+Discord Sales Bot Notification
+Discord Sales Bot Notification
+
+Conclusion
+In this tutorial, we learned how to set up a Discord Sales Bot using Helius Webhooks. With this bot, you can easily stay updated with live NFT sales of your favorite collection. Discord's webhook feature removes the need for writing custom bot code, making it easier for everyone to get started. If you wish to build a Telegram Sales bot, you can refer to this tutorial. We hope you find it useful! If you have any questions or feedback, please don't hesitate to visit Discord.
+
+Thank you for reading!
+
+Resources
+Helius Discord
+Twitter Thread
+What are Webhooks
+Table of Contents
+Introduction
+Setting up the Discord Webhook
+Setting up the Helius Webhook
+Adding Account Address
+Conclusion
+Resources
+Related Articles
+Create a Solana Telegram Bot in Less Than 100 Lines of Code
+Create a Solana Telegram Bot in Less Than 100 Lines of Code
+This guide demonstrates how to create a customizable Telegram bot that tracks real-time events using Helius webhooks and Cloudflare Workers.
+
+how to set up a solana telegram bot
+How to set up a Solana Telegram bot
+Learn how to set up a Telegram bot that sends updates relating to on-chain activities with Helius webhooks.
+
+How to build a Solana Portfolio Viewer with Next.js and Helius's DAS API
+How to build a Solana Portfolio Viewer with Next.js and Helius's DAS API
+Learn how to integrate the DAS API into a front-end application to build a portfolio viewer for showcasing both NFTs and SPL tokens.
+
+Subscribe to Helius
+Stay up-to-date with the latest in Solana development and receive updates when we post
+
+
+Helius Logo
+SOC
+Product
+RPC Nodes
+LaserStream
+gRPC
+Webhooks & WebSockets
+NFT APIs
+Token APIs
+Transaction APIs
+ZK Compression
+Validator
+Our Validator
+Validator-as-a-Service
+Stake with Us
+How to Buy hSOL
+Resources
+Blog
+Docs
+Status
+Pricing
+Built with Helius
+Startup Launchpad

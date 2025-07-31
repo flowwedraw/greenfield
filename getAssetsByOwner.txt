@@ -1,0 +1,632 @@
+# getAssetsByOwner
+
+> Retrieve a comprehensive list of all digital assets owned by a specific Solana wallet address.
+Access complete NFT collections, compressed assets, fungible tokens, and native SOL balances
+with advanced filtering, sorting, and pagination options. Supports both traditional and compressed
+NFTs with detailed metadata for complete wallet portfolio analysis.
+
+
+## OpenAPI
+
+````yaml openapi/das-api/getAssetsByOwner.yaml post /
+paths:
+  path: /
+  method: post
+  servers:
+    - url: https://mainnet.helius-rpc.com
+      description: Mainnet RPC endpoint for production Solana applications
+    - url: https://devnet.helius-rpc.com
+      description: Devnet RPC endpoint for Solana development and testing
+  request:
+    security:
+      - title: ApiKeyQuery
+        parameters:
+          query:
+            api-key:
+              type: apiKey
+              description: >-
+                Your Helius API key. You can get one for free in the
+                [dashboard](https://dashboard.helius.dev/api-keys).
+          header: {}
+          cookie: {}
+    parameters:
+      path: {}
+      query: {}
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+                    description: The version of the JSON-RPC protocol.
+                    default: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: An ID to identify the request.
+                    example: '1'
+                    default: '1'
+              method:
+                allOf:
+                  - type: string
+                    enum:
+                      - getAssetsByOwner
+                    description: The name of the DAS method to invoke.
+                    default: getAssetsByOwner
+              params:
+                allOf:
+                  - description: >-
+                      Parameters for querying Solana digital assets by owner
+                      address with filtering and pagination options.
+                    default:
+                      ownerAddress: 86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY
+                    oneOf:
+                      - type: object
+                        properties:
+                          ownerAddress:
+                            type: string
+                            description: >-
+                              The Solana wallet address to retrieve all owned
+                              digital assets for.
+                            example: 86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY
+                          page:
+                            type: integer
+                            description: >-
+                              The page number for paginating through large asset
+                              collections (1-based indexing).
+                            example: 1
+                          limit:
+                            type: integer
+                            description: >-
+                              The maximum number of assets to return per page
+                              (up to 1000).
+                            example: 50
+                          sortBy:
+                            type: object
+                            description: >-
+                              Sorting configuration for ordering the returned
+                              Solana assets.
+                            properties:
+                              sortBy:
+                                type: string
+                                description: >-
+                                  Criteria for sorting Solana digital assets in
+                                  the response.
+                                enum:
+                                  - created
+                                  - recent_action
+                                  - updated
+                                  - none
+                              sortDirection:
+                                type: string
+                                description: >-
+                                  Sort direction for ordering Solana digital
+                                  assets in the response.
+                                enum:
+                                  - asc
+                                  - desc
+                          options:
+                            type: object
+                            description: >-
+                              Display and filtering options for the returned
+                              Solana asset data.
+                            properties:
+                              showUnverifiedCollections:
+                                type: boolean
+                                description: >-
+                                  Include grouping information for unverified
+                                  Solana NFT collections.
+                                default: false
+                              showCollectionMetadata:
+                                type: boolean
+                                description: >-
+                                  Include detailed metadata for Solana NFT
+                                  collections.
+                                default: false
+                              showGrandTotal:
+                                type: boolean
+                                description: >-
+                                  Include the total count of all assets owned by
+                                  the address (may increase response time).
+                                default: false
+                              showFungible:
+                                type: boolean
+                                description: >-
+                                  Include SPL tokens and fungible assets held by
+                                  the Solana wallet.
+                                default: false
+                              showNativeBalance:
+                                type: boolean
+                                description: >-
+                                  Include native SOL balance held by the Solana
+                                  wallet.
+                                default: false
+                              showInscription:
+                                type: boolean
+                                description: >-
+                                  Include inscription details for assets with
+                                  on-chain inscriptions.
+                                default: false
+                              showZeroBalance:
+                                type: boolean
+                                description: >-
+                                  Include assets with zero balance in the
+                                  ownership list.
+                                default: false
+                        required:
+                          - ownerAddress
+                      - type: object
+                        properties:
+                          ownerAddress:
+                            type: string
+                            description: >-
+                              The Solana wallet address to retrieve all owned
+                              digital assets for.
+                            example: 86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY
+                          before:
+                            type: string
+                            description: >-
+                              Pagination cursor for retrieving assets before
+                              this position (for backwards pagination).
+                            example: string
+                          after:
+                            type: string
+                            description: >-
+                              Pagination cursor for retrieving assets after this
+                              position (for forwards pagination).
+                            example: string
+                          sortBy:
+                            type: object
+                            description: >-
+                              Sorting configuration for ordering the returned
+                              Solana assets.
+                            properties:
+                              sortBy:
+                                type: string
+                                description: >-
+                                  Criteria for sorting Solana digital assets in
+                                  the response.
+                                enum:
+                                  - created
+                                  - recent_action
+                                  - updated
+                                  - none
+                              sortDirection:
+                                type: string
+                                description: >-
+                                  Sort direction for ordering Solana digital
+                                  assets in the response.
+                                enum:
+                                  - asc
+                                  - desc
+                          options:
+                            type: object
+                            description: >-
+                              Display and filtering options for the returned
+                              Solana asset data.
+                            properties:
+                              showUnverifiedCollections:
+                                type: boolean
+                                description: >-
+                                  Include grouping information for unverified
+                                  Solana NFT collections.
+                                default: false
+                              showCollectionMetadata:
+                                type: boolean
+                                description: >-
+                                  Include detailed metadata for Solana NFT
+                                  collections.
+                                default: false
+                              showGrandTotal:
+                                type: boolean
+                                description: >-
+                                  Include the total count of all assets owned by
+                                  the address (may increase response time).
+                                default: false
+                              showFungible:
+                                type: boolean
+                                description: >-
+                                  Include SPL tokens and fungible assets held by
+                                  the Solana wallet.
+                                default: false
+                              showNativeBalance:
+                                type: boolean
+                                description: >-
+                                  Include native SOL balance held by the Solana
+                                  wallet.
+                                default: false
+                              showInscription:
+                                type: boolean
+                                description: >-
+                                  Include inscription details for assets with
+                                  on-chain inscriptions.
+                                default: false
+                              showZeroBalance:
+                                type: boolean
+                                description: >-
+                                  Include assets with zero balance in the
+                                  ownership list.
+                                default: false
+                        required:
+                          - ownerAddress
+            requiredProperties:
+              - jsonrpc
+              - id
+              - method
+              - params
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              method: getAssetsByOwner
+              params:
+                ownerAddress: 86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY
+                page: 1
+                limit: 50
+                sortBy:
+                  sortBy: created
+                  sortDirection: asc
+                options:
+                  showUnverifiedCollections: false
+                  showCollectionMetadata: false
+                  showGrandTotal: false
+                  showFungible: false
+                  showNativeBalance: false
+                  showInscription: false
+                  showZeroBalance: false
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              result:
+                allOf:
+                  - type: object
+                    properties:
+                      total:
+                        type: integer
+                        example: 1
+                      limit:
+                        type: integer
+                        example: 1
+                      page:
+                        type: integer
+                        example: 1
+                      items:
+                        type: array
+                        items:
+                          type: object
+                          example:
+                            interface: V1_NFT
+                            id: JCfTS6dmJZY4NXhjMwHqayGGHUwxp59pzcYhZrYqMBce
+                            content:
+                              $schema: https://schema.metaplex.com/nft1.0.json
+                              json_uri: https://www.hi-hi.vip/json/5000wif.json
+                              files:
+                                - uri: https://img.hi-hi.vip/json/img/5000wif.png
+                                  cdn_uri: >-
+                                    https://cdn.helius-rpc.com/cdn-cgi/image//https://img.hi-hi.vip/json/img/5000wif.png
+                                  mime: image/png
+                            authorities:
+                              - address: 2iVwwSHr7hGR6wxNuQM8ArQYnX6Mzy2yeFnhBGgQetRw
+                                scopes:
+                                  - full
+                            compression:
+                              eligible: false
+                              compressed: true
+                              data_hash: 7zquDVS1VKu9HDh4WS4ray5ozLThiK6xrnFNhJtusj65
+                              creator_hash: 6v7GeYRiVML5mG1kJqi6eujN9sPB3ziCZJF4Vartj1qd
+                              asset_hash: 8gQZkgZ1L91qkNPtsiRGkRzpNcEfhBABEQr1D3wquB8H
+                              tree: BZNn9zX1MysbSvqyGZ33Seb8bvimaiE9fxmLKwX2Euae
+                              seq: 251133
+                              leaf_id: 250758
+                            grouping:
+                              - group_key: collection
+                                group_value: 723Vxwr6aYZHNqc8dVQVwchDHUR3cEwZA8zkejdYWKaS
+                            royalty:
+                              royalty_model: creators
+                              target: null
+                              percent: 0
+                              basis_points: 0
+                              primary_sale_happened: false
+                              locked: false
+                            creators:
+                              - address: GVKwqsEC5YQZX4hG7Fdy6m7cJUi4DA3ezYx1CC9wkj34
+                                share: 100
+                                verified: true
+                            ownership:
+                              frozen: false
+                              delegated: true
+                              delegate: GVKwqsEC5YQZX4hG7Fdy6m7cJUi4DA3ezYx1CC9wkj34
+                              ownership_model: single
+                              owner: 86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY
+                            supply:
+                              print_max_supply: 0
+                              print_current_supply: 0
+                              edition_nonce: 0
+                            mutable: true
+                            burnt: false
+              id:
+                allOf:
+                  - type: string
+                    example: text
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              result:
+                total: 1
+                limit: 1
+                page: 1
+                items:
+                  - interface: V1_NFT
+                    id: JCfTS6dmJZY4NXhjMwHqayGGHUwxp59pzcYhZrYqMBce
+                    content:
+                      $schema: https://schema.metaplex.com/nft1.0.json
+                      json_uri: https://www.hi-hi.vip/json/5000wif.json
+                      files:
+                        - uri: https://img.hi-hi.vip/json/img/5000wif.png
+                          cdn_uri: >-
+                            https://cdn.helius-rpc.com/cdn-cgi/image//https://img.hi-hi.vip/json/img/5000wif.png
+                          mime: image/png
+                    authorities:
+                      - address: 2iVwwSHr7hGR6wxNuQM8ArQYnX6Mzy2yeFnhBGgQetRw
+                        scopes:
+                          - full
+                    compression:
+                      eligible: false
+                      compressed: true
+                      data_hash: 7zquDVS1VKu9HDh4WS4ray5ozLThiK6xrnFNhJtusj65
+                      creator_hash: 6v7GeYRiVML5mG1kJqi6eujN9sPB3ziCZJF4Vartj1qd
+                      asset_hash: 8gQZkgZ1L91qkNPtsiRGkRzpNcEfhBABEQr1D3wquB8H
+                      tree: BZNn9zX1MysbSvqyGZ33Seb8bvimaiE9fxmLKwX2Euae
+                      seq: 251133
+                      leaf_id: 250758
+                    grouping:
+                      - group_key: collection
+                        group_value: 723Vxwr6aYZHNqc8dVQVwchDHUR3cEwZA8zkejdYWKaS
+                    royalty:
+                      royalty_model: creators
+                      target: null
+                      percent: 0
+                      basis_points: 0
+                      primary_sale_happened: false
+                      locked: false
+                    creators:
+                      - address: GVKwqsEC5YQZX4hG7Fdy6m7cJUi4DA3ezYx1CC9wkj34
+                        share: 100
+                        verified: true
+                    ownership:
+                      frozen: false
+                      delegated: true
+                      delegate: GVKwqsEC5YQZX4hG7Fdy6m7cJUi4DA3ezYx1CC9wkj34
+                      ownership_model: single
+                      owner: 86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY
+                    supply:
+                      print_max_supply: 0
+                      print_current_supply: 0
+                      edition_nonce: 0
+                    mutable: true
+                    burnt: false
+              id: text
+        description: >-
+          Successfully retrieved Solana digital assets owned by the specified
+          wallet address
+    '400':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32602
+                      message:
+                        type: string
+                        example: Invalid request parameters.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32602
+                message: Invalid request parameters.
+              id: '1'
+        description: >-
+          Bad Request. The server could not understand the request due to
+          invalid syntax.
+    '401':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32001
+                      message:
+                        type: string
+                        example: Authentication failed. Missing or invalid API key.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32001
+                message: Authentication failed. Missing or invalid API key.
+              id: '1'
+        description: >-
+          Unauthorized. The client must authenticate itself to get the requested
+          response.
+    '403':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32003
+                      message:
+                        type: string
+                        example: You do not have permission to access this resource.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: You do not have permission to access this resource.
+              id: '1'
+        description: Forbidden. The client does not have access rights to the content.
+    '404':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32004
+                      message:
+                        type: string
+                        example: No assets found for the specified owner.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32004
+                message: No assets found for the specified owner.
+              id: '1'
+        description: Not Found. The server can not find the requested resource.
+    '429':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32029
+                      message:
+                        type: string
+                        example: Rate limit exceeded. Please try again later.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32029
+                message: Rate limit exceeded. Please try again later.
+              id: '1'
+        description: >-
+          Too Many Requests. The user has sent too many requests in a given
+          amount of time.
+    '500':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32000
+                      message:
+                        type: string
+                        example: An unexpected error occurred on the server.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32000
+                message: An unexpected error occurred on the server.
+              id: '1'
+        description: >-
+          Internal Server Error. The server has encountered a situation it
+          doesn't know how to handle.
+  deprecated: false
+  type: path
+components:
+  schemas: {}
+
+````

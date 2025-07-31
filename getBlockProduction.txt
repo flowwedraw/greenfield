@@ -1,0 +1,335 @@
+# getBlockProduction
+
+> Returns recent block production information from the current or previous epoch.
+
+## OpenAPI
+
+````yaml openapi/rpc-http/getBlockProduction.yaml post /
+paths:
+  path: /
+  method: post
+  servers:
+    - url: https://mainnet.helius-rpc.com
+      description: Mainnet RPC endpoint
+    - url: https://devnet.helius-rpc.com
+      description: Devnet RPC endpoint
+  request:
+    security:
+      - title: ApiKeyQuery
+        parameters:
+          query:
+            api-key:
+              type: apiKey
+              description: >-
+                Your Helius API key. You can get one for free in the
+                [dashboard](https://dashboard.helius.dev/api-keys).
+          header: {}
+          cookie: {}
+    parameters:
+      path: {}
+      query: {}
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+                    description: The JSON-RPC protocol version.
+                    default: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: A unique identifier for the request.
+                    example: '1'
+                    default: '1'
+              method:
+                allOf:
+                  - type: string
+                    enum:
+                      - getBlockProduction
+                    description: The name of the RPC method to invoke.
+                    default: getBlockProduction
+              params:
+                allOf:
+                  - type: array
+                    description: Parameters for the request.
+                    items:
+                      oneOf:
+                        - type: object
+                          description: Configuration options for the request.
+                          properties:
+                            commitment:
+                              type: string
+                              description: The commitment level for the request.
+                              enum:
+                                - processed
+                                - confirmed
+                                - finalized
+                              example: finalized
+                            identity:
+                              type: string
+                              description: >-
+                                Optional validator identity public key (base-58
+                                encoded) to filter results for a specific
+                                validator.
+                              example: 85iYT5RuzRTDgjyRa3cP8SYhM2j21fj7NhfJ3peu1DPr
+                            range:
+                              type: object
+                              description: >-
+                                Optional slot range boundaries to limit the
+                                block production statistics time period.
+                              properties:
+                                firstSlot:
+                                  type: integer
+                                  description: >-
+                                    Starting slot number to begin analyzing
+                                    block production statistics from
+                                    (inclusive).
+                                  example: 0
+                                lastSlot:
+                                  type: integer
+                                  description: >-
+                                    Ending slot number to analyze block
+                                    production statistics until (inclusive). If
+                                    omitted, uses the current slot.
+                                  example: 9887
+            required: true
+            requiredProperties:
+              - jsonrpc
+              - id
+              - method
+              - params
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              method: getBlockProduction
+              params:
+                - commitment: finalized
+                  identity: 85iYT5RuzRTDgjyRa3cP8SYhM2j21fj7NhfJ3peu1DPr
+                  range:
+                    firstSlot: 0
+                    lastSlot: 9887
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+              id:
+                allOf:
+                  - type: string
+              result:
+                allOf:
+                  - type: object
+                    properties:
+                      context:
+                        type: object
+                        properties:
+                          slot:
+                            type: integer
+                            description: The slot at the time of the response.
+                            example: 9887
+                      value:
+                        type: object
+                        properties:
+                          byIdentity:
+                            type: object
+                            additionalProperties:
+                              type: array
+                              items:
+                                type: integer
+                              description: >-
+                                Two-element array containing [leaderSlots,
+                                blocksProduced] statistics for this validator.
+                            description: >-
+                              Map of validator identity public keys to their
+                              block production performance metrics.
+                            example:
+                              85iYT5RuzRTDgjyRa3cP8SYhM2j21fj7NhfJ3peu1DPr:
+                                - 9888
+                                - 9886
+                          range:
+                            type: object
+                            properties:
+                              firstSlot:
+                                type: integer
+                                description: >-
+                                  Starting slot number of the analyzed block
+                                  production statistics period.
+                                example: 0
+                              lastSlot:
+                                type: integer
+                                description: >-
+                                  Ending slot number of the analyzed block
+                                  production statistics period.
+                                example: 9887
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: <string>
+              result:
+                context:
+                  slot: 9887
+                value:
+                  byIdentity:
+                    85iYT5RuzRTDgjyRa3cP8SYhM2j21fj7NhfJ3peu1DPr:
+                      - 9888
+                      - 9886
+                  range:
+                    firstSlot: 0
+                    lastSlot: 9887
+        description: Successfully retrieved block production information.
+    '400':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - &ref_0
+                    type: string
+                    enum:
+                      - '2.0'
+              error:
+                allOf:
+                  - &ref_1
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32602
+                message: Invalid params
+        description: Bad Request - Invalid request parameters or malformed request.
+    '401':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32001
+                message: Unauthorized
+              id: '1'
+        description: Unauthorized - Invalid or missing API key.
+    '429':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32005
+                message: Too many requests
+              id: '1'
+        description: Too Many Requests - Rate limit exceeded.
+    '500':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32603
+                message: Internal error
+              id: '1'
+        description: Internal Server Error - An error occurred on the server.
+    '503':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32002
+                message: Service unavailable
+              id: '1'
+        description: Service Unavailable - The service is temporarily unavailable.
+    '504':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: Gateway timeout
+              id: '1'
+        description: Gateway Timeout - The request timed out.
+  deprecated: false
+  type: path
+components:
+  schemas: {}
+
+````

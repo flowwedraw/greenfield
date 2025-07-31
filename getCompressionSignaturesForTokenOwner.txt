@@ -1,0 +1,345 @@
+# getCompressionSignaturesForTokenOwner
+
+> Returns the signatures of the transactions that have modified an owner's compressed token accounts.
+
+## OpenAPI
+
+````yaml openapi/zk-compression/getCompressionSignaturesForTokenOwner.yaml post /
+paths:
+  path: /
+  method: post
+  servers:
+    - url: https://mainnet.helius-rpc.com
+      description: Mainnet RPC endpoint
+    - url: https://devnet.helius-rpc.com
+      description: Devnet RPC endpoint
+  request:
+    security:
+      - title: ApiKeyQuery
+        parameters:
+          query:
+            api-key:
+              type: apiKey
+              description: >-
+                Your Helius API key. You can get one for free in the
+                [dashboard](https://dashboard.helius.dev/api-keys).
+          header: {}
+          cookie: {}
+    parameters:
+      path: {}
+      query: {}
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    description: The version of the JSON-RPC protocol.
+                    enum:
+                      - '2.0'
+                    default: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: An ID to identify the request.
+                    default: '1'
+              method:
+                allOf:
+                  - type: string
+                    description: The name of the method to invoke.
+                    enum:
+                      - getCompressionSignaturesForTokenOwner
+                    default: getCompressionSignaturesForTokenOwner
+              params:
+                allOf:
+                  - type: object
+                    required:
+                      - owner
+                    properties:
+                      cursor:
+                        type: string
+                        nullable: true
+                      limit:
+                        allOf:
+                          - $ref: '#/components/schemas/Limit'
+                        nullable: true
+                      owner:
+                        $ref: '#/components/schemas/SerializablePubkey'
+                    additionalProperties: false
+            required: true
+            requiredProperties:
+              - jsonrpc
+              - id
+              - method
+              - params
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              method: getCompressionSignaturesForTokenOwner
+              params:
+                cursor: <string>
+                limit: 1
+                owner: 1111111AFmseVrdL9f9oyCzZefL9tG6UbvhMPRAGw
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              context:
+                allOf:
+                  - $ref: '#/components/schemas/Context'
+              value:
+                allOf:
+                  - $ref: '#/components/schemas/PaginatedSignatureInfoList'
+            requiredProperties:
+              - context
+              - value
+            additionalProperties: false
+        examples:
+          example:
+            value:
+              context:
+                slot: 100
+              value:
+                cursor: <string>
+                items:
+                  - blockTime: 1714081554
+                    signature: 5J8H5sTvEhnGcB4R8K1n7mfoiWUD9RzPVGES7e3WxC7c
+                    slot: 100
+        description: >-
+          Successfully retrieved compression signatures for the specified token
+          owner from the Solana blockchain
+    '400':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - &ref_0
+                    type: string
+                    description: The JSON-RPC protocol version.
+                    enum:
+                      - '2.0'
+                    example: '2.0'
+              error:
+                allOf:
+                  - &ref_1
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        description: The error code.
+                        example: -32602
+                      message:
+                        type: string
+                        description: The error message.
+                      data:
+                        type: object
+                        description: Additional data about the error.
+              id:
+                allOf:
+                  - &ref_2
+                    type: string
+                    description: Identifier matching the request.
+                    example: '1'
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32602
+                message: Invalid params
+              id: '1'
+        description: Bad Request - Invalid request parameters or malformed request.
+    '401':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32001
+                message: Unauthorized
+              id: '1'
+        description: Unauthorized - Invalid or missing API key.
+    '429':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32005
+                message: Too many requests
+              id: '1'
+        description: Too Many Requests - Rate limit exceeded.
+    '500':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32603
+                message: Internal error
+              id: '1'
+        description: Internal Server Error - An error occurred on the server.
+    '503':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32002
+                message: Service unavailable
+              id: '1'
+        description: Service Unavailable - The service is temporarily unavailable.
+    '504':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: Gateway timeout
+              id: '1'
+        description: Gateway Timeout - The request timed out.
+  deprecated: false
+  type: path
+components:
+  schemas:
+    Context:
+      type: object
+      required:
+        - slot
+      properties:
+        slot:
+          type: integer
+          default: 100
+          example: 100
+    Limit:
+      type: integer
+      format: int64
+      minimum: 0
+    PaginatedSignatureInfoList:
+      type: object
+      required:
+        - items
+      properties:
+        cursor:
+          type: string
+          nullable: true
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SignatureInfo'
+    SerializablePubkey:
+      type: string
+      description: A Solana public key represented as a base58 string.
+      default: 1111111AFmseVrdL9f9oyCzZefL9tG6UbvhMPRAGw
+      example: 1111111AFmseVrdL9f9oyCzZefL9tG6UbvhMPRAGw
+    SerializableSignature:
+      type: string
+      description: A Solana transaction signature.
+      default: 5J8H5sTvEhnGcB4R8K1n7mfoiWUD9RzPVGES7e3WxC7c
+      example: 5J8H5sTvEhnGcB4R8K1n7mfoiWUD9RzPVGES7e3WxC7c
+    SignatureInfo:
+      type: object
+      required:
+        - signature
+        - slot
+        - blockTime
+      properties:
+        blockTime:
+          $ref: '#/components/schemas/UnixTimestamp'
+        signature:
+          $ref: '#/components/schemas/SerializableSignature'
+        slot:
+          $ref: '#/components/schemas/UnsignedInteger'
+    UnixTimestamp:
+      type: integer
+      description: An Unix timestamp (seconds)
+      default: 1714081554
+      example: 1714081554
+    UnsignedInteger:
+      type: integer
+      default: 100
+      example: 100
+
+````

@@ -1,0 +1,393 @@
+# getNftEditions
+
+> Retrieve all limited edition prints created from a master NFT on the Solana blockchain.
+This specialized edition tracking API returns a complete list of all individual NFT editions
+that have been minted from a specific master edition, along with their unique mint addresses, 
+edition numbers, and current supply information. Essential for NFT platforms managing limited
+edition artwork, collectors tracking edition rarity, and marketplaces verifying authentic prints
+within the Solana NFT ecosystem.
+
+
+## OpenAPI
+
+````yaml openapi/das-api/getNftEditions.yaml post /
+paths:
+  path: /
+  method: post
+  servers:
+    - url: https://mainnet.helius-rpc.com
+      description: Mainnet RPC endpoint
+    - url: https://devnet.helius-rpc.com
+      description: Devnet RPC endpoint
+  request:
+    security:
+      - title: ApiKeyQuery
+        parameters:
+          query:
+            api-key:
+              type: apiKey
+              description: >-
+                Your Helius API key. You can get one for free in the
+                [dashboard](https://dashboard.helius.dev/api-keys).
+          header: {}
+          cookie: {}
+    parameters:
+      path: {}
+      query: {}
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+                    description: The version of the JSON-RPC protocol.
+                    default: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: An ID to identify the request.
+                    example: '1'
+                    default: '1'
+              method:
+                allOf:
+                  - type: string
+                    enum:
+                      - getNftEditions
+                    description: The name of the DAS method to invoke.
+                    default: getNftEditions
+              params:
+                allOf:
+                  - type: object
+                    default:
+                      mint: Ey2Qb8kLctbchQsMnhZs5DjY32To2QtPuXNwWvk4NosL
+                    properties:
+                      mint:
+                        type: string
+                        description: >-
+                          The mint address of the Solana master edition NFT to
+                          retrieve all editions for.
+                        example: Ey2Qb8kLctbchQsMnhZs5DjY32To2QtPuXNwWvk4NosL
+                      page:
+                        type: integer
+                        description: >-
+                          The page number for paginating through the Solana NFT
+                          edition results.
+                        example: 1
+                      limit:
+                        type: integer
+                        description: >-
+                          The maximum number of Solana NFT editions to return in
+                          a single request.
+                        example: 100
+                    required:
+                      - mint
+            requiredProperties:
+              - jsonrpc
+              - id
+              - method
+              - params
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              method: getNftEditions
+              params:
+                mint: Ey2Qb8kLctbchQsMnhZs5DjY32To2QtPuXNwWvk4NosL
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              total:
+                allOf:
+                  - type: integer
+                    description: >-
+                      The total number of limited edition Solana NFTs minted
+                      from this master edition.
+                    example: 1
+              limit:
+                allOf:
+                  - type: integer
+                    description: The maximum number of NFT editions requested.
+                    example: 1
+              page:
+                allOf:
+                  - type: integer
+                    description: The current page of results.
+                    example: 1
+              master_edition_address:
+                allOf:
+                  - type: string
+                    description: >-
+                      The Solana blockchain address of the master edition NFT
+                      that controls the print editions.
+                    example: 8SHfqzJYABeGfiG1apwiEYt6TvfGQiL1pdwEjvTKsyiZ
+              supply:
+                allOf:
+                  - type: integer
+                    description: >-
+                      Current supply of minted Solana NFT editions from this
+                      master edition.
+                    example: 61
+              max_supply:
+                allOf:
+                  - type: integer
+                    description: >-
+                      Maximum possible supply of Solana NFT editions that can be
+                      minted from this master.
+                    example: 69
+              editions:
+                allOf:
+                  - type: array
+                    description: >-
+                      An array of individual Solana NFT editions minted from
+                      this master edition.
+                    items:
+                      type: object
+                      properties:
+                        mint:
+                          type: string
+                          description: >-
+                            The unique mint address of this individual Solana
+                            NFT edition.
+                          example: GJvFDcBWf6aDncd1TBzx2ou1rgLFYaMBdbYLBa9oTAEw
+                        edition_address:
+                          type: string
+                          description: >-
+                            The Solana blockchain address of this edition
+                            account for the NFT.
+                        edition:
+                          type: integer
+                          description: >-
+                            The sequential edition number of this Solana NFT in
+                            the print series.
+                        burnt: false
+        examples:
+          example:
+            value:
+              total: 1
+              limit: 1
+              page: 1
+              master_edition_address: 8SHfqzJYABeGfiG1apwiEYt6TvfGQiL1pdwEjvTKsyiZ
+              supply: 61
+              max_supply: 69
+              editions:
+                - mint: GJvFDcBWf6aDncd1TBzx2ou1rgLFYaMBdbYLBa9oTAEw
+                  edition_address: <string>
+                  edition: 123
+                  burnt: <any>
+        description: Successful response
+    '400':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32602
+                      message:
+                        type: string
+                        example: Invalid request parameters.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32602
+                message: Invalid request parameters.
+              id: '1'
+        description: >-
+          Bad Request. The server could not understand the request due to
+          invalid syntax.
+    '401':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32001
+                      message:
+                        type: string
+                        example: Authentication failed. Missing or invalid API key.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32001
+                message: Authentication failed. Missing or invalid API key.
+              id: '1'
+        description: >-
+          Unauthorized. The client must authenticate itself to get the requested
+          response.
+    '403':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32003
+                      message:
+                        type: string
+                        example: You do not have permission to access this resource.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: You do not have permission to access this resource.
+              id: '1'
+        description: Forbidden. The client does not have access rights to the content.
+    '404':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32004
+                      message:
+                        type: string
+                        example: No NFT editions found for the specified mint address.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32004
+                message: No NFT editions found for the specified mint address.
+              id: '1'
+        description: Not Found. The server can not find the requested resource.
+    '429':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32029
+                      message:
+                        type: string
+                        example: Rate limit exceeded. Please try again later.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32029
+                message: Rate limit exceeded. Please try again later.
+              id: '1'
+        description: >-
+          Too Many Requests. The user has sent too many requests in a given
+          amount of time.
+    '500':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32000
+                      message:
+                        type: string
+                        example: An unexpected error occurred on the server.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32000
+                message: An unexpected error occurred on the server.
+              id: '1'
+        description: >-
+          Internal Server Error. The server has encountered a situation it
+          doesn't know how to handle.
+  deprecated: false
+  type: path
+components:
+  schemas: {}
+
+````

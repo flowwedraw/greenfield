@@ -1,0 +1,284 @@
+How to Monitor Solana Transactions Using Geyser Enhanced Websockets
+Blog
+/
+Development
+How to Monitor Solana Transactions Using Geyser Enhanced Websockets
+
+zerkerzzz
+zerkerzzz
+7 min read
+July 19, 2024
+Introduction
+For a long time, I wondered how all these monitoring apps and bots work. After a painful search, I came across Helius' Geyser Enhanced Websockets. Although using them isn’t free (you need a business or professional plan) they are a very powerful tool you can use.
+
+Using Geyser Enhanced Websockets with Helius is simple — paste an address you want to monitor and run some code. You can monitor anything: NFTs, wallets, programs, platforms, literally anything. You can make wallet trackers, token trackers, buy-sell monitors, volume monitors, etc.
+
+APIs and tools of this sort can sometimes cost up to thousands of dollars, but this article will showcase a few examples of what can be made for a fraction of the cost. With $499 (Business plan), the ROI of making your own tool is infinite; sharing the tool with others or using it yourself will give you an edge and endless ways to work around live Solana data.
+
+If you are new to working with Helius Geyser Websockets, read this blog post and the documentation. You can follow along since this first example should be quite palatable.
+
+New Pool Monitor for Raydium
+Code
+Copy
+const WebSocket = require('ws');
+
+// Create a WebSocket connection
+const ws = new WebSocket('wss://atlas-mainnet.helius-rpc.com?api-key=YOUR_API_KEY');
+
+// Function to send a request to the WebSocket server
+function sendRequest(ws) {
+    const request = {
+        jsonrpc: "2.0",
+        id: 420,
+        method: "transactionSubscribe",
+        params: [
+            {   failed: false,
+                accountInclude:    ["675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8"]
+            },
+            {
+                commitment: "confirmed",
+                encoding: "jsonParsed",
+                transactionDetails: "full",
+                maxSupportedTransactionVersion: 0
+            }
+        ]
+    };
+    ws.send(JSON.stringify(request));
+}
+
+The first part of this code snippet is very straightforward. We set our API key and send a request with the account we want to monitor, which here is 675kPX9… aka the Raydium on-chain program. With this request, we will get all the confirmed, non-failed transactions that interact with Raydium. Sending this request would usually lead to thousands of transactions returned every second, so let’s focus on a simple way to filter the noise.
+
+Filtering Out the Noise
+The code snippet below is the main event-handling filtering logic. The on message function parses the data returned from the transactions based on the logs. In this instance, we are looking at all transactions with the “initialize2: InitializeInstruction2” log — it tells us when a user creates a new liquidity pool on Raydium. You can also use any other log, depending on what you want to monitor for. I recommend making a test transaction of what you want to monitor. For example, you could add liquidity to a pool and look at how the logs look for that transaction, then filter those logs to get all transactions where liquidity is added.
+
+Code
+Copy
+ws.on('open', function open() {
+    console.log('WebSocket is open');
+    sendRequest(ws);  // Send a request once the WebSocket is open
+});
+
+ws.on('message', async function incoming(data) {
+    const messageStr = data.toString('utf8');
+    try {
+        const messageObj = JSON.parse(messageStr);
+
+        const result = messageObj.params.result;
+        const logs = result.transaction.meta.logMessages;
+        const signature = result.signature; // Extract the signature
+        const accountKeys = result.transaction.transaction.message.accountKeys.map(ak => ak.pubkey); // Extract only pubkeys
+
+        if (logs && logs.some(log => log.includes("initialize2: InitializeInstruction2"))) {
+            // Log the signature, and the public keys of the AMM ID
+            console.log('Transaction signature:', signature);
+            console.log('AMM ID:', accountKeys[2]); // Corrected to the third account for AMM ID
+        }
+    } catch (e) {
+        
+    }
+});
+
+ws.on('error', function error(err) {
+    console.error('WebSocket error:', err);
+});
+
+ws.on('close', function close() {
+    console.log('WebSocket is closed');
+});
+
+Knowing that the transaction has the log, we extract two things: the signature so that we can compare and verify the accuracy of our program, and the account key, which is the AMM ID (i.e., the AMM address of said pool) since many bots/snipers use the AMM ID to initiate trades.
+
+Example output
+Example output
+
+
+You can extract more data as well if you would like. For example, you can get the creator (usually the 17th public key in the accountKeys), the tokens that are used to make the pool (either from pre-/post-token balances or the inner instructions), the number of tokens, and even the LP tokens which the creator receives The number of LP tokens the creator receives could be used to make a liquidity burn monitor, since when a creator of the pool burns their LP tokens, which are basically the receipt tokens of their share in the pool, they revoke their ability to remove liquidity (be wary if mint authority is still in their hands they could mint more tokens and sell those into the pool).
+
+JSON Structure
+To get more data, you can look at the transaction’s JSON structure, which can be found in the official Solana documentation. Alternatively, you can save the JSON response and use this formatter to view the structure. This is quite important because once you know the general structure of transactions, you can extract any data you would see when using a block explorer.
+
+Below is the general JSON, which contains two important, deeply nested objects: Transaction and Meta. Inside Transaction, we have the message object, which holds the recent blockhash, the accountKeys, and the instructions. Inside Meta, we have pre/post Balances (lamport balances), innerInstructions, logMessages, and pre-/post-token balances.
+
+JSON Structure
+JSON Structure
+
+Pump.Fun Monitor Example
+Seeing the current meta of meme coins on Solana, I made a very simple pump.fun monitor. Simply swap the address that we are monitoring to “6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P”, which is the pump.fun on-chain program and use this on message function:
+
+Code
+Copy
+ws.on('message', function incoming(data) {
+    const messageStr = data.toString('utf8');
+    try {
+        const messageObj = JSON.parse(messageStr);
+
+        const result = messageObj.params.result;
+        const logs = result.transaction.meta.logMessages;
+        const signature = result.signature; // Extract the signature
+        const accountKeys = result.transaction.transaction.message.accountKeys.map(ak => ak.pubkey);
+
+        if (logs && logs.some(log => log.includes('Program log: Instruction: InitializeMint2'))) {
+            console.log('New pump.fun token!');
+            console.log('tx:', signature);
+            console.log('Creator:', accountKeys[0]);
+            console.log('Token:', accountKeys[1]);
+
+            // Log the first and second account keys if they exist
+           
+        }
+    } catch (e) {
+        
+    }
+});
+
+Similar to our approach with Raydium, we look at all the transactions that interact with the pump.fun program and filter them based on the desired log (we have a pattern here: logs, logs, logs). Once we have a transaction with the logs we want, we extract the signature, the creator, and the token itself!
+
+You can see how the accountKeys and signature are nested in the same location in the JSON like in the Raydium example, so it’s easy to get the creator, token and signature. The JSON structure is basically the same for most transactions, but some of the values might be in different places or ordered differently  — you will see this in the next example.
+
+Either way, this is a pretty simple monitor for new pump.fun tokens. Using this info, you can buy the token or just know it exists for monitoring purposes. You can also combine it with different Helius DAS APIs to make an even more potent tool, for example, getting the metadata or the info regarding the creator.
+
+pump.fun example output
+Example output
+
+Jupiter DCA Monitor
+This example is relatively niche, but it showcases that you can see everything using logs. With the following request, we will look at Jupiter’s DCA (Dollar-Cost Average) program and, more specifically, see every single DCA purchase made using Jupiter. This example can be used in arbitrage trade calculations or to see potential market impact. Looking at DCA purchases for potential market impact is quite underutilized data.
+
+As you can see, nothing complicated has been done so far. We added a base58 import at the top and changed the address to the Jupiter DCA program. This next part might look quite complicated, which it sort of is, but I feel it’s important to have an example of something a bit more complex.
+
+Code
+Copy
+const WebSocket = require("ws");
+const bs58 = require("bs58");
+// Create a WebSocket connection
+const ws = new WebSocket(
+  "wss://atlas-mainnet.helius-rpc.com?api-key=YOUR_API_KEY"
+);
+
+// Function to send a request to the WebSocket server
+function sendRequest(ws) {
+  const request = {
+    jsonrpc: "2.0",
+    id: 420,
+    method: "transactionSubscribe",
+    params: [
+      {
+        failed: false,
+        accountInclude: ["DCA265Vj8a9CEuX1eb1LWRnDT7uK6q1xMipnNyatn23M"],
+      },
+      {
+        commitment: "confirmed",
+        encoding: "jsonParsed",
+        transactionDetails: "full",
+        maxSupportedTransactionVersion: 0,
+      },
+    ],
+  };
+  ws.send(JSON.stringify(request));
+}
+
+What we are doing here is:
+
+Using the DCA log to filter only these types of transactions.
+Extracting the User, Input Mint, and Output Mint from the transaction.
+Taking the Instruction Data Raw and converting the bytes to the input arguments, like the amount the user enters, how often they sell, and how much they sell each time.
+Code
+Copy
+ws.on("message", async function incoming(data) {
+  const messageStr = data.toString("utf8");
+  try {
+    const messageObj = JSON.parse(messageStr);
+
+
+    const instructions = messageObj.params.result.transaction.transaction.message.instructions; 
+    const result = messageObj.params.result;
+    const logs = result.transaction.meta.logMessages;
+    // Extract only pubkeys
+
+    if (
+      logs &&
+      logs.some((log) => log.includes("Program log: Instruction: OpenDcaV2"))
+    ) {
+      instructions.forEach((instruction) => {
+        if (instruction.programId.includes("DCA265")) {
+          if (instruction.accounts.length === 13) {
+            console.log("User:", instruction.accounts[2]);
+            console.log("Input Mint:", instruction.accounts[3]);
+            console.log("Output Mint:", instruction.accounts[4]);
+
+            const data = instruction.data;
+            const bytedata = bs58.decode(data);
+
+            const hexString = bytedata.toString("hex");
+            const inAmountbytes = hexString.substring(16 * 2, 24 * 2);
+            const cycleFrequencyBytes = hexString.substring(32 * 2, (32 + 8) * 2);
+            const inAmountPerCycleBytes = hexString.substring(24 * 2, 32 * 2);
+
+            // Reverse the byte order for little-endian interpretation
+            const reversedCycleFrequencyBytes = cycleFrequencyBytes
+              .match(/.{1,2}/g)
+              .reverse()
+              .join("");
+            const reversedInAmountBytes = inAmountbytes
+              .match(/.{1,2}/g)
+              .reverse()
+              .join("");
+            const reversedInAmountPerCycleBytes = inAmountPerCycleBytes
+              .match(/.{1,2}/g)
+              .reverse()
+              .join("");
+            const cycleFrequency = BigInt("0x" + reversedCycleFrequencyBytes);
+            const inAmount = BigInt("0x" + reversedInAmountBytes);
+            const inAmountPerCycle = BigInt("0x" + reversedInAmountPerCycleBytes);
+
+            console.log("Cycle Frequency every", cycleFrequency.toString() + " seconds");
+            console.log("Amount input:", inAmount.toString());
+            console.log("Amount  per cycle:", inAmountPerCycle.toString());
+           
+          }
+        }
+      });
+      
+    }
+  } catch (e) {}
+});*
+
+Jupiter DCA Monitor Expected output
+Expected output
+
+Decrypting the Raw Instruction Data
+When you see the raw instruction data, it usually corresponds to the input arguments. The data is not hard to get this way, and we don’t have to deserialize anything, which can be a turn-off for most.
+
+For example, let’s take this data from this transaction:
+
+8e772b6da2340bb12e783a66000000006d9415754e00000037ca8a3a270000003c00000000000000010000000000000000010000000000000000010000000000000000
+
+Now, go to hexed.it and paste it:
+
+Hexed paste UI
+Hexed paste UI
+
+
+Now,  let's find these input arguments:
+
+Input arguments from the transaction
+Input arguments from the transaction
+
+
+On the right side, let’s input 336971797613 into the search. Click find next, showing us where the inAmount value is in the bytes.
+
+Hexed UI showing bytes that correspond to our input argument 336971797613
+Hexed UI showing bytes that correspond to our input argument 336971797613
+
+
+As you can see, it shows us that bytes from 6D up to the last 00 before 37 hold the value of inAmount. Every DCA transaction of the format we monitor has the inAmount in the same byte position. The following 8 byte pairs have the inAmountPerCycle value.This is a neat way to find values usually unclear in the transaction JSON since JSON mostly has addresses and balances, not input arguments.
+
+You've Made It!
+If you made it this far, you should have an excellent base to start using Helius Geyser WebSockets. The hardest part is starting. Now, you can monitor wallets, programs, pools, and whatever you wish. There is no need for crazy-priced APIs or anything of that sort. If you encounter any issues or questions, you can always ask them in the Helius Discord!
+
+Resources
+ https://www.helius.dev/docs/rpc/websocket
+https://jsonformatter.org/json-viewer
+https://solana.com/ru/docs/rpc/json-structures
+https://hexed.it/
+https://cursor.com/en
+https://discord.com/channels/992616840251584633/992616841363066963

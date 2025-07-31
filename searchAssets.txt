@@ -1,0 +1,602 @@
+# searchAssets
+
+> Search and discover Solana digital assets with comprehensive filtering options.
+This powerful discovery API enables applications to find NFTs, compressed NFTs, fungible tokens,
+and other digital assets using multiple criteria including ownership, creators, collections,
+compression status, and metadata attributes. Perfect for marketplaces, portfolio
+trackers, and analytics platforms needing advanced asset discovery capabilities
+across the Solana ecosystem.
+
+Key capabilities:
+- Multi-criteria search across all Solana NFT standards (traditional, compressed, programmable)
+- Collection-based filtering for NFT projects and communities
+- Creator and ownership-based queries for attribution and portfolio analysis
+- Compression status filtering to identify cost-efficient assets
+- Metadata attribute search for trait-based discovery
+- Complete pagination support for large result sets
+
+
+## OpenAPI
+
+````yaml openapi/das-api/searchAssets.yaml post /
+paths:
+  path: /
+  method: post
+  servers:
+    - url: https://mainnet.helius-rpc.com
+      description: Mainnet RPC endpoint
+    - url: https://devnet.helius-rpc.com
+      description: Devnet RPC endpoint
+  request:
+    security:
+      - title: ApiKeyQuery
+        parameters:
+          query:
+            api-key:
+              type: apiKey
+              description: >-
+                Your Helius API key. You can get one for free in the
+                [dashboard](https://dashboard.helius.dev/api-keys).
+          header: {}
+          cookie: {}
+    parameters:
+      path: {}
+      query: {}
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+                    description: The version of the JSON-RPC protocol.
+                    default: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: An ID to identify the request.
+                    default: '1'
+              method:
+                allOf:
+                  - type: string
+                    enum:
+                      - searchAssets
+                    description: The name of the JSON-RPC method to invoke.
+                    default: searchAssets
+              params:
+                allOf:
+                  - type: object
+                    description: Parameters for the `searchAssets` method.
+                    default:
+                      ownerAddress: 86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY
+                      tokenType: all
+                    required:
+                      - ownerAddress
+                      - tokenType
+                    properties:
+                      ownerAddress:
+                        type: string
+                        description: >-
+                          The Solana wallet address to retrieve owned digital
+                          assets for filtering search results.
+                        example: 86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY
+                      tokenType:
+                        type: string
+                        enum:
+                          - fungible
+                          - nonFungible
+                          - regularNft
+                          - compressedNft
+                          - all
+                        description: >
+                          Filter for specific Solana token types including
+                          compressed NFTs (cNFTs), regular NFTs,
+
+                          programmable NFTs (pNFTs), or fungible SPL tokens for
+                          targeted asset discovery.
+                        example: all
+                      page:
+                        type: integer
+                        description: The page of results to return.
+                        example: 1
+                      authorityAddress:
+                        type: string
+                        description: >
+                          The authority address criteria for filtering Solana
+                          digital assets based on program authority,
+
+                          useful for finding assets controlled by specific
+                          protocols or update authorities.
+                        example: string
+                      limit:
+                        type: integer
+                        description: The maximum number of assets to return.
+                        example: 100
+                      sortBy:
+                        type: object
+                        description: The sorting options for the response.
+                        properties:
+                          sortBy:
+                            type: string
+                            description: The criteria by which the assets will be sorted.
+                            enum:
+                              - created
+                              - recent_action
+                              - updated
+                              - none
+                          sortDirection:
+                            type: string
+                            description: The sorting direction.
+                            enum:
+                              - asc
+                              - desc
+                      compressed:
+                        type: boolean
+                        description: >
+                          Filter for compressed Solana NFTs (cNFTs) that use
+                          state compression technology
+
+                          for reduced storage costs and improved scalability.
+                        example: true
+                      compressible:
+                        type: boolean
+                        description: >
+                          Filter for Solana assets that are eligible for
+                          compression but have not yet
+
+                          been compressed into the state compression format.
+                        example: false
+                      delegate:
+                        type: integer
+                        description: Delegate criteria for the asset search.
+                      creatorAddress:
+                        type: string
+                        description: >
+                          Creator wallet address criteria for finding Solana
+                          NFTs created by specific artists,
+
+                          projects, or creators for attribution and royalty
+                          tracking.
+                        example: string
+                      creatorVerified:
+                        type: boolean
+                        description: Whether a creator is verified.
+                        example: true
+                      grouping:
+                        type: array
+                        items:
+                          type: string
+                        description: >
+                          Collection grouping array for filtering Solana NFTs by
+                          their collection membership
+
+                          (e.g. ["collection", "<collectionKey>"]) to find
+                          related assets.
+                        example:
+                          - collection
+                          - DRiP2Pn2K6fuMLKQmt5rZWyHiUZ6WK3GChEySUpHSS4x
+                      supply:
+                        type: integer
+                        description: Supply criteria for the asset search.
+                        example: 0
+                      supplyMint:
+                        type: string
+                        description: Supply mint criteria for the asset search.
+                      frozen:
+                        type: boolean
+                        description: Whether an asset is frozen.
+                        example: false
+                      burnt:
+                        type: boolean
+                        description: Whether an asset is burnt.
+                        example: false
+                      interface:
+                        type: string
+                        description: >
+                          The Solana token standard interface type to filter for
+                          specific NFT implementations
+
+                          including programmable NFTs, legacy NFTs, and fungible
+                          tokens.
+                        enum:
+                          - V1_NFT
+                          - V1_PRINT
+                          - LEGACY_NFT
+                          - V2_NFT
+                          - FungibleAsset
+                          - FungibleToken
+                          - Custom
+                          - Identity
+                          - Executable
+                          - ProgrammableNFT
+                        example: Custom
+                      royaltyTargetType:
+                        type: string
+                        description: Royalty target type criteria.
+                        example: creators
+                      royaltyTarget:
+                        type: integer
+                        description: Royalty target criteria.
+                        example: 0
+                      royaltyAmount:
+                        type: integer
+                        description: Royalty amount criteria.
+                        example: 0
+                      ownerType:
+                        type: integer
+                        description: Ownership model criteria.
+                        example: 1
+                      before:
+                        type: string
+                        description: A cursor for paginating backward.
+                        example: string
+                      after:
+                        type: string
+                        description: A cursor for paginating forward.
+                        example: string
+                      options:
+                        type: object
+                        description: >-
+                          Advanced display options for customizing the Solana
+                          asset search response.
+                        properties:
+                          showUnverifiedCollections:
+                            type: boolean
+                            default: false
+                            description: >-
+                              Show unverified collections instead of skipping
+                              them.
+                          showCollectionMetadata:
+                            type: boolean
+                            default: false
+                            description: Show metadata for the collection.
+                          showGrandTotal:
+                            type: boolean
+                            default: false
+                            description: >-
+                              Show total number of matching assets (slower
+                              request).
+                          showNativeBalance:
+                            type: boolean
+                            default: false
+                            description: Show the native (SOL) balance of the owner.
+                          showInscription:
+                            type: boolean
+                            default: false
+                            description: Display inscription details.
+                          showZeroBalance:
+                            type: boolean
+                            default: false
+                            description: Display assets with zero balance.
+            requiredProperties:
+              - jsonrpc
+              - id
+              - method
+              - params
+            example:
+              jsonrpc: '2.0'
+              id: my-id
+              method: searchAssets
+              params:
+                ownerAddress: 86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY
+                tokenType: all
+                limit: 50
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: my-id
+              method: searchAssets
+              params:
+                ownerAddress: 86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY
+                tokenType: all
+                limit: 50
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              assets:
+                allOf:
+                  - type: object
+                    properties:
+                      total:
+                        type: integer
+                        description: >-
+                          The total number of Solana NFTs and digital assets
+                          matching the search criteria.
+                        example: 80
+                      limit:
+                        type: integer
+                        description: The maximum number of assets requested.
+                        example: 50
+                      page:
+                        type: integer
+                        description: The current page of results.
+                        example: 1
+                      items:
+                        type: array
+                        description: An array of assets.
+                        items:
+                          type: object
+                          properties:
+                            interface:
+                              type: string
+                              description: >-
+                                The Solana token standard implementation type of
+                                the digital asset.
+                            id:
+                              type: string
+                              description: >-
+                                The unique mint address identifier of the Solana
+                                digital asset.
+                            ownership:
+                              type: object
+                              description: >-
+                                Ownership details of the Solana digital asset
+                                including current owner and model.
+                            content:
+                              type: object
+                              description: >-
+                                The content and metadata of the Solana digital
+                                asset including URI, attributes, and media.
+                    example:
+                      total: 80
+                      limit: 50
+                      page: 1
+                      items:
+                        - interface: V1_NFT
+                          id: SomeNftMintKey12345
+                          ownership:
+                            owner: 86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY
+                            ownership_model: single
+                          content:
+                            json_uri: https://example.com/metadata/12345.json
+              nativeBalance:
+                allOf:
+                  - type: object
+                    description: >-
+                      The native SOL balance of the Solana wallet account in
+                      lamports and USD value.
+                    properties:
+                      lamports:
+                        type: integer
+                        description: The number of lamports in the account.
+                      price_per_sol:
+                        type: number
+                        description: The current price of SOL.
+                      total_price:
+                        type: number
+                        description: The total SOL value in this account.
+        examples:
+          example:
+            value:
+              assets:
+                total: 80
+                limit: 50
+                page: 1
+                items:
+                  - interface: V1_NFT
+                    id: SomeNftMintKey12345
+                    ownership:
+                      owner: 86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY
+                      ownership_model: single
+                    content:
+                      json_uri: https://example.com/metadata/12345.json
+              nativeBalance:
+                lamports: 123
+                price_per_sol: 123
+                total_price: 123
+        description: Successful response
+    '400':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32602
+                      message:
+                        type: string
+                        example: Invalid request parameters.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32602
+                message: Invalid request parameters.
+              id: '1'
+        description: >-
+          Bad Request. The server could not understand the request due to
+          invalid syntax.
+    '401':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32001
+                      message:
+                        type: string
+                        example: Authentication failed. Missing or invalid API key.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32001
+                message: Authentication failed. Missing or invalid API key.
+              id: '1'
+        description: >-
+          Unauthorized. The client must authenticate itself to get the requested
+          response.
+    '403':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32003
+                      message:
+                        type: string
+                        example: You do not have permission to access this resource.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: You do not have permission to access this resource.
+              id: '1'
+        description: Forbidden. The client does not have access rights to the content.
+    '404':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32004
+                      message:
+                        type: string
+                        example: No assets found matching the search criteria.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32004
+                message: No assets found matching the search criteria.
+              id: '1'
+        description: Not Found. The server can not find the requested resource.
+    '429':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32029
+                      message:
+                        type: string
+                        example: Rate limit exceeded. Please try again later.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32029
+                message: Rate limit exceeded. Please try again later.
+              id: '1'
+        description: >-
+          Too Many Requests. The user has sent too many requests in a given
+          amount of time.
+    '500':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32000
+                      message:
+                        type: string
+                        example: An unexpected error occurred on the server.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32000
+                message: An unexpected error occurred on the server.
+              id: '1'
+        description: >-
+          Internal Server Error. The server has encountered a situation it
+          doesn't know how to handle.
+  deprecated: false
+  type: path
+components:
+  schemas: {}
+
+````

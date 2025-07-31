@@ -1,0 +1,331 @@
+# getAssetProof
+
+> Retrieve the cryptographic merkle proof for a compressed Solana NFT or token.
+This verification API returns the complete proof path required to validate a compressed
+digital asset's existence and data integrity on the Solana blockchain without storing
+the full asset data on-chain. Essential for marketplaces, wallets, and applications
+that need to verify ownership and authenticity of compressed NFTs with the security
+guarantees of traditional on-chain assets but at a fraction of the storage cost.
+
+
+## OpenAPI
+
+````yaml openapi/das-api/getAssetProof.yaml post /
+paths:
+  path: /
+  method: post
+  servers:
+    - url: https://mainnet.helius-rpc.com
+      description: Mainnet RPC endpoint
+    - url: https://devnet.helius-rpc.com
+      description: Devnet RPC endpoint
+  request:
+    security:
+      - title: ApiKeyQuery
+        parameters:
+          query:
+            api-key:
+              type: apiKey
+              description: >-
+                Your Helius API key. You can get one for free in the
+                [dashboard](https://dashboard.helius.dev/api-keys).
+          header: {}
+          cookie: {}
+    parameters:
+      path: {}
+      query: {}
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+                    description: The version of the JSON-RPC protocol.
+                    default: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: An ID to identify the request.
+                    default: '1'
+              method:
+                allOf:
+                  - type: string
+                    enum:
+                      - getAssetProof
+                    description: The name of the DAS method to invoke.
+                    default: getAssetProof
+              params:
+                allOf:
+                  - type: object
+                    default:
+                      id: Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss
+                    required:
+                      - id
+                    properties:
+                      id:
+                        type: string
+                        description: >-
+                          The unique identifier (mint address) of the compressed
+                          Solana NFT to retrieve the merkle proof for.
+                        example: Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss
+            requiredProperties:
+              - jsonrpc
+              - id
+              - method
+              - params
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              method: getAssetProof
+              params:
+                id: Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: any
+        examples:
+          example:
+            value:
+              root: 2o6Y6EiY3WXhoaEpei2pHmHLYnHDcEQVhgD89GrGHDBH
+              proof:
+                - - EmJXiXEAhEN3FfNQtBa5hwR8LC5kHvdLsaGCoERosZjK
+                  - 7NEfhcNPAwbw3L87fjsPqTz2fQdd1CjoLE138SD58FDQ
+                  - 6dM3VyeQoYkRFZ74G53EwvUPbQC6LsMZge6c7S1Ds4ks
+                  - A9AACJ5m7UtaVz4HxzhDxGjYaY88rc2XPoFvnoTvgYBj
+                  - 2VG5cKeBZdqozwhHGGzs13b9tzy9TXt9kPfN8MzSJ1Sm
+                  - 3E1uFze4pi6BnTZXMsQbeh3jQCeDi966Zax9aMbYgg2D
+                  - Bx9PdctdWCeC1WfU6dwP49idsXCYhqyxbRLyLwwGhr61
+                  - HSbJ8quT4vuXFgf5FnjzeUuFfAtLKsq6W1Frj8y1qrif
+                  - GJMLzL4F4hY9yFHY1EY6XRmW4wpuNGeBZTiv7vM2mYra
+                  - FYPtEiqmRx6JprHQvWeEWEuVp3WA7DPRCE4VbhFRVuAj
+                  - 6MJKrpnK1GbYsnEzwMRWStNGkTjAZF23NhzTQSQVXsD3
+                  - HjnrJn5vBUUzpCxzjjM9ZnCPuXei2cXKJjX468B9yWD7
+                  - 4YCF1CSyTXm1Yi9W9JeYevawupkomdgy2dLxEBHL9euq
+                  - E3oMtCuPEauftdZLX8EZ8YX7BbFzpBCVRYEiLxwPJLY2
+              node_index: 16384
+              leaf: 6YdZXw49M97mfFTwgQb6kxM2c6eqZkHSaW9XhhoZXtzv
+              tree_id: 2kuTFCcjbV22wvUmtmgsFR7cas7eZUzAu96jzJUvUcb7
+              burnt: <any>
+        description: Successful response
+    '204':
+      _mintlify/placeholder:
+        schemaArray:
+          - type: any
+            description: No content.
+        examples: {}
+        description: No content.
+    '400':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32602
+                      message:
+                        type: string
+                        example: Invalid request parameters.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32602
+                message: Invalid request parameters.
+              id: '1'
+        description: >-
+          Bad Request. The server could not understand the request due to
+          invalid syntax.
+    '401':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32001
+                      message:
+                        type: string
+                        example: Authentication failed. Missing or invalid API key.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32001
+                message: Authentication failed. Missing or invalid API key.
+              id: '1'
+        description: >-
+          Unauthorized. The client must authenticate itself to get the requested
+          response.
+    '403':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32003
+                      message:
+                        type: string
+                        example: You do not have permission to access this resource.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: You do not have permission to access this resource.
+              id: '1'
+        description: Forbidden. The client does not have access rights to the content.
+    '404':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32004
+                      message:
+                        type: string
+                        example: Asset proof not found for the specified ID.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32004
+                message: Asset proof not found for the specified ID.
+              id: '1'
+        description: Not Found. The server can not find the requested resource.
+    '429':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32029
+                      message:
+                        type: string
+                        example: Rate limit exceeded. Please try again later.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32029
+                message: Rate limit exceeded. Please try again later.
+              id: '1'
+        description: >-
+          Too Many Requests. The user has sent too many requests in a given
+          amount of time.
+    '500':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32000
+                      message:
+                        type: string
+                        example: An unexpected error occurred on the server.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32000
+                message: An unexpected error occurred on the server.
+              id: '1'
+        description: >-
+          Internal Server Error. The server has encountered a situation it
+          doesn't know how to handle.
+  deprecated: false
+  type: path
+components:
+  schemas: {}
+
+````

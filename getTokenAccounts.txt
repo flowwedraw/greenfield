@@ -1,0 +1,374 @@
+# getTokenAccounts
+
+> Returns a list of token accounts for a given mint and owner.
+
+## OpenAPI
+
+````yaml openapi/das-api/getTokenAccounts.yaml post /
+paths:
+  path: /
+  method: post
+  servers:
+    - url: https://mainnet.helius-rpc.com
+      description: Mainnet RPC endpoint
+    - url: https://devnet.helius-rpc.com
+      description: Devnet RPC endpoint
+  request:
+    security:
+      - title: ApiKeyQuery
+        parameters:
+          query:
+            api-key:
+              type: apiKey
+              description: >-
+                Your Helius API key. You can get one for free in the
+                [dashboard](https://dashboard.helius.dev/api-keys).
+          header: {}
+          cookie: {}
+    parameters:
+      path: {}
+      query: {}
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+                    description: The version of the JSON-RPC protocol.
+                    default: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: An ID to identify the request.
+                    example: '1'
+                    default: '1'
+              method:
+                allOf:
+                  - type: string
+                    enum:
+                      - getTokenAccounts
+                    description: The name of the method to invoke.
+                    default: getTokenAccounts
+              params:
+                allOf:
+                  - type: object
+                    default:
+                      owner: 86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY
+                    properties:
+                      mint:
+                        type: string
+                        description: The mint address key.
+                        example: string
+                      owner:
+                        type: string
+                        description: The owner address key.
+                        example: 86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY
+                      page:
+                        type: integer
+                        description: The page of results to return.
+                        example: 1
+                      limit:
+                        type: integer
+                        description: The maximum number of assets to return.
+                        example: 100
+                      cursor:
+                        type: string
+                        description: The cursor used for pagination.
+                      before:
+                        type: string
+                        description: Returns results before the specified cursor.
+                      after:
+                        type: string
+                        description: Returns results after the specified cursor.
+                      options:
+                        type: object
+                        properties:
+                          showZeroBalance:
+                            type: boolean
+                            description: If true, show accounts with empty token balances.
+            requiredProperties:
+              - jsonrpc
+              - id
+              - method
+              - params
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              method: getTokenAccounts
+              params:
+                owner: 86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              total:
+                allOf:
+                  - type: integer
+                    description: The number of results found for the request.
+                    example: 2
+              limit:
+                allOf:
+                  - type: integer
+                    description: The maximum number of results requested.
+                    example: 100
+              cursor:
+                allOf:
+                  - type: string
+                    description: The cursor used for pagination.
+              token_accounts:
+                allOf:
+                  - type: array
+                    description: An array of token accounts.
+                    items:
+                      type: object
+                      properties:
+                        address:
+                          type: string
+                          description: The address of the token account.
+                        mint:
+                          type: string
+                          description: The address of the mint account.
+                        owner:
+                          type: string
+                          description: The address of the token account owner.
+                        amount:
+                          type: integer
+                          description: Number of tokens in the account.
+                        delegated_amount:
+                          type: integer
+                          description: Number of delegated tokens in the account.
+                        frozen:
+                          type: boolean
+                          description: If the account is frozen.
+                        burnt: false
+        examples:
+          example:
+            value:
+              total: 2
+              limit: 100
+              cursor: <string>
+              token_accounts:
+                - address: <string>
+                  mint: <string>
+                  owner: <string>
+                  amount: 123
+                  delegated_amount: 123
+                  frozen: true
+                  burnt: <any>
+        description: Successful response
+    '400':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32602
+                      message:
+                        type: string
+                        example: Invalid request parameters.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32602
+                message: Invalid request parameters.
+              id: '1'
+        description: >-
+          Bad Request. The server could not understand the request due to
+          invalid syntax.
+    '401':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32001
+                      message:
+                        type: string
+                        example: Authentication failed. Missing or invalid API key.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32001
+                message: Authentication failed. Missing or invalid API key.
+              id: '1'
+        description: >-
+          Unauthorized. The client must authenticate itself to get the requested
+          response.
+    '403':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32003
+                      message:
+                        type: string
+                        example: You do not have permission to access this resource.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: You do not have permission to access this resource.
+              id: '1'
+        description: Forbidden. The client does not have access rights to the content.
+    '404':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32004
+                      message:
+                        type: string
+                        example: The requested resource was not found.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32004
+                message: The requested resource was not found.
+              id: '1'
+        description: Not Found. The server can not find the requested resource.
+    '429':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32029
+                      message:
+                        type: string
+                        example: Rate limit exceeded. Please try again later.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32029
+                message: Rate limit exceeded. Please try again later.
+              id: '1'
+        description: >-
+          Too Many Requests. The user has sent too many requests in a given
+          amount of time.
+    '500':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32000
+                      message:
+                        type: string
+                        example: An unexpected error occurred on the server.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32000
+                message: An unexpected error occurred on the server.
+              id: '1'
+        description: >-
+          Internal Server Error. The server has encountered a situation it
+          doesn't know how to handle.
+  deprecated: false
+  type: path
+components:
+  schemas: {}
+
+````

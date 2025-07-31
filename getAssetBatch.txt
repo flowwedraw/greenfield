@@ -1,0 +1,593 @@
+# getAssetBatch
+
+> Returns a batch of assets based on their IDs.
+
+## OpenAPI
+
+````yaml openapi/das-api/getAssetBatch.yaml post /
+paths:
+  path: /
+  method: post
+  servers:
+    - url: https://mainnet.helius-rpc.com
+      description: Mainnet RPC endpoint
+    - url: https://devnet.helius-rpc.com
+      description: Devnet RPC endpoint
+  request:
+    security:
+      - title: ApiKeyQuery
+        parameters:
+          query:
+            api-key:
+              type: apiKey
+              description: >-
+                Your Helius API key. You can get one for free in the
+                [dashboard](https://dashboard.helius.dev/api-keys).
+          header: {}
+          cookie: {}
+    parameters:
+      path: {}
+      query: {}
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+                    description: The version of the JSON-RPC protocol.
+                    default: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+                    description: An ID to identify the request.
+                    default: '1'
+              method:
+                allOf:
+                  - type: string
+                    enum:
+                      - getAssetBatch
+                    description: The name of the DAS method to invoke.
+                    default: getAssetBatch
+              params:
+                allOf:
+                  - type: object
+                    default:
+                      ids:
+                        - F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk
+                    properties:
+                      ids:
+                        type: array
+                        items:
+                          type: string
+                          description: The ID of the asset to retrieve.
+                          example: F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk
+                      options:
+                        type: object
+                        description: The display options for the response.
+                        properties:
+                          showUnverifiedCollections:
+                            type: boolean
+                            default: false
+                            description: >-
+                              Displays grouping information for unverified
+                              collections instead of skipping them.
+                          showCollectionMetadata:
+                            type: boolean
+                            default: false
+                            description: Displays metadata for the collection.
+                          showFungible:
+                            type: boolean
+                            description: Displays fungible tokens held by the owner.
+                            default: false
+                          showInscription:
+                            type: boolean
+                            description: >-
+                              Displays inscription details of assets inscribed
+                              on-chain.
+                            default: false
+                    required:
+                      - ids
+                    example:
+                      ids:
+                        - F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk
+            requiredProperties:
+              - jsonrpc
+              - id
+              - method
+              - params
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              method: getAssetBatch
+              params:
+                ids:
+                  - F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: array
+            items:
+              allOf:
+                - type: object
+                  properties:
+                    interface:
+                      type: string
+                      description: The interface of the asset.
+                      enum:
+                        - V1_NFT
+                        - V1_PRINT
+                        - LEGACY_NFT
+                        - V2_NFT
+                        - FungibleAsset
+                        - FungibleToken
+                        - Custom
+                        - Identity
+                        - Executable
+                        - ProgrammableNFT
+                      example: ProgrammableNFT
+                    id:
+                      type: string
+                      description: The ID of the asset.
+                      example: F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk
+                    content:
+                      type: object
+                      description: The content of the asset.
+                      properties:
+                        $schema:
+                          type: string
+                          example: https://schema.metaplex.com/nft1.0.json
+                        json_uri:
+                          type: string
+                          example: >-
+                            https://madlads.s3.us-west-2.amazonaws.com/json/8420.json
+                        files:
+                          type: array
+                          items:
+                            type: object
+                          example:
+                            - uri: >-
+                                https://madlads.s3.us-west-2.amazonaws.com/images/8420.png
+                              cdn_uri: >-
+                                https://cdn.helius-rpc.com/cdn-cgi/image//https://madlads.s3.us-west-2.amazonaws.com/images/8420.png
+                              mime: image/png
+                        metadata:
+                          type: object
+                          properties:
+                            attributes:
+                              type: array
+                              items:
+                                type: object
+                              example:
+                                - value: Male
+                                  trait_type: Gender
+                                - value: King
+                                  trait_type: Type
+                            description:
+                              type: string
+                              example: Fock it.
+                            name:
+                              type: string
+                              example: 'Mad Lads #8420'
+                            symbol:
+                              type: string
+                              example: MAD
+                    authorities:
+                      type: array
+                      items:
+                        type: object
+                      example:
+                        - address: 2RtGg6fsFiiF1EQzHqbd66AhW7R5bWeQGpTbv2UMkCdW
+                          scopes:
+                            - full
+                    compression:
+                      type: object
+                      example:
+                        eligible: false
+                        compressed: false
+                        data_hash: ''
+                        creator_hash: ''
+                        asset_hash: ''
+                        tree: ''
+                        seq: 0
+                        leaf_id: 0
+                    grouping:
+                      type: array
+                      items:
+                        type: object
+                      example:
+                        - group_key: collection
+                          group_value: J1S9H3QjnRtBbbuD4HjPV6RpRhwuk4zKbxsnCHuTgh9w
+                    royalty:
+                      type: object
+                      example:
+                        royalty_model: creators
+                        target: null
+                        percent: 0.042
+                        basis_points: 420
+                        primary_sale_happened: true
+                        locked: false
+                    creators:
+                      type: array
+                      items:
+                        type: object
+                      example:
+                        - address: 5XvhfmRjwXkGp3jHGmaKpqeerNYjkuZZBYLVQYdeVcRv
+                          share: 0
+                          verified: true
+                        - address: 2RtGg6fsFiiF1EQzHqbd66AhW7R5bWeQGpTbv2UMkCdW
+                          share: 100
+                          verified: true
+                    ownership:
+                      type: object
+                      example:
+                        frozen: true
+                        delegated: false
+                        delegate: null
+                        ownership_model: single
+                        owner: 4zdNGgAtFsW1cQgHqkiWyRsxaAgxrSRRynnuunxzjxue
+                    supply:
+                      type: object
+                      example:
+                        print_max_supply: 0
+                        print_current_supply: 0
+                        edition_nonce: 254
+                    token_info:
+                      type: object
+                      description: Details about the specific token.
+                      properties:
+                        symbol:
+                          type: string
+                          description: The symbol of the token.
+                        supply:
+                          type: integer
+                          description: The total supply of the token.
+                        decimals:
+                          type: integer
+                          description: The number of decimals the token uses.
+                        token_program:
+                          type: string
+                          description: The tokens program ID.
+                        price_info:
+                          type: object
+                          description: Information about the token's price.
+                          properties:
+                            price_per_token:
+                              type: number
+                              description: The price per individual token.
+                            currency:
+                              type: string
+                              description: >-
+                                The currency in which the token's price is
+                                denoted.
+                        mint_authority:
+                          type: string
+                          description: The mint authority address of the token.
+                        freeze_authority:
+                          type: string
+                          description: The freeze authority address of the token.
+                    inscription:
+                      type: object
+                      properties:
+                        order:
+                          type: integer
+                          description: The order of the inscription.
+                        size:
+                          type: integer
+                          description: The size of the inscription.
+                        contentType:
+                          type: string
+                          description: The content type of the inscription.
+                        encoding:
+                          type: string
+                          description: The encoding of the inscription.
+                        validationHash:
+                          type: string
+                          description: The validation hash of the inscription.
+                        inscriptionDataAccount:
+                          type: string
+                          description: The inscription data account.
+                        authority:
+                          type: string
+                          description: The authority of the inscription.
+                    spl20:
+                      type: object
+            description: An array of assets.
+        examples:
+          example:
+            value:
+              - interface: ProgrammableNFT
+                id: F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk
+                content:
+                  $schema: https://schema.metaplex.com/nft1.0.json
+                  json_uri: https://madlads.s3.us-west-2.amazonaws.com/json/8420.json
+                  files:
+                    - uri: >-
+                        https://madlads.s3.us-west-2.amazonaws.com/images/8420.png
+                      cdn_uri: >-
+                        https://cdn.helius-rpc.com/cdn-cgi/image//https://madlads.s3.us-west-2.amazonaws.com/images/8420.png
+                      mime: image/png
+                  metadata:
+                    attributes:
+                      - value: Male
+                        trait_type: Gender
+                      - value: King
+                        trait_type: Type
+                    description: Fock it.
+                    name: 'Mad Lads #8420'
+                    symbol: MAD
+                authorities:
+                  - address: 2RtGg6fsFiiF1EQzHqbd66AhW7R5bWeQGpTbv2UMkCdW
+                    scopes:
+                      - full
+                compression:
+                  eligible: false
+                  compressed: false
+                  data_hash: ''
+                  creator_hash: ''
+                  asset_hash: ''
+                  tree: ''
+                  seq: 0
+                  leaf_id: 0
+                grouping:
+                  - group_key: collection
+                    group_value: J1S9H3QjnRtBbbuD4HjPV6RpRhwuk4zKbxsnCHuTgh9w
+                royalty:
+                  royalty_model: creators
+                  target: null
+                  percent: 0.042
+                  basis_points: 420
+                  primary_sale_happened: true
+                  locked: false
+                creators:
+                  - address: 5XvhfmRjwXkGp3jHGmaKpqeerNYjkuZZBYLVQYdeVcRv
+                    share: 0
+                    verified: true
+                  - address: 2RtGg6fsFiiF1EQzHqbd66AhW7R5bWeQGpTbv2UMkCdW
+                    share: 100
+                    verified: true
+                ownership:
+                  frozen: true
+                  delegated: false
+                  delegate: null
+                  ownership_model: single
+                  owner: 4zdNGgAtFsW1cQgHqkiWyRsxaAgxrSRRynnuunxzjxue
+                supply:
+                  print_max_supply: 0
+                  print_current_supply: 0
+                  edition_nonce: 254
+                token_info:
+                  symbol: <string>
+                  supply: 123
+                  decimals: 123
+                  token_program: <string>
+                  price_info:
+                    price_per_token: 123
+                    currency: <string>
+                  mint_authority: <string>
+                  freeze_authority: <string>
+                inscription:
+                  order: 123
+                  size: 123
+                  contentType: <string>
+                  encoding: <string>
+                  validationHash: <string>
+                  inscriptionDataAccount: <string>
+                  authority: <string>
+                spl20: {}
+        description: Successful response
+    '400':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32602
+                      message:
+                        type: string
+                        example: Invalid request parameters.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32602
+                message: Invalid request parameters.
+              id: '1'
+        description: >-
+          Bad Request. The server could not understand the request due to
+          invalid syntax.
+    '401':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32001
+                      message:
+                        type: string
+                        example: Authentication failed. Missing or invalid API key.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32001
+                message: Authentication failed. Missing or invalid API key.
+              id: '1'
+        description: >-
+          Unauthorized. The client must authenticate itself to get the requested
+          response.
+    '403':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32003
+                      message:
+                        type: string
+                        example: You do not have permission to access this resource.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: You do not have permission to access this resource.
+              id: '1'
+        description: Forbidden. The client does not have access rights to the content.
+    '404':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32004
+                      message:
+                        type: string
+                        example: One or more assets in the batch were not found.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32004
+                message: One or more assets in the batch were not found.
+              id: '1'
+        description: Not Found. The server can not find the requested resource.
+    '429':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32029
+                      message:
+                        type: string
+                        example: Rate limit exceeded. Please try again later.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32029
+                message: Rate limit exceeded. Please try again later.
+              id: '1'
+        description: >-
+          Too Many Requests. The user has sent too many requests in a given
+          amount of time.
+    '500':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    example: '2.0'
+              error:
+                allOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: -32000
+                      message:
+                        type: string
+                        example: An unexpected error occurred on the server.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32000
+                message: An unexpected error occurred on the server.
+              id: '1'
+        description: >-
+          Internal Server Error. The server has encountered a situation it
+          doesn't know how to handle.
+  deprecated: false
+  type: path
+components:
+  schemas: {}
+
+````

@@ -1,0 +1,369 @@
+# getLatestCompressionSignatures
+
+> Returns the signatures of the latest transactions that used the compression program.
+
+## OpenAPI
+
+````yaml openapi/zk-compression/getLatestCompressionSignatures.yaml post /
+paths:
+  path: /
+  method: post
+  servers:
+    - url: https://mainnet.helius-rpc.com
+      description: Mainnet RPC endpoint
+    - url: https://devnet.helius-rpc.com
+      description: Devnet RPC endpoint
+  request:
+    security:
+      - title: ApiKeyQuery
+        parameters:
+          query:
+            api-key:
+              type: apiKey
+              description: >-
+                Your Helius API key. You can get one for free in the
+                [dashboard](https://dashboard.helius.dev/api-keys).
+          header: {}
+          cookie: {}
+    parameters:
+      path: {}
+      query: {}
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    description: The version of the JSON-RPC protocol.
+                    enum:
+                      - '2.0'
+                    default: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: An ID to identify the request.
+                    default: '1'
+              method:
+                allOf:
+                  - type: string
+                    description: >-
+                      The name of the method to invoke for retrieving recent
+                      Solana compression transaction signatures.
+                    enum:
+                      - getLatestCompressionSignatures
+                    default: getLatestCompressionSignatures
+              params:
+                allOf:
+                  - type: object
+                    properties:
+                      cursor:
+                        type: string
+                        nullable: true
+                        description: >-
+                          Pagination cursor for navigating through large sets of
+                          Solana compression transaction signatures
+                      limit:
+                        allOf:
+                          - $ref: '#/components/schemas/Limit'
+                        nullable: true
+                        description: >-
+                          Maximum number of Solana compression transaction
+                          signatures to return per request
+                    additionalProperties: false
+            required: true
+            requiredProperties:
+              - jsonrpc
+              - id
+              - method
+              - params
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              method: getLatestCompressionSignatures
+              params:
+                cursor: <string>
+                limit: 1
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              context:
+                allOf:
+                  - $ref: '#/components/schemas/Context'
+              value:
+                allOf:
+                  - $ref: '#/components/schemas/PaginatedSignatureInfoList'
+            requiredProperties:
+              - context
+              - value
+            additionalProperties: false
+        examples:
+          example:
+            value:
+              context:
+                slot: 100
+              value:
+                cursor: <string>
+                items:
+                  - blockTime: 1714081554
+                    signature: 5J8H5sTvEhnGcB4R8K1n7mfoiWUD9RzPVGES7e3WxC7c
+                    slot: 100
+        description: >-
+          Successfully retrieved latest Solana compression transaction
+          signatures
+    '400':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - &ref_0
+                    type: string
+                    description: The JSON-RPC protocol version.
+                    enum:
+                      - '2.0'
+                    example: '2.0'
+              error:
+                allOf:
+                  - &ref_1
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        description: The error code.
+                        example: -32602
+                      message:
+                        type: string
+                        description: The error message.
+                      data:
+                        type: object
+                        description: Additional data about the error.
+              id:
+                allOf:
+                  - &ref_2
+                    type: string
+                    description: Identifier matching the request.
+                    example: '1'
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32602
+                message: Invalid params
+              id: '1'
+        description: Bad Request - Invalid request parameters or malformed request.
+    '401':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32001
+                message: Unauthorized
+              id: '1'
+        description: Unauthorized - Invalid or missing API key.
+    '429':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32005
+                message: Too many requests
+              id: '1'
+        description: Too Many Requests - Rate limit exceeded.
+    '500':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32603
+                message: Internal error
+              id: '1'
+        description: Internal Server Error - An error occurred on the server.
+    '503':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32002
+                message: Service unavailable
+              id: '1'
+        description: Service Unavailable - The service is temporarily unavailable.
+    '504':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: Gateway timeout
+              id: '1'
+        description: Gateway Timeout - The request timed out.
+  deprecated: false
+  type: path
+components:
+  schemas:
+    Context:
+      type: object
+      required:
+        - slot
+      properties:
+        slot:
+          type: integer
+          default: 100
+          example: 100
+          description: >-
+            Current Solana blockchain slot for this compression signature
+            request
+    Limit:
+      type: integer
+      format: int64
+      minimum: 0
+      description: >-
+        Maximum number of Solana compression transaction signatures to return in
+        a single request
+    PaginatedSignatureInfoList:
+      type: object
+      required:
+        - items
+      properties:
+        cursor:
+          type: string
+          nullable: true
+          description: >-
+            Pagination cursor to retrieve the next set of Solana compression
+            transaction signatures
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SignatureInfo'
+          description: >-
+            Array of Solana compressed NFT and token transaction signatures with
+            their metadata
+    SerializableSignature:
+      type: string
+      description: >-
+        A Solana transaction signature for a compression-related operation, used
+        to identify and verify transactions.
+      default: 5J8H5sTvEhnGcB4R8K1n7mfoiWUD9RzPVGES7e3WxC7c
+      example: 5J8H5sTvEhnGcB4R8K1n7mfoiWUD9RzPVGES7e3WxC7c
+    SignatureInfo:
+      type: object
+      required:
+        - signature
+        - slot
+        - blockTime
+      properties:
+        blockTime:
+          $ref: '#/components/schemas/UnixTimestamp'
+          description: >-
+            Unix timestamp when this Solana compressed asset transaction was
+            processed
+        signature:
+          $ref: '#/components/schemas/SerializableSignature'
+          description: >-
+            Unique transaction signature for this Solana compressed asset
+            operation
+        slot:
+          $ref: '#/components/schemas/UnsignedInteger'
+          description: >-
+            Solana blockchain slot in which this compressed asset transaction
+            was included
+    UnixTimestamp:
+      type: integer
+      description: >-
+        Unix timestamp (seconds) when the Solana compressed asset transaction
+        was processed
+      default: 1714081554
+      example: 1714081554
+    UnsignedInteger:
+      type: integer
+      default: 100
+      example: 100
+      description: Non-negative integer value representing a Solana blockchain slot number
+
+````

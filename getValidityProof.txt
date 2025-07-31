@@ -1,0 +1,402 @@
+# getValidityProof
+
+> Returns a single ZK Proof used by the compression program to verify that the given accounts are valid and that the new addresses can be created.
+
+## OpenAPI
+
+````yaml openapi/zk-compression/getValidityProof.yaml post /
+paths:
+  path: /
+  method: post
+  servers:
+    - url: https://mainnet.helius-rpc.com
+      description: Mainnet RPC endpoint
+    - url: https://devnet.helius-rpc.com
+      description: Devnet RPC endpoint
+  request:
+    security:
+      - title: ApiKeyQuery
+        parameters:
+          query:
+            api-key:
+              type: apiKey
+              description: >-
+                Your Helius API key. You can get one for free in the
+                [dashboard](https://dashboard.helius.dev/api-keys).
+          header: {}
+          cookie: {}
+    parameters:
+      path: {}
+      query: {}
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    description: The version of the JSON-RPC protocol.
+                    enum:
+                      - '2.0'
+                    default: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: An ID to identify the request.
+                    default: '1'
+              method:
+                allOf:
+                  - type: string
+                    description: The name of the method to invoke.
+                    enum:
+                      - getValidityProof
+                    default: getValidityProof
+              params:
+                allOf:
+                  - type: object
+                    properties:
+                      hashes:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Hash'
+                        description: >-
+                          Array of cryptographic hashes for Solana compressed
+                          accounts to verify
+                      newAddressesWithTrees:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/AddressWithTree'
+                        description: >-
+                          Array of Solana account addresses with their
+                          associated merkle trees for verification
+                    additionalProperties: false
+            required: true
+            requiredProperties:
+              - jsonrpc
+              - id
+              - method
+              - params
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              method: getValidityProof
+              params:
+                hashes:
+                  - 11111112cMQwSC9qirWGjZM6gLGwW69X22mqwLLGP
+                newAddressesWithTrees:
+                  - address: 11111118eRTi4fUVRoeYEeeTyL4DPAwxatvWT5q1Z
+                    tree: 11111118eRTi4fUVRoeYEeeTyL4DPAwxatvWT5q1Z
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              context:
+                allOf:
+                  - $ref: '#/components/schemas/Context'
+              value:
+                allOf:
+                  - $ref: '#/components/schemas/CompressedProofWithContext'
+            requiredProperties:
+              - value
+              - context
+            additionalProperties: false
+        examples:
+          example:
+            value:
+              context:
+                slot: 100
+              value:
+                compressedProof: {}
+                leafIndices:
+                  - 1
+                leaves:
+                  - <string>
+                merkleTrees:
+                  - <string>
+                rootIndices:
+                  - 1
+                roots:
+                  - <string>
+        description: Successfully retrieved validity proof for Solana compressed accounts
+    '400':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - &ref_0
+                    type: string
+                    description: The JSON-RPC protocol version.
+                    enum:
+                      - '2.0'
+                    example: '2.0'
+              error:
+                allOf:
+                  - &ref_1
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        description: The error code.
+                        example: -32602
+                      message:
+                        type: string
+                        description: The error message.
+                      data:
+                        type: object
+                        description: Additional data about the error.
+              id:
+                allOf:
+                  - &ref_2
+                    type: string
+                    description: Identifier matching the request.
+                    example: '1'
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32602
+                message: Invalid params
+              id: '1'
+        description: Bad Request - Invalid request parameters or malformed request.
+    '401':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32001
+                message: Unauthorized
+              id: '1'
+        description: Unauthorized - Invalid or missing API key.
+    '429':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32005
+                message: Too many requests
+              id: '1'
+        description: Too Many Requests - Rate limit exceeded.
+    '500':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32603
+                message: Internal error
+              id: '1'
+        description: Internal Server Error - An error occurred on the server.
+    '503':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32002
+                message: Service unavailable
+              id: '1'
+        description: Service Unavailable - The service is temporarily unavailable.
+    '504':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: Gateway timeout
+              id: '1'
+        description: Gateway Timeout - The request timed out.
+  deprecated: false
+  type: path
+components:
+  schemas:
+    AddressWithTree:
+      type: object
+      required:
+        - address
+        - tree
+      properties:
+        address:
+          $ref: '#/components/schemas/SerializablePubkey'
+          description: Solana account address to verify through zero-knowledge proof
+        tree:
+          $ref: '#/components/schemas/SerializablePubkey'
+          description: Merkle tree address where the compressed Solana account is stored
+      additionalProperties: false
+    CompressedProof:
+      type: object
+      required:
+        - a
+        - b
+        - c
+      properties:
+        a:
+          type: string
+          format: binary
+          description: First component of the Solana zero-knowledge validity proof
+        b:
+          type: string
+          format: binary
+          description: Second component of the Solana zero-knowledge validity proof
+        c:
+          type: string
+          format: binary
+          description: Third component of the Solana zero-knowledge validity proof
+    CompressedProofWithContext:
+      type: object
+      required:
+        - compressedProof
+        - roots
+        - rootIndices
+        - leafIndices
+        - leaves
+        - merkleTrees
+      properties:
+        compressedProof:
+          $ref: '#/components/schemas/CompressedProof'
+          description: >-
+            The zero-knowledge cryptographic proof for validating Solana
+            compressed accounts
+        leafIndices:
+          type: array
+          items:
+            type: integer
+            format: int32
+            minimum: 0
+          description: >-
+            Indices of the leaves in the Solana merkle trees for the compressed
+            accounts
+        leaves:
+          type: array
+          items:
+            type: string
+          description: Leaf node data for the Solana compressed accounts being verified
+        merkleTrees:
+          type: array
+          items:
+            type: string
+          description: >-
+            Addresses of the Solana merkle trees containing the compressed
+            accounts
+        rootIndices:
+          type: array
+          items:
+            type: integer
+            format: int64
+            minimum: 0
+          description: >-
+            Indices of the roots in the Solana merkle trees for the compressed
+            accounts
+        roots:
+          type: array
+          items:
+            type: string
+          description: Root hashes of the Solana merkle trees for the compressed accounts
+    Context:
+      type: object
+      required:
+        - slot
+      properties:
+        slot:
+          type: integer
+          default: 100
+          example: 100
+          description: Current Solana blockchain slot for this validity proof request
+    Hash:
+      type: string
+      description: >-
+        A 32-byte cryptographic hash represented as a base58 string, used for
+        Solana compressed account verification.
+      example: 11111112cMQwSC9qirWGjZM6gLGwW69X22mqwLLGP
+    SerializablePubkey:
+      type: string
+      description: >-
+        A Solana public key represented as a base58 string, used to identify
+        accounts, trees, and programs.
+      default: 11111118eRTi4fUVRoeYEeeTyL4DPAwxatvWT5q1Z
+      example: 11111118eRTi4fUVRoeYEeeTyL4DPAwxatvWT5q1Z
+
+````

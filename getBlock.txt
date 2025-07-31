@@ -1,0 +1,435 @@
+# getBlock
+
+> Returns identity and transaction information about a confirmed block in the ledger.
+
+## OpenAPI
+
+````yaml openapi/rpc-http/getBlock.yaml post /
+paths:
+  path: /
+  method: post
+  servers:
+    - url: https://mainnet.helius-rpc.com
+      description: Mainnet RPC endpoint
+    - url: https://devnet.helius-rpc.com
+      description: Devnet RPC endpoint
+  request:
+    security:
+      - title: ApiKeyQuery
+        parameters:
+          query:
+            api-key:
+              type: apiKey
+              description: >-
+                Your Helius API key. You can get one for free in the
+                [dashboard](https://dashboard.helius.dev/api-keys).
+          header: {}
+          cookie: {}
+    parameters:
+      path: {}
+      query: {}
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+                    description: The JSON-RPC protocol version.
+                    default: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: A unique identifier for the request.
+                    example: '1'
+                    default: '1'
+              method:
+                allOf:
+                  - type: string
+                    enum:
+                      - getBlock
+                    description: The name of the RPC method to invoke.
+                    default: getBlock
+              params:
+                allOf:
+                  - type: array
+                    description: Parameters for the request.
+                    default:
+                      - 430
+                    items:
+                      oneOf:
+                        - type: integer
+                          description: Slot number as a `u64` integer.
+                          example: 430
+                        - type: object
+                          description: Additional configuration options for the request.
+                          properties:
+                            commitment:
+                              type: string
+                              description: The commitment level for the request.
+                              enum:
+                                - finalized
+                              default: finalized
+                            encoding:
+                              type: string
+                              description: >-
+                                The encoding format for each returned
+                                transaction.
+                              enum:
+                                - json
+                                - jsonParsed
+                                - base58
+                                - base64
+                              default: json
+                            transactionDetails:
+                              type: string
+                              description: >-
+                                Level of transaction detail to return. If
+                                accounts are requested,  transaction details
+                                only include signatures and an annotated list 
+                                of accounts in each transaction. Transaction
+                                metadata includes only:  fee, err, pre_balances,
+                                post_balances, pre_token_balances, and
+                                post_token_balances.
+                              enum:
+                                - full
+                                - accounts
+                                - signatures
+                                - none
+                              default: full
+                            maxSupportedTransactionVersion:
+                              type: integer
+                              description: >-
+                                Maximum transaction version to return in
+                                responses. If the requested block  contains a
+                                transaction with a higher version, an error will
+                                be returned.  If omitted, only legacy
+                                transactions will be returned.
+                            rewards:
+                              type: boolean
+                              description: Whether to populate the rewards array.
+                              default: true
+            required: true
+            requiredProperties:
+              - jsonrpc
+              - id
+              - method
+              - params
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              method: getBlock
+              params:
+                - 430
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+              id:
+                allOf:
+                  - type: string
+              result:
+                allOf:
+                  - type: object
+                    properties:
+                      blockhash:
+                        type: string
+                        description: The blockhash of this block (base-58 encoded string).
+                        example: DUCT8VSgk2BXkMhQfxKVYfikEZCQf4dZ4ioPdGdaVxMN
+                      previousBlockhash:
+                        type: string
+                        description: The blockhash of the block's parent.
+                        example: HA2fJgGqmQezCXJRVNZAWPbRMXCPjUyo7VjRF47JGdYs
+                      parentSlot:
+                        type: integer
+                        description: The slot index of this block's parent.
+                        example: 429
+                      transactions:
+                        type: array
+                        description: Array of transaction details.
+                        items:
+                          type: object
+                          properties:
+                            meta:
+                              type: object
+                              nullable: true
+                              description: Metadata associated with the transaction.
+                            transaction:
+                              type: object
+                              description: Transaction details.
+                              properties:
+                                message:
+                                  type: object
+                                  properties:
+                                    accountKeys:
+                                      type: array
+                                      description: >-
+                                        Array of account public keys used in
+                                        this transaction.
+                                      items:
+                                        type: string
+                                    header:
+                                      type: object
+                                      properties:
+                                        numReadonlySignedAccounts:
+                                          type: integer
+                                          description: Number of readonly signed accounts.
+                                        numReadonlyUnsignedAccounts:
+                                          type: integer
+                                          description: Number of readonly unsigned accounts.
+                                        numRequiredSignatures:
+                                          type: integer
+                                          description: Number of required signatures.
+                                    instructions:
+                                      type: array
+                                      description: Array of program instructions.
+                                      items:
+                                        type: object
+                                        properties:
+                                          accounts:
+                                            type: array
+                                            description: Array of account indexes.
+                                            items:
+                                              type: integer
+                                          data:
+                                            type: string
+                                            description: Program input data encoded in base58.
+                                          programIdIndex:
+                                            type: integer
+                                            description: >-
+                                              Index of the program ID in the
+                                              accountKeys array.
+                                          stackHeight:
+                                            type: integer
+                                            nullable: true
+                                            description: Stack height.
+                                    recentBlockhash:
+                                      type: string
+                                      description: >-
+                                        Recent blockhash used in this
+                                        transaction.
+                                signatures:
+                                  type: array
+                                  description: >-
+                                    Array of signatures for this transaction
+                                    (base-58 encoded).
+                                  items:
+                                    type: string
+                      blockTime:
+                        type: integer
+                        nullable: true
+                        description: Estimated production time as Unix timestamp.
+                        example: null
+                      blockHeight:
+                        type: integer
+                        nullable: true
+                        description: Number of blocks beneath this block.
+                        example: null
+                      rewards:
+                        type: array
+                        description: Rewards for the block.
+                        items:
+                          type: object
+                          properties:
+                            pubkey:
+                              type: string
+                              description: >-
+                                The public key of the account that received the
+                                reward.
+                            lamports:
+                              type: integer
+                              description: Number of reward lamports credited or debited.
+                            rewardType:
+                              type: string
+                              nullable: true
+                              description: Type of reward (e.g., "fee", "rent").
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: <string>
+              result:
+                blockhash: DUCT8VSgk2BXkMhQfxKVYfikEZCQf4dZ4ioPdGdaVxMN
+                previousBlockhash: HA2fJgGqmQezCXJRVNZAWPbRMXCPjUyo7VjRF47JGdYs
+                parentSlot: 429
+                transactions:
+                  - meta: {}
+                    transaction:
+                      message:
+                        accountKeys:
+                          - <string>
+                        header:
+                          numReadonlySignedAccounts: 123
+                          numReadonlyUnsignedAccounts: 123
+                          numRequiredSignatures: 123
+                        instructions:
+                          - accounts:
+                              - 123
+                            data: <string>
+                            programIdIndex: 123
+                            stackHeight: 123
+                        recentBlockhash: <string>
+                      signatures:
+                        - <string>
+                blockTime: null
+                blockHeight: null
+                rewards:
+                  - pubkey: <string>
+                    lamports: 123
+                    rewardType: <string>
+        description: Successfully retrieved block details.
+    '400':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - &ref_0
+                    type: string
+                    enum:
+                      - '2.0'
+              error:
+                allOf:
+                  - &ref_1
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32602
+                message: Invalid params
+              id: '1'
+        description: Bad Request - Invalid request parameters or malformed request.
+    '401':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32001
+                message: Unauthorized
+              id: '1'
+        description: Unauthorized - Invalid or missing API key.
+    '429':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32005
+                message: Too many requests
+              id: '1'
+        description: Too Many Requests - Rate limit exceeded.
+    '500':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32603
+                message: Internal error
+              id: '1'
+        description: Internal Server Error - An error occurred on the server.
+    '503':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32002
+                message: Service unavailable
+              id: '1'
+        description: Service Unavailable - The service is temporarily unavailable.
+    '504':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: Gateway timeout
+              id: '1'
+        description: Gateway Timeout - The request timed out.
+  deprecated: false
+  type: path
+components:
+  schemas: {}
+
+````
