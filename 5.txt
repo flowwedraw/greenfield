@@ -1,0 +1,604 @@
+Hello 👋,
+
+Thank you for being here!🎉
+
+In earlier issues, we covered the essentials of building a Solana sniper bot, SPL tokens, Solana DEX platforms, Telegram Bot, etc. Along the way, we built four core scripts:
+
+SOL transfers between Wallet A and Wallet B
+SPL token transfers between the same wallets
+A swap (buy/sell) script for Token A ↔ Token B
+Telegram Bot script with Sniping features
+Now it's time to explore the most important part of developing a Solana Sniper bot.
+
+As I mentioned before, sniper bots on Solana are automated programs designed to execute token purchases at the most opportune moments, often within milliseconds of a token's launch or a market-moving event. To maximize profits and minimize risks, we need to understand the optimal timing, strategies, tools, and risks involved.
+
+In this issue, I'll cover when sniper bots should buy tokens on Solana in detail. I will also demonstrate a script that listen for pump.fun migrations to Raydium for real-world coding examples.
+
+Also, in the last part of this issue, I will introduce the integrated Solana Trading Bot platform developed by our team.
+
+1. The Best Times for Sniper Bots to Buy
+1.1 During Token Launches (Liquidity Sniping)
+The most profitable and strategically critical window for sniper bot activity occurs precisely when a new token launches and initial liquidity is injected into the market. This phase represents the golden opportunity for bots to secure positions at the absolute lowest prices before any significant price appreciation occurs. Below, we'll explore this process in exhaustive detail, covering every nuanced aspect that determines success or failure in liquidity sniping.
+
+1.1.1 Detecting New Liquidity Pools
+How Sniper Bots Identify Launching Tokens
+
+Sniper bots employ sophisticated monitoring systems that continuously scan all major Solana decentralized exchanges (DEXs) including:
+
+Raydium (Primary launchpad for new Solana tokens), which serves as the primary launchpad and most critical trading venue for new Solana token launches, where approximately 78% of all new SPL tokens first gain liquidity through its automated market maker (AMM) infrastructure and where the most lucrative early-stage opportunities typically emerge within the first 30 seconds of trading.
+
+Orca (Significant secondary market with new pool creations), functioning as a significant secondary market that sees substantial new pool creations daily, particularly for mid-stage projects that have survived beyond initial launch, with its concentrated liquidity features often revealing important patterns about emerging token viability through its unique whirlpool dynamics and trading volume metrics.
+
+Jupiter (Aggregator that often reveals new tokens first), the leading aggregator that frequently reveals new tokens first through its route optimization algorithms before they appear on individual DEX interfaces, acting as an early warning system for sniper bots due to its comprehensive scanning of all possible liquidity sources across the Solana ecosystem, including smaller, less-monitored trading venues.
+
+Metis (Emerging DEX with early-stage launches), an emerging but increasingly important DEX that has become notable for early-stage launches due to its lower fees and less crowded trading environment, where new tokens sometimes appear several blocks before hitting larger exchanges, presenting unique arbitrage opportunities for well-equipped bots.
+
+These bots implement real-time blockchain parsing to detect:
+
+New token mint transactions (Identifying freshly created SPL tokens), where the bots analyze the Solana Program Library (SPL) token creation events down to the individual instruction level, identifying freshly created tokens through a combination of signature analysis, creator wallet profiling, and mint authority patterns that help distinguish legitimate launches from test deployments or scam attempts.
+
+Initial liquidity pair creations (SOL/token or USDC/token pools), where the systems monitor for specific transaction patterns involving SOL/token or USDC/token pool formations across all major AMM protocols, tracking not just the liquidity amount but also analyzing the wallet histories of liquidity providers to assess launch legitimacy and potential for price manipulation.
+
+First swap transactions (Indicating active trading beginning), which serve as the definitive signal that active trading has begun, with bots employing machine learning models to interpret these initial market movements - distinguishing between organic trading, bot activity, and potential wash trading patterns - all within the first few blocks of a token's trading existence to make millisecond-level entry decisions.
+
+Critical Monitoring Tools for Pool Detection
+
+Professional sniper setups utilize multiple data sources simultaneously:
+
+Primary Detection Tools
+
+DexScreener (Most reliable for real-time new pair alerts with customizable filters)
+Birdeye (Excellent for tracking sudden volume spikes in new markets)
+DexLab (Specialized in identifying pre-launch token deployments)
+Solscan Token Explorer (Raw blockchain data for earliest possible detection)
+A sudden spike in watchers, searches, or volume means a token is about to move.
+
+Example: If a token gets 1,000+ new DexScreener watchers in 5 minutes, bots buy before the crowd.
+
+Secondary Confirmation Systems
+
+Telegram bot alerts (Custom-configured to ping on new Raydium pools)
+RPC node webhooks (Direct blockchain event monitoring for instant triggers)
+Social listening bots (Cross-referencing Discord/Twitter for launch confirmations)
+Many pump groups and influencers coordinate buys.
+
+Bots scrape Telegram channels for keywords like "loading", "entry", or "gem".
+
+Third Way - OnChain Whale Tracking
+
+If a known whale wallet (e.g., a top trader) buys a token, bots follow.
+Tools like SonarWatch, Step Finance, or Bubblemaps track smart money.
+The Milliseconds That Matter: Execution Timing
+
+The difference between massive profits and complete failure lies in these timelines:
+
+0-500ms after liquidity add: Ideal bot execution window
+1-3 seconds: Still profitable but facing competition
+5+ seconds: Often too late as price has moved
+Advanced bots implement:
+
+Pre-signed transactions (Prepared before liquidity appears)
+Gas fee optimization (Dynamic priority fee adjustments)
+Multi-RPC routing (Simultaneous connections to avoid delays)
+1.1.2 Front-Running Social Hype - Predicting the Pump Before It Happens
+The Social Media Catalyst Effect
+
+Statistical analysis shows that 87% of successful meme coins experience their first major price movement within 15-45 minutes of coordinated social media promotion. Sniper bots capitalize on this through:
+
+Twitter (X) Monitoring Strategies
+
+Tracking 300+ top crypto influencers in real-time
+Analyzing post engagement velocity (Likes/retakes per minute)
+Detecting coordinated hashtag campaigns (#100x, #SolanaSeason)
+Monitoring deleted tweets (Often indicate scam pulls)
+Telegram & Discord Intelligence
+
+Joining 500+ premium crypto groups through bot accounts
+Scoring message sentiment analysis (Positive vs. scam likelihood)
+Tracking admin wallet activity (Do they hold the token?)
+Measuring member growth rate in project channels
+Historical Case Studies
+
+$BONK: Bots detected 12 minutes before major Twitter shilling began
+$WIF: Early buys at $0.01
+$MYRO: 87% of initial buys were bots before retail entry
+Advanced Predictive Modeling
+
+Cutting-edge sniper systems now incorporate:
+
+Natural Language Processing (NLP) to score hype potential
+
+Wallet clustering algorithms to detect influencer accumulation
+
+Image recognition to analyze trending meme formats
+
+1.2 Low Network Congestion (Optimal Execution Speed)
+Solana's network performance is notoriously variable, with transaction processing speeds fluctuating dramatically based on global usage patterns, validator node performance, and overall network demand. When the blockchain becomes congested—a frequent occurrence during periods of intense trading activity or popular NFT mints—transactions can fail entirely or experience dangerous delays of 30 seconds or more, completely destroying the profitability potential for time-sensitive sniper bot operations. Understanding these congestion patterns and optimizing for network conditions is absolutely critical for successful sniping.
+
+1.2.1 Best Timeframes for Fast Execution - Strategic Timing Analysis
+Optimal Low-Traffic Windows
+
+The most reliable timeframes for smooth, low-competition execution consistently occur during early morning UTC hours (12 AM - 4 AM) when:
+
+North American traders are asleep (EST/PST timezones)
+European markets haven't yet begun daytime trading
+Asian markets are wrapping up their activity
+Overall network activity drops by 40-60% compared to peak hours
+Statistical analysis of Solana's historical congestion patterns shows these hours experience:
+
+78% lower transaction failure rates
+55% faster average block confirmation times
+92% reduction in priority fee bidding wars
+High-Risk Congestion Periods to Avoid
+
+The most dangerous periods for sniper operations align with peak U.S. market hours (2 PM - 8 PM UTC) when:
+
+Wall Street trading overlaps with crypto market activity
+Major NFT drops and token launches are scheduled
+Retail trader participation spikes dramatically
+During these windows, the network regularly experiences:
+
+Transaction failure rates exceeding 35%
+Priority fees spiking to 50x normal levels
+Confirmation delays of 15+ blocks
+RPC node response times degrading by 400-800ms
+Advanced Network Monitoring Techniques
+
+Professional sniper operators implement multi-layered monitoring:
+
+Real-time TPS tracking via Solana Beach/Explorer (sub-2,000 TPS = safe)
+
+Mempool depth analysis to predict coming congestion
+
+Validator health metrics to identify network stress points
+
+Historical pattern recognition of recurring congestion events
+
+1.2.2 Prioritization Fees & Infrastructure Optimization
+Dynamic Fee Adjustment Strategies
+
+Sophisticated bots implement AI-driven fee algorithms that:
+
+Continuously analyze the last 50 blocks' fee market
+Predict optimal fee levels 2-3 blocks ahead
+Automatically scale bids during fee spikes
+Implement fallback strategies when fees exceed profitability thresholds
+Fee adjustment considerations include:
+
+Base fee vs. priority fee breakdowns
+Per-block fee competition analysis
+Opportunity cost calculations
+Failed transaction cost projections
+Enterprise-Grade Infrastructure Setup
+
+To combat latency, professional operations deploy:
+
+Private RPC Nodes (Helius/QuickNode/Triton/Shyft)
+
+Geographically distributed endpoints
+Load-balanced configurations
+Dedicated validator connections
+Transaction Processing Clusters
+
+Pre-signed TX pools
+Parallel submission systems
+Failover mechanisms
+Network-Level Optimizations
+
+Kernel-level TCP tuning
+Sub-1ms latency fiber routes
+Colocated server deployments
+The Milliseconds War - Execution Optimization
+
+The difference between success and failure often comes down to:
+
+First-Byte Latency: Reducing RPC response to <5ms
+TX Propagation Path: Optimizing validator node selection
+Block Timing: Aligning submissions with leader schedules
+Bundle Construction: Efficient transaction grouping
+Top-performing systems achieve:
+
+98%+ success rates during mild congestion
+500-800ms end-to-end execution times
+<0.1% stale transaction rates
+Adaptive fallback protocols during extreme congestion
+The Dark Forest of Solana
+Understanding the bot hierarchy:
+
+First-layer snipers (0-100ms execution)
+
+Second-wave arbitrageurs (100-500ms)
+
+Retail-frontrunners (1-3 second latency)
+
+Manual traders (10+ seconds - already too late)
+
+1.3 Risks & How to Mitigate Them
+Before diving into the parameters of the Solana Sniper Bot, it’s crucial to recognize that no configuration can fully eliminate risk. Whether through rug pulls, exploits, or other malicious tactics, you’ll always be navigating dangerous waters. Here’s a breakdown of the key threats—and how you can mitigate them.
+
+1.3.1 Rug Pulls & Honeypots
+A rug pull occurs when a liquidity pool is launched without burning the liquidity tokens, allowing the creator to withdraw funds at any time. Even if you use filters to check for burned liquidity, you’re still vulnerable to exploits.
+
+A more sophisticated version—the honeypot—occurs when the creator launches a pool without revoking freeze authority (possible in Raydium V3). They can freeze the token immediately after launch, trapping your sniper bot’s purchases with no way to sell.
+
+Mitigation
+
+Liquidity Burn Verification
+
+Use blockchain explorers (Solscan, DexScreener) to manually confirm the LP tokens are burned.
+Script automated checks: The absence of a Burn instruction in the LP creation transaction is a red flag.
+Cross-check with Raydium & Orca pool data—some fake pools spoof liquidity but are untradeable.
+Freeze Authority Check
+
+Before sniping, verify that the token’s freeze authority is revoked (common in honeypots).
+Tools like Solana Token Sniffer or custom scripts can detect if a creator retains freeze power.
+Multi-Wallet Test Sells
+
+Don’t just test sell once—use 2-3 different wallets to confirm the token isn’t selectively blocking sales.
+Some honeypots allow small sells (e.g., $1) but block larger exits—so test with varying amounts.
+Creator Wallet Monitoring
+
+Track the deployer’s wallet for past rug pulls (e.g., rugcheck.xyz or DexLabs).
+If the creator has a history of abandoning projects, avoid their new launches entirely.
+Time-Locked Rug Pulls
+
+Some rugs don’t happen immediately—they wait until a certain market cap is reached.
+Set auto-sell triggers (e.g., sell 50% at 2x, 30% at 5x) to secure profits before a delayed rug.
+1.3.2 Exploits via Bundle Sniping
+Some creators use bundle sniping, adding liquidity and buying in the same transaction to ensure they’re first. Even if liquidity tokens are burned, they control the initial price action—meaning a quick sell-off can mimic a rug pull.
+
+Mitigation
+
+Identifying Bundle Snipes
+
+Transaction History Analysis
+
+Before buying, check if the liquidity add + first buy happened in one transaction.
+Tools like Birdeye or SolanaFM can show bundled actions—avoid these pools.
+Liquidity Source Check
+
+If the initial liquidity comes from a new wallet (not the deployer), it’s often a fake "organic" pump.
+Real projects usually fund liquidity from a known dev/marketing wallet.
+Price Impact Simulation
+
+Use Jupiter’s price impact API or custom scripts to estimate how much your buy/sell will move the price.
+If a 5% sell crashes the price by 30%+, the pool is likely exploitable.
+Defensive Trading Tactics
+
+Partial Snipe Strategy
+
+Instead of full sniping, split your buy into 2-3 smaller transactions to avoid front-running.
+Example: Buy 30% at launch, 30% after 30 seconds (if no dump), then 40% if trend holds.
+Snipe Delay Adjustment
+
+Most bots rush to buy in the first 1-2 blocks—this is where bundle snipers dominate.
+A 1-3 second delay can help avoid the initial trap while still catching early pumps.
+Anti-Frontrun Slippage
+
+Set dynamic slippage: Start low (5%), increase if the tx fails (max 15-20%).
+Too high slippage (e.g., 50%) makes you vulnerable to sandwich attacks.
+Post-Snipe Surveillance
+
+After buying, monitor the deployer’s wallet for sudden withdrawals.
+If they pull LP or sell large amounts, exit immediately—don’t wait for "recovery."
+1.3.3 Bot Competition (Gas Wars)
+When too many bots compete for the same trade, the Solana network can become congested, leading to failed transactions, skyrocketing priority fees, or even front-running by more aggressive bots. Since sniping relies on speed and precision, heavy competition can drastically reduce your success rate—or make sniping entirely unprofitable due to excessive gas costs.
+
+Mitigation
+
+Use Private RPCs: Public RPC endpoints often suffer from latency and rate limits, making private RPCs essential for reducing delays.
+
+Dynamic Gas Adjustment: Instead of using a fixed priority fee, implement an algorithm that adjusts gas based on real-time network congestion and competing bot activity.
+
+Transaction Simulation: Before sending a full snipe, simulate the transaction to estimate success probability and optimal gas settings.
+
+Avoid Peak Times: Monitor historical Solana congestion patterns and avoid sniping during high-traffic periods (e.g., major token launches).
+
+1.3.4 Solana Network Failures
+Solana’s network is known for occasional congestion, outages, or degraded performance—especially during high-demand periods. If the network slows down or halts, your sniper bot may fail to execute trades, miss opportunities, or even get stuck in limbo with pending transactions.
+
+Mitigation
+
+Fallback RPC Endpoints: Maintain multiple RPC providers (e.g., private, premium, and backup public RPCs) to switch automatically if one fails.
+
+Real-Time Network Monitoring: Use tools like Solana Beach, Solscan, or custom scripts to detect network slowdowns and pause operations if necessary.
+
+Transaction Retry Logic: Implement smart retries with exponential backoff to handle temporary failures without spamming the network.
+
+Local Validator Node (Advanced): For maximum reliability, running your own Solana validator node ensures minimal latency and no dependency on third-party RPCs.
+
+1.3.5 Token Blacklists & Anti-Bot Measures
+Many token creators actively blacklist known bot wallets or implement mechanisms to block automated snipers. Some projects even freeze tokens or apply transfer restrictions after launch, trapping bot-purchased tokens with no way to sell.
+
+Mitigation
+
+Fresh Wallets for Each Snipe: Avoid reusing wallets; generate new addresses for each trade to evade detection.
+
+Decentralized Identity (DID) Spoofing: Some advanced bots rotate IPs and modify transaction fingerprints to appear as different users.
+
+Pre-Snipe Token Analysis: Before executing a snipe, check if the token contract has:
+
+Revoked freeze authority (prevents honeypots).
+No blacklist function (ensures you can sell).
+No hidden owner privileges (reduces rug pull risk).
+Small Test Transactions: Before a full snipe, buy and sell a tiny amount to confirm the token isn’t locked.
+
+Even with above mitigation strategies risk remains unavoidable. The best snipers combine automated checks with manual review—never fully trust a bot. Always assume every new token could be a scam, and never invest more than you can afford to lose.
+
+2. Listening to pump.fun migrations to Raydium
+Understanding pump.fun token migration
+
+Tokens on pump.fun start trading against a bonding curve—a mathematical formula that determines the token's price based on supply and demand. However, once certain conditions are met, the token "graduates" and migrates its liquidity to Raydium DEX.
+
+A token migrates to Raydium when:
+
+The bonding curve reaches completion status (tracked by the complete flag in the curve's state)
+The token has accumulated sufficient liquidity and trading volume
+The migration transaction is executed by the protocol
+After migration, trading moves from the bonding curve mechanism to
+
+Raydium's traditional AMM (Automated Market Maker) model. This transition is significant because:
+Trading mechanics change from bonding curve to AMM Liquidity becomes more flexible and can be added/removed by users
+The token becomes accessible to the broader Raydium ecosystem
+TLDR:
+
+pump.fun tokens start on a bonding curve and later migrate to Raydium for traditional AMM trading.
+
+Use the check_boding_curve_status.py script to see if a token’s curve is still active or completed.
+
+Use the listen_to_raydium_migration.py script to track live migration events by decoding relevant on-chain transactions.
+
+These tools help you adapt trading strategies when tokens move from pump.fun's bonding curve to Raydium liquidity pools.
+
+Step 1: Setup Environment
+Let's develop our own code using VS Code. Let's assume that you have installed Python (version 3.8 or later).
+Clone the pump-fun-bot GitHub repository
+Install libraries using this command:
+pip install -r requirements.txt
+Provide the node HTTP and WebSocket endpoints in config.py
+Step 2: Main code
+There are 2 main files for listening to pump.fun migrations to Raydium.
+
+- check_boding_curve_status.py file
+import argparse
+import asyncio
+import os
+import struct
+import sys
+from typing import Final
+
+from construct import Flag, Int64ul, Struct
+from solana.rpc.async_api import AsyncClient
+from solders.pubkey import Pubkey
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from core.pubkeys import PumpAddresses
+
+# Constants
+EXPECTED_DISCRIMINATOR: Final[bytes] = struct.pack("<Q", 6966180631402821399)
+
+RPC_ENDPOINT = os.environ.get("SOLANA_NODE_RPC_ENDPOINT")
+
+
+class BondingCurveState:
+    _STRUCT = Struct(
+        "virtual_token_reserves" / Int64ul,
+        "virtual_sol_reserves" / Int64ul,
+        "real_token_reserves" / Int64ul,
+        "real_sol_reserves" / Int64ul,
+        "token_total_supply" / Int64ul,
+        "complete" / Flag,
+    )
+
+    def __init__(self, data: bytes) -> None:
+        parsed = self._STRUCT.parse(data[8:])
+        self.__dict__.update(parsed)
+
+
+def get_associated_bonding_curve_address(
+    mint: Pubkey, program_id: Pubkey
+) -> tuple[Pubkey, int]:
+    """
+    Derives the associated bonding curve address for a given mint
+    """
+    return Pubkey.find_program_address([b"bonding-curve", bytes(mint)], program_id)
+
+
+async def get_bonding_curve_state(
+    conn: AsyncClient, curve_address: Pubkey
+) -> BondingCurveState:
+    response = await conn.get_account_info(curve_address, encoding="base64")
+    if not response.value or not response.value.data:
+        raise ValueError("Invalid curve state: No data")
+
+    data = response.value.data
+    if data[:8] != EXPECTED_DISCRIMINATOR:
+        raise ValueError("Invalid curve state discriminator")
+
+    return BondingCurveState(data)
+
+
+async def check_token_status(mint_address: str) -> None:
+    try:
+        mint = Pubkey.from_string(mint_address)
+
+        # Get the associated bonding curve address
+        bonding_curve_address, bump = get_associated_bonding_curve_address(
+            mint, PumpAddresses.PROGRAM
+        )
+
+        print("\nToken Status:")
+        print("-" * 50)
+        print(f"Token Mint:              {mint}")
+        print(f"Associated Bonding Curve: {bonding_curve_address}")
+        print(f"Bump Seed:               {bump}")
+        print("-" * 50)
+
+        # Check completion status
+        async with AsyncClient(RPC_ENDPOINT) as client:
+            try:
+                curve_state = await get_bonding_curve_state(
+                    client, bonding_curve_address
+                )
+
+                print("\nBonding Curve Status:")
+                print("-" * 50)
+                print(
+                    f"Completion Status: {'Completed' if curve_state.complete else 'Not Completed'}"
+                )
+                if curve_state.complete:
+                    print(
+                        "\nNote: This bonding curve has completed and liquidity has been migrated to Raydium."
+                    )
+                print("-" * 50)
+
+            except ValueError as e:
+                print(f"\nError accessing bonding curve: {e}")
+
+    except ValueError as e:
+        print(f"\nError: Invalid address format - {e}")
+    except Exception as e:
+        print(f"\nUnexpected error: {e}")
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Check token bonding curve status")
+    parser.add_argument("mint_address", help="The token mint address")
+
+    args = parser.parse_args()
+    asyncio.run(check_token_status(args.mint_address))
+
+
+if __name__ == "__main__":
+    main()
+
+In terminal, run this command:
+python check_boding_curve_status.py TOKEN_ADDRESS
+Replace TOKEN_ADDRESS with the Solana address of the token you want to check. The script derives the associated bonding curve address from the token address that you provide and then makes a getAccountInfo call to the bonding curve.
+
+- listen_to_raydium_migration.py file
+import asyncio
+import json
+import os
+import sys
+
+import websockets
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from core.pubkeys import PumpAddresses
+
+WSS_ENDPOINT = os.environ.get("SOLANA_NODE_WSS_ENDPOINT")
+
+
+def process_initialize2_transaction(data):
+    """Process and decode an initialize2 transaction"""
+    try:
+        signature = data["transaction"]["signatures"][0]
+        account_keys = data["transaction"]["message"]["accountKeys"]
+
+        # Check raydium_amm_idl.json for the account keys
+        # The token address is typically the 19th account (index 18)
+        # The liquidity pool address is typically the 3rd account (index 2)
+        if len(account_keys) > 18:
+            token_address = account_keys[18]
+            liquidity_address = account_keys[2]
+
+            print(f"\nSignature: {signature}")
+            print(f"Token Address: {token_address}")
+            print(f"Liquidity Address: {liquidity_address}")
+            print("=" * 50)
+        else:
+            print(f"\nError: Not enough account keys (found {len(account_keys)})")
+
+    except Exception as e:
+        print(f"\nError: {e!s}")
+
+
+async def listen_for_events():
+    while True:
+        try:
+            async with websockets.connect(WSS_ENDPOINT) as websocket:
+                subscription_message = json.dumps(
+                    {
+                        "jsonrpc": "2.0",
+                        "id": 1,
+                        "method": "blockSubscribe",
+                        "params": [
+                            {
+                                "mentionsAccountOrProgram": str(
+                                    PumpAddresses.LIQUIDITY_MIGRATOR
+                                )
+                            },
+                            {
+                                "commitment": "confirmed",
+                                "encoding": "json",
+                                "showRewards": False,
+                                "transactionDetails": "full",
+                                "maxSupportedTransactionVersion": 0,
+                            },
+                        ],
+                    }
+                )
+
+                await websocket.send(subscription_message)
+                response = await websocket.recv()
+                print(f"Subscription response: {response}")
+                print("\nListening for Raydium pool initialization events...")
+
+                while True:
+                    try:
+                        response = await asyncio.wait_for(websocket.recv(), timeout=30)
+                        data = json.loads(response)
+
+                        if "method" in data and data["method"] == "blockNotification":
+                            if "params" in data and "result" in data["params"]:
+                                block_data = data["params"]["result"]
+                                if (
+                                    "value" in block_data
+                                    and "block" in block_data["value"]
+                                ):
+                                    block = block_data["value"]["block"]
+                                    if "transactions" in block:
+                                        for tx in block["transactions"]:
+                                            logs = tx.get("meta", {}).get(
+                                                "logMessages", []
+                                            )
+
+                                            # Check for initialize2 instruction
+                                            for log in logs:
+                                                if (
+                                                    "Program log: initialize2: InitializeInstruction2"
+                                                    in log
+                                                ):
+                                                    print(
+                                                        "Found initialize2 instruction!"
+                                                    )
+                                                    process_initialize2_transaction(tx)
+                                                    break
+
+                    except TimeoutError:
+                        print("\nChecking connection...")
+                        print("Connection alive")
+                        continue
+
+        except Exception as e:
+            print(f"\nConnection error: {e!s}")
+            print("Retrying in 5 seconds...")
+            await asyncio.sleep(5)
+
+
+if __name__ == "__main__":
+    asyncio.run(listen_for_events())
+
+The listen_to_raydium_migration.py script uses WebSocket subscriptions to monitor real-time migrations of tokens from pump.fun to Raydium DEX.
+
+The pump.fun migration account is 39azUYFWPz3VHgKCf3VChUwbpURdCHRxjWVowf5jUJjg.
+
+In terminal, run this command:
+python listen_to_raydium_migration.py
+This is the account that—on the token bonding curve completion status—adds the token to a Raydium's AMM pool with the token's liquidity. This essentially constitutes token migration from pump.fun to Raydium.
+
+This script uses the blockSubscribe | Solana method over WebSocket by listening to all the transactions involving the migration account 39azUYFWPz3VHgKCf3VChUwbpURdCHRxjWVowf5jUJjg, then decodes the transactions using the Raydium IDL raydium_amm_idl.json that's also in the repository. After decoding the data, it prints what we actually need—the address of the pump.fun token that migrated and the new liquidity pool address for this token on Raydium.
+

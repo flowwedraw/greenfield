@@ -1,0 +1,361 @@
+Hello 👋,
+
+In the previous issue, I covered the fundamental steps for building a Solana Sniper bot, programming techniques, etc. As part of the coding process, we also developed a script to transfer SOL from Wallet A to Wallet B.
+
+In this issue, I will dive into the Solana SPL tokens, exploring their functionality and significance within the Solana ecosystem. As part of the practical implementation, I will walk you through the coding process, specifically focusing on how to transfer SPL tokens from Wallet A to Wallet B.
+
+1. Solana SPL Token
+1.1 Why you should learn about SPL tokens while developing Solana Sniper Bot
+Before diving into the Solana SPL Tokens, it’s crucial to understand the relationship between SPL Token and the Solana sniper bot.
+
+Core Functionality: SPL tokens are the standard for tokens on the Solana blockchain, similar to ERC-20 tokens on Ethereum. Since sniper bots often target newly launched tokens or liquidity pools, understanding SPL tokens is fundamental to interacting with these assets programmatically.
+
+Token Transactions: Sniper bots need to execute buy/sell orders or transfers of SPL tokens at high speed. Learning how to handle SPL tokens allows you to program the bot to perform these transactions efficiently, which is critical for capitalizing on market opportunities.
+
+Market Opportunities: Many sniper bots focus on trading newly launched SPL tokens, which often experience significant price volatility. By understanding SPL tokens, you can identify and interact with these tokens quickly, giving your bot a competitive edge.
+
+Integration with DeFi Protocols: Many decentralized finance (DeFi) protocols on Solana use SPL tokens. Understanding SPL tokens enables your bot to interact with these protocols, such as decentralized exchanges (DEXs) or lending platforms, expanding its functionality and potential profitability.
+
+Custom Token Strategies: Some sniper bots are designed to target specific types of tokens (e.g., memecoins, governance tokens, or NFTs). Knowledge of SPL tokens enables you to tailor your bot's strategies to these unique token types.
+
+1.2 What is an SPL Token?
+The Solana SPL Token (Solana Program Library Token) is a standard for creating and managing tokens on the Solana blockchain. It is similar to the ERC-20 standard on Ethereum but is optimized for Solana's high-speed, low-cost infrastructure.
+
+Definition: SPL tokens are digital assets created and managed using the Solana Program Library (SPL), which provides a set of rules and standards for token creation, transfer, and management.
+
+Fungibility: SPL tokens are typically fungible, meaning each token is interchangeable with another of the same type (e.g., 1 USDC is always equal to 1 USDC).
+
+Extensibility: The SPL token standard can also be used for non-fungible tokens (NFTs) and semi-fungible tokens, making it versatile for various use cases.
+
+1.3 Components of SPL Tokens
+Token Mint: The "mint" is the on-chain account that defines the properties of the token, such as its supply, decimals, and authority. Each SPL token has a unique mint address.
+
+Token Account: A token account holds a specific amount of tokens for a user. Each user can have multiple token accounts for different SPL tokens.
+
+Decimals: SPL tokens can have up to 9 decimal places, allowing for precise fractional amounts (e.g., 0.000000001).
+
+Authority: The authority is the entity (e.g., a wallet or program) that has control over the token mint or token account. This includes:
+
+Mint Authority: Controls the creation of new tokens.
+Freeze Authority: Can freeze token accounts (optional).
+Owner: The wallet that owns the token account and can transfer tokens.
+1.4 Other else
+How SPL Tokens Work
+
+Creation: A developer creates an SPL token by initializing a "mint" account on the Solana blockchain. This defines the token's properties, such as total supply and decimals.
+Distribution: Tokens are distributed to users by transferring them to their token accounts.
+Transfers: Users can send and receive SPL tokens by signing transactions that update the balances in their token accounts.
+Burning: Tokens can be "burned" (destroyed) by sending them to a burn address, reducing the total supply.
+SPL Token vs. Native SOL
+
+Native SOL: SOL is the native cryptocurrency of the Solana blockchain, used for paying transaction fees and staking.
+SPL Tokens: SPL tokens are built on top of the Solana blockchain and represent custom assets. They require SOL to pay for transaction fees when transferring or interacting with them.
+Tools and Libraries for SPL Tokens
+
+SPL Token Program: The on-chain program that defines the rules for creating and managing SPL tokens.
+Solana Web3.js: A JavaScript library for interacting with the Solana blockchain, including SPL tokens.
+Wallets: Wallets like Phantom, Solflare, and Sollet support SPL tokens.
+Explorers: Tools like Solscan and Solana Explorer allow users to view SPL token transactions and balances.
+2. Token 2022
+Token 2022 refers to an upgrade or extension of the SPL Token standard on the Solana blockchain. SPL Tokens are the standard for creating and managing tokens on Solana, similar to ERC-20 tokens on Ethereum but the Token 2022 program introduces additional features and improvements to enhance functionality, security, and flexibility for token creators and users.
+
+2.1 Key Features of Token 2022
+Enhanced Functionality:
+Token 2022 expands the capabilities of the original SPL Token standard by adding new features, such as:
+
+Confidential Transfers: Enables privacy-preserving transactions where amounts and balances are encrypted.
+Transfer Hooks: Allows developers to implement custom logic when tokens are transferred, such as enforcing fees or restrictions.
+Non-Transferable Tokens: Supports the creation of tokens that cannot be transferred, useful for representing ownership or credentials.
+Interest-Bearing Tokens: Enables tokens to accrue interest over time, which is useful for financial applications.
+Improved Security: Token 2022 introduces additional security measures to protect against vulnerabilities and ensure safer token operations.
+
+Backward Compatibility: The upgrade is designed to be backward-compatible with the existing SPL Token standard, ensuring that existing tokens and applications continue to function without disruption.
+
+Developer Flexibility: Token 2022 provides developers with more tools and options to create innovative token-based applications, such as decentralized finance (DeFi) platforms, gaming assets, and more.
+
+Regulatory Compliance: Features like confidential transfers and non-transferable tokens can help projects comply with regulatory requirements, such as privacy laws or restrictions on token transfers.
+
+2.2 Why Token 2022 Matters
+Innovation: Token 2022 enables developers to create more sophisticated tokens with features that were not possible with the original SPL token standard.
+
+DeFi Growth: Advanced features like interest-bearing tokens and confidential transfers can drive innovation in decentralized finance (DeFi) on Solana.
+
+Privacy: Confidential transfers address privacy concerns, making Solana more attractive for users and institutions.
+
+Customizability: Developers can tailor tokens to specific use cases, such as dynamic NFTs or tokens with role-based permissions.
+
+2.3 Examples of Token 2022 in Action
+Interest-Bearing Tokens: A staking protocol could issue tokens that automatically accrue interest based on staking rewards.
+
+Confidential Transfers: A privacy-focused application could use Token 2022 to hide transaction amounts while still maintaining transparency for auditors.
+
+Dynamic NFTs: An NFT project could use Token 2022 to create tokens with metadata that evolves over time (e.g., a character that levels up in a game).
+
+2.4 SPL Tokens vs. Token 2022
+SPL Tokens
+SPL (Solana Program Library) tokens are the original token standard on Solana, designed for creating fungible and non-fungible tokens (NFTs).
+Limitations:
+
+Limited extensibility for advanced features.
+No native support for functionalities like interest-bearing tokens, confidential transfers, or role-based permissions.
+Token 2022
+
+Token 2022 is an upgraded and more advanced token standard built on top of the original SPL token program. It introduces new features and capabilities to support more complex use cases.
+Key Differences Between SPL Tokens and Token 2022
+
+Feature	SPL Tokens	Token 2022
+Standard	Original token standard	Upgraded and advanced standard
+Functionality	Basic token creation and transfers	Advanced features like interest-bearing tokens, confidential transfers, etc.
+Extensibility	Limited	Highly extensible with custom logic
+Backward Compatibility	N/A	Compatible with SPL tokens
+Use Cases	Fungible tokens, NFTs	Complex DeFi, privacy tokens, dynamic NFTs
+3. How to transfer SPL Tokens from wallet A to wallet B
+In the previous issue, we already developed a script to transfer SOL.
+At this time, let's send SPL tokens using your own code.
+
+Step 1: Setup Environment
+For convenience, let's develop our own code using VS Code. Let's assume that you have installed Node.js (version 18.0 or later).
+Also, we need wallet A and wallet B. To be precise, to send money from wallet A to wallet B, you will need the private key of wallet A and the public key of wallet B.
+Initialize your project using npm init.
+Install dependencies using this command:
+npm install typescript ts-node @project-serum/anchor @solana/web3.js @solana/spl-token dotenv bs58
+Check package.json file and edit scripts like this:
+{
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node index.ts",
+    "clean": "tsc --build --clean",
+    "dev": "tsc && node ./dist/index.js"
+  },
+  "dependencies": {
+    "@project-serum/anchor": "^0.26.0",
+    "@solana/spl-token": "^0.4.12",
+    "@solana/web3.js": "^1.98.0",
+    "bs58": "^6.0.0",
+    "dotenv": "^16.4.7",
+    "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "ts-node": "^10.9.2"
+  }
+}
+Install Typescript environment using tsc --init command.
+Edit tsconfig.json file like this:
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  }
+}
+.env file
+SENDER_WALLET_PRIVATE_KEY="PRIVATE KEY OF WALLET A"
+RECEIVER_WALLET_PUBLIC_KEY="PUBLIC KEY OF WALLET B"
+Step 2: Main code (index.ts)
+This code transfers SPL tokes and Token 2022 tokens from wallet A to wallet B.
+
+import dotenv from "dotenv";
+import bs58 from "bs58";
+import {
+  LAMPORTS_PER_SOL,
+  Keypair,
+  Connection,
+  PublicKey,
+  clusterApiUrl,
+  ComputeBudgetProgram,
+  TransactionMessage,
+  VersionedTransaction,
+  TransactionInstruction
+} from "@solana/web3.js";
+import {
+  getOrCreateAssociatedTokenAccount,
+  getMint,
+  createTransferInstruction,
+  TOKEN_PROGRAM_ID,
+  TOKEN_2022_PROGRAM_ID, 
+  ASSOCIATED_TOKEN_PROGRAM_ID,
+  createTransferCheckedInstruction,
+} from "@solana/spl-token";
+import { BN } from "@project-serum/anchor";
+
+dotenv.config();
+
+// Keys from .env
+const fromWalletPrivateKeyString = process.env
+  .SENDER_WALLET_PRIVATE_KEY as string;
+const receiverPublicKeyString = process.env
+  .RECEIVER_WALLET_PUBLIC_KEY as string;
+
+const fromWallet = Keypair.fromSecretKey(bs58.decode(fromWalletPrivateKeyString));
+const toWalletPublicKey = new PublicKey(receiverPublicKeyString);
+
+// transferSplToken function
+async function transferSplToken(mint:PublicKey, transferAmount: number, network: string = "mainnet") {
+  let connection: Connection;
+  if (network === "mainnet") {
+    connection = new Connection("https://api.mainnet-beta.solana.com");
+  } else {
+    connection = new Connection(clusterApiUrl("devnet"), "confirmed");
+  }
+  // Check fromWallet balance
+  const fromWalletBalance = await connection.getBalance(fromWallet.publicKey);
+  console.log("From Wallet Balance:", fromWalletBalance / LAMPORTS_PER_SOL, "SOL");
+
+  if (fromWalletBalance < 0.01 * LAMPORTS_PER_SOL) {
+    throw new Error("From wallet does not have enough SOL to pay for transaction fees.");
+  }
+
+  const accountInfo = await connection.getAccountInfo(mint);
+  const tokenProgramID = accountInfo?.owner;
+  console.log("Token ProgramID", tokenProgramID);
+
+  // Get token mint info (including decimals)
+  const mintInfo = await getMint(
+    connection,
+    mint,
+    "confirmed",
+    tokenProgramID // TOKEN_PROGRAM_ID or TOKEN_2022_PROGRAM_ID
+  );
+  console.log("Token Decimals:", mintInfo);
+
+  console.log("ASSOCIATED_TOKEN_PROGRAM_ID: ", ASSOCIATED_TOKEN_PROGRAM_ID);
+
+  // Get the token account of the fromWall address, if it doesn't exist, create it
+  const fromTokenAccount = await getOrCreateAssociatedTokenAccount(
+    connection,
+    fromWallet,
+    mint,
+    fromWallet.publicKey,
+    false,
+    undefined,
+    undefined,
+    tokenProgramID, // TOKEN_PROGRAM_ID or TOKEN_2022_PROGRAM_ID
+    ASSOCIATED_TOKEN_PROGRAM_ID
+  );
+
+  //get the token account of the toWallet address, if it does not exist, create it
+  const toTokenAccount = await getOrCreateAssociatedTokenAccount(
+    connection,
+    fromWallet, // payer
+    mint,
+    toWalletPublicKey,
+    false,
+    undefined,
+    undefined,
+    tokenProgramID, // TOKEN_PROGRAM_ID or TOKEN_2022_PROGRAM_ID
+    ASSOCIATED_TOKEN_PROGRAM_ID
+  );
+
+  console.log ("fromTokenAccount::", fromTokenAccount.toString());
+
+  // Check the balance of the fromTokenAccount
+  const fromTokenAccountBalance = await connection.getTokenAccountBalance(fromTokenAccount.address);
+  console.log("From Token Account Balance:", fromTokenAccountBalance.value.uiAmount, "tokens");
+
+  // Ensure the fromTokenAccount has enough tokens for the transfer
+  if (fromTokenAccountBalance.value.uiAmount === null || fromTokenAccountBalance.value.uiAmount < transferAmount) {
+    throw new Error("Insufficient funds in the fromTokenAccount.");
+  }
+
+  // // Token Transfer Instruction
+  let transferInstruction: TransactionInstruction;
+
+  if(String(tokenProgramID) == String(TOKEN_PROGRAM_ID)){
+    transferInstruction = createTransferInstruction(
+      fromTokenAccount.address,
+      toTokenAccount.address,
+      fromWallet.publicKey,
+      transferAmount * Math.pow(10, mintInfo.decimals)
+    );
+  } else { 
+    //tokenProgramID == TOKEN_2022_PROGRAM_ID
+    transferInstruction = createTransferCheckedInstruction(
+      fromTokenAccount.address,
+      mint,
+      toTokenAccount.address,
+      fromWallet.publicKey,
+      new BN(transferAmount * Math.pow(10, mintInfo.decimals)),
+      mintInfo.decimals,
+      [],
+      TOKEN_2022_PROGRAM_ID
+    );
+  }
+
+  // Priority fee instruction
+  const PRIORITY_FEE_MICRO_LAMPORTS = 200000; // 0.2 lamports per compute unit (adjust as needed)
+  // Instruction to set the compute unit price for priority fee
+  const PRIORITY_FEE_INSTRUCTIONS = ComputeBudgetProgram.setComputeUnitPrice({microLamports: PRIORITY_FEE_MICRO_LAMPORTS});
+
+  // Fetch a fresh blockhash
+  const latestBlockhash = await connection.getLatestBlockhash();
+
+  // Compiles and signs the transaction message with the sender's Keypair.
+  const messageV0 = new TransactionMessage({
+    payerKey: fromWallet.publicKey,
+    recentBlockhash: latestBlockhash.blockhash,
+    instructions: [PRIORITY_FEE_INSTRUCTIONS, transferInstruction],
+  }).compileToV0Message();
+
+  const versionedTransaction = new VersionedTransaction(messageV0);
+
+  // Sign transaction, broadcast, and confirm
+  versionedTransaction.sign([fromWallet]);
+
+  // Attempts to send the transaction to the network, handling success or failure.
+  try {
+    const transactionSignature = await connection.sendTransaction(versionedTransaction, {
+      maxRetries: 20,
+    });
+
+    const confirmation = await connection.confirmTransaction(
+      {
+        signature: transactionSignature,
+        blockhash: latestBlockhash.blockhash,
+        lastValidBlockHeight: latestBlockhash.lastValidBlockHeight,
+      },
+      "confirmed"
+    );
+    if (confirmation.value.err) {
+      throw new Error("🚨Transaction not confirmed.");
+    }
+
+    if(network === "mainnet"){
+      console.log(
+        "Transaction Signature: ",
+        `https://solscan.io/tx/${transactionSignature}`
+      );
+    } else {
+      console.log(
+        "Transaction Signature: ",
+        `https://solscan.io/tx/${transactionSignature}?cluster=devnet`
+      );
+    }
+
+  } catch (error) {
+    console.error("Transaction failed", error);
+  }
+}
+
+// Test
+let mint: PublicKey;  // Mint Account Address (Token Address)
+mint = new PublicKey("C8NEYcW7eoQsrQ7vqeiUTLFxwJQNHgj8LwSc3BUQx6YG"); // Devnet SPL Token
+transferSplToken(mint, 1000000, "devnet");
+
+mint = new PublicKey("13pkrcqF47rF2oF4kZnBVzH5omQ2f7nF429vzpjgL896"); // Devnet Token2022 Token
+transferSplToken(mint, 1000000, "devnet");
+
+mint = new PublicKey("7WphEnjwKtWWMbb7eEVYeLDNN2jodCo871tVt8jHpump"); // Mainnet SPL Token
+transferSplToken(mint, 10, "mainnet");
+
+mint = new PublicKey("HeLp6NuQkmYB4pYWo2zYs22mESHXPQYzXbB8n4V98jwC"); // Mainnet Token2022 Token
+transferSplToken(mint, 0.05, "mainnet");
+Step 3: Run the code
+In terminal, run this command:
+npm run start
+If the transaction is successful, you will receive a transaction link from solscan.

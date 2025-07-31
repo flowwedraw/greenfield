@@ -1,0 +1,218 @@
+Hello 👋,
+I am a Solana expert and passionate Solana trading bot developer.
+Developing a trading bot is high-tech, but what we want is our trading bot for ourselves.
+
+So, my skills are not the best, but I am going to explain in detail in a series from the basics of Solana to the steps of creating a bot.
+
+In this issue, I will cover the basic steps of creating a Solana Sniper bot, programming techniques, etc. And in the coding, I will cover how to transfer SOL from wallet A to wallet B, first.
+
+1. Solana Sniper Bot Development Flow
+Step 1: Learn the Basics
+Before diving into building a Solana sniper bot, it’s crucial to understand the foundational concepts and technologies involved.
+
+Understand Solana: Solana is a high-performance blockchain known for its fast transaction speeds and low fees. It uses a unique consensus mechanism called Proof of History (PoH) combined with Proof of Stake (PoS) to achieve scalability. Familiarize yourself with how Solana processes transactions, how smart contracts (called "programs" in Solana) work, and how decentralized exchanges (DEXs) operate on the network.
+
+What is a Sniper Bot?: A sniper bot is an automated tool designed to execute trades as soon as specific conditions are met. In the context of Solana, this often means buying newly listed tokens on DEXs like Raydium or Serum the moment they become available. The goal is to capitalize on early price movements before the broader market reacts.
+
+Key Concepts:
+
+Liquidity Pools: Tokens are traded on DEXs through liquidity pools. Understanding how these pools work is essential for identifying new tokens.
+Transaction Fees: Solana transactions require a small fee in SOL. Prioritizing transactions with higher fees can help your bot execute trades faster.
+Slippage: This refers to the difference between the expected price of a trade and the actual executed price. Setting a slippage tolerance helps avoid failed transactions due to price fluctuations.
+Step 2: Set Up Your Tools
+To build a Solana sniper bot, you’ll need to set up your development environment and gather the necessary tools.
+
+Programming Language:
+
+Rust: Solana’s native programming language for writing smart contracts. If you’re building a bot that interacts directly with Solana programs, Rust is a great choice.
+JavaScript/TypeScript: For most sniper bots, JavaScript or TypeScript (using the Solana Web3.js library) is sufficient and easier to work with if you’re not familiar with Rust.
+Tools and Libraries:
+
+Solana CLI: Install the Solana Command-Line Interface to interact with the Solana blockchain. This tool allows you to manage wallets, send transactions, and deploy programs.
+Node.js: If you’re using JavaScript/TypeScript, Node.js is required to run your bot.
+@solana/web3.js: This is the official JavaScript library for interacting with the Solana blockchain. It provides functions for creating wallets, signing transactions, and querying blockchain data.
+Anchor Framework: If you’re writing Solana programs in Rust, Anchor is a framework that simplifies development by providing tools for testing and deploying smart contracts.
+Wallet Setup:
+
+Create a Solana wallet (e.g., using Phantom or Sollet) and fund it with SOL. This wallet will be used to sign and send transactions.
+Securely store your wallet’s private key, as it will be needed to authorize transactions from your bot.
+Step 3: Monitor New Tokens
+The core functionality of a sniper bot is detecting and reacting to new token listings. This step involves setting up mechanisms to monitor the blockchain for new tokens.
+
+Track New Listings:
+
+Use APIs provided by DEXs like Raydium or Serum to fetch information about new token pairs. For example, Raydium’s API allows you to query liquidity pools and token pairs.
+Alternatively, you can monitor on-chain data directly by listening for specific events or transactions related to token creation.
+Real-Time Monitoring:
+
+Set up WebSocket connections to listen for real-time updates from the Solana blockchain. This allows your bot to react instantly to new listings.
+Use the @solana/web3.js library to subscribe to events like new transactions or account changes.
+Filtering Tokens:
+Not all new tokens are worth trading. Implement filters to identify promising tokens based on criteria like:
+
+Liquidity: Tokens with sufficient liquidity are less likely to experience extreme price swings.
+Token Age: Focus on tokens that have just been listed.
+Metadata: Analyze token metadata (e.g., website, social media links) to assess legitimacy.
+Step 4: Build and Test Your Bot
+Once you’ve set up the monitoring system, it’s time to build the trading logic and test your bot.
+
+Trading Logic:
+Define the conditions under which your bot will execute a trade. For example:
+
+Buy a token if its liquidity exceeds a certain threshold.
+Set a maximum price limit to avoid overpaying.
+Implement a slippage tolerance to account for price fluctuations.
+Optimize for Speed:
+
+Priority Fees: Solana allows you to attach additional fees to prioritize your transactions. Use this feature to ensure your trades are executed quickly.
+Pre-Signed Transactions: Prepare transactions in advance to minimize delay when a new token is detected.
+Dedicated RPC Nodes: Use private or dedicated RPC nodes for faster access to the blockchain.
+Test on Devnet:
+
+Before deploying your bot on the mainnet, test it on Solana’s devnet. This allows you to simulate trades without risking real funds.
+Step 5: Deploy and Monitor
+Once your bot is tested and ready, deploy it and monitor its performance.
+
+Deployment:
+
+Run your bot on a reliable server with low latency to ensure fast execution.
+Use cloud services like AWS, Google Cloud, or DigitalOcean for hosting.
+Monitoring:
+
+Continuously monitor your bot’s performance to ensure it’s functioning as expected.
+Keep an eye on transaction success rates, slippage, and profitability.
+Legal and Ethical Considerations:
+
+Ensure your bot complies with local laws and regulations.
+Avoid manipulative practices like front-running or market manipulation.
+2. How to transfer SOL from wallet A to wallet B
+We are already used to sending and receiving money using wallets, either between friends or for business purposes (in this case SOL). Now let's send money using your own code.
+
+Step 1: Setup Environment
+For convenience, let's develop our own code using VS Code. Let's assume that you have installed Node.js (version 18.0 or later).
+Also, we need wallet A and wallet B. To be precise, to send money from wallet A to wallet B, you will need the private key of wallet A and the public key of wallet B.
+Initialize your project using npm init.
+Install dependencies using this command:
+npm install typescript ts-node @solana/web3.js @solana/spl-token dotenv bs58
+Check package.json file and edit scripts like this:
+{
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node index.ts",
+    "clean": "tsc --build --clean",
+    "dev": "tsc && node ./dist/index.js"
+  },
+  "dependencies": {
+    "@solana/spl-token": "^0.4.12",
+    "@solana/web3.js": "^1.98.0",
+    "bs58": "^6.0.0",
+    "dotenv": "^16.4.7",
+    "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "ts-node": "^10.9.2"
+  }
+}
+Install Typescript environment using tsc --init command.
+Edit tsconfig.json file like this:
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  }
+}
+.env file
+SENDER_WALLET_PRIVATE_KEY="PRIVATE KEY OF WALLET A"
+RECEIVER_WALLET_PUBLIC_KEY="PUBLIC KEY OF WALLET B"
+Step 2: Main code (index.ts)
+This code transfers 0.01 SOL from wallet A to wallet B.
+
+import dotenv from "dotenv";
+import bs58 from "bs58";
+import {
+  LAMPORTS_PER_SOL,
+  Transaction,
+  SystemProgram,
+  sendAndConfirmTransaction,
+  Keypair,
+  Connection,
+  PublicKey,
+  clusterApiUrl,
+} from "@solana/web3.js";
+
+dotenv.config();
+
+// Key from .env
+const senderPrivateKeyString = process.env.SENDER_WALLET_PRIVATE_KEY as string;
+const receiverPublicKeyString = process.env
+  .RECEIVER_WALLET_PUBLIC_KEY as string;
+
+const senderSecretKey = bs58.decode(senderPrivateKeyString);
+const sender = Keypair.fromSecretKey(senderSecretKey);
+
+// Get receiver public key
+const receiverPublicKey = new PublicKey(receiverPublicKeyString);
+
+// transferSOL function
+async function transferSOL(network: string = "mainnet") {
+  let connection: Connection;
+  if (network === "mainnet") {
+    connection = new Connection("https://api.mainnet-beta.solana.com");
+  } else {  // devnnet
+    connection = new Connection(clusterApiUrl("devnet"), "confirmed");
+
+    // Airdrop some SOL to the sender's wallet for testing
+    const airdropSignature = await connection.requestAirdrop(
+      sender.publicKey,
+      2 * LAMPORTS_PER_SOL
+    );
+
+    // Wait for the airdrop to be confirmed
+    await connection.confirmTransaction(airdropSignature);
+  }
+
+  const trasnferInstruction = SystemProgram.transfer({
+    fromPubkey: sender.publicKey,
+    toPubkey: receiverPublicKey,
+    lamports: 0.01 * LAMPORTS_PER_SOL,
+  });
+
+  const transaction = new Transaction().add(trasnferInstruction);
+
+  const transactionSignature = await sendAndConfirmTransaction(
+    connection,
+    transaction,
+    [sender]
+  );
+
+  if(network === "mainnet"){
+    console.log(
+      "Transaction Signature: ",
+      `https://solscan.io/tx/${transactionSignature}`
+    );
+  } else {
+    console.log(
+      "Transaction Signature: ",
+      `https://solscan.io/tx/${transactionSignature}?cluster=devnet`
+    );
+  }
+
+}
+
+transferSOL("devnet"); // Devnnet
+transferSOL();         // Mainnet
+Step 3: Run the code
+In terminal, run this command:
+npm run start
+If the transaction is successful, you will receive a transaction link from solscan.
+3. What will be in the next issue?
+I will explain SPL tokens and how to transfer SPL tokens from wallet A to wallet B.
+
+✅You can check full code on my Github: https://github.com/greengod63/sol-drop/tree/transferSOL

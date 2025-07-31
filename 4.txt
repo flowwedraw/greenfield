@@ -1,0 +1,908 @@
+Hello 👋,
+
+Thanks for being here!🎉
+
+In previous issues, I outlined the fundamental steps for building a Solana Sniper bot, SPL tokens, Solana DEX platforms, and more. As part of the development process, we also created three scripts: one for transferring SOL from Wallet A to Wallet B, another for transferring SPL tokens between the same wallets, and a third script for swapping Token A and Token B (or a buy/sell script).
+
+I believe that through the explanations in our previous issues, we have already covered the foundational concepts necessary to develop a Solana sniper bot. With this groundwork in place, it’s now time to delve deeper into the practical implementation of such a bot.
+
+In this issue, I want to focus on one specific aspect: the reasoning behind choosing a Telegram bot as the primary interface for our Solana sniper bot. Telegram bots offer a range of advantages that make them particularly well-suited for this purpose, and I’ll be explaining these benefits in detail. From their ease of use and accessibility to their robust API and real-time communication capabilities, there are several compelling reasons why a Telegram bot stands out as the ideal choice for managing and interacting with a Solana sniper bot. Let’s explore these reasons further.
+
+1. Telegram Bot
+A Telegram bot is a special type of account on the Telegram messaging platform that is powered by software rather than a human user. These bots are designed to automate tasks, provide services, or interact with users through chat interfaces. They are built using Telegram's Bot API, which allows developers to create custom bots that can send and receive messages, manage groups, process payments, and perform a wide range of other functions.
+
+1.1 Basic Telegram Bot concepts
+Key Features of Telegram Bots:
+
+Automation: Telegram bots excel at automating repetitive tasks, saving time and effort for users. For example, they can automatically send notifications to users about important updates, such as price changes in cryptocurrency markets or new messages in a group. They can also manage group chats by handling tasks like welcoming new members, enforcing rules, or removing spam. Additionally, bots can fetch data from external sources, such as APIs or databases, and present it to users in a structured format. This automation capability makes bots incredibly efficient for both personal and business use cases.
+Interactivity: Telegram bots are designed to be interactive, allowing users to engage with them through simple commands or queries. For instance, users can send commands like /start to initiate a conversation with a bot or /help to get a list of available commands and instructions. Bots can also support inline queries, where users can type a query directly in any chat, and the bot will provide instant responses without needing to open a separate conversation. This interactivity makes bots feel like responsive and intelligent assistants, enhancing the user experience.
+Customizability: One of the most powerful aspects of Telegram bots is their customizability. Developers can program bots to perform a wide range of tasks tailored to specific needs. For example, a bot can be designed to trade cryptocurrencies by executing buy/sell orders based on predefined strategies. Alternatively, it can track real-time prices of assets, provide analytics, or even entertain users with games or quizzes. The flexibility of Telegram’s Bot API allows developers to create bots that cater to niche requirements, making them highly versatile tools.
+Real-Time Communication: Telegram bots are capable of sending and receiving messages in real time, which is crucial for applications that require instant updates. For example, in the context of trading bots, real-time communication ensures that users receive immediate notifications about market movements, trade executions, or price alerts. This feature is also valuable for customer support bots, where quick responses are essential for maintaining user satisfaction. The real-time nature of Telegram bots makes them ideal for time-sensitive tasks.
+Integration: Telegram bots can seamlessly integrate with external APIs, databases, and services, enabling them to provide advanced functionality. For instance, a bot can connect to a cryptocurrency exchange’s API to fetch live market data, execute trades, or monitor portfolio performance. It can also interact with databases to store and retrieve user-specific information, such as preferences or transaction history. This integration capability allows bots to extend their functionality beyond the Telegram platform, making them powerful tools for complex applications.
+Accessibility: Telegram bots are highly accessible, as they can be used across a wide range of devices and platforms. Whether you’re on a smartphone, tablet, or desktop, or using iOS, Android, Windows, or macOS, Telegram bots are available wherever Telegram is supported. This cross-platform compatibility ensures that users can interact with bots anytime, anywhere, making them convenient and versatile tools for both personal and professional use.
+Why Telegram Bots Are Popular for Crypto and Trading:
+
+User-Friendly Interface: Telegram’s chat-based interface is intuitive and easy to use, even for individuals who are not tech-savvy. The simplicity of sending commands or receiving notifications in a familiar chat environment lowers the barrier to entry for using advanced tools like trading bots. This user-friendliness makes Telegram bots accessible to a broad audience, from casual users to professional traders.
+Real-Time Alerts: In the fast-paced world of cryptocurrency trading, timing is everything. Telegram bots can send instant notifications about market movements, price changes, or trade executions, ensuring that users never miss an opportunity. These real-time alerts are crucial for making informed decisions and staying ahead in volatile markets.
+Remote Control: Telegram bots allow users to manage their trades or monitor their portfolios from anywhere in the world. As long as you have an internet connection, you can interact with your bot via Telegram, whether you’re on the go or at home. This remote control capability provides unparalleled convenience for traders who need to stay connected to the markets at all times.
+Security: Telegram is known for its strong emphasis on privacy and security, offering features like end-to-end encryption for secret chats and secure data storage. For crypto trading bots, which handle sensitive information such as wallet addresses and transaction details, these security features are essential. Users can trust that their data and activities are protected while using Telegram bots.
+Example Use Cases:
+
+Crypto Trading Bots: These bots are designed to automate trading activities on cryptocurrency exchanges. They can monitor market prices, execute trades based on predefined strategies, and provide real-time updates on portfolio performance. For example, a Solana sniper bot could use Telegram to notify users of new token launches or execute trades instantly when certain conditions are met.
+Notification Bots: Notification bots are used to send alerts for specific events, such as when a cryptocurrency reaches a certain price threshold or when important news is released. These bots are invaluable for staying informed without constantly monitoring the markets manually.
+Group Management Bots: In Telegram groups or channels, bots can automate moderation tasks such as removing spam, banning rule violators, or welcoming new members. They can also provide administrative functions like pinning messages, managing polls, or generating activity reports.
+Payment Bots: Payment bots facilitate transactions within the Telegram ecosystem, allowing users to send or receive payments seamlessly. For example, a bot could enable users to pay for services, split bills, or even donate to content creators directly through Telegram.
+1.2 How to develop Telegram Bot
+Developing a Telegram bot is a straightforward process, especially with Telegram’s well-documented Bot API and the availability of various libraries and tools for different programming languages. Below is a step-by-step guide to help you create your own Telegram bot:
+
+Step 1: Set Up a Telegram Bot
+
+Create a New Bot:
+
+Open Telegram and search for the BotFather (Telegram’s official bot for creating and managing bots).
+Start a chat with BotFather and use the /newbot command.
+Follow the instructions to:
+
+Choose a name for your bot (e.g., "MyCryptoBot").
+Set a username for your bot (must end with bot, e.g., "MyCryptoBot_bot").
+Once created, BotFather will provide you with a Bot Token (a unique API key). Save this token securely, as it is required to interact with the Telegram API.
+
+Configure Your Bot:
+Use BotFather to customize your bot further:
+
+Set a profile picture with /setuserpic.
+Add a description with /setdescription.
+Set commands (e.g., /start, /help) with /setcommands.
+Step 2: Choose a Programming Language
+Telegram bots can be developed in almost any programming language. Popular choices include:
+
+Python (using libraries like python-telegram-bot or aiogram)
+
+JavaScript/Node.js (using libraries like node-telegram-bot-api or telegraf)
+
+Java (using libraries like TelegramBots)
+
+PHP, C#, or others, depending on your preference.
+
+For beginners, Python is highly recommended due to its simplicity and the availability of robust libraries.
+
+Step 3: Set Up Your Development Environment
+
+Install the necessary tools:
+For Python: Install the python-telegram-bot library using pip:
+
+pip install python-telegram-bot
+For Node.js: Install the node-telegram-bot-api library:
+
+npm install node-telegram-bot-api
+Set up a code editor (e.g., VS Code, PyCharm) and create a new project folder.
+Step 4: Write Your Bot Code
+Here’s an example of a simple Telegram bot in Python:
+
+from telegram import Update
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+
+# Replace 'YOUR_BOT_TOKEN' with the token you received from BotFather
+BOT_TOKEN = 'YOUR_BOT_TOKEN'
+
+# Define a start command handler
+def start(update: Update, context: CallbackContext):
+    update.message.reply_text('Hello! I am your Telegram bot. How can I assist you?')
+
+# Define a help command handler
+def help(update: Update, context: CallbackContext):
+    update.message.reply_text('Here are the commands you can use:\n/start - Start the bot\n/help - Get help')
+
+# Define a function to echo user messages
+def echo(update: Update, context: CallbackContext):
+    update.message.reply_text(update.message.text)
+
+def main():
+    # Initialize the Updater with your bot token
+    updater = Updater(BOT_TOKEN, use_context=True)
+
+    # Get the dispatcher to register handlers
+    dp = updater.dispatcher
+
+    # Register command handlers
+    dp.add_handler(CommandHandler("start", start))
+    dp.add_handler(CommandHandler("help", help))
+
+    # Register a message handler to echo messages
+    dp.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
+
+    # Start the bot
+    updater.start_polling()
+    updater.idle()
+
+if __name__ == '__main__':
+    main()
+Step 5: Run Your Bot
+
+Save the code in a file (e.g., my_bot.py).
+
+Run the script:
+
+python my_bot.py
+Open Telegram, search for your bot’s username, and start a chat. Test the /start and /help commands, and try sending a message to see the bot echo it back.
+Step 6: Add Advanced Features
+Once your basic bot is running, you can enhance it with advanced functionality:
+
+Integrate APIs:
+
+Connect your bot to external APIs (e.g., cryptocurrency price APIs, weather APIs) to fetch and display data.
+Example: Use the CoinGecko API to get real-time crypto prices.
+Add Commands: Create custom commands (e.g., /price BTC to get Bitcoin’s price).
+
+Handle Inline Queries: Allow users to interact with your bot in any chat using inline mode.
+
+Deploy to a Server: Use cloud platforms like Heroku, AWS, or Google Cloud to host your bot 24/7.
+
+Add Security: Implement authentication to restrict access to your bot (e.g., allow only specific users to use it).
+
+Step 7: Deploy Your Bot
+To keep your bot running continuously:
+
+Host on a Cloud Platform:
+
+Deploy your bot to a cloud service like Heroku, AWS, or DigitalOcean.
+For Python, you can use Gunicorn to run your bot as a web server.
+Use Webhooks:
+
+Instead of polling, set up a webhook to receive updates from Telegram in real time.
+Example for Python:
+updater.start_webhook(listen="0.0.0.0", port=PORT, url_path=BOT_TOKEN)
+updater.bot.set_webhook(f"https://yourdomain.com/{BOT_TOKEN}")
+Step 8: Test and Iterate
+
+Test your bot thoroughly to ensure it works as expected.
+
+Gather feedback from users and add new features or fix bugs as needed.
+
+Resources for Learning
+
+Telegram Bot API Documentation: https://core.telegram.org/bots/api
+
+Python Telegram Bot Library: https://python-telegram-bot.org
+
+Node.js Telegram Bot Library: https://github.com/yagop/node-telegram-bot-api
+
+By following these steps, you can create a fully functional Telegram bot tailored to your needs, whether it’s for trading, notifications, or any other purpose!
+
+2. Build a Telegram bot as the UI for a Solana sniper bot
+This is the common buy-token UI for the sniper bot.
+Telegram Bot buy-token UI
+
+We already covered how to buy SPL token in Solana.
+So this time, let's build a buy-token UI using Node.js although I explained how to develop a Telegram Bot using Python above.
+
+Step 1: Setup Environment
+For convenience, let's develop our own code using VS Code. Let's assume that you have installed Node.js (version 18.0 or later).
+Initialize your project using npm init.
+Install dependencies using this command:
+npm install typescript ts-node @solana/web3.js axios dotenv bs58 fs mongoose node-telegram-bot-api
+Check package.json file and edit scripts like this:
+{
+  "name": "solana-sniper-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node index.ts",
+    "build": "tsc",
+    "clean": "tsc --build --clean",
+    "dev": "tsc && node ./dist/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@solana/web3.js": "^1.98.0",
+    "axios": "^1.8.1",
+    "bs58": "^6.0.0",
+    "dotenv": "^16.4.7",
+    "fs": "^0.0.1-security",
+    "mongoose": "^8.10.1",
+    "node-telegram-bot-api": "^0.66.0",
+    "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "@types/node-telegram-bot-api": "^0.64.7",
+    "ts-node": "^10.9.2"
+  }
+}
+
+Install Typescript environment using tsc --init command.
+Edit tsconfig.json file like this:
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  }
+}
+.env file
+TELEGRAM_BOT_TOKEN=""
+BIRDEYE_API_KEY=""
+SOLANA_RPC_URL=""
+BOT_WALLET_PUBLIC_KEY=""
+Step 2: Main code
+These are main files for building a Telegram Bot UI.
+Main files for building a Telegram Bot UI
+
+index.ts file
+import TelegramBot from "node-telegram-bot-api";
+import { connectDatabase } from "./config/db";
+import { addUser, getUserById } from "./service/userService";
+import { IK_START, getIKSnipe } from "./components/inlineKeyboard";
+import { messageHandler } from "./bot/message.handler";
+import { callbackQueryHandler } from "./bot/callbackquery.handler";
+import fs from "fs";
+
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+
+const BotMenu = [
+  {
+    command: "start",
+    description: "💥 Start",
+  },
+  {
+    command: "setting",
+    description: "⚙️ setting",
+  },
+  {
+    command: "position",
+    description: "💰 Position",
+  },
+  {
+    command: "referral",
+    description: "📊 Referral Stats",
+  },
+  { command: "help", description: "❓ Help" },
+];
+
+const bot = new TelegramBot(TELEGRAM_BOT_TOKEN!, {
+  polling: true,
+  webHook: false,
+  onlyFirstMatch: true,
+  filepath: false,
+});
+
+const userSnipeConfig = new Map();
+
+const startBot = () => {
+  // Connect Database
+  connectDatabase();
+
+  bot.setMyCommands(BotMenu);
+
+  bot.onText(/^\/start$/, async (msg: TelegramBot.Message) => {
+    console.log("🚀 input start cmd:");
+
+    const chatId = msg.chat.id;
+    let user;
+    const existingUser = await getUserById(chatId);
+    if (existingUser) {
+      console.log("User already exist: ", chatId);
+      user = existingUser;
+    }
+    else {
+      console.log("New User: ", chatId);
+
+      const userChat = msg.chat;
+      user = await addUser({
+        chat_id: userChat.id,
+        username: userChat.username,
+        first_name: userChat.first_name,
+        last_name: userChat.last_name
+      });
+    }
+
+    // Snipe Config Init
+    let snipe_config:any = {
+      token: null,
+      slippage: 50,
+      snipe_fee: 0.005,
+      snipe_tip: 0.005,
+      tp: null,
+      sl: null,
+      snipe_amount: null,
+    };
+
+    userSnipeConfig.set(chatId, snipe_config);
+
+    const image = fs.createReadStream("./public/sniper.jpg");
+    const caption = `Welcome to <b>Lucky Sniper</b> Bot!✨\n⬇You can deposit SOL to your wallet and start sniping!🔍\n\n💰Your Wallet:\n<code>${user.public_key}</code>`;
+    await bot.sendPhoto(msg.chat.id, image, {
+      parse_mode: "HTML",
+      caption: caption,
+      reply_markup: {
+        inline_keyboard: IK_START,
+      },
+    });
+  });
+
+  bot.onText(/^\/snipe/, async (msg: TelegramBot.Message) => {
+
+  });
+
+  bot.on("message", (msg: TelegramBot.Message) => {
+    console.log("message handler");
+    messageHandler(bot, msg, userSnipeConfig);
+  });
+
+  bot.on("callback_query", async (cb_query: TelegramBot.CallbackQuery) => {
+    console.log("callback_query handler");
+    callbackQueryHandler(bot, cb_query, userSnipeConfig);
+  });
+};
+
+startBot();
+
+config/constant.ts file
+export const BOT_FEE_PERCENT = 1; // 1%
+
+export enum BotCaption {
+  strInputTokenAddress = `💰 Enter Token Address`,
+  strInvalidSolanaTokenAddress = `⚠️ Invalid Solana Token Address! Again enter correct Token Address!`,
+  strInputSwapSolAmount = `💰 Enter Swap SOL Amount`,
+  strInvalidSolAmount = `⚠️ Invalid Swap SOL Amount ⚠️`,
+  HelpCaption = `🚀 TG Solana Trading Bot 🚀`,
+  strWelcome = `<b>Welcome to Solana Trading bot</b> 🎉\n`,
+  SET_PRIORITY_FEE = `💸 Priority Fee SOL Amount \n\n<i>💲 Enter SOL Value in format "0.0X"</i>`,
+  SET_JITOTIP = `💸 Jito Tip SOL Amount \n\n<i>💲 Enter SOL Value in format "0.0X"</i>`,
+  SET_SNIPE_AMOUNT = `💰 Snipe Amount \n\n<i>💲 Enter Snipe Amount in format "0.0X"</i>`,
+  SET_SLIPPAGE = `⚖ Slippage \n\n<i>💲 Enter Slippage in format "xx%"</i>`,
+  SET_TakeProfit = `⚖ Take Profit \n\n<i>💲 Enter Take Profit in format "xx%"</i>`,
+  SET_StopLoss = `⚖ Stop Loss \n\n<i>💲 Enter Stop Loss in format "xx%"</i>`,
+  strInvalidInput = `⚠️ Invalid Input ⚠️`,
+  SET_PK = `🔑 Private KEY \n\n<i>💲 Enter Wallet Private KEY</i>`,
+  SET_DES = `⚙ User Setting.\nYou can set any settings on here. You can set any settings on here.`,
+  SWAP_FAILED = `⚠️ Swap Failed ⚠️`,
+  SNIPE_CONFIG_FAILED = `⚠️ Snipe Configuration Failed ⚠️`,
+  AUTO_SWAP_ON = "🔔 Auto Swap ON",
+  AUTO_SWAP_OFF = "🔕 Auto Swap OFF",
+  strAlreadyRefer = `👍 You have already referred a friend.`,
+  strReferSuccess = `👍 You have successfully referred a friend.`,
+  strInvalidReferUser = `⚠️ Invalid User ⚠️`,
+}
+components/inlineKeyboard.ts file
+import { getShortenedCA } from "../utils/utils";
+
+// Start Inline Keyboard
+export const IK_START = [
+  [
+    {
+      text: "📥 Buy",
+      callback_data: "BUY",
+    },
+    {
+      text: "📤 Sell",
+      callback_data: "SELL",
+    },
+  ],
+  [
+    {
+      text: "⚙ Settings",
+      callback_data: "SETTINGS",
+    },
+  ],
+  [
+    {
+      text: "🔎 Snipe",
+      callback_data: "SNIPE_SETTINGS",
+    },
+  ],
+];
+
+// Snipe Inline Keyboard
+export function getIKSnipe({
+  token = null,
+  slippage = 50,
+  snipe_fee = 0.005,
+  snipe_tip = 0.005,
+  tp = null,
+  sl = null,
+  snipe_amount = null,
+}: {
+  token: string | null;
+  slippage: number;
+  snipe_fee: number;
+  snipe_tip: number;
+  tp: number | null;
+  sl: number | null;
+  snipe_amount: number | null;
+}): any {
+  const IK_SNIPE = [
+    [
+      {
+        text: "🔙 Back",
+        callback_data: "BACK",
+      },
+      {
+        text: "🔃 Refresh",
+        callback_data: "REFRESH",
+      },
+    ],
+    [
+      {
+        text: `${token ? "🟢" : "🔴"} Token: ${
+          token ? getShortenedCA(token) : "---"
+        }`,
+        callback_data: `TOKEN-${token}`,
+      },
+    ],
+    [
+      {
+        text: `Snipe Fee: ${snipe_fee} SOL`,
+        callback_data: `SNIPE_FEE-${snipe_fee}`,
+      },
+      {
+        text: `Snipe Tip: ${snipe_tip} SOL`,
+        callback_data: `SNIPE_TIP-${snipe_tip}`,
+      },
+    ],
+    [
+      {
+        text: `Slippage: ${slippage}%`,
+        callback_data: `SLIPPAGE-${slippage}%`,
+      },
+    ],
+    [
+      {
+        text: `${tp ? "🟢" : "🔴"} Take Profit(TP): ${tp ? tp : "---"} %`,
+        callback_data: `TP-${tp ? tp : "null"}`,
+      },
+      {
+        text: `${sl ? "🟢" : "🔴"} Stop Loss(SL): ${sl ? sl : "---"} %`,
+        callback_data: `SL-${sl ? sl : "null"}`,
+      },
+    ],
+    [
+      {
+        text: `${snipe_amount == 0.2 ? "✅ " : ""}Snipe 0.2 SOL`,
+        callback_data: `SNIPE-0.2`,
+      },
+      {
+        text: `${snipe_amount == 0.5 ? "✅ " : ""}Snipe 0.5 SOL`,
+        callback_data: `SNIPE-0.5`,
+      },
+    ],
+    [
+      {
+        text: `${snipe_amount == 1 ? "✅ " : ""}Snipe 1 SOL`,
+        callback_data: `SNIPE-1`,
+      },
+      {
+        text: `${
+          snipe_amount &&
+          snipe_amount != 0.2 &&
+          snipe_amount != 0.5 &&
+          snipe_amount != 1
+            ? "✅ "
+            : ""
+        }Snipe ${snipe_amount ? snipe_amount : "X"} SOL`,
+        callback_data: `SNIPE-${snipe_amount}`,
+      },
+    ],
+    [
+      {
+        text: `🎯 Create a snipe`,
+        callback_data: `CREATE_SNIPE`,
+      },
+    ],
+    [
+      {
+        text: `📃 Created Snipes`,
+        callback_data: `LIST_SNIPE`,
+      },
+    ],
+  ];
+
+  return IK_SNIPE;
+}
+bot/botAction.ts file
+import TelegramBot from "node-telegram-bot-api";
+import fs from "fs";
+
+export async function sendIKSnipe(
+  bot: TelegramBot,
+  chatId: number,
+  IK_SNIPE: any,
+  caption?: string
+) {
+  const image = fs.createReadStream("./public/sniper.jpg");
+
+  if (!caption) {
+    caption = `⬇You can create a new snipe or check current active snipes!🔍`;
+  }
+
+  await bot.sendPhoto(chatId, image, {
+    parse_mode: "HTML",
+    caption: caption,
+    reply_markup: {
+      inline_keyboard: IK_SNIPE,
+    },
+  });
+}
+bot/callbackquery.handler.ts file
+import TelegramBot from "node-telegram-bot-api";
+import { getUserById, addUser } from "../service/userService";
+import { getIKSnipe } from "../components/inlineKeyboard";
+import fs from "fs";
+import { BotCaption } from "../config/constants";
+import { sendIKSnipe } from "./botAction";
+import { addSwap } from "../service/swapService";
+import { isValidSnipeConfig } from "../utils/utils";
+import buyToken from "../swap/buy";
+
+export async function callbackQueryHandler(
+  bot: TelegramBot,
+  cb_query: TelegramBot.CallbackQuery,
+  userSnipeConfig: Map<number, any>
+) {
+  const cb_query_cmd = cb_query.data;
+  const chatId = cb_query.message?.chat.id;
+  const messageId = cb_query.message?.message_id || 0;
+  if (!cb_query_cmd || !chatId) return;
+
+  let user;
+  const existingUser = await getUserById(chatId);
+  if (existingUser) {
+    console.log("User already exist: ", chatId);
+    user = existingUser;
+  } else {
+    console.log("New User: ", chatId);
+    user = await addUser({
+      chat_id: chatId,
+      username: cb_query.from.username,
+      first_name: cb_query.from.first_name,
+      last_name: cb_query.from.last_name,
+    });
+  }
+
+  switch (cb_query_cmd.split("-")[0]) {
+    case "SNIPE_SETTINGS": // Snipe Button
+      const snipe_config = userSnipeConfig.get(chatId);
+      console.log("Callback snipe_config: ", snipe_config);
+
+      const IK_SNIPE = getIKSnipe(snipe_config);
+      sendIKSnipe(bot, chatId, IK_SNIPE);
+      break;
+    case "BACK": //Back Button
+      bot.deleteMessage(chatId, messageId);
+      return;
+    case "TOKEN": //Token Button
+      await bot.sendMessage(chatId, BotCaption.strInputTokenAddress, {
+        parse_mode: "HTML",
+        reply_markup: {
+          force_reply: true,
+          selective: true,
+        },
+      });
+      break;
+    case "SNIPE_FEE": //Snipe fee Button
+      await bot.sendMessage(chatId, BotCaption.SET_PRIORITY_FEE, {
+        parse_mode: "HTML",
+        reply_markup: {
+          force_reply: true,
+          selective: true,
+        },
+      });
+      break;
+    case "SNIPE_TIP": //Snipe tip Button
+      await bot.sendMessage(chatId, BotCaption.SET_JITOTIP, {
+        parse_mode: "HTML",
+        reply_markup: {
+          force_reply: true,
+          selective: true,
+        },
+      });
+      break;
+    case "SLIPPAGE": //Slippage Button
+      await bot.sendMessage(chatId, BotCaption.SET_SLIPPAGE, {
+        parse_mode: "HTML",
+        reply_markup: {
+          force_reply: true,
+          selective: true,
+        },
+      });
+      break;
+    case "TP": //TP Button
+      await bot.sendMessage(chatId, BotCaption.SET_TakeProfit, {
+        parse_mode: "HTML",
+        reply_markup: {
+          force_reply: true,
+          selective: true,
+        },
+      });
+      break;
+    case "SL": //SL Button
+      await bot.sendMessage(chatId, BotCaption.SET_StopLoss, {
+        parse_mode: "HTML",
+        reply_markup: {
+          force_reply: true,
+          selective: true,
+        },
+      });
+      break;
+    case "SNIPE": //Snipe-[x] Button
+      const amount = cb_query_cmd.split("-")[1];
+      if (amount == "0.2" || amount == "0.5" || amount == "1") {
+        const snipe_config = userSnipeConfig.get(chatId);
+        const updated_config = {
+          ...snipe_config,
+          snipe_amount: parseFloat(amount),
+        };
+        console.log("Message snipe_config: ", updated_config);
+        userSnipeConfig.set(chatId, updated_config);
+        const IK_SNIPE = getIKSnipe(updated_config);
+        sendIKSnipe(bot, chatId, IK_SNIPE);
+      } else {
+        await bot.sendMessage(chatId, BotCaption.SET_SNIPE_AMOUNT, {
+          parse_mode: "HTML",
+          reply_markup: {
+            force_reply: true,
+            selective: true,
+          },
+        });
+      }
+      break;
+    case "REFRESH": //Refresh Button
+      // Snipe Config Init
+      const init_snipe_config: any = {
+        token: null,
+        slippage: 50,
+        snipe_fee: 0.005,
+        snipe_tip: 0.005,
+        tp: null,
+        sl: null,
+        snipe_amount: null,
+      };
+
+      userSnipeConfig.set(chatId, init_snipe_config);
+      const INIT_IK_SNIPE = getIKSnipe(init_snipe_config);
+      sendIKSnipe(bot, chatId, INIT_IK_SNIPE);
+      break;
+    case "CREATE_SNIPE": //Create Snipe Button
+      const completed_snipe_config = userSnipeConfig.get(chatId);
+      const isValid = isValidSnipeConfig(completed_snipe_config);
+      if (isValid) {
+        // buyToken
+        const result = await buyToken(
+          chatId,
+          user.private_key,
+          completed_snipe_config.snipe_amount,
+          completed_snipe_config.token,
+          completed_snipe_config.snipe_fee,
+          completed_snipe_config.slippage
+        );
+        if (result && result.status == "success") {
+          await bot.sendMessage(
+            chatId,
+            `Success Buy Token!🎉\nTxID: <code>${result.tx_hash}</code>`,
+            { parse_mode: "HTML" }
+          );
+        } else {
+          await bot.sendMessage(chatId, "Failed Buy Token!");
+        }
+        await addSwap(completed_snipe_config, chatId);
+      } else {
+        await bot.sendMessage(chatId, BotCaption.SNIPE_CONFIG_FAILED, {
+          parse_mode: "HTML",
+        });
+      }
+      break;
+    default:
+      break;
+  }
+}
+
+bot/message.handler.ts file
+import TelegramBot from "node-telegram-bot-api";
+import { getUserById } from "../service/userService";
+import { isValidSolanaAddress } from "../utils/utils";
+import { BotCaption } from "../config/constants";
+import { getIKSnipe } from "../components/inlineKeyboard";
+import { sendIKSnipe } from "./botAction";
+import { getTokenOverview } from "../service/birdeyeService";
+
+export async function messageHandler(
+  bot: TelegramBot,
+  msg: TelegramBot.Message,
+  userSnipeConfig: Map<number, any>
+) {
+  try {
+    if (!msg.text) return;
+
+    const chatId = msg.chat.id;
+    const existingUser = await getUserById(chatId);
+    if (!existingUser) {
+      return;
+    }
+
+    const { reply_to_message } = msg;
+    if (reply_to_message && reply_to_message.text) {
+      const { text } = reply_to_message;
+
+      const regex = /^[0-9]+(\.[0-9]+)?$/;
+      const isNumber = regex.test(msg.text) === true;
+      const reply_message_id = reply_to_message.message_id;
+
+      switch (text) {
+        case BotCaption.strInputTokenAddress:
+        case BotCaption.strInvalidSolanaTokenAddress:
+          const isCA = await isValidSolanaAddress(msg.text);
+          if (isCA) {
+            const snipe_config = userSnipeConfig.get(chatId);
+            console.log("Message snipe_config: ", snipe_config);
+            const updated_config = { ...snipe_config, token: msg.text };
+            userSnipeConfig.set(chatId, updated_config);
+            // snipe_config.token = msg.text;
+            const IK_SNIPE = getIKSnipe(updated_config);
+            sendIKSnipe(bot, chatId, IK_SNIPE);
+          } else {
+            await bot.deleteMessage(chatId, msg.message_id);
+            await bot.deleteMessage(chatId, reply_message_id);
+
+            await bot.sendMessage(
+              chatId,
+              BotCaption.strInvalidSolanaTokenAddress,
+              {
+                parse_mode: "HTML",
+                reply_markup: {
+                  force_reply: true,
+                  selective: true,
+                },
+              }
+            );
+            return;
+          }
+          break;
+        case BotCaption.SET_PRIORITY_FEE.replace(/<[^>]*>/g, ""):
+          console.log("priority fee");
+          if (isNumber) {
+            const snipe_config = userSnipeConfig.get(chatId);
+            const updated_config = {
+              ...snipe_config,
+              snipe_fee: parseFloat(msg.text),
+            };
+            console.log("Message snipe_config: ", updated_config);
+            userSnipeConfig.set(chatId, updated_config);
+            const IK_SNIPE = getIKSnipe(updated_config);
+            sendIKSnipe(bot, chatId, IK_SNIPE);
+          } else {
+            await bot.deleteMessage(chatId, msg.message_id);
+            await bot.deleteMessage(chatId, reply_message_id);
+
+            await bot.sendMessage(chatId, BotCaption.strInvalidInput);
+          }
+          break;
+        case BotCaption.SET_JITOTIP.replace(/<[^>]*>/g, ""):
+          console.log("jito tip");
+          if (isNumber) {
+            const snipe_config = userSnipeConfig.get(chatId);
+            const updated_config = {
+              ...snipe_config,
+              snipe_tip: parseFloat(msg.text),
+            };
+            console.log("Message snipe_config: ", updated_config);
+            userSnipeConfig.set(chatId, updated_config);
+            const IK_SNIPE = getIKSnipe(updated_config);
+            sendIKSnipe(bot, chatId, IK_SNIPE);
+          } else {
+            await bot.deleteMessage(chatId, msg.message_id);
+            await bot.deleteMessage(chatId, reply_message_id);
+
+            await bot.sendMessage(chatId, BotCaption.strInvalidInput);
+          }
+          break;
+        case BotCaption.SET_SLIPPAGE.replace(/<[^>]*>/g, ""):
+          console.log("slippage");
+          if (isNumber) {
+            const snipe_config = userSnipeConfig.get(chatId);
+            const updated_config = {
+              ...snipe_config,
+              slippage: parseFloat(msg.text),
+            };
+            console.log("Message snipe_config: ", updated_config);
+            userSnipeConfig.set(chatId, updated_config);
+            const IK_SNIPE = getIKSnipe(updated_config);
+            sendIKSnipe(bot, chatId, IK_SNIPE);
+          } else {
+            await bot.deleteMessage(chatId, msg.message_id);
+            await bot.deleteMessage(chatId, reply_message_id);
+
+            await bot.sendMessage(chatId, BotCaption.strInvalidInput);
+          }
+          break;
+        case BotCaption.SET_TakeProfit.replace(/<[^>]*>/g, ""):
+          console.log("take profit");
+          if (isNumber) {
+            const snipe_config = userSnipeConfig.get(chatId);
+            const updated_config = {
+              ...snipe_config,
+              tp: parseFloat(msg.text),
+            };
+            console.log("Message snipe_config: ", updated_config);
+            userSnipeConfig.set(chatId, updated_config);
+            const IK_SNIPE = getIKSnipe(updated_config);
+            sendIKSnipe(bot, chatId, IK_SNIPE);
+          } else {
+            await bot.deleteMessage(chatId, msg.message_id);
+            await bot.deleteMessage(chatId, reply_message_id);
+
+            await bot.sendMessage(chatId, BotCaption.strInvalidInput);
+          }
+          break;
+        case BotCaption.SET_StopLoss.replace(/<[^>]*>/g, ""):
+          console.log("priority fee");
+          if (isNumber) {
+            const snipe_config = userSnipeConfig.get(chatId);
+            const updated_config = {
+              ...snipe_config,
+              sl: parseFloat(msg.text),
+            };
+            console.log("Message snipe_config: ", updated_config);
+            userSnipeConfig.set(chatId, updated_config);
+            const IK_SNIPE = getIKSnipe(updated_config);
+            sendIKSnipe(bot, chatId, IK_SNIPE);
+          } else {
+            await bot.deleteMessage(chatId, msg.message_id);
+            await bot.deleteMessage(chatId, reply_message_id);
+
+            await bot.sendMessage(chatId, BotCaption.strInvalidInput);
+          }
+          break;
+        case BotCaption.SET_SNIPE_AMOUNT.replace(/<[^>]*>/g, ""):
+          console.log("snipe amount");
+          if (isNumber) {
+            const snipe_config = userSnipeConfig.get(chatId);
+            const updated_config = {
+              ...snipe_config,
+              snipe_amount: parseFloat(msg.text),
+            };
+            console.log("Message snipe_config: ", updated_config);
+            userSnipeConfig.set(chatId, updated_config);
+            const IK_SNIPE = getIKSnipe(updated_config);
+            sendIKSnipe(bot, chatId, IK_SNIPE);
+          } else {
+            await bot.deleteMessage(chatId, msg.message_id);
+            await bot.deleteMessage(chatId, reply_message_id);
+
+            await bot.sendMessage(chatId, BotCaption.strInvalidInput);
+          }
+          break;
+      }
+    } else {
+      const isCA = await isValidSolanaAddress(msg.text);
+      if (isCA) {
+        const tokenInfo = await getTokenOverview(msg.text);
+
+        const caption = `Name (Symbol): ${tokenInfo.name} (${tokenInfo.symbol})\nPrice: ${tokenInfo.price}\nMarketCap: ${tokenInfo.marketCap}`;
+
+        const snipe_config = userSnipeConfig.get(chatId);
+        console.log("Message snipe_config: ", snipe_config);
+        const updated_config = { ...snipe_config, token: msg.text };
+        userSnipeConfig.set(chatId, updated_config);
+        const IK_SNIPE = getIKSnipe(updated_config);
+        sendIKSnipe(bot, chatId, IK_SNIPE, caption);
+      } else {
+        return;
+      }
+    }
+  } catch (error) {}
+}
+Tip: You can find all files in my Github repository.
+
+Step 3: Run the code
+In terminal, run this command:
+npm run start
