@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)https://www.crockford.com/x64.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Douglas Crockford">
+<meta name="copyright" content="(C)2025 Douglas Crockford">
+<meta name="date" content="2025">
+<meta http-equiv="Expires" content="1968-12-09">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<link rel="stylesheet" href="./x64 Register Names_files/crockford.css" type="text/css">
+<link rel="icon" type="image/png" href="https://www.crockford.com/favicon.png">
+<title>x64 Register Names</title>
+<style>
+td {
+    font-family: Programma, mono;
+    font-size: 100%;
+    font-style: normal;
+    font-weight: bold;
+    padding-left, padding-right: 1em;
+	text-align: center;
+}
+th {
+    font-family: Valkyrie, Palatino, "Palatino Linotype", serif;
+    font-weight: normal;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+<div id="side">
+    <div id="name"><a href="https://www.crockford.com/"><big>Douglas Crockford</big></a></div><br>
+    <p><a href="https://www.crockford.com/blog.html">Blog</a></p>
+    <p><a href="https://www.crockford.com/books.html">Books</a></p>
+    <p><a href="https://www.crockford.com/videos.html">Videos</a></p>
+    <p><a href="https://www.crockford.com/2025.html">2025 Appearances</a></p>
+    <p><a href="https://www.crockford.com/slides.html">Slides</a></p>
+    <p><a href="https://www.crockford.com/javascript/">JavaScript</a></p>
+    <p><a href="https://mistysystem.com/">Misty</a></p>
+    <p><a href="https://jslint.com/">JSLint</a></p>
+    <p><a href="https://json.org/">JSON</a></p>
+    <p><a href="https://github.com/douglascrockford">Github</a></p>
+    <p><a href="https://www.crockford.com/ec.html">Electric Communities</a></p>
+    <p><a href="https://www.flickr.com/photos/douglascrockford/albums/72157644699201976">Flickr Photo Album</a></p>
+    <p><a href="https://www.linkedin.com/in/douglas-crockford-724600109/">LinkedIn</a></p>
+    <p><a rel="me" href="https://layer8.space/@douglascrockford">Mastodon/Layer8</a></p>
+    <p><a href="https://www.researchgate.net/profile/Douglas-Crockford">ResearchGate</a></p>
+    <p><a href="https://www.crockford.com/pronouns.html">Pronouns: <dfn>pe/per</dfn></a></p>
+    <p><a href="https://lz953.isrefer.com/go/preorder/B53xn5cY">Aptera</a></p>
+    <p><a href="https://www.crockford.com/about.html">About</a></p>
+</div>
+<div id="blog">
+<time>2024-01-14</time>
+<h1>x64 Register Names</h1>
+
+<table style="float: right;">
+    <tbody><tr>
+        <th>&nbsp;</th>
+        <th>AMD</th>
+        <th>Improved</th>
+    </tr>
+    <tr>
+        <th scope="row">0</th>
+        <td>rax</td>
+        <td>r0</td>
+    </tr>
+    <tr>
+        <th scope="row">1</th>
+        <td>rcx</td>
+        <td>r1</td>
+    </tr>
+    <tr>
+        <th scope="row">2</th>
+        <td>rdx</td>
+        <td>r2</td>
+    </tr>
+    <tr>
+        <th scope="row">3</th>
+        <td>rbx</td>
+        <td>r3</td>
+    </tr>
+    <tr>
+        <th scope="row">4</th>
+        <td>rsp</td>
+        <td>rsp</td>
+    </tr>
+    <tr>
+        <th scope="row">5</th>
+        <td>rbp</td>
+        <td>r5</td>
+    </tr>
+    <tr>
+        <th scope="row">6</th>
+        <td>rsi</td>
+        <td>r6</td>
+    </tr>
+    <tr>
+        <th scope="row">7</th>
+        <td>rdi</td>
+        <td>r7</td>
+    </tr>
+    <tr>
+        <th scope="row">8</th>
+        <td>r8</td>
+        <td>r8</td>
+    </tr>
+    <tr>
+        <th scope="row">9</th>
+        <td>r9</td>
+        <td>r9</td>
+    </tr>
+    <tr>
+        <th scope="row">a</th>
+        <td>r10</td>
+        <td>r10</td>
+    </tr>
+    <tr>
+        <th scope="row">b</th>
+        <td>r11</td>
+        <td>r11</td>
+    </tr>
+    <tr>
+        <th scope="row">c</th>
+        <td>r12</td>
+        <td>r12</td>
+    </tr>
+    <tr>
+        <th scope="row">d</th>
+        <td>r13</td>
+        <td>r13</td>
+    </tr>
+    <tr>
+        <th scope="row">e</th>
+        <td>r14</td>
+        <td>r14</td>
+    </tr>
+    <tr>
+        <th scope="row">f</th>
+        <td>r15</td>
+        <td>r15</td>
+    </tr>
+</tbody></table>
+<p>AMD elevated the Intel Architecture to 64 bits. They doubled the size of the general registers from 32 bits to 64 bits and doubled the number of general registers from 8 to 16. They gave the new registers names based on numbers, startling correctly at zero. But they let the original 8 Intel registers keep their original names, slapping on an <code>r</code> (for <em>register</em>) prefix. The names are confusing, error prone, and weird.
+What is the difference between <code>rbx</code> and <code>rbp</code>? What is the difference between <code>rdx</code> and <code>rdi</code>? Humans are pretty good at distinguishing single letters and simple sequences of numbers, but we are less good at handling single letter differences in random strings of letters.</p>
+<table style="float: left;">
+    <tbody><tr>
+        <th>high</th>
+        <th>low</th>
+    </tr>
+    <tr>
+        <td>a</td>
+    </tr>
+    <tr>
+        <td scope="row">b</td>
+        <td>c</td>
+    </tr>
+    <tr>
+        <td scope="row">d</td>
+        <td>e</td>
+    </tr>
+    <tr>
+        <td scope="row">h</td>
+        <td>l</td>
+    </tr>
+    <tr>
+        <td colspan="2" scope="row">ix</td>
+    </tr>
+    <tr>
+        <td colspan="2" scope="row">iy</td>
+    </tr>
+</tbody></table>
+<p>To understand how the names got that way, we have to look at the Z80, a popular 8 bit processor from Zilog.
+It was an upgrade of Intel's 8080, being binary compatible but with new instructions and registers that made it a little easier to program and a little bit faster.</p>
+<p>It had seven 8 bit registers (<code>a</code> <code>b</code> <code>c</code> <code>d</code> <code>e</code> <code>h</code> <code>l</code>) that could be paired to make 16 bit registers (<code>bc</code> <code>de</code> <code>hl</code>). In addition, Zilog added two so-called index registers (<code>ix</code> <code>iy</code>).</p>
+<p>Recognizing the crappiness of its 8 bit architecture, Intel intended to take a great leap forward with its brilliant 432 project, which they called a micro mainframe, with excellent support for high level languages like Ada. Unfortunately, they allowed their design to become far too complex, and it became a spectacular failure. Meanwhile, Zilog, Motorola, and National Semiconductor were launching their 16 and 32 bit architectures, and Intel had nothing to compete with.</p>
+<p>So there was a crash effort to make a 16 bit device that would keep them afloat until they could make something better. They did not have time for performance or elegance, so they went for compatibility. They designed a chip that was assembly language compatible with the Z80. The goal was that would feed your Z80 asm files to an Intel assembler, and out came code that ran on the new 8086 chip.</p>
+<p>The compatibility play did not work. The stuff that ran on the Z80 was happy to stay on the Z80, which was much cheaper than the 8086. So they released a new assembly language specifically for the 8086 and gave the registers new names.</p>
+<table style="float: left;">
+    <tbody><tr>
+        <th>Z80</th>
+        <th>8086</th>
+    </tr>
+    <tr>
+        <td scope="row">a</td>
+        <td>ah</td>
+    </tr>
+    <tr>
+        <td scope="row">bc</td>
+        <td>cx</td>
+    </tr>
+    <tr>
+        <td scope="row">de</td>
+        <td>dx</td>
+    </tr>
+    <tr>
+        <td scope="row">hl</td>
+        <td>bx</td>
+    </tr>
+    <tr>
+        <td scope="row">sp</td>
+        <td>sp</td>
+    </tr>
+    <tr>
+        <td scope="row">&nbsp; </td>
+        <td>bp</td>
+    </tr>
+    <tr>
+        <td scope="row">ix</td>
+        <td>si</td>
+    </tr>
+    <tr>
+        <td scope="row">iy</td>
+        <td>di</td>
+    </tr>
+</tbody></table>
+<p>The first four registers have two halves. For example, the <code>bx</code> register has two halves (<code>bh</code> <code>bl</code>). That was for Z80 compatibility. It is not something you would expect to see in a well designed architecture. </p>
+<p>The original 8086 contained several specialized instructions that used certain registers in unique ways.
+Most of those instructions have fallen out of favor,
+but <code>ax</code> and <code>dx</code> still have a special relationship with multiplication and division.
+AMD kept those names as they were.
+I prefer to use the simple numbered names. Less baggage.
+But I will continue to use <code>rsp</code> instead of <code>r4</code>.
+It is weird that they put the stack pointer in the middle of the list.</p>
+<p>
+Another alternative would be to give each register a single letter name, like the 8080 did,
+but it seems likely that Intel will double the number of registers again to remain competitive with
+ARM64 and RISC-V.
+Twenty six letters just ain't enough.</p>
+<p> IBM went shopping for a CPU for their PC, bought Intel, and the rest, sadly, is history.
+The 8086 was the worst of its class, and it was the winner.
+It established what has become known as the Intel Architecture,
+which has been an on-going embarrassment for Intel. Intel tried to supplant it with the 960, 860, and Iridium.
+All failed. AMD did a clever hack to make what is now known as x64.
+Hopefully, that eventually falls to RISC-V or something better.</p>
+<p>The Microsoft and Unix worlds have slightly incompatible conventions for subroutine calling.
+Neither makes a lot of sense. Some registers are considered volatile (used for parameters and temporary values).
+A subroutine is allowed to clobber these. Some registers are considered nonvolatile.
+A subroutine must save the values before it uses the registers, and must restore the values before it returns.</p>
+<p>This is the union of the two conventions:</p>
+<table>
+    <tbody><tr>
+        <th>volatile</th>
+        <td><code>r0</code></td>
+        <td><code>r1</code></td>
+        <td><code>r2</code></td>
+        <td colspan="2">&nbsp;</td>
+        <td><code>r8</code></td>
+        <td><code>r9</code></td>
+        <td><code>r10</code></td>
+        <td><code>r11</code></td>
+        <td colspan="4">&nbsp;</td>
+
+    </tr>
+    <tr>
+        <th scope="row">non-volatile</th>
+        <td colspan="3">&nbsp;</td>
+        <td><code>r3</code></td>
+        <td><code>r5</code></td>
+        <td colspan="4">&nbsp;</td>
+        <td><code>r12</code></td>
+        <td><code>r13</code></td>
+        <td><code>r14</code></td>
+        <td><code>15</code></td>
+    </tr>
+</tbody></table>
+<p>I know there is no interest in the Microsoft and Unix worlds in doing things right,
+but if there was, I would recommend that we instead do it like this:</p>
+<table>
+    <tbody><tr>
+        <th>volatile</th>
+        <td><code>r0</code></td>
+        <td><code>r1</code></td>
+        <td><code>r2</code></td>
+        <td><code>r3</code></td>
+        <td><code>r5</code></td>
+        <td><code>r6</code></td>
+        <td><code>r7</code></td>
+        <td colspan="8"></td>
+    </tr>
+    <tr>
+        <th scope="row">non-volatile</th>
+        <td colspan="7"></td>
+        <td><code>r8</code></td>
+        <td><code>r9</code></td>
+        <td><code>r10</code></td>
+        <td><code>r11</code></td>
+        <td><code>r12</code></td>
+        <td><code>r13</code></td>
+        <td><code>r14</code></td>
+        <td><code>15</code></td>
+    </tr>
+</tbody></table>
+
+</div>
+
+
+
+</body></html>

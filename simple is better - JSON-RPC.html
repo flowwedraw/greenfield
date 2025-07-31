@@ -1,0 +1,603 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0069)https://www.simple-is-better.org/rpc/#differences-between-1-0-and-2-0 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>simple is better - JSON-RPC</title>
+
+    <meta name="keywords" content="simple RPC, JSON, json-rpc, python">
+    <meta name="author" content="Roland Koebler">
+    <meta name="language" content="en">
+    <meta name="robots" content="all">
+    <!-- http://www.simple-is-better.org -->
+
+    <style type="text/css">
+	body  { background-color: #FFDD90; max-width: 65em; margin: 1em auto; padding-left: 1ex; padding-right: 1ex; font-family: Helvetica,Arial,sans-serif; font-size: 90%; }
+	blockquote#header { font-family: serif }
+	#main { background-color: #FFFFFF; border-top-style: groove; border-bottom-style: ridge; padding-left: 1em; padding-right: 1em }
+	#footer { margin-top: 1ex; font-size: small }
+	#footer span.left { float: left }
+	#footer span.right{ float: right }
+	#footer img { vertical-align: top }
+	#footer_img { text-align: right }
+	#footer_img img { vertical-align: top }
+	h1 a     { color: #000000; text-decoration: none }
+	h1.title { background-color: #FFEC70; text-align: center; margin-left: 1em; margin-right: 1em; }
+	h2,h3,h4,h5 { background-color: #FFFC90; }
+	h3 { text-decoration: underline }
+	table.docinfo  { margin: 0em 2em; text-align: left; }
+	table.footnote { border-left: 1px solid black; margin-left: 1px; font-size: small }
+	table.field-list { text-align: left; margin-bottom: 1ex; }
+	table.border td, table.border th { border: 1px solid black; padding: 0.25ex 0.5ex; }
+	.pre  { background-color: #EEEEEE; font-family: monospace; }
+	tt    { background-color: #EEEEEE; font-family: monospace; }
+	pre   { background-color: #EEEEEE; margin-left: 2em; margin-right: 2em; overflow: auto; }
+	table { background-color: #FFFFFF; border-collapse: collapse; border-color: #808080; }
+	ol.loweralpha { list-style-type: lower-alpha; }
+    </style>
+</head>
+<body>
+
+<h1><a href="https://www.simple-is-better.org/index.html">simple is better</a></h1>
+
+
+
+<div id="main">
+<div class="document" id="rpc-json-rpc">
+<h1 class="title">RPC / JSON-RPC</h1>
+<table class="docinfo" frame="void" rules="none">
+<colgroup><col class="docinfo-name">
+<col class="docinfo-content">
+</colgroup><tbody valign="top">
+<tr><th class="docinfo-name">Author:</th>
+<td>Roland Koebler (rk <em>at</em> simple-is-better <em>dot</em> org)</td></tr>
+<tr><th class="docinfo-name">Date:</th>
+<td>2008-09-02</td></tr>
+</tbody>
+</table>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title first"><strong>Table of Contents</strong></p>
+<ul class="auto-toc simple">
+<li><a class="reference internal" href="https://www.simple-is-better.org/rpc/#preface" id="id7">1&nbsp;&nbsp;&nbsp;Preface</a><ul class="auto-toc">
+<li><a class="reference internal" href="https://www.simple-is-better.org/rpc/#why-rpc-splitting-applications-into-independent-parts" id="id8">1.1&nbsp;&nbsp;&nbsp;Why RPC? / splitting applications into independent parts</a></li>
+<li><a class="reference internal" href="https://www.simple-is-better.org/rpc/#why-json-rpc" id="id9">1.2&nbsp;&nbsp;&nbsp;Why JSON-RPC?</a></li>
+<li><a class="reference internal" href="https://www.simple-is-better.org/rpc/#thoughts-about-rpc-systems" id="id10">1.3&nbsp;&nbsp;&nbsp;Thoughts about RPC-systems</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="https://www.simple-is-better.org/rpc/#json-rpc-specification" id="id11">2&nbsp;&nbsp;&nbsp;JSON-RPC Specification</a><ul class="auto-toc">
+<li><a class="reference internal" href="https://www.simple-is-better.org/rpc/#json-rpc-1-0-2-0" id="id12">2.1&nbsp;&nbsp;&nbsp;JSON-RPC 1.0/2.0</a></li>
+<li><a class="reference internal" href="https://www.simple-is-better.org/rpc/#differences-between-1-0-and-2-0" id="id13">2.2&nbsp;&nbsp;&nbsp;Differences between 1.0 and 2.0</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="https://www.simple-is-better.org/rpc/#implementation" id="id14">3&nbsp;&nbsp;&nbsp;Implementation</a><ul class="auto-toc">
+<li><a class="reference internal" href="https://www.simple-is-better.org/rpc/#status" id="id15">3.1&nbsp;&nbsp;&nbsp;Status</a></li>
+<li><a class="reference internal" href="https://www.simple-is-better.org/rpc/#example" id="id16">3.2&nbsp;&nbsp;&nbsp;Example</a></li>
+<li><a class="reference internal" href="https://www.simple-is-better.org/rpc/#download" id="id17">3.3&nbsp;&nbsp;&nbsp;Download</a></li>
+<li><a class="reference internal" href="https://www.simple-is-better.org/rpc/#extending-json" id="id18">3.4&nbsp;&nbsp;&nbsp;Extending JSON</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="https://www.simple-is-better.org/rpc/#comparison-with-other-rpcs" id="id19">4&nbsp;&nbsp;&nbsp;Comparison with other RPCs</a><ul class="auto-toc">
+<li><a class="reference internal" href="https://www.simple-is-better.org/rpc/#xml-rpc" id="id20">4.1&nbsp;&nbsp;&nbsp;XML-RPC</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils">
+<div class="section" id="preface">
+<h2>1&nbsp;&nbsp;&nbsp;Preface</h2>
+<div class="section" id="why-rpc-splitting-applications-into-independent-parts">
+<h3>1.1&nbsp;&nbsp;&nbsp;Why RPC? / splitting applications into independent parts</h3>
+<p>It's often sensible to split applications into several (independent!) parts.
+This normally leads to a cleaner design, reduces the complexity, improves
+maintainability and often also enhances security.</p>
+<div class="line-block">
+<div class="line">Especially for web-applications, it's sensible to split the frontend
+(data-presentation, user-I/O) from the "real" application. This cleanly
+separates the presentation from the logic, and (additionally to the
+advantages above) simplifies the creation/use of alternative frontends and
+last but not least improves security because the frontend (usually running
+with webserver-rights) doesn't have direct access to the data, but may only
+call some functions of an other process.</div>
+<div class="line">(This is called <a class="reference external" href="http://en.wikipedia.org/wiki/Multitier_architecture">multi-tier architecture</a>.)</div>
+</div>
+<p>You may think that the "downside" of this is that an interface between these
+parts has to be defined. But in reality, it's an <em>advantage</em> to think about
+the interface (this normally leads to cleaner design) and to <em>explicitly</em>
+define it. Remember that you <em>always</em> have an interface between the parts of
+your application, although they are often implicit. And to cite
+<a class="reference external" href="http://www.python.org/dev/peps/pep-0020/">The Zen of Python</a>: "<em>Explicit is better than implicit.</em>"</p>
+<p>To <em>really</em> separate the parts from each other, you probably want to
+run the parts in several processes (with different users/rights).
+But this means that the processes have to communicate with each other
+in some way. This is called <a class="reference external" href="http://en.wikipedia.org/wiki/Inter-process_communication">inter-process communication</a> (IPC), and one
+way of doing this is by using <a class="reference external" href="http://en.wikipedia.org/wiki/Remote_procedure_call">remote-procedure calls</a> (RPC).</p>
+</div>
+<div class="section" id="why-json-rpc">
+<h3>1.2&nbsp;&nbsp;&nbsp;Why JSON-RPC?</h3>
+<p>A RPC-system should (in my opinion):</p>
+<ul class="simple">
+<li>be simple and lightweight (but powerful)</li>
+<li>be transparent (so for both processes the RPC should look like a normal
+function call)</li>
+<li>add only small overhead</li>
+</ul>
+<p>Additionally it's often good (except for some small embedded or high-speed
+applications), to:</p>
+<ul class="simple">
+<li>use a human-readable/self-contained/ASCII format</li>
+</ul>
+<p>When thinking of a very simple, human-readable/ASCII RPC, many think of
+XML-RPC. But that's <em>not really</em> simple. XML on the one hand is somehow
+overkill (or: bloat-ware ;)) <a class="footnote-reference" href="https://www.simple-is-better.org/rpc/#id2" id="id1">[1]</a>, on the other hand it's not really suited
+for data serialization because many "special characters" have to be escaped.
+And the <a class="reference external" href="http://www.python.org/doc/lib/module-xmlrpclib.html">python xmlrpclib</a> even says that the caller is responsible "<em>to
+ensure that the string is free of characters that aren't allowed in XML</em>",
+which essentially means that you always have to either use the binary wrapper
+or use something like base64-over-xmlrpc (!), which is somehow strange.</p>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label"><col></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="https://www.simple-is-better.org/rpc/#id1">[1]</a></td><td>Note, that even some AJAX-people are already using JSON instead of
+XML because of better performance and integration.</td></tr>
+</tbody>
+</table>
+<p>But there's a <em>much</em> simpler and better format for data-serialization:
+<a class="reference external" href="http://www.json.org/">JSON</a>. It's very clean, supports unicode (!) by default, and integrates
+extremely easily into e.g. python or javascript.</p>
+<p>And JSON-RPC -- which uses JSON for serialization -- is probably the simplest,
+most lightweight, cleanest "ASCII"-RPC out there. And it has more advantages:</p>
+<ul class="simple">
+<li>unicode: JSON and JSON-RPC support unicode out-of-the-box.</li>
+<li>small and simple</li>
+<li>very compact on the line</li>
+<li>transport-independent: JSON-RPC can be used with <em>any</em> transport, e.g.
+Unix domain sockets, TCP/IP, http, https, avian carriers, ...</li>
+<li>JSON directly supports Null/None</li>
+<li>supports named/keyword parameters</li>
+<li>notifications</li>
+<li>built-in request-response-matching ("id"-field)</li>
+<li>...</li>
+</ul>
+<p><strong>So, it's definitely worth a look!</strong></p>
+</div>
+<div class="section" id="thoughts-about-rpc-systems">
+<h3>1.3&nbsp;&nbsp;&nbsp;Thoughts about RPC-systems</h3>
+<p>In my opinion, a RPC-system consists of several <em>independent</em> parts:</p>
+<ol class="arabic simple">
+<li>data structure (how requests/responses/errors look like)</li>
+<li>serializer (i.e. JSON, XML, URI, ...)</li>
+<li>transport (i.e. Unix Domain Socket, TCP/IP, HTTP)</li>
+<li>proxy/dispatcher (map function-calls to RPC and vice versa)</li>
+</ol>
+<p>Unfortunately, these parts are often not treated as independent, which
+results in unnecessarily complex results. A RPC-specification should
+only define point 1 ("data structure") <a class="footnote-reference" href="https://www.simple-is-better.org/rpc/#id5" id="id3">[2]</a>, and tell the user which
+serialization to use <a class="footnote-reference" href="https://www.simple-is-better.org/rpc/#id6" id="id4">[3]</a>.</p>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label"><col></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="https://www.simple-is-better.org/rpc/#id3">[2]</a></td><td>Have you ever tried to run i.e. XML-RPC over Unix Domain Sockets?
+This does not work, because XML-RPC defines to always use http, although
+this would not be necessary.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label"><col></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="https://www.simple-is-better.org/rpc/#id4">[3]</a></td><td>Although requiring a specific serialization would not be absolutely
+necessary: It would also be possible to serialize XML-RPC-data-structures
+in JSON, or JSON-RPC-data-structures in XML. But I don't think that
+things like this are really useful.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<hr class="docutils">
+<div class="section" id="json-rpc-specification">
+<h2>2&nbsp;&nbsp;&nbsp;JSON-RPC Specification</h2>
+<p>The official JSON-RPC-pages are:</p>
+<ul>
+<li><p class="first">the JSON-RPC-website <a class="reference external" href="http://www.json-rpc.org/">http://www.json-rpc.org</a>, which unfortunately is
+currently outdated.</p>
+</li>
+<li><div class="first line-block">
+<div class="line">the "json-rpc" Google Group: <a class="reference external" href="http://groups.google.com/group/json-rpc">http://groups.google.com/group/json-rpc</a></div>
+<div class="line">(The mailinglist recently moved from Yahoo to Google, so for older
+messages, you may have to look into the old <a class="reference external" href="http://groups.yahoo.com/group/json-rpc/">JSON-RPC Yahoo! Group</a>.)</div>
+</div>
+</li>
+<li><p class="first">www.jsonrpc.org, containing the most important informations and
+specifications about JSON-RPC</p>
+</li>
+<li><p class="first">www.simple-is-better.org/json-rpc/, a collection of JSON-RPC information</p>
+</li>
+</ul>
+<div class="line-block">
+<div class="line"><a class="reference external" href="http://json-rpc.org/wiki/specification">JSON-RPC 1.0</a> was the first officially released specification.</div>
+<div class="line">But now the (in my opinion) much improved <a class="reference external" href="http://groups.google.com/group/json-rpc/web/json-rpc-1-2-proposal">JSON-RPC 2.0</a> is stable and was
+released some time ago. I recommend to use "JSON-RPC 2.0".</div>
+</div>
+<div class="section" id="json-rpc-1-0-2-0">
+<h3>2.1&nbsp;&nbsp;&nbsp;JSON-RPC 1.0/2.0</h3>
+<blockquote>
+"<em>JSON-RPC is a lightweight remote procedure call protocol.
+It's designed to be simple!</em>"
+[JSON-RPC 1.0 Specification]</blockquote>
+<p>That's good.</p>
+<p>But unfortunately, some useful things were missing in <a class="reference external" href="http://json-rpc.org/wiki/specification">JSON-RPC 1.0</a>,
+especially named parameters and some definitions about error-messages.
+So, I wrote a new JSON-RPC-specification, which then was released with
+a few modifications as <a class="reference external" href="http://groups.google.com/group/json-rpc/web/json-rpc-1-2-proposal">JSON-RPC 2.0</a>.</p>
+<p>Please read the specifications, and see how <em>simple</em> they are!</p>
+</div>
+<div class="section" id="differences-between-1-0-and-2-0">
+<h3>2.2&nbsp;&nbsp;&nbsp;Differences between 1.0 and 2.0</h3>
+<p>For all of you, who already know JSON-RPC 1.0, here is a list of the
+main differences of JSON-RPC 2.0, compared with 1.0:</p>
+<ul>
+<li><div class="first line-block">
+<div class="line"><strong>client-server instead of peer-to-peer</strong>:</div>
+<div class="line">JSON-RPC 2.0 uses a client-server-architecture.</div>
+<div class="line">V1.0 used a peer-to-peer-architecture where every peer was both server
+and client.</div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line"><strong>Transport independence</strong>:</div>
+<div class="line">JSON-RPC 2.0 doesn't define any transport-specific issues, since transport
+and RPC are independent.</div>
+<div class="line">V1.0 defined that exceptions must be raised if the connection is
+closed, and that invalid requests/responses must close the
+connection (and raise exceptions).</div>
+</div>
+</li>
+<li><p class="first"><strong>Named parameters added</strong> (see <a class="reference internal" href="https://www.simple-is-better.org/rpc/#example">Example</a> below)</p>
+</li>
+<li><p class="first"><strong>Reduced fields</strong>:</p>
+<ul class="simple">
+<li>Request: <tt class="docutils literal">params</tt> may be omitted</li>
+<li>Notification: doesn't contain an <tt class="docutils literal">id</tt> anymore</li>
+<li>Response: contains only <tt class="docutils literal">result</tt> OR <tt class="docutils literal">error</tt> (but not both)</li>
+</ul>
+</li>
+<li><p class="first"><strong>"jsonrpc" field added</strong>: added a version-field to the Request (and
+also to the Response) to resolve compatibility issues with JSON-RPC 1.0.</p>
+</li>
+<li><p class="first"><strong>Optional parameters</strong>: defined that unspecified optional parameters SHOULD
+use a default-value.</p>
+</li>
+<li><p class="first"><strong>Error-definitions added</strong></p>
+</li>
+<li><p class="first"><strong>Extensions</strong>: added optional extensions, e.g. for service description
+or multicall; moved "class hinting" from the base specification to
+an (optional) extension.</p>
+</li>
+</ul>
+</div>
+</div>
+<hr class="docutils">
+<div class="section" id="implementation">
+<h2>3&nbsp;&nbsp;&nbsp;Implementation</h2>
+<p>I've written a "JSON-RPC" (both 1.0 and 2.0) implementation for python, in
+the way mentioned in <a class="reference internal" href="https://www.simple-is-better.org/rpc/#thoughts-about-rpc-systems">Thoughts about RPC-systems</a>.</p>
+<p>The code makes extensive use of python-docstrings. So, read the docstrings,
+and you should completely understand how to use (or even to extend) it.</p>
+<p>Please <strong>don't hesitate</strong> to send me a <a class="reference external" href="mailto:r.koebler(at)yahoo.de">mail</a> if you have any
+questions, comments, suggestions etc.! It would also be nice to leave me a
+note if you are simply using my jsonrpc-module.</p>
+<div class="section" id="status">
+<h3>3.1&nbsp;&nbsp;&nbsp;Status</h3>
+<p>My module currently supports:</p>
+<ul>
+<li><div class="first line-block">
+<div class="line">JSON-RPC 1.0 "serialization"</div>
+<div class="line">(but without the "peer-to-peer-architecture", the transport-specific
+definitions of JSON-RPC 1.0 and class-hinting)</div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line">JSON-RPC 2.0 requests, notifications, responses and errors</div>
+<div class="line">(but the proxy currently does not generate notifications)</div>
+</div>
+</li>
+<li><p class="first">logfiles (STDOUT, logfile or logfile with timestamp)</p>
+</li>
+<li><p class="first">communication via Unix domain sockets or TCP/IP-sockets
+(or via STDIN/STDOUT for debugging)</p>
+</li>
+</ul>
+<p>The following features are planned for the future:</p>
+<ul class="simple">
+<li>server: multithreading RPC-server</li>
+<li>client: multicall (send several requests)</li>
+<li>transport: SSL sockets, maybe HTTP, HTTPS</li>
+<li>types: support for date/time (ISO 8601)</li>
+<li>errors: maybe customizable error-codes/exceptions</li>
+<li>add system-descriptions</li>
+</ul>
+</div>
+<div class="section" id="example">
+<h3>3.2&nbsp;&nbsp;&nbsp;Example</h3>
+<p>A JSON-RPC 2.0-Server over TCP/IP (incl. a logfile):</p>
+<pre class="literal-block"># create a JSON-RPC-server
+import jsonrpc
+server = jsonrpc.Server(jsonrpc.JsonRpc20(), jsonrpc.TransportTcpIp(addr=("127.0.0.1", 31415), logfunc=jsonrpc.log_file("myrpc.log")))
+
+# define some example-procedures and register them (so they can be called via RPC)
+def echo(s):
+    return s
+
+def search(number=None, last_name=None, first_name=None):
+    sql_where = []
+    sql_vars  = []
+    if number is not None:
+        sql_where.append("number=%s")
+        sql_vars.append(number)
+    if last_name is not None:
+        sql_where.append("last_name=%s")
+        sql_vars.append(last_name)
+    if first_name is not None:
+        sql_where.append("first_name=%s")
+        sql_vars.append(first_name)
+    sql_query = "SELECT id, last_name, first_name, number FROM mytable"
+    if sql_where:
+        sql_query += " WHERE" + " AND ".join(sql_where)
+    cursor = ...
+    cursor.execute(sql_query, *sql_vars)
+    return cursor.fetchall()
+
+server.register_function( echo )
+server.register_function( search )
+
+# start server
+server.serve()
+</pre>
+<p>The client then looks like:</p>
+<pre class="literal-block"># create JSON-RPC client
+import jsonrpc
+server = jsonrpc.ServerProxy(jsonrpc.JsonRpc20(), jsonrpc.TransportTcpIp(addr=("127.0.0.1", 31415)))
+
+# call a remote-procedure (with positional parameters)
+result = server.echo("hello world")
+
+# call a remote-procedure (with named/keyword parameters)
+found = server.search(last_name='Python')
+</pre>
+<p>The requests and responses, sent between client and server are:</p>
+<pre class="literal-block">{"jsonrpc": "2.0", "method": "echo", "params": ["hello world"], "id": 0}
+{"jsonrpc": "2.0", "result": "hello world", "id": 0}
+
+{"jsonrpc": "2.0", "method": "search", "params": {"last_name": "Python"}, "id": 0}
+{"jsonrpc": "2.0", "result": [{"first_name": "Brian", "last_name": "Python", "id": 1979, "number": 42}, {"first_name": "Monty", "last_name": "Python", "id": 4, "number": 1}], "id": 0}
+</pre>
+<p>And the logfile <tt class="docutils literal">myrpc.log</tt> contains:</p>
+<pre class="literal-block">listen ('127.0.0.1', 31415)
+('127.0.0.1', 36000) connected
+('127.0.0.1', 36000) --&gt; '{"jsonrpc": "2.0", "method": "echo", "params": ["hello world"], "id": 0}'
+('127.0.0.1', 36000) &lt;-- '{"jsonrpc": "2.0", "result": "hello world", "id": 0}'
+('127.0.0.1', 36000) close
+('127.0.0.1', 48336) connected
+('127.0.0.1', 48336) --&gt; '{"jsonrpc": "2.0", "method": "search", "params": {"last_name": "Python"}, "id": 0}'
+('127.0.0.1', 48336) &lt;-- '{"jsonrpc": "2.0", "result": [{"first_name": "Brian", "last_name": "Python", "id": 1979, "number": 42}, {"first_name": "Monty", "last_name": "Python", "id": 4, "number": 1}], "id": 0}'
+('127.0.0.1', 48336) close
+close ('127.0.0.1', 31415)
+</pre>
+<p>Here, you can directly see the modular architecture, as described in
+<a class="reference internal" href="https://www.simple-is-better.org/rpc/#thoughts-about-rpc-systems">Thoughts about RPC-systems</a>.</p>
+<div class="line-block">
+<div class="line">And you can see the <em>very powerful and useful</em> call with named parameters
+(or: keyword parameters), which is probably not possible in most other
+RPC-systems!</div>
+<div class="line">Named parameters make it very easy to have optional parameters and use only
+some of them. It additionally simplifies adding new parameters without
+breaking the system (and without having to create different versions),
+makes the call more verbose (so you can directly see what happens), and
+makes the order of the parameters irrelevant (so you don't need to remember
+in which order they are).</div>
+</div>
+<p>You can find more examples (more extensive, more detailed, with error-messages
+etc.) in the docstring of my code.</p>
+</div>
+<div class="section" id="download">
+<h3>3.3&nbsp;&nbsp;&nbsp;Download</h3>
+<p>My JSON-RPC-implementation consists of a single python-file, with very
+extensive documentation (in the docstrings):</p>
+<blockquote>
+<p><a class="reference external" href="https://www.simple-is-better.org/rpc/jsonrpc.py">jsonrpc.py</a> (42 kB, 495 lines code, 468 lines documentation+comments ;))</p>
+<p>Release: 2008-08-31-beta</p>
+<p>License: BSD-like (see __license__ in jsonrpc.py).</p>
+<p>Requirements: python (tested with 2.4), python-simplejson</p>
+<p><strong>Note:</strong> This is still beta-code. So don't blame me if anything goes
+wrong...</p>
+</blockquote>
+</div>
+<div class="section" id="extending-json">
+<h3>3.4&nbsp;&nbsp;&nbsp;Extending JSON</h3>
+<p>The json-serializer I use ("simplejson") can be easily extended. So you can
+e.g. add date/time-formats, or directly serialize the results of a
+PostgreSQL-query (!). Here is a small example:</p>
+<pre class="literal-block">class JsonPgsqlEncoder(simplejson.JSONEncoder):
+    """JSON-encoder with additional support for some PgSQL-types.
+
+    Additional types supported:
+
+    - PgBoolean (-&gt;bool)
+    - PgResultSet (-&gt;dict)
+    - PgArray (-&gt;list)
+    - mx.DateTime (-&gt;str)
+    - PgMoney (-&gt;float)
+    - PgNumeric (-&gt; scaled int)
+    - PgBytea, PgOther (-&gt;str)
+
+    :SeeAlso: pyPgSQL-documentation, PEP-249 (DB-API 2.0)
+
+    :Note: the date/time here currently is not yet encoded in ISO 8601
+           as it should be.
+    """
+    def default(self, obj):
+        if   isinstance(obj, PgSQL.PgBooleanType):
+            return bool(obj)
+        elif isinstance(obj, PgSQL.PgResultSet):
+            return dict(obj)
+        elif isinstance(obj, PgSQL.PgArray):
+            return list(obj)
+        elif isinstance(obj, (DateTime.DateTimeType, DateTime.DateTimeDeltaType, DateTime.RelativeDateTime)):
+            return str(obj)
+        elif isinstance(obj, PgSQL.PgMoney):
+            return float(obj)
+        elif isinstance(obj, PgSQL.PgNumeric):
+            return long(obj*10**obj.getScale())
+        elif isinstance(obj, (PgSQL.PgBytea, PgSQL.PgOther)):
+            return str(obj)
+        return simplejson.JSONEncoder.default(self, obj)
+</pre>
+</div>
+</div>
+<div class="section" id="comparison-with-other-rpcs">
+<h2>4&nbsp;&nbsp;&nbsp;Comparison with other RPCs</h2>
+<p>This currently isn't really a complete comparison.</p>
+<div class="section" id="xml-rpc">
+<h3>4.1&nbsp;&nbsp;&nbsp;XML-RPC</h3>
+<p>I've already written something about XML-RPC in <a class="reference internal" href="https://www.simple-is-better.org/rpc/#why-json-rpc">Why JSON-RPC?</a>.</p>
+<p>But, to get an impression, consider the <a class="reference internal" href="https://www.simple-is-better.org/rpc/#example">Example</a> above.
+In XML-RPC the 1st call would look like:</p>
+<pre class="literal-block">POST /RPC2 HTTP/1.0
+Host: 127.0.0.1:12345
+User-Agent: ...
+Content-Type: text/xml
+Content-Length: 159
+
+&lt;?xml version='1.0'?&gt;
+&lt;methodCall&gt;
+&lt;methodName&gt;echo&lt;/methodName&gt;
+&lt;params&gt;
+&lt;param&gt;
+&lt;value&gt;&lt;string&gt;hello world&lt;/string&gt;&lt;/value&gt;
+&lt;/param&gt;
+&lt;/params&gt;
+&lt;/methodCall&gt;
+
+
+HTTP/1.0 200 OK
+Server: ...
+Date: Tue, 02 Sep 2008 12:06:09 GMT
+Content-type: text/xml
+Content-length: 137
+
+&lt;?xml version='1.0'?&gt;
+&lt;methodResponse&gt;
+&lt;params&gt;
+&lt;param&gt;
+&lt;value&gt;&lt;string&gt;hello world&lt;/string&gt;&lt;/value&gt;
+&lt;/param&gt;
+&lt;/params&gt;
+&lt;/methodResponse&gt;
+</pre>
+<p>Note that it uses http (instead of simple sockets), since XML-RPC unfortunately
+always requires http.</p>
+<p>Compare this with the json-rpc-equivalent:</p>
+<pre class="literal-block">{"jsonrpc": "2.0", "method": "echo", "params": ["hello world"], "id": 0}
+{"jsonrpc": "2.0", "result": "hello world", "id": 0}
+</pre>
+<p>The 2nd call (<tt class="docutils literal">search()</tt>, with named parameters) is probably not even
+possible with plain XML-RPC. First, because there are no named parameters
+in XML-RPC, and second, because XML-RPC doesn't support <tt class="docutils literal">None</tt> or <tt class="docutils literal">Null</tt>.
+But if you try to approximate it, it could look like:</p>
+<pre class="literal-block">POST /RPC2 HTTP/1.0
+Host: 127.0.0.1:31415
+User-Agent: ...
+Content-Type: text/xml
+Content-Length: 202
+
+&lt;?xml version='1.0'?&gt;
+&lt;methodCall&gt;
+&lt;methodName&gt;search&lt;/methodName&gt;
+&lt;params&gt;
+&lt;param&gt;
+&lt;value&gt;&lt;int&gt;-1&lt;/int&gt;&lt;/value&gt;
+&lt;/param&gt;
+&lt;param&gt;
+&lt;value&gt;&lt;string&gt;Python&lt;/string&gt;&lt;/value&gt;
+&lt;/param&gt;
+&lt;/params&gt;
+&lt;/methodCall&gt;
+
+
+HTTP/1.0 200 OK
+Server: ...
+Date: Tue, 02 Sep 2008 12:58:49 GMT
+Content-type: text/xml
+Content-length: 794
+
+&lt;?xml version='1.0'?&gt;
+&lt;methodResponse&gt;
+&lt;params&gt;
+&lt;param&gt;
+&lt;value&gt;&lt;array&gt;&lt;data&gt;
+&lt;value&gt;&lt;struct&gt;
+&lt;member&gt;
+&lt;name&gt;first_name&lt;/name&gt;
+&lt;value&gt;&lt;string&gt;Brian&lt;/string&gt;&lt;/value&gt;
+&lt;/member&gt;
+&lt;member&gt;
+&lt;name&gt;last_name&lt;/name&gt;
+&lt;value&gt;&lt;string&gt;Python&lt;/string&gt;&lt;/value&gt;
+&lt;/member&gt;
+&lt;member&gt;
+&lt;name&gt;id&lt;/name&gt;
+&lt;value&gt;&lt;int&gt;1979&lt;/int&gt;&lt;/value&gt;
+&lt;/member&gt;
+&lt;member&gt;
+&lt;name&gt;number&lt;/name&gt;
+&lt;value&gt;&lt;int&gt;42&lt;/int&gt;&lt;/value&gt;
+&lt;/member&gt;
+&lt;/struct&gt;&lt;/value&gt;
+&lt;value&gt;&lt;struct&gt;
+&lt;member&gt;
+&lt;name&gt;first_name&lt;/name&gt;
+&lt;value&gt;&lt;string&gt;Monty&lt;/string&gt;&lt;/value&gt;
+&lt;/member&gt;
+&lt;member&gt;
+&lt;name&gt;last_name&lt;/name&gt;
+&lt;value&gt;&lt;string&gt;Python&lt;/string&gt;&lt;/value&gt;
+&lt;/member&gt;
+&lt;member&gt;
+&lt;name&gt;id&lt;/name&gt;
+&lt;value&gt;&lt;int&gt;4&lt;/int&gt;&lt;/value&gt;
+&lt;/member&gt;
+&lt;member&gt;
+&lt;name&gt;number&lt;/name&gt;
+&lt;value&gt;&lt;int&gt;1&lt;/int&gt;&lt;/value&gt;
+&lt;/member&gt;
+&lt;/struct&gt;&lt;/value&gt;
+&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;
+&lt;/param&gt;
+&lt;/params&gt;
+&lt;/methodResponse&gt;
+</pre>
+<p>And again, the JSON-RPC-equivalent:</p>
+<pre class="literal-block">{"jsonrpc": "2.0", "method": "search", "params": {"last_name": "Python"}, "id": 0}
+{"jsonrpc": "2.0", "result": [{"first_name": "Brian", "last_name": "Python", "id": 1979, "number": 42}, {"first_name": "Monty", "last_name": "Python", "id": 4, "number": 1}], "id": 0}
+</pre>
+</div>
+</div>
+</div>
+ 
+
+</div>
+
+<div id="footer">
+<span class="left">
+© by Roland Koebler, <a href="mailto:webmaster(at)simple-is-better(dot)org">webmaster(at)simple-is-better(dot)org</a>
+
+</span>
+<span class="right">
+<a href="http://www.anybrowser.org/campaign/"><img src="./simple is better - JSON-RPC_files/anybrowser2.png" alt="best viewed with any browser" width="88" height="31"></a>
+<a href="http://validator.w3.org/"><img src="./simple is better - JSON-RPC_files/valid-html401.png" alt="Valid HTML 4.01 Transitional" height="31" width="88" border="0"></a>
+<a href="http://www.wirspeichernnicht.de/content/view/10/22/"><img src="./simple is better - JSON-RPC_files/wirspeichernnichtsiegel.png" alt="Wir speichern nicht - Weitere Informationen hier..." title="Wir speichern nicht - Weitere Informationen hier..." border="0" width="93" height="94"></a>
+</span>
+
+</div>
+
+
+
+</body></html>

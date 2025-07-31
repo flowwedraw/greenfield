@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://www.crockford.com/big_integer.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Douglas Crockford">
+<meta name="copyright" content="(C)2025 Douglas Crockford">
+<meta name="date" content="2025">
+<meta http-equiv="Expires" content="1968-12-09">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<link rel="stylesheet" href="./big_integer_files/crockford.css" type="text/css">
+<link rel="icon" type="image/png" href="https://www.crockford.com/favicon.png">
+<title>big_integer</title>
+</head>
+<body>
+<div id="side">
+    <div id="name"><a href="https://www.crockford.com/"><big>Douglas Crockford</big></a></div><br>
+    <p><a href="https://www.crockford.com/blog.html">Blog</a></p>
+    <p><a href="https://www.crockford.com/books.html">Books</a></p>
+    <p><a href="https://www.crockford.com/videos.html">Videos</a></p>
+    <p><a href="https://www.crockford.com/2025.html">2025 Appearances</a></p>
+    <p><a href="https://www.crockford.com/slides.html">Slides</a></p>
+    <p><a href="https://www.crockford.com/javascript/">JavaScript</a></p>
+    <p><a href="https://mistysystem.com/">Misty</a></p>
+    <p><a href="https://jslint.com/">JSLint</a></p>
+    <p><a href="https://json.org/">JSON</a></p>
+    <p><a href="https://github.com/douglascrockford">Github</a></p>
+    <p><a href="https://www.crockford.com/ec.html">Electric Communities</a></p>
+    <p><a href="https://www.flickr.com/photos/douglascrockford/albums/72157644699201976">Flickr Photo Album</a></p>
+    <p><a href="https://www.linkedin.com/in/douglas-crockford-724600109/">LinkedIn</a></p>
+    <p><a rel="me" href="https://layer8.space/@douglascrockford">Mastodon/Layer8</a></p>
+    <p><a href="https://www.researchgate.net/profile/Douglas-Crockford">ResearchGate</a></p>
+    <p><a href="https://www.crockford.com/pronouns.html">Pronouns: <dfn>pe/per</dfn></a></p>
+    <p><a href="https://lz953.isrefer.com/go/preorder/B53xn5cY">Aptera</a></p>
+    <p><a href="https://www.crockford.com/about.html">About</a></p>
+</div>
+<div id="blog">
+<time>2023-02-15</time>
+<h1>big_integer</h1>
+
+<p>For my book, <a href="https://www.amazon.com/dp/1949815005/wrrrldwideweb"><em>How JavaScript Works</em></a>,
+I created a module, <code>big_integer.js</code>, that makes and performs operations on integers of any size.
+Since then, the ECMAScript standard has acquired a <code>BigInt</code> type, which, being native,
+can run faster and consume less memory.
+I have revised <code>big_integer.js</code> to use <code>BigInt</code> as its underlying implementation.</p>
+<p>I also created two other modules, <code>big_float.js</code> and <code>big_rational.js</code>.
+The <code>big_float.js</code> module uses <code>big_integer.js</code> to implement decimal floating point,
+similar to <a href="https://www.crockford.com/dec64.html"><dfn>DEC64</dfn></a>
+but with virtually unlimited range and resolution.
+It benefits significantly from the <code>big_integer.js</code> speed up.
+Decimal floating point is much better than the binary floating point that JavaScript provides because it can exactly
+represent decimal fractions, including money.
+The <code>big_float.js</code> module can exactly represent every value that binary floating point can,
+but binary floating point can not exactly represent <code>0.01</code>.
+The world should stop using binary floating point.</p>
+<p>The <code>big_rational.js</code> module can exactly represent everything that <code>big_float.js</code> can,
+and can also exactly represent virtually all rational fractions, starting with <code>1/3</code>.
+Rational arithmetic is truly awesome, but there is a potential problem: The numerators and denominators
+can grow quickly in some computations, creating a big performance problem. So for most purposes,
+decimal floating point suffices. But if you want to make the world's best, most accurate calculator,
+nothing is better than big rationals.</p>
+<p>I am also releasing the tests for those modules. The tests demonstrate the use of
+<a href="https://www.crockford.com/jscheck.html">JSCheck</a>.</p>
+    <h5><a href="https://github.com/douglascrockford/howjavascriptworks">github: How JavaScript Works</a></h5>
+    <h5><a href="https://github.com/douglascrockford/JSCheck">github: JSCheck</a></h5>
+
+</div>
+
+
+
+</body></html>

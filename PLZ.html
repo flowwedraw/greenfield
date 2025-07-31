@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)https://www.crockford.com/plz.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Douglas Crockford">
+<meta name="copyright" content="(C)2025 Douglas Crockford">
+<meta name="date" content="2025">
+<meta http-equiv="Expires" content="1968-12-09">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<link rel="stylesheet" href="./PLZ_files/crockford.css" type="text/css">
+<link rel="icon" type="image/png" href="https://www.crockford.com/favicon.png">
+<title>PLZ</title>
+</head>
+<body>
+<div id="side">
+    <div id="name"><a href="https://www.crockford.com/"><big>Douglas Crockford</big></a></div><br>
+    <p><a href="https://www.crockford.com/blog.html">Blog</a></p>
+    <p><a href="https://www.crockford.com/books.html">Books</a></p>
+    <p><a href="https://www.crockford.com/videos.html">Videos</a></p>
+    <p><a href="https://www.crockford.com/2025.html">2025 Appearances</a></p>
+    <p><a href="https://www.crockford.com/slides.html">Slides</a></p>
+    <p><a href="https://www.crockford.com/javascript/">JavaScript</a></p>
+    <p><a href="https://mistysystem.com/">Misty</a></p>
+    <p><a href="https://jslint.com/">JSLint</a></p>
+    <p><a href="https://json.org/">JSON</a></p>
+    <p><a href="https://github.com/douglascrockford">Github</a></p>
+    <p><a href="https://www.crockford.com/ec.html">Electric Communities</a></p>
+    <p><a href="https://www.flickr.com/photos/douglascrockford/albums/72157644699201976">Flickr Photo Album</a></p>
+    <p><a href="https://www.linkedin.com/in/douglas-crockford-724600109/">LinkedIn</a></p>
+    <p><a rel="me" href="https://layer8.space/@douglascrockford">Mastodon/Layer8</a></p>
+    <p><a href="https://www.researchgate.net/profile/Douglas-Crockford">ResearchGate</a></p>
+    <p><a href="https://www.crockford.com/pronouns.html">Pronouns: <dfn>pe/per</dfn></a></p>
+    <p><a href="https://lz953.isrefer.com/go/preorder/B53xn5cY">Aptera</a></p>
+    <p><a href="https://www.crockford.com/about.html">About</a></p>
+</div>
+<div id="blog">
+<time>2023-11-07</time>
+<h1>PLZ</h1>
+
+<p>My first programming languages were Fortran, Compass (CDC 3000 assembly language), Basic, Algol, and Business Basic. </p>
+<p>My next language was PLZ/SYS in 1978. It taught me a lot about language design, and that you can have brilliance and its opposite in the same language. That insight benefitted me tremendously over the rest of my career.</p>
+<p>PLZ/SYS was produced by Zilog, a microcomputer chip company. Their most famous product was the Z80, an unauthorized and superior sequel to Intel's 8080. The Z80 is still in production.</p>
+<p>Zilog also produced development systems because personal computing had not happened yet. These systems came with assemblers, linkers, and operating systems.</p>
+<p>PLZ was to be their family of programming languages. These were minimalish languges, designed specifically for the little chips, all sharing a core grammar:</p>
+<ul>
+    <li>variable declarations</li>
+    <li>control structures</li>
+    <li>module structure and visibility</li>
+    <li>whitespace</li>
+    <li>comments</li>
+</ul>
+<p>Two languages were released:</p>
+<ul>
+    <li>PLZ/ASM, a structured assembly language</li>
+    <li>PLZ/SYS, a systems programming language</li>
+</ul>
+<p>PLZ/SYS was realized as four programs:</p>
+<ul>
+    <li>plzsys, a compiler that took source code and produced zcode</li>
+    <li>plzcg, a code generator that took zcode and produced obj</li>
+    <li>plink, a linker that combined zcode and obj into an executable</li>
+    <li>zinterp.obj, a zcode interpreter</li>
+</ul>
+<p>Zcode was a bytecode stack language, inspired by BCPL's ocode, which was inspired by the Burroughs 5000 instruction set. UCSD Pascal pcode and Java bytecode are similar.</p>
+<p>An executable could be made of zcode or obj or a mixture. Zcode was considerably smaller than obj because the Z80 instruction set design was not optimized for high level languages. So you could use obj and pay a memory penalty, or zcode and pay a time penalty. Ideally, you could blend, with seldom used code in zcode, and critical code in obj. The source code did not know or care.</p>
+<p>PLZ had many influences.  It borrowed typed declarations and pointer notation from Wirth's Pascal.</p>
+<pre>pointer: ^cat
+pointer^.lives -= 1</pre>
+<p>It borrowed increment operators and the  bad idea of an address operator Ritchie's C. PLZ uses <code>#</code><small>octothorpe</small> instead of the overloaded <code>&amp;</code><small>ampersand</small>.</p>
+<p>The control structures were borrowed from Algol 68.</p>
+<pre>if condition
+     then
+          ...
+     else
+          ...
+fi</pre>
+<p>Loops were simple.</p>
+<pre>do ... od</pre>
+<p>An explicit <code>exit</code> was needed to terminate a loop.</p>
+<p>The primitive types were</p>
+<ul>
+    <li>byte</li>
+    <li>word</li>
+    <li>short_integer</li>
+    <li>integer</li>
+    <li>^<var>pointer</var></li>
+</ul>
+<p>These names were great for a while, but as architectures grew into 32 and 64 bits, they became problematic,
+just as  in C.</p>
+<p>The designers of PLZ came from a variety of backgrounds and experiences.
+They clearly had conflicting opinions on style that they were unable to resolve.</p>
+<p>At the time, lower case was beginning to become popular, but the majority of programmers had not
+yet transitioned. PLZ accomodated this by allowing the keywords to be all uppercase or all lowercase.</p>
+<p>In the PLZ literature, there were example programs that were all uppercase, upper case with lower case keywords,
+lower case with upper case keywords (the style I preferred at the time), and all lowercase. </p>
+<p>More troublesome, <code>:</code><small>colon</small> which was used in declarations and loop
+labelling, <code>,</code><small>comma</small> which separated arguments and array elements,
+and <code>;</code><small>semicolon</small> which separated statements, were all treated as
+whitespace. This was a compromise to allow all styles to be practiced, even the bad ones.
+The punctuators provide redundancy which can expose errors. But the program the human sees can be
+quite different from the program the compiler sees. That is trouble.</p>
+<p>For example,</p>
+<pre>ARRAY [1, 0, -1]</pre>
+<p>is seen by the compiler as</p>
+<pre>ARRAY [1, -1]</pre>
+<p>The <code>-</code><small>minus sign</small> is both an infix operator and a prefix operator. Because the <code>,</code><small>comma</small> disappears, the <code>-</code><small>minus sign</small> subtracts instead of negating. They added a <code>neg</code> operator as a mitigation, but it does not help.</p>
+<p>PLZ allows a procedure that takes no arguments to be called without the <code>()</code><small>parens</small> suffix. If such a function name is misspelled and the next statement is <code>do</code>, the compiler assumes that the misspelled function is actually a loop label and no error is generated. This confusion is due to the <code>:</code><small>colon</small> after a label being unnecessary.</p>
+<p>Comments begin and end with <code>!</code><small>exclamation point</small>! That worked poorly.
+It was too easy to forget to put in a closing <code>!</code><small>exclamation point</small>!
+You could not put <code>!</code><small>exclamation point</small> in a comment to mark something important!
+You could not comment out code that contained a comment!
+If you make an even number of mistakes, it was possible that no error was reported and part of
+your program was silently deleted!
+It would have been better to make the comment end at the end of the line.</p>
+<p>Most of PLZ was brilliant and I liked working with it. But I was burned by the design mistakes.
+The lesson I learned was that correctness is more important than opinions about personal style.
+These lessons stayed with me, which is why I am critical about style slop in other languages.
+It is why I designed <a href="https://www.jslint.com/">JSLint</a> the way I did to help defend programmers (especially me) from the design mistakes in JavaScript.</p>
+<p>I like PLZ's module structure.</p>
+<pre>name: module
+     ! The sections of your module go here!
+end name</pre>
+<p>There are sections that can appear in your module: <code>type</code>, <code>constant</code>, <code>external</code>, <code>internal</code>, <code>global</code>. Each section contains a list of things. I thought it worked much better than the <code>extern</code>, <code>static</code> sillyness of C.</p>
+<p>The grammar of the language was expressed with <code>=&gt;</code> statements. For example:</p>
+<p class="rule"><var>module</var> <code>=&gt;</code> <var>module_identifier</var> <code>module</code> <var>declarations*</var> <code>end</code> <var>module_identifier</var>
+</p><p class="rule"><var>declarations</var>
+    <code>=&gt;</code> <var>constants</var>
+    <code>=&gt;</code> <var>types</var>
+    <code>=&gt;</code> <var>globals</var>
+    <code>=&gt;</code> <var>internals</var>
+    <code>=&gt;</code> <var>externals</var></p>
+<p class="rule"><var>constants</var> <code>=&gt;</code> <code>constant</code> <var>constant_definition*</var></p>
+<p class="rule"><var>types</var> <code>=&gt;</code> <code>type</code> <var>type_definition*</var></p>
+<p class="rule"><var>globals</var> <code>=&gt;</code> <code>global</code> <var>var_or_proc_declaration*</var></p>
+<p class="rule"><var>internals</var> <code>=&gt;</code> <code>internal</code> <var>var_or_proc_declaration*</var></p>
+<p class="rule"><var>externals</var> <code>=&gt;</code> <code>external</code> <var>restricted_var_or_proc_declaration*</var></p>
+<p class="rule"><var>constant_declaration</var> <code>=&gt;</code> <var>identifier</var> <code>:=</code> <var>constant_expression</var></p>
+<p>I liked this notation and wanted to use it on the <a href="https://www.json.org/">JSON</a> project. I wrote to Bill McKeeman, who was a consultant on the PLZ project and asked him what it was called and what the formal rules were. He told me that he had moved past it, and was now using a minimal grammar inspired by his mentor, Niklaus Wirth (of Pascal fame). I formalized that grammar and called it <a href="https://www.crockford.com/mckeeman.html">McKeeman Form</a>.</p>
+    <h5><a href="https://www.crockford.com/plz/grammar.html">PLZ Grammar</a></h5>
+    <h5><a href="https://www.crockford.com/plz/bass.pdf">PLZ: A Family of System Programming Languages for Microprocessors</a></h5>
+    <h5><a href="https://www.crockford.com/plz/Report%20on%20the%20Programming%20Language%20PLZ_SYS.pdf">Report on the Programming Language PLZ/SYS</a></h5>
+    <h5><a href="https://www.crockford.com/plz/Z8_Assembly_Language_Programming_Manual_Dec80.pdf">Z8 PLZ/ASM</a></h5>
+    <h5><a href="https://www.crockford.com/plz/z8000asm.pdf">Z8000 PLZ/ASM</a></h5>
+    <h5><a href="https://www.crockford.com/mckeeman.html">McKeeman Form</a></h5>
+
+</div>
+
+
+
+</body></html>

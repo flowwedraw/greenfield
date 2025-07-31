@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)https://www.crockford.com/domjs.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Douglas Crockford">
+<meta name="copyright" content="(C)2025 Douglas Crockford">
+<meta name="date" content="2025">
+<meta http-equiv="Expires" content="1968-12-09">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<link rel="stylesheet" href="./Plain Old JavaScript and the DOM_files/crockford.css" type="text/css">
+<link rel="icon" type="image/png" href="https://www.crockford.com/favicon.png">
+<title>Plain Old JavaScript and the DOM</title>
+<style>
+td i {
+    font-style: normal;
+    padding: 0.5em;
+}
+td i::before {
+    content: '("';
+}
+td i::after {
+    content: '")';
+}
+</style>
+</head>
+<body>
+<div id="side">
+    <div id="name"><a href="https://www.crockford.com/"><big>Douglas Crockford</big></a></div><br>
+    <p><a href="https://www.crockford.com/blog.html">Blog</a></p>
+    <p><a href="https://www.crockford.com/books.html">Books</a></p>
+    <p><a href="https://www.crockford.com/videos.html">Videos</a></p>
+    <p><a href="https://www.crockford.com/2025.html">2025 Appearances</a></p>
+    <p><a href="https://www.crockford.com/slides.html">Slides</a></p>
+    <p><a href="https://www.crockford.com/javascript/">JavaScript</a></p>
+    <p><a href="https://mistysystem.com/">Misty</a></p>
+    <p><a href="https://jslint.com/">JSLint</a></p>
+    <p><a href="https://json.org/">JSON</a></p>
+    <p><a href="https://github.com/douglascrockford">Github</a></p>
+    <p><a href="https://www.crockford.com/ec.html">Electric Communities</a></p>
+    <p><a href="https://www.flickr.com/photos/douglascrockford/albums/72157644699201976">Flickr Photo Album</a></p>
+    <p><a href="https://www.linkedin.com/in/douglas-crockford-724600109/">LinkedIn</a></p>
+    <p><a rel="me" href="https://layer8.space/@douglascrockford">Mastodon/Layer8</a></p>
+    <p><a href="https://www.researchgate.net/profile/Douglas-Crockford">ResearchGate</a></p>
+    <p><a href="https://www.crockford.com/pronouns.html">Pronouns: <dfn>pe/per</dfn></a></p>
+    <p><a href="https://lz953.isrefer.com/go/preorder/B53xn5cY">Aptera</a></p>
+    <p><a href="https://www.crockford.com/about.html">About</a></p>
+</div>
+<div id="blog">
+<time>2023-05-27</time>
+<h1>Plain Old JavaScript and the DOM</h1>
+
+<p>JavaScript was specifically invented to add interactivity to web browsers. The two parts of this are accepting input from the human and dynamically altering the display. Before there was JavaScript, the display was altered by doing a page replacement. JavaScript gives us more options.</p>
+<h4>document.write</h4>
+<p>We will not discuss this particular mistake here except to mention that it is a security vulnerability waiting for exploitation.</p>
+<h4>innerHTML</h4>
+<p>This was an invention of Microsoft. While slightly less reckless that <code>document.write</code>, it is also unsafe and should no longer be used.</p>
+<h4>The Document Object Model</h4>
+<p>The DOM is a clumsy API for creating, linking, manipulating, and destroying nodes in the document tree.
+Twenty years ago I was recommending that it not be used directly, that an intervening library should be used instead. My reasons were that the DOM was poorly designed, poorly implemented, and full of inconsistencies from one brand of browser to the other, and from one version to another. The DOM was a deep source of pain and misery that could be mitigated by a good library.</p>
+<p>Since then, the web standards community has, for the most part, corrected many of WC3's failures. The DOM is much less deficient and much more portable and reliable. That is why I now recommend abandoning the libraries, which have grown into bloated platforms, and instead using the DOM and plain old JavaScript together.</p>
+<h2>A modest example</h2>
+<p>Somehow, in the course of interacting with the user, we acquire some data that we present as a table:</p>
+
+<noscript>Nothing good happens without JavaScript.</noscript>
+<div id="output"><table><caption>The Three Stooges</caption><tr><th>first</th><th>last</th></tr><tr><td>Moe</td><td>Howard</td></tr><tr><td>Jerome<i>Curly</i></td><td>Howard</td></tr><tr><td>Larry</td><td>Fine</td></tr></table></div>
+
+<p>The DOM is verbose and weird. We make it a little nicer with a wee <code>dom</code> function that makes a node and links text and other nodes to it. Thus armed, we can build the table and link it into a <code>div</code> of <code>output</code>.</p>
+
+<script style="display: block;">
+function dom(tag, ...nodes) {
+    const node = document.createElement(tag);
+    node.append(...nodes);
+    return node;
+}
+
+let rows = [
+    dom(
+        "tr",
+        dom("th", "first"),
+        dom("th", "last")
+    ),
+    dom(
+        "tr",
+        dom("td", "Moe"),
+        dom("td", "Howard")
+    ),
+    dom(
+        "tr",
+        dom(
+            "td",
+            "Jerome",
+            dom("i", "Curly")
+        ),
+        dom("td", "Howard")
+    ),
+    dom(
+        "tr",
+        dom("td", "Larry"),
+        dom("td", "Fine")
+    )
+];
+
+document.getElementById("output").append(dom(
+    "table",
+    dom("caption", "The Three Stooges"),
+    ...rows
+));
+</script>
+    <h5><a href="https://crockford.com/dom.html">DOM is as DOM does</a> </h5>
+
+</div>
+
+
+
+</body></html>

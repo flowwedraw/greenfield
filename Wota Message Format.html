@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)https://www.crockford.com/wota.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Douglas Crockford">
+<meta name="copyright" content="(C)2025 Douglas Crockford">
+<meta name="date" content="2025">
+<meta http-equiv="Expires" content="1968-12-09">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<link rel="stylesheet" href="./Wota Message Format_files/crockford.css" type="text/css">
+<link rel="icon" type="image/png" href="https://www.crockford.com/favicon.png">
+<title>Wota Message Format</title>
+<style>
+table {
+	clear: both;
+	float:right;
+	margin-top: -1em;
+    margin-bottom: 2em;
+}
+.blue {
+    color: blue;
+}
+.red {
+    color: red;
+}
+.green {
+    color: green;
+}
+</style>
+</head>
+<body>
+<div id="side">
+    <div id="name"><a href="https://www.crockford.com/"><big>Douglas Crockford</big></a></div><br>
+    <p><a href="https://www.crockford.com/blog.html">Blog</a></p>
+    <p><a href="https://www.crockford.com/books.html">Books</a></p>
+    <p><a href="https://www.crockford.com/videos.html">Videos</a></p>
+    <p><a href="https://www.crockford.com/2025.html">2025 Appearances</a></p>
+    <p><a href="https://www.crockford.com/slides.html">Slides</a></p>
+    <p><a href="https://www.crockford.com/javascript/">JavaScript</a></p>
+    <p><a href="https://mistysystem.com/">Misty</a></p>
+    <p><a href="https://jslint.com/">JSLint</a></p>
+    <p><a href="https://json.org/">JSON</a></p>
+    <p><a href="https://github.com/douglascrockford">Github</a></p>
+    <p><a href="https://www.crockford.com/ec.html">Electric Communities</a></p>
+    <p><a href="https://www.flickr.com/photos/douglascrockford/albums/72157644699201976">Flickr Photo Album</a></p>
+    <p><a href="https://www.linkedin.com/in/douglas-crockford-724600109/">LinkedIn</a></p>
+    <p><a rel="me" href="https://layer8.space/@douglascrockford">Mastodon/Layer8</a></p>
+    <p><a href="https://www.researchgate.net/profile/Douglas-Crockford">ResearchGate</a></p>
+    <p><a href="https://www.crockford.com/pronouns.html">Pronouns: <dfn>pe/per</dfn></a></p>
+    <p><a href="https://lz953.isrefer.com/go/preorder/B53xn5cY">Aptera</a></p>
+    <p><a href="https://www.crockford.com/about.html">About</a></p>
+</div>
+<div id="blog">
+<time>2025-01-03</time>
+<h1>Wota Message Format</h1>
+
+<table>
+<caption>
+Summary of Wota Types
+</caption>
+    <tbody><tr>
+        <th>Bits</th>
+        <th>Hex</th>
+        <th>Type</th>
+    </tr>
+    <tr>
+        <td class="red"><code>00000000</code></td>
+        <td align="center" class="red"><code>00</code></td>
+        <td>Integer</td>
+    </tr>
+    <tr>
+        <td class="red"><code>00000001</code></td>
+        <td align="center" class="red"><code>01</code></td>
+        <td>Floating Point</td>
+    </tr>
+    <tr>
+        <td class="red"><code>00000010</code></td>
+        <td align="center" class="red"><code>02</code></td>
+        <td>Array</td>
+    </tr>
+    <tr>
+        <td class="red"><code>00000011</code></td>
+        <td align="center" class="red"><code>03</code></td>
+        <td>Record</td>
+    </tr>
+    <tr>
+        <td class="red"><code>00000100</code></td>
+        <td align="center" class="red"><code>04</code></td>
+        <td>Blob</td>
+    </tr>
+    <tr>
+        <td class="red"><code>00000101</code></td>
+        <td align="center" class="red"><code>05</code></td>
+        <td>Text</td>
+    </tr>
+    <tr>
+        <td class="red"><code>00000111</code></td>
+        <td align="center" class="red"><code>07</code></td>
+        <td>Symbol</td>
+    </tr>
+</tbody></table>
+<p>This note describes a message format called Wota that was developed for use in
+<a href="https://mistysystem.com/">Misty</a>'s local messaging system.
+It is very similar to <a href="https://www.crockford.com/nota.html">Nota</a>, but works at word granularity rather than byte granularity.
+The arrangements Wota produces are less compact than Nota, but are faster to arrange and consume.
+In network transfers, compactness is highly prized.
+In local inter-process communication, copying arrangements from one memory space to another,
+compactness is less beneficial. On 64 bit systems, a Wota word is 64 bits with no straddling.</p>
+<p>Wota stands for Word Object Transfer Arrangement<i></i>.</p>
+<h3>Preambles</h3>
+<p>Every Wota value starts with a preamble. The least significant byte (aka the
+<span class="red">red</span> bits) contains a type.
+The interpretation of the most significant <dfn>remaining</dfn> 56 bits (aka the
+<span style="color:blue;">blue</span> bits) depends on the type.</p>
+<h3 id="blob">Blob</h3>
+<p>A blob is a string of bits. The <dfn>remaining</dfn> field contains the number of bits. The number of words that follow:</p>
+<pre>floor((number_of_bits + 63) / 64)</pre>
+<p>The first bit of the blob goes into the most significant bit of the first word. The final word is padded with <code>0</code> as necessary.</p>
+<p>Example: A blob containing 25 bits: <code>111100001110001100100001</code></p>
+<pre><span class="blue">00000000000000000000000000000000000000000000000000011001</span><span class="red">00000100</span> # <span class="blue">00000000000019</span><span class="red">04</span>
+<span class="green">1111000011100011001000001000000000000000000000000000000000000000</span> # <span class="green">F0E3208000000000</span></pre>
+<h3 id="text">Text</h3>
+<p>The text is a string of <a href="https://www.crockford.com/kim.html">Kim</a> characters packed 8 bytes per word.
+The <dfn>remaining</dfn> field contains the number of bytes. The number of words that follow:</p>
+<pre>floor((number_of_bytes + 7) / 8)</pre>
+<p>The final word is padded with <code>0</code> as necessary.</p>
+<p>Example: <code>"cat"</code></p>
+<pre><span class="blue">00000000000000000000000000000000000000000000000000000011</span><span class="red">00000101</span> # <span class="blue">00000000000003</span><span class="red">05</span>
+<span class="green">0110001101100001011101000000000000000000000000000000000000000000</span> # <span class="green">6361740000000000</span><span class="green"></span><span class="green"></span></pre>
+<p>Example: <code>""</code><small>empty text</small></p>
+<pre><span class="blue">00000000000000000000000000000000000000000000000000000000</span><span class="red">00000000</span> # <span class="blue">00000000000000</span><span class="red">05</span></pre>
+<h3>Array </h3>
+<p>An array is an ordered sequence of values. The <dfn>remaining</dfn> field contains the number of elements.
+Following the preamble are the elements of the array.
+Each element begins with a preamble. As with JSON, nesting is encouraged. Cyclic structures are not allowed.</p>
+<p>Example: <code>["cat", ""]</code>.</p>
+<pre><span class="blue">00000000000000000000000000000000000000000000000000000010</span><span class="red">00000010</span> # <span class="blue">00000000000002</span><span class="red">02</span>
+<span class="blue">00000000000000000000000000000000000000000000000000000011</span><span class="red">00000101</span> # <span class="blue">00000000000003</span><span class="red">05</span>
+<span class="green">0110001101100001011101000000000000000000000000000000000000000000</span> # <span class="green">6361740000000000</span><span class="green"></span><span class="green"></span>
+<span class="blue">00000000000000000000000000000000000000000000000000000000</span><span class="red">00000101</span> # <span class="blue">00000000000000</span><span class="red">05</span></pre>
+<h3 id="record">Record</h3>
+<p>A record is a set of key:value pairs. The keys must be text. The values can be any Wota values. The <dfn>remaining</dfn> field contains the number of pairs.
+</p>
+<p>Example: <code>{"cat": [""]}</code>.</p>
+<pre><span class="blue">00000000000000000000000000000000000000000000000000000001</span><span class="red">00000011</span> # <span class="blue">00000000000001</span><span class="red">03</span>
+<span class="blue">00000000000000000000000000000000000000000000000000000011</span><span class="red">00000101</span> # <span class="blue">00000000000003</span><span class="red">05</span>
+<span class="green">0110001101100001011101000000000000000000000000000000000000000000</span> # <span class="green">6361740000000000</span><span class="green"></span><span class="green"></span>
+<span class="blue">00000000000000000000000000000000000000000000000000000001</span><span class="red">00000010</span> # <span class="blue">00000000000001</span><span class="red">02</span>
+<span class="blue">00000000000000000000000000000000000000000000000000000000</span><span class="red">00000101</span> # <span class="blue">00000000000000</span><span class="red">05</span></pre>
+<h3 id="record2"></h3>
+<h3 id="number">Number</h3>
+<p>Numbers are represented as <a href="https://dec64.com/">DEC64</a>. To arrange an integer in Wota, simply shift the integer up 8 bits. The number is incorporated into the preamble.</p>
+<p>Example: <code>7</code></p>
+<pre><span class="blue">00000000000000000000000000000000000000000000000000000111</span><span class="red">00000000</span> # <span class="blue">00000000000007</span><span class="red">00</span></pre>
+<p>To arrange a floating point number, place the number in the word following the floating point preamble.  The <dfn>remaining</dfn> field is not used.</p>
+<p>Care must be taken when decoding that the least significant byte of the number is not <code class="green">10000000 # 80</code>.</p>
+<p>Example:<code> 4.25</code></p>
+<pre><span class="blue">00000000000000000000000000000000000000000000000000000000</span><span class="red">00000001</span> # <span class="blue">00000000000000</span><span class="red">01</span>
+<span class="green">0000000000000000000000000000000000000000000000011010100111111110</span> # <span class="green">000000000001A9FE</span></pre>
+<h3 id="integer">Symbol</h3>
+<p>Currently there are only five symbols. All other symbols are reserved. The <dfn>remaining</dfn> field contains the symbol.</p>
+<p>Example: <code>[null, false, true, private, system]</code></p>
+<pre><span><span class="blue">00000000000000000000000000000000000000000000000000000101</span><span class="red">00000010</span> # <span class="blue">00000000000005</span><span class="red">02</span>
+<span><span class="blue">00000000000000000000000000000000000000000000000000000000</span><span class="red">00000111</span> # <span class="blue">00000000000000</span><span class="red">07</span>
+<span><span class="blue">00000000000000000000000000000000000000000000000000000010</span><span class="red">00000111</span> # <span class="blue">00000000000002</span><span class="red">07</span>
+<span><span class="blue">00000000000000000000000000000000000000000000000000000011</span><span class="red">00000111</span> # <span class="blue">00000000000003</span><span class="red">07</span>
+<span><span class="blue">00000000000000000000000000000000000000000000000000001000</span><span class="red">00000111</span> # <span class="blue">00000000000008</span><span class="red">07</span>
+<span><span class="blue">00000000000000000000000000000000000000000000000000001001</span><span class="red">00000111</span> # <span class="blue">00000000000009</span><span class="red">07</span></span></span></span></span></span></span></pre>
+    <h5><a href="https://www.crockford.com/nota.html">Nota</a></h5>
+    <h5><a href="https://www.crockford.com/kim.html">Kim</a></h5>
+    <h5><a href="https://www.crockford.com/misty/">Misty</a></h5>
+    <h5><a href="https://www.crockford.com/dec64.html">DEC64</a></h5>
+
+</div>
+
+
+
+
+
+</body></html>

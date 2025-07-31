@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)https://www.jsonrpc.org/specification_v1 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>JSON-RPC 1.0 Specification (2005)</title>
+    <link href="./JSON-RPC 1.0 Specification (2005)_files/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="./JSON-RPC 1.0 Specification (2005)_files/bootstrap-responsive.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="https://www.jsonrpc.org/assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://www.jsonrpc.org/assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://www.jsonrpc.org/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="https://www.jsonrpc.org/assets/ico/apple-touch-icon-57-precomposed.png">
+ 
+<script type="text/javascript" async="" src="./JSON-RPC 1.0 Specification (2005)_files/ga.js.Без названия"></script><script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-287797-10']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+ 
+  </head>
+    <body>
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="https://www.jsonrpc.org/">JSON-RPC</a>
+            <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="https://www.jsonrpc.org/">Home</a></li>
+            </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row-fluid">
+          <div class="span3">
+            <div class="well sidebar-nav">
+              <ul class="nav nav-list">
+                <li class="nav-header">Specs</li>
+                <li><a href="https://www.jsonrpc.org/specification">2.0</a></li>
+                <li><a href="https://www.jsonrpc.org/specification_v1">1.0</a></li>
+                <li class="nav-header">More Details</li>
+                <li><a href="http://www.json.org/">What is JSON?</a> </li>
+                <li><a href="http://en.wikipedia.org/wiki/Remote_procedure_call">What is RPC?</a></li>
+                <li><a href="http://www.simple-is-better.org/rpc/#differences-between-1-0-and-2-0">1.0 vs. 2.0</a></li>
+                <li><a href="http://en.wikipedia.org/wiki/JSON-RPC#Implementations">Implementations</a></li>
+                <li><a href="http://groups.google.com/group/json-rpc/">Join the Discussion</a></li>
+<li><a href="http://json-rpc.info/">What uses JSON-RPC</a></li>
+
+		<li class="nav-header">Translations</li>
+               <li><a href="http://wiki.geekdream.com/Specification/json-rpc_2.0.html">(译)
+JSON-RPC 2.0 规范(中文版)</a></li>
+
+                <li class="nav-header">Social</li>
+                <li>
+<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style ">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript" src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f9b0be933d20df1"></script>
+<!-- AddThis Button END -->
+ </li>
+</ul>
+</div><!--/.well -->
+</div><!--/span-->
+
+
+          <div class="span9">
+            <div class="page-header"> <h1>JSON-RPC 1.0 Specification (2005)</h1> </div>
+            <div> <div> <dl><dt>archived from original url at:</dt> <dd><a href="http://json-rpc.org/wiki/specification">http://json-rpc.org/wiki/specification</a></dd></dl> </div> </div>
+            <br>
+
+<div id="content" class="wiki">
+      <div class="wikipage searchable">
+        
+          
+          <div id="wikipage"><h2 id="JSON-RPC1.0Specifications">JSON-RPC 1.0
+Specifications<a class="anchor" href="https://www.jsonrpc.org/specification_v1#JSON-RPC1.0Specifications" title="Link to this
+section"> ¶</a></h2>
+<p>
+The specifications should provide the developer with the information needed to implement
+the protocol.
+</p>
+<p>
+<strong>NOTE:</strong> The <a class="ext-link" href="http://www.jsonrpc.org/specification"><span class="icon">&nbsp;</span>JSON-RPC 2.0
+Specification</a> has been published.
+</p>
+<h2 id="Overview">Overview<a class="anchor" href="https://www.jsonrpc.org/specification_v1#Overview" title="Link to this section">
+¶</a></h2>
+<p>
+JSON-RPC is a lightweight remote procedure call protocol.
+It's designed to be simple!
+</p>
+<p>
+The general mechanism consists of two peers establishing a data connection.
+During the lifetime of a connection, peers may invoke methods provided by the other peer.
+To invoke a remote method, a request is sent. 
+Unless the request is a notification it must be replied to with a response.
+</p>
+<h2 id="a1.1Requestmethodinvocation">1.1 Request (method invocation)<a class="anchor" href="https://www.jsonrpc.org/specification_v1#a1.1Requestmethodinvocation" title="Link to this section"> ¶</a></h2>
+<p>
+A remote method is invoked by sending a request to a remote service.
+The request is a single object serialized using <a class="ext-link" href="http://json.org/"><span class="icon">&nbsp;</span>JSON</a>.
+</p>
+<p>
+It has three properties:
+</p>
+<ul><li><strong><tt>method</tt></strong> - A String containing the name of the method to
+be invoked.
+</li><li><strong><tt>params</tt></strong> - An Array of objects to pass as arguments to
+the method.
+</li><li><strong><tt>id</tt></strong> - The request id. This can be of any type. It is
+used to match the response with the request that it is replying to.
+</li></ul><h2 id="a1.2Response">1.2 Response<a class="anchor" href="https://www.jsonrpc.org/specification_v1#a1.2Response" title="Link to this section"> ¶</a></h2>
+<p>
+When the method invocation completes, the service must reply with a response.
+The response is a single object serialized using <a class="ext-link" href="http://json.org/"><span class="icon">&nbsp;</span>JSON</a>.
+</p>
+<p>
+It has three properties:
+</p>
+<ul><li><strong><tt>result</tt></strong> - The Object that was returned by the invoked
+method. This must be null in case there was an error invoking the method.
+</li><li><strong><tt>error</tt></strong> - An Error object if there was an error invoking
+the method. It must be null if there was no error.
+</li><li><strong><tt>id</tt></strong> - This must be the same id as the request it is
+responding to.
+</li></ul><h2 id="a1.3Notification">1.3 Notification<a class="anchor" href="https://www.jsonrpc.org/specification_v1#a1.3Notification" title="Link to this section"> ¶</a></h2>
+<p>
+A notification is a special request which does not have a response.
+The notification is a single object serialized using <a class="ext-link" href="http://json.org/"><span class="icon">&nbsp;</span>JSON</a>.
+</p>
+<p>
+It has the same properties as the request object with one exception.
+</p>
+<ul><li><strong><tt>id</tt></strong> - Must be null.
+</li></ul><h2 id="a2.1JSON-RPCoverstreamconnections">2.1 JSON-RPC over stream
+connections<a class="anchor" href="https://www.jsonrpc.org/specification_v1#a2.1JSON-RPCoverstreamconnections" title="Link to this
+section"> ¶</a></h2>
+<p>
+The specifications do not require a certain transport protocol.
+The use of TCP/IP socket streams is encouraged.
+The serialized request and response objects are sent to the peers through the byte
+streams.
+</p>
+<p>
+Requests and responses may be sent to a peer at any time.
+The peer must respond to each request unless it is a notification.
+A response may only be sent in reply to a request.
+</p>
+<p>
+Closing the connection between peers must raise an exception for all unanswered requests
+on each peer.
+Non-valid requests or responses must result in closing the connection.
+</p>
+<h2 id="a2.2JSON-RPCoverHTTP">2.2 JSON-RPC over HTTP<a class="anchor" href="https://www.jsonrpc.org/specification_v1#a2.2JSON-RPCoverHTTP" title="Link to this section"> ¶</a></h2>
+<p>
+With some limitation, HTTP requests can be used as a transport for communicating between
+peers.
+</p>
+<p>
+A communication between peers, one being an HTTP client the other an HTTP server, may span
+multiple HTTP requests. A client side peer may send one or more requests, notifications or
+responses to its peer by sending an HTTP POST request containing all serialized objects. 
+</p>
+<p>
+The server side peer must reply with responses to all requests sent and may send requests
+or notifications of its own. 
+The client side peer must reply to requests received by sending another HTTP POST.
+</p>
+<p>
+To give the serverside peer a chance to send messages to the client side peer, the client
+side peer may reopen communication by sending an empty HTTP POST. 
+</p>
+<p>
+A non-valid request must result in closing the connection.
+A non-valid response must raise an exception for all unanswered requests on the client.
+Closing a connection must raise an exception for all unanswered requests on the client.
+</p>
+<p>
+FIXME: Describe/define how sessions are handled, as there is no implicit session formed by
+a TCP-connection.
+</p>
+<h2 id="a3.JSONClasshinting">3. JSON Class hinting<a class="anchor" href="https://www.jsonrpc.org/specification_v1#a3.JSONClasshinting" title="Link to this section"> ¶</a></h2>
+<p>
+There are only simple data types defined in JSON.
+To overcome this problem in a JSON compatible way a special property for objects is
+introduced.<br>
+<tt>{"__jsonclass__":["constructor", [param1,...]], "prop1": ...</tt>}<br>
+The object is then instantiated using the constructor, passing in the parameters.
+Once constructed the properties (prop1, ...) will be applied.
+</p>
+<h2 id="a4.CommunicationExamples">4. Communication Examples<a class="anchor" href="https://www.jsonrpc.org/specification_v1#a4.CommunicationExamples" title="Link to this section"> ¶</a></h2>
+<p>
+--&gt; data sent to service<br>
+&lt;-- data coming from service
+</p>
+<ul><li><tt>service.echo("Hello JSON-RPC")</tt>
+</li></ul><pre class="wiki">--&gt; { "method": "echo", "params": ["Hello JSON-RPC"], "id":
+1}
+&lt;-- { "result": "Hello JSON-RPC", "error": null, "id": 1}
+</pre><ul><li>multiple request responses
+</li></ul><p>
+This example shows parts of a communication from an example chat application.
+The chat service sends notifications for each chat message the client peer should receive.
+The client peer sends requests to post messages to the chat and expects a positive reply
+to know the message has been posted.
+</p>
+<pre class="wiki">...
+
+--&gt; {"method": "postMessage", "params": ["Hello all!"], "id": 99}
+&lt;-- {"result": 1, "error": null, "id": 99}
+&lt;-- {"method": "handleMessage", "params": ["user1", "we were just talking"], "id":
+null}
+&lt;-- {"method": "handleMessage", "params": ["user3", "sorry, gotta go now, ttyl"], "id":
+null}
+--&gt; {"method": "postMessage", "params": ["I have a question:"], "id": 101}
+&lt;-- {"method": "userLeft", "params": ["user3"], "id": null}
+&lt;-- {"result": 1, "error": null, "id": 101}
+...
+</pre><hr>
+<p>
+Copyright (C) 2005 JSON-RPC.ORG
+</p>
+<p>
+This document and translations of it may be used to implement JSON-RPC,
+it may be copied and furnished to others, and derivative works that
+comment on or otherwise explain it or assist in its implementation may
+be prepared, copied, published and distributed, in whole or in part,
+without restriction of any kind, provided that the above copyright
+notice and this paragraph are included on all such copies and derivative
+works. However, this document itself may not be modified in any way.
+</p>
+<p>
+The limited permissions granted above are perpetual and will not be
+revoked by JSON-RPC.org.
+</p>
+<p>
+This document and the information contained herein is provided on an "AS
+IS" basis and json-rpc.org DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+</p>
+</div>
+        
+        
+      </div>
+      
+
+    </div>
+
+
+
+        </div><!--/row-->
+        <hr>
+        <footer>
+          <div class="footer">Site by <a href="http://www.linkedin.com/in/matthewpetercharlesmorley">Matt Morley</a> of <a href="http://www.mpcm.com/">MPCM Technologies LLC</a>, a manager of the <a href="http://groups.google.com/group/json-rpc">JSON-RPC google group</a>.</div>
+        </footer>
+      </div><!--/.fluid-container-->
+    
+  
+</div></body></html>
