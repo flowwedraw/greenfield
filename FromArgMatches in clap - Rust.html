@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)https://docs.rs/clap/latest/clap/trait.FromArgMatches.html -->
+<html lang="en" data-theme="dark" data-docs-rs-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Converts an instance of `ArgMatches` to a user-defined container."><title>FromArgMatches in clap - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="/-/rustdoc.static/${f}">`).join(""))</script><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceSerif4-Regular-6b053e98.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Italic-81dc35de.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Regular-0fe48ade.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-MediumItalic-ccf7e434.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Medium-e1aa3f0a.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Regular-8badfe75.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Semibold-aa29a496.ttf.woff2"><link rel="stylesheet" href="./FromArgMatches in clap - Rust_files/normalize-9960930a.css"><link rel="stylesheet" href="./FromArgMatches in clap - Rust_files/vendored.css" media="all"><link rel="stylesheet" href="./FromArgMatches in clap - Rust_files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="/-/rustdoc.static/" data-current-crate="clap" data-themes="" data-resource-suffix="-20250608-1.89.0-nightly-6ccd44760" data-rustdoc-version="1.89.0-nightly (6ccd44760 2025-06-08)" data-channel="nightly" data-search-js="search-f7877310.js" data-settings-js="settings-5514c975.js"><script src="./FromArgMatches in clap - Rust_files/storage-4e99c027.js.Без названия"></script><script defer="" src="./FromArgMatches in clap - Rust_files/sidebar-items-20250608-1.89.0-nightly-6ccd44760.js.Без названия"></script><script defer="" src="./FromArgMatches in clap - Rust_files/main-fd3af306.js.Без названия"></script><script defer="" src="./FromArgMatches in clap - Rust_files/scrape-examples-5e967b76.js.Без названия"></script><noscript><link rel="stylesheet" href="/-/rustdoc.static/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="https://docs.rs/-/rustdoc.static/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="https://docs.rs/-/rustdoc.static/favicon-044be391.svg"><link rel="stylesheet" href="./FromArgMatches in clap - Rust_files/rustdoc-2021-12-05.css" media="all"><link rel="stylesheet" href="./FromArgMatches in clap - Rust_files/font-awesome.css" media="all">
+
+        <link rel="search" href="https://docs.rs/-/static/opensearch.xml" type="application/opensearchdescription+xml" title="Docs.rs">
+
+        <script type="text/javascript">(function() {
+    function applyTheme(theme) {
+        if (theme) {
+            document.documentElement.dataset.docsRsTheme = theme;
+        }
+    }
+
+    window.addEventListener("storage", ev => {
+        if (ev.key === "rustdoc-theme") {
+            applyTheme(ev.newValue);
+        }
+    });
+
+    // see ./storage-change-detection.html for details
+    window.addEventListener("message", ev => {
+        if (ev.data && ev.data.storage && ev.data.storage.key === "rustdoc-theme") {
+            applyTheme(ev.data.storage.value);
+        }
+    });
+
+    applyTheme(window.localStorage.getItem("rustdoc-theme"));
+})();</script></head><div style="display: none; position: fixed; width: 100%; height: 100%; z-index: 1;"></div><body class="rustdoc-page">
+<div class="nav-container">
+    <div class="container">
+        <div class="pure-menu pure-menu-horizontal" role="navigation" aria-label="Main navigation">
+            <form action="https://docs.rs/releases/search" method="GET" id="nav-search-form" class="landing-search-form-nav  ">
+
+                
+                <a href="https://docs.rs/" class="pure-menu-heading pure-menu-link docsrs-logo" aria-label="Docs.rs">
+                    <span title="Docs.rs"><span class="fa fa-solid fa-cubes " aria-hidden="true"></span></span>
+                    <span class="title">Docs.rs</span>
+                </a><ul class="pure-menu-list">
+    <script id="crate-metadata" type="application/json">
+        
+        {
+            "name": "clap",
+            "version": "4.5.40"
+        }
+    </script><li class="pure-menu-item pure-menu-has-children">
+            <a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#" class="pure-menu-link crate-name" title="A simple to use, efficient, and full-featured Command Line Argument Parser" aria-haspopup="menu">
+                <span class="fa fa-solid fa-cube " aria-hidden="true"></span>
+                <span class="title">clap-4.5.40</span>
+            </a><div class="pure-menu-children package-details-menu" role="menu">
+                
+                <ul class="pure-menu-list menu-item-divided">
+                    <li class="pure-menu-heading" id="crate-title">
+                        clap 4.5.40
+                        <span id="clipboard" class="svg-clipboard" title="Copy crate name and version information"></span>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/clap/4.5.40/clap/trait.FromArgMatches.html" class="pure-menu-link description" id="permalink" title="Get a link to this specific version">
+                            <span class="fa fa-solid fa-link " aria-hidden="true"></span> Permalink
+                        </a>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/crate/clap/latest" class="pure-menu-link description" title="See clap in docs.rs">
+                            <span class="fa fa-solid fa-cube " aria-hidden="true"></span> Docs.rs crate page
+                        </a>
+                    </li><li class="pure-menu-item">
+                            <span class="pure-menu-link description"><span class="fa fa-solid fa-scale-unbalanced-flip " aria-hidden="true"></span>
+                            <a href="https://spdx.org/licenses/MIT" class="pure-menu-sublink">MIT</a> OR <a href="https://spdx.org/licenses/Apache-2.0" class="pure-menu-sublink">Apache-2.0</a></span>
+                        </li></ul>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Links</li>
+
+                            <li class="pure-menu-item">
+                                    <a href="https://github.com/clap-rs/clap" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-code-branch " aria-hidden="true"></span> Repository
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                <a href="https://crates.io/crates/clap" class="pure-menu-link" title="See clap in crates.io">
+                                    <span class="fa fa-solid fa-cube " aria-hidden="true"></span> crates.io
+                                </a>
+                            </li>
+
+                            
+                            <li class="pure-menu-item">
+                                <a href="https://docs.rs/crate/clap/latest/source/" title="Browse source of clap-4.5.40" class="pure-menu-link">
+                                    <span class="fa fa-solid fa-folder-open " aria-hidden="true"></span> Source
+                                </a>
+                            </li>
+                        </ul>
+                    </div><div class="pure-u-1-2">
+                        <ul class="pure-menu-list" id="topbar-owners">
+                            <li class="pure-menu-heading">Owners</li><li class="pure-menu-item">
+                                    <a href="https://crates.io/users/kbknapp" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> kbknapp
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                    <a href="https://crates.io/teams/github:clap-rs:admins" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> github:clap-rs:admins
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                    <a href="https://crates.io/teams/github:rust-cli:maintainers" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> github:rust-cli:maintainers
+                                    </a>
+                                </li></ul>
+                    </div>
+                </div>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Dependencies</li>
+
+                            
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" tabindex="-1">
+                                    <ul class="pure-menu-list">
+                                        
+    <li class="pure-menu-item"><a href="https://docs.rs/clap_builder/=4.5.40" class="pure-menu-link">
+                        clap_builder =4.5.40
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/clap_derive/=4.5.40" class="pure-menu-link">
+                        clap_derive =4.5.40
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/automod/%5E1.0.14" class="pure-menu-link">
+                        automod ^1.0.14
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/clap-cargo/%5E0.15.0" class="pure-menu-link">
+                        clap-cargo ^0.15.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/jiff/%5E0.2.3" class="pure-menu-link">
+                        jiff ^0.2.3
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/rustversion/%5E1.0.15" class="pure-menu-link">
+                        rustversion ^1.0.15
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/shlex/%5E1.3.0" class="pure-menu-link">
+                        shlex ^1.3.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/snapbox/%5E0.6.16" class="pure-menu-link">
+                        snapbox ^0.6.16
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/trybuild/%5E1.0.91" class="pure-menu-link">
+                        trybuild ^1.0.91
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/trycmd/%5E0.15.3" class="pure-menu-link">
+                        trycmd ^0.15.3
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pure-u-1-2">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Versions</li>
+
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" id="releases-list" tabindex="-1" data-url="/crate/clap/latest/menus/releases/x86_64-unknown-linux-gnu/clap/trait.FromArgMatches.html">
+                                    <span class="rotate"><span class="fa fa-solid fa-spinner " aria-hidden="true"></span></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                    
+                    
+                    <div class="pure-g">
+                        <div class="pure-u-1">
+                            <ul class="pure-menu-list">
+                                <li>
+                                    <a href="https://docs.rs/crate/clap/latest" class="pure-menu-link">
+                                        <b>47.89%</b>
+                                        of the crate is documented
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div></div>
+        </li><li class="pure-menu-item pure-menu-has-children">
+                <a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#" class="pure-menu-link" aria-label="Platform" aria-haspopup="menu">
+                    <span class="fa fa-solid fa-gears " aria-hidden="true"></span>
+                    <span class="title">Platform</span>
+                </a>
+
+                
+                <ul class="pure-menu-children" id="platforms" data-url="/crate/clap/latest/menus/platforms/x86_64-unknown-linux-gnu/clap/trait.FromArgMatches.html" role="menu"><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap/latest/target-redirect/i686-pc-windows-msvc/clap/trait.FromArgMatches.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">i686-pc-windows-msvc</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap/latest/target-redirect/i686-unknown-linux-gnu/clap/trait.FromArgMatches.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">i686-unknown-linux-gnu</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap/latest/target-redirect/x86_64-apple-darwin/clap/trait.FromArgMatches.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">x86_64-apple-darwin</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap/latest/target-redirect/x86_64-pc-windows-msvc/clap/trait.FromArgMatches.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">x86_64-pc-windows-msvc</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap/latest/target-redirect/x86_64-unknown-linux-gnu/clap/trait.FromArgMatches.html" class="pure-menu-link current" data-fragment="retain" rel="nofollow">x86_64-unknown-linux-gnu</a>
+        </li></ul>
+            </li><li class="pure-menu-item">
+                <a href="https://docs.rs/crate/clap/latest/features" title="Browse available feature flags of clap-4.5.40" class="pure-menu-link">
+                    <span class="fa fa-solid fa-flag " aria-hidden="true"></span>
+                    <span class="title">Feature flags</span>
+                </a>
+            </li>
+        
+    
+</ul><div class="spacer"></div>
+                
+                
+
+<ul class="pure-menu-list">
+                    <li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#" class="pure-menu-link" aria-label="docs.rs" aria-haspopup="menu">docs.rs</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://docs.rs/about">
+            About docs.rs
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://foundation.rust-lang.org/policies/privacy-policy/#docs.rs" target="_blank">
+            Privacy policy
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="pure-menu-list"><li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#" class="pure-menu-link" aria-label="Rust" aria-haspopup="menu">Rust</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://www.rust-lang.org/" target="_blank">
+            Rust website
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/book/" target="_blank">
+            The Book
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/std/" target="_blank">
+            Standard Library API Reference
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/rust-by-example/" target="_blank">
+            Rust by Example
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/cargo/guide/" target="_blank">
+            The Cargo Guide
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/nightly/clippy" target="_blank">
+            Clippy Documentation
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div id="search-input-nav">
+                    <label for="nav-search">
+                        <span class="fa fa-solid fa-magnifying-glass " aria-hidden="true"></span>
+                    </label>
+
+                    
+                    
+                    <input id="nav-search" name="query" type="text" aria-label="Find crate by search query" tabindex="-1" placeholder="Find crate">
+                </div>
+            </form>
+        </div>
+    </div>
+</div><div class="rustdoc trait container-rustdoc" id="rustdoc_body_wrapper" tabindex="-1"><script async="" src="./FromArgMatches in clap - Rust_files/menu.js.Без названия"></script>
+<script async="" src="./FromArgMatches in clap - Rust_files/index.js.Без названия"></script>
+
+<iframe src="./FromArgMatches in clap - Rust_files/storage-change-detection.html" width="0" height="0" style="display: none"></iframe><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button><a class="logo-container" href="https://docs.rs/clap/latest/clap/index.html"><img src="./FromArgMatches in clap - Rust_files/clap.png" alt=""></a><h2 class="location"><a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#">From<wbr>ArgMatches</a></h2></nav><nav class="sidebar"><div class="sidebar-crate"><a class="logo-container" href="https://docs.rs/clap/latest/clap/index.html"><img src="./FromArgMatches in clap - Rust_files/clap.png" alt="logo"></a><h2><a href="https://docs.rs/clap/latest/clap/index.html">clap</a><span class="version">4.5.40</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#">From<wbr>ArgMatches</a></h2><h3><a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#required-methods">Required Methods</a></h3><ul class="block"><li><a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#tymethod.from_arg_matches" title="from_arg_matches">from_arg_matches</a></li><li><a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#tymethod.update_from_arg_matches" title="update_from_arg_matches">update_from_arg_matches</a></li></ul><h3><a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#method.from_arg_matches_mut" title="from_arg_matches_mut">from_arg_matches_mut</a></li><li><a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#method.update_from_arg_matches_mut" title="update_from_arg_matches_mut">update_from_arg_matches_mut</a></li></ul><h3><a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#foreign-impls">Implementations on Foreign Types</a></h3><ul class="block"><li><a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#impl-FromArgMatches-for-Box%3CT%3E" title="Box&lt;T&gt;">Box&lt;T&gt;</a></li></ul><h3><a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2 class="in-crate"><a href="https://docs.rs/clap/latest/clap/index.html">In crate clap</a></h2><h3><a href="https://docs.rs/clap/latest/clap/index.html#modules">Modules</a></h3><ul class="block mod"><li><a href="https://docs.rs/clap/latest/clap/_cookbook/index.html">_cookbook</a></li><li><a href="https://docs.rs/clap/latest/clap/_derive/index.html">_derive</a></li><li><a href="https://docs.rs/clap/latest/clap/_faq/index.html">_faq</a></li><li><a href="https://docs.rs/clap/latest/clap/_features/index.html">_features</a></li><li><a href="https://docs.rs/clap/latest/clap/_tutorial/index.html">_tutorial</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/index.html">builder</a></li><li><a href="https://docs.rs/clap/latest/clap/error/index.html">error</a></li><li><a href="https://docs.rs/clap/latest/clap/parser/index.html">parser</a></li></ul><h3><a href="https://docs.rs/clap/latest/clap/index.html#macros">Macros</a></h3><ul class="block macro"><li><a href="https://docs.rs/clap/latest/clap/macro.arg.html">arg</a></li><li><a href="https://docs.rs/clap/latest/clap/macro.command.html">command</a></li><li><a href="https://docs.rs/clap/latest/clap/macro.crate_authors.html">crate_authors</a></li><li><a href="https://docs.rs/clap/latest/clap/macro.crate_description.html">crate_description</a></li><li><a href="https://docs.rs/clap/latest/clap/macro.crate_name.html">crate_name</a></li><li><a href="https://docs.rs/clap/latest/clap/macro.crate_version.html">crate_version</a></li><li><a href="https://docs.rs/clap/latest/clap/macro.value_parser.html">value_parser</a></li></ul><h3><a href="https://docs.rs/clap/latest/clap/index.html#structs">Structs</a></h3><ul class="block struct"><li><a href="https://docs.rs/clap/latest/clap/struct.Arg.html">Arg</a></li><li><a href="https://docs.rs/clap/latest/clap/struct.ArgGroup.html">ArgGroup</a></li><li><a href="https://docs.rs/clap/latest/clap/struct.ArgMatches.html">ArgMatches</a></li><li><a href="https://docs.rs/clap/latest/clap/struct.Command.html">Command</a></li><li><a href="https://docs.rs/clap/latest/clap/struct.Id.html">Id</a></li></ul><h3><a href="https://docs.rs/clap/latest/clap/index.html#enums">Enums</a></h3><ul class="block enum"><li><a href="https://docs.rs/clap/latest/clap/enum.ArgAction.html">ArgAction</a></li><li><a href="https://docs.rs/clap/latest/clap/enum.ColorChoice.html">ColorChoice</a></li><li><a href="https://docs.rs/clap/latest/clap/enum.ValueHint.html">ValueHint</a></li></ul><h3><a href="https://docs.rs/clap/latest/clap/index.html#traits">Traits</a></h3><ul class="block trait"><li><a href="https://docs.rs/clap/latest/clap/trait.Args.html">Args</a></li><li><a href="https://docs.rs/clap/latest/clap/trait.CommandFactory.html">CommandFactory</a></li><li class="current"><a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html">FromArgMatches</a></li><li><a href="https://docs.rs/clap/latest/clap/trait.Parser.html">Parser</a></li><li><a href="https://docs.rs/clap/latest/clap/trait.Subcommand.html">Subcommand</a></li><li><a href="https://docs.rs/clap/latest/clap/trait.ValueEnum.html">ValueEnum</a></li></ul><h3><a href="https://docs.rs/clap/latest/clap/index.html#types">Type Aliases</a></h3><ul class="block type"><li><a href="https://docs.rs/clap/latest/clap/type.Error.html">Error</a></li></ul></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search><nav class="sub">
+            <form class="search-form">
+                <span></span> <!-- This empty span is a hacky fix for Safari - See #93184 -->
+                <div id="sidebar-button" tabindex="-1">
+                    <a href="https://docs.rs/clap/latest/clap/all.html" title="show sidebar"></a>
+                </div>
+                <input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search">
+            </form>
+        </nav></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="https://docs.rs/clap/latest/clap/index.html">clap</a></div><h1>Trait <span class="trait">FromArgMatches</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar>
+        <div id="settings-menu" tabindex="-1">
+            <a href="https://docs.rs/clap/latest/settings.html"><span class="label">Settings</span></a>
+        </div>
+        <div id="help-button" tabindex="-1">
+            <a href="https://docs.rs/clap/latest/help.html"><span class="label">Help</span></a>
+        </div>
+        <button id="toggle-all-docs"><span class="label">Summary</span></button></rustdoc-toolbar><span class="sub-heading"><a class="src" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/derive.rs.html#129">Source</a> </span></div><pre class="rust item-decl"><code>pub trait FromArgMatches: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a> {
+    // Required methods
+    fn <a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#tymethod.from_arg_matches" class="fn">from_arg_matches</a>(matches: &amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.ArgMatches.html" title="struct clap::ArgMatches">ArgMatches</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;Self, <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#tymethod.update_from_arg_matches" class="fn">update_from_arg_matches</a>(
+        &amp;mut self,
+        matches: &amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.ArgMatches.html" title="struct clap::ArgMatches">ArgMatches</a>,
+    ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&gt;;
+
+    // Provided methods
+    fn <a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#method.from_arg_matches_mut" class="fn">from_arg_matches_mut</a>(matches: &amp;mut <a class="struct" href="https://docs.rs/clap/latest/clap/struct.ArgMatches.html" title="struct clap::ArgMatches">ArgMatches</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;Self, <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#method.update_from_arg_matches_mut" class="fn">update_from_arg_matches_mut</a>(
+        &amp;mut self,
+        matches: &amp;mut <a class="struct" href="https://docs.rs/clap/latest/clap/struct.ArgMatches.html" title="struct clap::ArgMatches">ArgMatches</a>,
+    ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&gt; { ... }
+}</code></pre><details class="toggle top-doc" open=""><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Converts an instance of <a href="https://docs.rs/clap/latest/clap/struct.ArgMatches.html" title="struct clap::ArgMatches"><code>ArgMatches</code></a> to a user-defined container.</p>
+<p>Derived as part of <a href="https://docs.rs/clap/latest/clap/trait.Parser.html" title="trait clap::Parser"><code>Parser</code></a>, <a href="https://docs.rs/clap/latest/clap/trait.Args.html" title="trait clap::Args"><code>Args</code></a>, and <a href="https://docs.rs/clap/latest/clap/trait.Subcommand.html" title="trait clap::Subcommand"><code>Subcommand</code></a>.</p>
+</div></details><h2 id="required-methods" class="section-header">Required Methods<a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#required-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open=""><summary><section id="tymethod.from_arg_matches" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/derive.rs.html#164">Source</a><h4 class="code-header">fn <a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#tymethod.from_arg_matches" class="fn">from_arg_matches</a>(matches: &amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.ArgMatches.html" title="struct clap::ArgMatches">ArgMatches</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;Self, <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Instantiate <code>Self</code> from <a href="https://docs.rs/clap/latest/clap/struct.ArgMatches.html" title="struct clap::ArgMatches"><code>ArgMatches</code></a>, parsing the arguments as needed.</p>
+<p>Motivation: If our application had two CLI options, <code>--name &lt;STRING&gt;</code> and the flag <code>--debug</code>, we may create a struct as follows:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">struct </span>Context {
+    name: String,
+    debug: bool
+}</code></pre></div>
+<p>We then need to convert the <code>ArgMatches</code> that <code>clap</code> generated into our struct.
+<code>from_arg_matches</code> serves as the equivalent of:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">impl </span>From&lt;ArgMatches&gt; <span class="kw">for </span>Context {
+   <span class="kw">fn </span>from(m: ArgMatches) -&gt; <span class="self">Self </span>{
+       Context {
+           name: m.get_one::&lt;String&gt;(<span class="string">"name"</span>).unwrap().clone(),
+           debug: m.get_flag(<span class="string">"debug"</span>),
+       }
+   }
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="tymethod.update_from_arg_matches" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/derive.rs.html#205">Source</a><h4 class="code-header">fn <a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#tymethod.update_from_arg_matches" class="fn">update_from_arg_matches</a>(&amp;mut self, matches: &amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.ArgMatches.html" title="struct clap::ArgMatches">ArgMatches</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Assign values from <code>ArgMatches</code> to <code>self</code>.</p>
+</div></details></div><h2 id="provided-methods" class="section-header">Provided Methods<a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open=""><summary><section id="method.from_arg_matches_mut" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/derive.rs.html#200">Source</a><h4 class="code-header">fn <a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#method.from_arg_matches_mut" class="fn">from_arg_matches_mut</a>(matches: &amp;mut <a class="struct" href="https://docs.rs/clap/latest/clap/struct.ArgMatches.html" title="struct clap::ArgMatches">ArgMatches</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;Self, <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Instantiate <code>Self</code> from <a href="https://docs.rs/clap/latest/clap/struct.ArgMatches.html" title="struct clap::ArgMatches"><code>ArgMatches</code></a>, parsing the arguments as needed.</p>
+<p>Motivation: If our application had two CLI options, <code>--name &lt;STRING&gt;</code> and the flag <code>--debug</code>, we may create a struct as follows:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">struct </span>Context {
+    name: String,
+    debug: bool
+}</code></pre></div>
+<p>We then need to convert the <code>ArgMatches</code> that <code>clap</code> generated into our struct.
+<code>from_arg_matches_mut</code> serves as the equivalent of:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">impl </span>From&lt;ArgMatches&gt; <span class="kw">for </span>Context {
+   <span class="kw">fn </span>from(m: ArgMatches) -&gt; <span class="self">Self </span>{
+       Context {
+           name: m.get_one::&lt;String&gt;(<span class="string">"name"</span>).unwrap().to_string(),
+           debug: m.get_flag(<span class="string">"debug"</span>),
+       }
+   }
+}</code></pre></div>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#scraped-examples">Examples found in repository</a><a class="scrape-help" href="https://docs.rs/clap/latest/scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[2,2],&quot;../src/interop_flatten_hand_args/flatten_hand_args.rs.html#14&quot;,&quot;line 14&quot;]]"><div class="scraped-example-title">examples/derive_ref/flatten_hand_args.rs (<a href="https://docs.rs/clap/latest/src/interop_flatten_hand_args/flatten_hand_args.rs.html#14">line 14</a>)</div><div class="example-wrap digits-2"><pre class="rust"><code><span data-nosnippet="">12</span>    <span class="kw">fn </span>from_arg_matches(matches: <span class="kw-2">&amp;</span>ArgMatches) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, Error&gt; {
+<span data-nosnippet="">13</span>        <span class="kw">let </span><span class="kw-2">mut </span>matches = matches.clone();
+<span data-nosnippet="">14</span>        <span class="highlight focus"><span class="self">Self</span>::from_arg_matches_mut</span>(<span class="kw-2">&amp;mut </span>matches)
+<span data-nosnippet="">15</span>    }</code></pre></div></div></div></details><details class="toggle method-toggle" open=""><summary><section id="method.update_from_arg_matches_mut" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/derive.rs.html#208">Source</a><h4 class="code-header">fn <a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#method.update_from_arg_matches_mut" class="fn">update_from_arg_matches_mut</a>(
+    &amp;mut self,
+    matches: &amp;mut <a class="struct" href="https://docs.rs/clap/latest/clap/struct.ArgMatches.html" title="struct clap::ArgMatches">ArgMatches</a>,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Assign values from <code>ArgMatches</code> to <code>self</code>.</p>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1"><a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#scraped-examples-1">Examples found in repository</a><a class="scrape-help" href="https://docs.rs/clap/latest/scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[2,2],&quot;../src/interop_flatten_hand_args/flatten_hand_args.rs.html#25&quot;,&quot;line 25&quot;]]"><div class="scraped-example-title">examples/derive_ref/flatten_hand_args.rs (<a href="https://docs.rs/clap/latest/src/interop_flatten_hand_args/flatten_hand_args.rs.html#25">line 25</a>)</div><div class="example-wrap digits-2"><pre class="rust"><code><span data-nosnippet="">23</span>    <span class="kw">fn </span>update_from_arg_matches(<span class="kw-2">&amp;mut </span><span class="self">self</span>, matches: <span class="kw-2">&amp;</span>ArgMatches) -&gt; <span class="prelude-ty">Result</span>&lt;(), Error&gt; {
+<span data-nosnippet="">24</span>        <span class="kw">let </span><span class="kw-2">mut </span>matches = matches.clone();
+<span data-nosnippet="">25</span>        <span class="self">self</span>.<span class="highlight focus">update_from_arg_matches_mut</span>(<span class="kw-2">&amp;mut </span>matches)
+<span data-nosnippet="">26</span>    }</code></pre></div></div></div></details></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="foreign-impls" class="section-header">Implementations on Foreign Types<a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#foreign-impls" class="anchor">§</a></h2><details class="toggle implementors-toggle"><summary><section id="impl-FromArgMatches-for-Box%3CT%3E" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/derive.rs.html#350">Source</a><a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#impl-FromArgMatches-for-Box%3CT%3E" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html" title="trait clap::FromArgMatches">FromArgMatches</a> for <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;T&gt;<div class="where">where
+    T: <a class="trait" href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html" title="trait clap::FromArgMatches">FromArgMatches</a>,</div></h3></section></summary><div class="impl-items"><section id="method.from_arg_matches" class="method trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/derive.rs.html#351">Source</a><a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#method.from_arg_matches" class="anchor">§</a><h4 class="code-header">fn <a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#tymethod.from_arg_matches" class="fn">from_arg_matches</a>(matches: &amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.ArgMatches.html" title="struct clap::ArgMatches">ArgMatches</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;T&gt;, <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&gt;</h4></section><section id="method.from_arg_matches_mut-1" class="method trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/derive.rs.html#354">Source</a><a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#method.from_arg_matches_mut-1" class="anchor">§</a><h4 class="code-header">fn <a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#method.from_arg_matches_mut" class="fn">from_arg_matches_mut</a>(matches: &amp;mut <a class="struct" href="https://docs.rs/clap/latest/clap/struct.ArgMatches.html" title="struct clap::ArgMatches">ArgMatches</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;T&gt;, <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&gt;</h4></section><section id="method.update_from_arg_matches" class="method trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/derive.rs.html#357">Source</a><a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#method.update_from_arg_matches" class="anchor">§</a><h4 class="code-header">fn <a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#tymethod.update_from_arg_matches" class="fn">update_from_arg_matches</a>(&amp;mut self, matches: &amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.ArgMatches.html" title="struct clap::ArgMatches">ArgMatches</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&gt;</h4></section><section id="method.update_from_arg_matches_mut-1" class="method trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/derive.rs.html#360">Source</a><a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#method.update_from_arg_matches_mut-1" class="anchor">§</a><h4 class="code-header">fn <a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#method.update_from_arg_matches_mut" class="fn">update_from_arg_matches_mut</a>(
+    &amp;mut self,
+    matches: &amp;mut <a class="struct" href="https://docs.rs/clap/latest/clap/struct.ArgMatches.html" title="struct clap::ArgMatches">ArgMatches</a>,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&gt;</h4></section></div></details><h2 id="implementors" class="section-header">Implementors<a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html#implementors" class="anchor">§</a></h2><div id="implementors-list"></div><script src="./FromArgMatches in clap - Rust_files/trait.FromArgMatches.js.Без названия" data-ignore-extern-crates="alloc" async=""></script></section></div></main></div></body></html>

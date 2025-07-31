@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<!-- saved from url=(0082)https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#26 -->
+<html lang="en" data-theme="dark" data-docs-rs-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/builder/styled_str.rs`."><title>styled_str.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="/-/rustdoc.static/${f}">`).join(""))</script><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceSerif4-Regular-6b053e98.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Italic-81dc35de.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Regular-0fe48ade.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-MediumItalic-ccf7e434.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Medium-e1aa3f0a.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Regular-8badfe75.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Semibold-aa29a496.ttf.woff2"><link rel="stylesheet" href="./styled_str.rs - source_files/normalize-9960930a.css"><link rel="stylesheet" href="./styled_str.rs - source_files/vendored.css" media="all"><link rel="stylesheet" href="./styled_str.rs - source_files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="/-/rustdoc.static/" data-current-crate="clap_builder" data-themes="" data-resource-suffix="-20250608-1.89.0-nightly-6ccd44760" data-rustdoc-version="1.89.0-nightly (6ccd44760 2025-06-08)" data-channel="nightly" data-search-js="search-f7877310.js" data-settings-js="settings-5514c975.js"><script src="./styled_str.rs - source_files/storage-4e99c027.js.Без названия"></script><script defer="" src="./styled_str.rs - source_files/src-script-63605ae7.js.Без названия"></script><script defer="" src="./styled_str.rs - source_files/src-files-20250608-1.89.0-nightly-6ccd44760.js.Без названия"></script><script defer="" src="./styled_str.rs - source_files/main-fd3af306.js.Без названия"></script><noscript><link rel="stylesheet" href="/-/rustdoc.static/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="https://docs.rs/-/rustdoc.static/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="https://docs.rs/-/rustdoc.static/favicon-044be391.svg"><link rel="stylesheet" href="./styled_str.rs - source_files/rustdoc-2021-12-05.css" media="all"><link rel="stylesheet" href="./styled_str.rs - source_files/font-awesome.css" media="all">
+
+        <link rel="search" href="https://docs.rs/-/static/opensearch.xml" type="application/opensearchdescription+xml" title="Docs.rs">
+
+        <script type="text/javascript">(function() {
+    function applyTheme(theme) {
+        if (theme) {
+            document.documentElement.dataset.docsRsTheme = theme;
+        }
+    }
+
+    window.addEventListener("storage", ev => {
+        if (ev.key === "rustdoc-theme") {
+            applyTheme(ev.newValue);
+        }
+    });
+
+    // see ./storage-change-detection.html for details
+    window.addEventListener("message", ev => {
+        if (ev.data && ev.data.storage && ev.data.storage.key === "rustdoc-theme") {
+            applyTheme(ev.data.storage.value);
+        }
+    });
+
+    applyTheme(window.localStorage.getItem("rustdoc-theme"));
+})();</script></head><div style="display: none; position: fixed; width: 100%; height: 100%; z-index: 1;"></div><body class="rustdoc-page">
+<div class="nav-container">
+    <div class="container">
+        <div class="pure-menu pure-menu-horizontal" role="navigation" aria-label="Main navigation">
+            <form action="https://docs.rs/releases/search" method="GET" id="nav-search-form" class="landing-search-form-nav  ">
+
+                
+                <a href="https://docs.rs/" class="pure-menu-heading pure-menu-link docsrs-logo" aria-label="Docs.rs">
+                    <span title="Docs.rs"><span class="fa fa-solid fa-cubes " aria-hidden="true"></span></span>
+                    <span class="title">Docs.rs</span>
+                </a><ul class="pure-menu-list">
+    <script id="crate-metadata" type="application/json">
+        
+        {
+            "name": "clap_builder",
+            "version": "4.5.40"
+        }
+    </script><li class="pure-menu-item pure-menu-has-children">
+            <a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#" class="pure-menu-link crate-name" title="A simple to use, efficient, and full-featured Command Line Argument Parser" aria-haspopup="menu">
+                <span class="fa fa-solid fa-cube " aria-hidden="true"></span>
+                <span class="title">clap_builder-4.5.40</span>
+            </a><div class="pure-menu-children package-details-menu" role="menu">
+                
+                <ul class="pure-menu-list menu-item-divided">
+                    <li class="pure-menu-heading" id="crate-title">
+                        clap_builder 4.5.40
+                        <span id="clipboard" class="svg-clipboard" title="Copy crate name and version information"></span>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/crate/clap_builder/4.5.40" class="pure-menu-link description" title="See clap_builder in docs.rs">
+                            <span class="fa fa-solid fa-cube " aria-hidden="true"></span> Docs.rs crate page
+                        </a>
+                    </li><li class="pure-menu-item">
+                            <span class="pure-menu-link description"><span class="fa fa-solid fa-scale-unbalanced-flip " aria-hidden="true"></span>
+                            <a href="https://spdx.org/licenses/MIT" class="pure-menu-sublink">MIT</a> OR <a href="https://spdx.org/licenses/Apache-2.0" class="pure-menu-sublink">Apache-2.0</a></span>
+                        </li></ul>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Links</li>
+
+                            <li class="pure-menu-item">
+                                    <a href="https://github.com/clap-rs/clap" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-code-branch " aria-hidden="true"></span> Repository
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                <a href="https://crates.io/crates/clap_builder" class="pure-menu-link" title="See clap_builder in crates.io">
+                                    <span class="fa fa-solid fa-cube " aria-hidden="true"></span> crates.io
+                                </a>
+                            </li>
+
+                            
+                            <li class="pure-menu-item">
+                                <a href="https://docs.rs/crate/clap_builder/4.5.40/source/" title="Browse source of clap_builder-4.5.40" class="pure-menu-link">
+                                    <span class="fa fa-solid fa-folder-open " aria-hidden="true"></span> Source
+                                </a>
+                            </li>
+                        </ul>
+                    </div><div class="pure-u-1-2">
+                        <ul class="pure-menu-list" id="topbar-owners">
+                            <li class="pure-menu-heading">Owners</li><li class="pure-menu-item">
+                                    <a href="https://crates.io/users/epage" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> epage
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                    <a href="https://crates.io/teams/github:clap-rs:admins" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> github:clap-rs:admins
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                    <a href="https://crates.io/teams/github:rust-cli:maintainers" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> github:rust-cli:maintainers
+                                    </a>
+                                </li></ul>
+                    </div>
+                </div>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Dependencies</li>
+
+                            
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" tabindex="-1">
+                                    <ul class="pure-menu-list">
+                                        
+    <li class="pure-menu-item"><a href="https://docs.rs/anstream/%5E0.6.7" class="pure-menu-link">
+                        anstream ^0.6.7
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/anstyle/%5E1.0.8" class="pure-menu-link">
+                        anstyle ^1.0.8
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/backtrace/%5E0.3.73" class="pure-menu-link">
+                        backtrace ^0.3.73
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/clap_lex/%5E0.7.4" class="pure-menu-link">
+                        clap_lex ^0.7.4
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/strsim/%5E0.11.0" class="pure-menu-link">
+                        strsim ^0.11.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/terminal_size/%5E0.4.0" class="pure-menu-link">
+                        terminal_size ^0.4.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/unicase/%5E2.6.0" class="pure-menu-link">
+                        unicase ^2.6.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/unicode-width/%5E0.2.0" class="pure-menu-link">
+                        unicode-width ^0.2.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/color-print/%5E0.3.6" class="pure-menu-link">
+                        color-print ^0.3.6
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/static_assertions/%5E1.1.0" class="pure-menu-link">
+                        static_assertions ^1.1.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/unic-emoji-char/%5E0.9.0" class="pure-menu-link">
+                        unic-emoji-char ^0.9.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pure-u-1-2">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Versions</li>
+
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" id="releases-list" tabindex="-1" data-url="/crate/clap_builder/4.5.40/menus/releases/x86_64-unknown-linux-gnu/src/clap_builder/builder/styled_str.rs.html">
+                                    <span class="rotate"><span class="fa fa-solid fa-spinner " aria-hidden="true"></span></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                    
+                    
+                    <div class="pure-g">
+                        <div class="pure-u-1">
+                            <ul class="pure-menu-list">
+                                <li>
+                                    <a href="https://docs.rs/crate/clap_builder/4.5.40" class="pure-menu-link">
+                                        <b>100%</b>
+                                        of the crate is documented
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div></div>
+        </li><li class="pure-menu-item pure-menu-has-children">
+                <a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#" class="pure-menu-link" aria-label="Platform" aria-haspopup="menu">
+                    <span class="fa fa-solid fa-gears " aria-hidden="true"></span>
+                    <span class="title">Platform</span>
+                </a>
+
+                
+                <ul class="pure-menu-children" id="platforms" data-url="/crate/clap_builder/4.5.40/menus/platforms/x86_64-unknown-linux-gnu/src/clap_builder/builder/styled_str.rs.html" role="menu"><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap_builder/4.5.40/target-redirect/i686-pc-windows-msvc/src/clap_builder/builder/styled_str.rs.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">i686-pc-windows-msvc</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap_builder/4.5.40/target-redirect/i686-unknown-linux-gnu/src/clap_builder/builder/styled_str.rs.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">i686-unknown-linux-gnu</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap_builder/4.5.40/target-redirect/x86_64-apple-darwin/src/clap_builder/builder/styled_str.rs.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">x86_64-apple-darwin</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap_builder/4.5.40/target-redirect/x86_64-pc-windows-msvc/src/clap_builder/builder/styled_str.rs.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">x86_64-pc-windows-msvc</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap_builder/4.5.40/target-redirect/x86_64-unknown-linux-gnu/src/clap_builder/builder/styled_str.rs.html" class="pure-menu-link current" data-fragment="retain" rel="nofollow">x86_64-unknown-linux-gnu</a>
+        </li></ul>
+            </li><li class="pure-menu-item">
+                <a href="https://docs.rs/crate/clap_builder/4.5.40/features" title="Browse available feature flags of clap_builder-4.5.40" class="pure-menu-link">
+                    <span class="fa fa-solid fa-flag " aria-hidden="true"></span>
+                    <span class="title">Feature flags</span>
+                </a>
+            </li>
+        
+    
+</ul><div class="spacer"></div>
+                
+                
+
+<ul class="pure-menu-list">
+                    <li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#" class="pure-menu-link" aria-label="docs.rs" aria-haspopup="menu">docs.rs</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://docs.rs/about">
+            About docs.rs
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://foundation.rust-lang.org/policies/privacy-policy/#docs.rs" target="_blank">
+            Privacy policy
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="pure-menu-list"><li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#" class="pure-menu-link" aria-label="Rust" aria-haspopup="menu">Rust</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://www.rust-lang.org/" target="_blank">
+            Rust website
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/book/" target="_blank">
+            The Book
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/std/" target="_blank">
+            Standard Library API Reference
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/rust-by-example/" target="_blank">
+            Rust by Example
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/cargo/guide/" target="_blank">
+            The Cargo Guide
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/nightly/clippy" target="_blank">
+            Clippy Documentation
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div id="search-input-nav">
+                    <label for="nav-search">
+                        <span class="fa fa-solid fa-magnifying-glass " aria-hidden="true"></span>
+                    </label>
+
+                    
+                    
+                    <input id="nav-search" name="query" type="text" aria-label="Find crate by search query" tabindex="-1" placeholder="Find crate">
+                </div>
+            </form>
+        </div>
+    </div>
+</div><div class="rustdoc src container-rustdoc" id="rustdoc_body_wrapper" tabindex="-1"><script async="" src="./styled_str.rs - source_files/menu.js.Без названия"></script>
+<script async="" src="./styled_str.rs - source_files/index.js.Без названия"></script>
+
+<iframe src="./styled_str.rs - source_files/storage-change-detection.html" width="0" height="0" style="display: none"></iframe><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div><div id="src-sidebar"><details class="dir-entry" open=""><summary>clap_builder</summary><div class="folders"><details class="dir-entry" open=""><summary>builder</summary><div class="folders"></div><div class="files"><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/action.rs.html">action.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/app_settings.rs.html">app_settings.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/arg.rs.html">arg.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/arg_group.rs.html">arg_group.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/arg_predicate.rs.html">arg_predicate.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/arg_settings.rs.html">arg_settings.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/command.rs.html">command.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/debug_asserts.rs.html">debug_asserts.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/ext.rs.html">ext.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/mod.rs.html">mod.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/os_str.rs.html">os_str.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/possible_value.rs.html">possible_value.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/range.rs.html">range.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/resettable.rs.html">resettable.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/str.rs.html">str.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html" class="selected">styled_str.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styling.rs.html">styling.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html">value_hint.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_parser.rs.html">value_parser.rs</a></div></details><details class="dir-entry"><summary>error</summary><div class="folders"></div><div class="files"><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/error/context.rs.html">context.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/error/format.rs.html">format.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/error/kind.rs.html">kind.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/error/mod.rs.html">mod.rs</a></div></details><details class="dir-entry"><summary>output</summary><div class="folders"><details class="dir-entry"><summary>textwrap</summary><div class="folders"></div><div class="files"><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/output/textwrap/core.rs.html">core.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/output/textwrap/mod.rs.html">mod.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/output/textwrap/word_separators.rs.html">word_separators.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/output/textwrap/wrap_algorithms.rs.html">wrap_algorithms.rs</a></div></details></div><div class="files"><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/output/fmt.rs.html">fmt.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/output/help.rs.html">help.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/output/help_template.rs.html">help_template.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/output/mod.rs.html">mod.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/output/usage.rs.html">usage.rs</a></div></details><details class="dir-entry"><summary>parser</summary><div class="folders"><details class="dir-entry"><summary>features</summary><div class="folders"></div><div class="files"><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/features/mod.rs.html">mod.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/features/suggestions.rs.html">suggestions.rs</a></div></details><details class="dir-entry"><summary>matches</summary><div class="folders"></div><div class="files"><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/matches/arg_matches.rs.html">arg_matches.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/matches/matched_arg.rs.html">matched_arg.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/matches/mod.rs.html">mod.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/matches/value_source.rs.html">value_source.rs</a></div></details></div><div class="files"><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/arg_matcher.rs.html">arg_matcher.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/error.rs.html">error.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/mod.rs.html">mod.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/parser.rs.html">parser.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/validator.rs.html">validator.rs</a></div></details><details class="dir-entry"><summary>util</summary><div class="folders"></div><div class="files"><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/util/any_value.rs.html">any_value.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/util/color.rs.html">color.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/util/flat_map.rs.html">flat_map.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/util/flat_set.rs.html">flat_set.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/util/graph.rs.html">graph.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/util/id.rs.html">id.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/util/mod.rs.html">mod.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/util/str_to_bool.rs.html">str_to_bool.rs</a></div></details></div><div class="files"><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/derive.rs.html">derive.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/lib.rs.html">lib.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/macros.rs.html">macros.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/mkeymap.rs.html">mkeymap.rs</a></div></details></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><rustdoc-search><nav class="sub">
+            <form class="search-form">
+                <span></span> <!-- This empty span is a hacky fix for Safari - See #93184 -->
+                <div id="sidebar-button" tabindex="-1">
+                    <a href="https://docs.rs/clap_builder/4.5.40/clap_builder/all.html" title="show sidebar"></a>
+                </div>
+                <input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search">
+            </form>
+        </nav></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">clap_builder/builder/</div>styled_str.rs</h1><rustdoc-toolbar>
+        <div id="settings-menu" tabindex="-1">
+            <a href="https://docs.rs/clap_builder/4.5.40/settings.html"><span class="label">Settings</span></a>
+        </div>
+        <div id="help-button" tabindex="-1">
+            <a href="https://docs.rs/clap_builder/4.5.40/help.html"><span class="label">Help</span></a>
+        </div>
+        <button id="toggle-all-docs"><span class="label">Summary</span></button></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#1" id="1" data-nosnippet="">1</a><span class="attr">#![cfg_attr(not(feature = <span class="string">"usage"</span>), allow(dead_code))]
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#2" id="2" data-nosnippet="">2</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#3" id="3" data-nosnippet="">3</a></span><span class="doccomment">/// Terminal-styling container
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#4" id="4" data-nosnippet="">4</a>///
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#5" id="5" data-nosnippet="">5</a>/// Styling may be encoded as [ANSI Escape Code](https://en.wikipedia.org/wiki/ANSI_escape_code)
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#6" id="6" data-nosnippet="">6</a>///
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#7" id="7" data-nosnippet="">7</a>/// # Examples
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#8" id="8" data-nosnippet="">8</a>///
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#9" id="9" data-nosnippet="">9</a>/// ```rust
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#10" id="10" data-nosnippet="">10</a>/// # use clap_builder as clap;
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#11" id="11" data-nosnippet="">11</a>/// // `cstr!` converts tags to ANSI codes
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#12" id="12" data-nosnippet="">12</a>/// let after_help: &amp;'static str = color_print::cstr!(
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#13" id="13" data-nosnippet="">13</a>/// r#"&lt;bold&gt;&lt;underline&gt;Examples&lt;/underline&gt;&lt;/bold&gt;
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#14" id="14" data-nosnippet="">14</a>///
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#15" id="15" data-nosnippet="">15</a>///   &lt;dim&gt;$&lt;/dim&gt; &lt;bold&gt;mybin --input file.toml&lt;/bold&gt;
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#16" id="16" data-nosnippet="">16</a>/// "#);
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#17" id="17" data-nosnippet="">17</a>///
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#18" id="18" data-nosnippet="">18</a>/// let cmd = clap::Command::new("mybin")
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#19" id="19" data-nosnippet="">19</a>///     .after_help(after_help)  // The `&amp;str` gets converted into a `StyledStr`
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#20" id="20" data-nosnippet="">20</a>///     // ...
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#21" id="21" data-nosnippet="">21</a>/// #   ;
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#22" id="22" data-nosnippet="">22</a>/// ```
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#23" id="23" data-nosnippet="">23</a></span><span class="attr">#[derive(Clone, Default, Debug, PartialEq, Eq, PartialOrd, Ord)]
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#24" id="24" data-nosnippet="">24</a></span><span class="kw">pub struct </span>StyledStr(String);
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#25" id="25" data-nosnippet="">25</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#26" id="26" data-nosnippet="" class="line-highlighted">26</a><span class="kw">impl </span>StyledStr {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#27" id="27" data-nosnippet="">27</a>    <span class="doccomment">/// Create an empty buffer
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#28" id="28" data-nosnippet="">28</a>    </span><span class="kw">pub const fn </span>new() -&gt; <span class="self">Self </span>{
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#29" id="29" data-nosnippet="">29</a>        <span class="self">Self</span>(String::new())
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#30" id="30" data-nosnippet="">30</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#31" id="31" data-nosnippet="">31</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#32" id="32" data-nosnippet="">32</a>    <span class="doccomment">/// Display using [ANSI Escape Code](https://en.wikipedia.org/wiki/ANSI_escape_code) styling
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#33" id="33" data-nosnippet="">33</a>    </span><span class="attr">#[cfg(feature = <span class="string">"color"</span>)]
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#34" id="34" data-nosnippet="">34</a>    </span><span class="kw">pub fn </span>ansi(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw">impl </span>std::fmt::Display + <span class="lifetime">'_ </span>{
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#35" id="35" data-nosnippet="">35</a>        <span class="self">self</span>.<span class="number">0</span>.as_str()
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#36" id="36" data-nosnippet="">36</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#37" id="37" data-nosnippet="">37</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#38" id="38" data-nosnippet="">38</a>    <span class="doccomment">/// May allow the compiler to consolidate the `Drop`s for `msg`, reducing code size compared to
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#39" id="39" data-nosnippet="">39</a>    /// `styled.push_str(&amp;msg)`
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#40" id="40" data-nosnippet="">40</a>    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>push_string(<span class="kw-2">&amp;mut </span><span class="self">self</span>, msg: String) {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#41" id="41" data-nosnippet="">41</a>        <span class="self">self</span>.<span class="number">0</span>.push_str(<span class="kw-2">&amp;</span>msg);
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#42" id="42" data-nosnippet="">42</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#43" id="43" data-nosnippet="">43</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#44" id="44" data-nosnippet="">44</a>    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>push_str(<span class="kw-2">&amp;mut </span><span class="self">self</span>, msg: <span class="kw-2">&amp;</span>str) {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#45" id="45" data-nosnippet="">45</a>        <span class="self">self</span>.<span class="number">0</span>.push_str(msg);
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#46" id="46" data-nosnippet="">46</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#47" id="47" data-nosnippet="">47</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#48" id="48" data-nosnippet="">48</a>    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>trim_start_lines(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#49" id="49" data-nosnippet="">49</a>        <span class="kw">if let </span><span class="prelude-val">Some</span>(pos) = <span class="self">self</span>.<span class="number">0</span>.find(<span class="string">'\n'</span>) {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#50" id="50" data-nosnippet="">50</a>            <span class="kw">let </span>(leading, help) = <span class="self">self</span>.<span class="number">0</span>.split_at(pos + <span class="number">1</span>);
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#51" id="51" data-nosnippet="">51</a>            <span class="kw">if </span>leading.trim().is_empty() {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#52" id="52" data-nosnippet="">52</a>                <span class="self">self</span>.<span class="number">0 </span>= help.to_owned();
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#53" id="53" data-nosnippet="">53</a>            }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#54" id="54" data-nosnippet="">54</a>        }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#55" id="55" data-nosnippet="">55</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#56" id="56" data-nosnippet="">56</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#57" id="57" data-nosnippet="">57</a>    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>trim_end(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#58" id="58" data-nosnippet="">58</a>        <span class="self">self</span>.<span class="number">0 </span>= <span class="self">self</span>.<span class="number">0</span>.trim_end().to_owned();
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#59" id="59" data-nosnippet="">59</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#60" id="60" data-nosnippet="">60</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#61" id="61" data-nosnippet="">61</a>    <span class="attr">#[cfg(feature = <span class="string">"help"</span>)]
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#62" id="62" data-nosnippet="">62</a>    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>replace_newline_var(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#63" id="63" data-nosnippet="">63</a>        <span class="self">self</span>.<span class="number">0 </span>= <span class="self">self</span>.<span class="number">0</span>.replace(<span class="string">"{n}"</span>, <span class="string">"\n"</span>);
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#64" id="64" data-nosnippet="">64</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#65" id="65" data-nosnippet="">65</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#66" id="66" data-nosnippet="">66</a>    <span class="attr">#[cfg(feature = <span class="string">"help"</span>)]
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#67" id="67" data-nosnippet="">67</a>    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>indent(<span class="kw-2">&amp;mut </span><span class="self">self</span>, initial: <span class="kw-2">&amp;</span>str, trailing: <span class="kw-2">&amp;</span>str) {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#68" id="68" data-nosnippet="">68</a>        <span class="self">self</span>.<span class="number">0</span>.insert_str(<span class="number">0</span>, initial);
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#69" id="69" data-nosnippet="">69</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#70" id="70" data-nosnippet="">70</a>        <span class="kw">let </span><span class="kw-2">mut </span>line_sep = <span class="string">"\n"</span>.to_owned();
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#71" id="71" data-nosnippet="">71</a>        line_sep.push_str(trailing);
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#72" id="72" data-nosnippet="">72</a>        <span class="self">self</span>.<span class="number">0 </span>= <span class="self">self</span>.<span class="number">0</span>.replace(<span class="string">'\n'</span>, <span class="kw-2">&amp;</span>line_sep);
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#73" id="73" data-nosnippet="">73</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#74" id="74" data-nosnippet="">74</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#75" id="75" data-nosnippet="">75</a>    <span class="attr">#[cfg(all(not(feature = <span class="string">"wrap_help"</span>), feature = <span class="string">"help"</span>))]
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#76" id="76" data-nosnippet="">76</a>    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>wrap(<span class="kw-2">&amp;mut </span><span class="self">self</span>, _hard_width: usize) {}
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#77" id="77" data-nosnippet="">77</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#78" id="78" data-nosnippet="">78</a>    <span class="attr">#[cfg(feature = <span class="string">"wrap_help"</span>)]
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#79" id="79" data-nosnippet="">79</a>    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>wrap(<span class="kw-2">&amp;mut </span><span class="self">self</span>, hard_width: usize) {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#80" id="80" data-nosnippet="">80</a>        <span class="kw">let </span><span class="kw-2">mut </span>new = String::with_capacity(<span class="self">self</span>.<span class="number">0</span>.len());
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#81" id="81" data-nosnippet="">81</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#82" id="82" data-nosnippet="">82</a>        <span class="kw">let </span><span class="kw-2">mut </span>last = <span class="number">0</span>;
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#83" id="83" data-nosnippet="">83</a>        <span class="kw">let </span><span class="kw-2">mut </span>wrapper = <span class="kw">crate</span>::output::textwrap::wrap_algorithms::LineWrapper::new(hard_width);
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#84" id="84" data-nosnippet="">84</a>        <span class="kw">for </span>content <span class="kw">in </span><span class="self">self</span>.iter_text() {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#85" id="85" data-nosnippet="">85</a>            <span class="comment">// Preserve styling
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#86" id="86" data-nosnippet="">86</a>            </span><span class="kw">let </span>current = content.as_ptr() <span class="kw">as </span>usize - <span class="self">self</span>.<span class="number">0</span>.as_str().as_ptr() <span class="kw">as </span>usize;
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#87" id="87" data-nosnippet="">87</a>            <span class="kw">if </span>last != current {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#88" id="88" data-nosnippet="">88</a>                new.push_str(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>.as_str()[last..current]);
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#89" id="89" data-nosnippet="">89</a>            }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#90" id="90" data-nosnippet="">90</a>            last = current + content.len();
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#91" id="91" data-nosnippet="">91</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#92" id="92" data-nosnippet="">92</a>            <span class="kw">for </span>(i, line) <span class="kw">in </span>content.split_inclusive(<span class="string">'\n'</span>).enumerate() {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#93" id="93" data-nosnippet="">93</a>                <span class="kw">if </span><span class="number">0 </span>&lt; i {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#94" id="94" data-nosnippet="">94</a>                    <span class="comment">// reset char count on newline, skipping the start as we might have carried
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#95" id="95" data-nosnippet="">95</a>                    // over from a prior block of styled text
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#96" id="96" data-nosnippet="">96</a>                    </span>wrapper.reset();
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#97" id="97" data-nosnippet="">97</a>                }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#98" id="98" data-nosnippet="">98</a>                <span class="kw">let </span>line = <span class="kw">crate</span>::output::textwrap::word_separators::find_words_ascii_space(line)
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#99" id="99" data-nosnippet="">99</a>                    .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;();
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#100" id="100" data-nosnippet="">100</a>                new.extend(wrapper.wrap(line));
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#101" id="101" data-nosnippet="">101</a>            }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#102" id="102" data-nosnippet="">102</a>        }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#103" id="103" data-nosnippet="">103</a>        <span class="kw">if </span>last != <span class="self">self</span>.<span class="number">0</span>.len() {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#104" id="104" data-nosnippet="">104</a>            new.push_str(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>.as_str()[last..]);
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#105" id="105" data-nosnippet="">105</a>        }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#106" id="106" data-nosnippet="">106</a>        new = new.trim_end().to_owned();
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#107" id="107" data-nosnippet="">107</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#108" id="108" data-nosnippet="">108</a>        <span class="self">self</span>.<span class="number">0 </span>= new;
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#109" id="109" data-nosnippet="">109</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#110" id="110" data-nosnippet="">110</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#111" id="111" data-nosnippet="">111</a>    <span class="attr">#[inline(never)]
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#112" id="112" data-nosnippet="">112</a>    #[cfg(feature = <span class="string">"help"</span>)]
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#113" id="113" data-nosnippet="">113</a>    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>display_width(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#114" id="114" data-nosnippet="">114</a>        <span class="kw">let </span><span class="kw-2">mut </span>width = <span class="number">0</span>;
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#115" id="115" data-nosnippet="">115</a>        <span class="kw">for </span>c <span class="kw">in </span><span class="self">self</span>.iter_text() {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#116" id="116" data-nosnippet="">116</a>            width += <span class="kw">crate</span>::output::display_width(c);
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#117" id="117" data-nosnippet="">117</a>        }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#118" id="118" data-nosnippet="">118</a>        width
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#119" id="119" data-nosnippet="">119</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#120" id="120" data-nosnippet="">120</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#121" id="121" data-nosnippet="">121</a>    <span class="attr">#[cfg(feature = <span class="string">"help"</span>)]
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#122" id="122" data-nosnippet="">122</a>    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>is_empty(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#123" id="123" data-nosnippet="">123</a>        <span class="self">self</span>.<span class="number">0</span>.is_empty()
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#124" id="124" data-nosnippet="">124</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#125" id="125" data-nosnippet="">125</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#126" id="126" data-nosnippet="">126</a>    <span class="attr">#[cfg(feature = <span class="string">"help"</span>)]
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#127" id="127" data-nosnippet="">127</a>    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>as_styled_str(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#128" id="128" data-nosnippet="">128</a>        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#129" id="129" data-nosnippet="">129</a>    </span>}
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#130" id="130" data-nosnippet="">130</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#131" id="131" data-nosnippet="">131</a>    <span class="attr">#[cfg(feature = <span class="string">"color"</span>)]
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#132" id="132" data-nosnippet="">132</a>    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>iter_text(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw">impl </span>Iterator&lt;Item = <span class="kw-2">&amp;</span>str&gt; {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#133" id="133" data-nosnippet="">133</a>        anstream::adapter::strip_str(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>)
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#134" id="134" data-nosnippet="">134</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#135" id="135" data-nosnippet="">135</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#136" id="136" data-nosnippet="">136</a>    <span class="attr">#[cfg(not(feature = <span class="string">"color"</span>))]
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#137" id="137" data-nosnippet="">137</a>    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>iter_text(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw">impl </span>Iterator&lt;Item = <span class="kw-2">&amp;</span>str&gt; {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#138" id="138" data-nosnippet="">138</a>        [<span class="self">self</span>.<span class="number">0</span>.as_str()].into_iter()
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#139" id="139" data-nosnippet="">139</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#140" id="140" data-nosnippet="">140</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#141" id="141" data-nosnippet="">141</a>    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>push_styled(<span class="kw-2">&amp;mut </span><span class="self">self</span>, other: <span class="kw-2">&amp;</span><span class="self">Self</span>) {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#142" id="142" data-nosnippet="">142</a>        <span class="self">self</span>.<span class="number">0</span>.push_str(<span class="kw-2">&amp;</span>other.<span class="number">0</span>);
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#143" id="143" data-nosnippet="">143</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#144" id="144" data-nosnippet="">144</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#145" id="145" data-nosnippet="">145</a>    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>write_to(<span class="kw-2">&amp;</span><span class="self">self</span>, buffer: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>std::io::Write) -&gt; std::io::Result&lt;()&gt; {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#146" id="146" data-nosnippet="">146</a>        <span class="macro">ok!</span>(buffer.write_all(<span class="self">self</span>.<span class="number">0</span>.as_bytes()));
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#147" id="147" data-nosnippet="">147</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#148" id="148" data-nosnippet="">148</a>        <span class="prelude-val">Ok</span>(())
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#149" id="149" data-nosnippet="">149</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#150" id="150" data-nosnippet="">150</a>}
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#151" id="151" data-nosnippet="">151</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#152" id="152" data-nosnippet="">152</a><span class="kw">impl </span>Default <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'_ </span>StyledStr {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#153" id="153" data-nosnippet="">153</a>    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#154" id="154" data-nosnippet="">154</a>        <span class="kw">static </span>DEFAULT: StyledStr = StyledStr::new();
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#155" id="155" data-nosnippet="">155</a>        <span class="kw-2">&amp;</span>DEFAULT
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#156" id="156" data-nosnippet="">156</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#157" id="157" data-nosnippet="">157</a>}
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#158" id="158" data-nosnippet="">158</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#159" id="159" data-nosnippet="">159</a><span class="kw">impl </span>From&lt;String&gt; <span class="kw">for </span>StyledStr {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#160" id="160" data-nosnippet="">160</a>    <span class="kw">fn </span>from(name: String) -&gt; <span class="self">Self </span>{
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#161" id="161" data-nosnippet="">161</a>        StyledStr(name)
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#162" id="162" data-nosnippet="">162</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#163" id="163" data-nosnippet="">163</a>}
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#164" id="164" data-nosnippet="">164</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#165" id="165" data-nosnippet="">165</a><span class="kw">impl </span>From&lt;<span class="kw-2">&amp;</span><span class="lifetime">'_ </span>String&gt; <span class="kw">for </span>StyledStr {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#166" id="166" data-nosnippet="">166</a>    <span class="kw">fn </span>from(name: <span class="kw-2">&amp;</span><span class="lifetime">'_ </span>String) -&gt; <span class="self">Self </span>{
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#167" id="167" data-nosnippet="">167</a>        <span class="kw">let </span><span class="kw-2">mut </span>styled = StyledStr::new();
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#168" id="168" data-nosnippet="">168</a>        styled.push_str(name);
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#169" id="169" data-nosnippet="">169</a>        styled
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#170" id="170" data-nosnippet="">170</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#171" id="171" data-nosnippet="">171</a>}
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#172" id="172" data-nosnippet="">172</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#173" id="173" data-nosnippet="">173</a><span class="kw">impl </span>From&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; <span class="kw">for </span>StyledStr {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#174" id="174" data-nosnippet="">174</a>    <span class="kw">fn </span>from(name: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str) -&gt; <span class="self">Self </span>{
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#175" id="175" data-nosnippet="">175</a>        <span class="kw">let </span><span class="kw-2">mut </span>styled = StyledStr::new();
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#176" id="176" data-nosnippet="">176</a>        styled.push_str(name);
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#177" id="177" data-nosnippet="">177</a>        styled
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#178" id="178" data-nosnippet="">178</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#179" id="179" data-nosnippet="">179</a>}
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#180" id="180" data-nosnippet="">180</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#181" id="181" data-nosnippet="">181</a><span class="kw">impl </span>From&lt;<span class="kw-2">&amp;</span><span class="lifetime">'_ </span><span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; <span class="kw">for </span>StyledStr {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#182" id="182" data-nosnippet="">182</a>    <span class="kw">fn </span>from(name: <span class="kw-2">&amp;</span><span class="lifetime">'_ </span><span class="kw-2">&amp;</span><span class="lifetime">'static </span>str) -&gt; <span class="self">Self </span>{
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#183" id="183" data-nosnippet="">183</a>        StyledStr::from(<span class="kw-2">*</span>name)
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#184" id="184" data-nosnippet="">184</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#185" id="185" data-nosnippet="">185</a>}
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#186" id="186" data-nosnippet="">186</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#187" id="187" data-nosnippet="">187</a><span class="kw">impl </span>std::fmt::Write <span class="kw">for </span>StyledStr {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#188" id="188" data-nosnippet="">188</a>    <span class="attr">#[inline]
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#189" id="189" data-nosnippet="">189</a>    </span><span class="kw">fn </span>write_str(<span class="kw-2">&amp;mut </span><span class="self">self</span>, s: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;(), std::fmt::Error&gt; {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#190" id="190" data-nosnippet="">190</a>        <span class="self">self</span>.<span class="number">0</span>.push_str(s);
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#191" id="191" data-nosnippet="">191</a>        <span class="prelude-val">Ok</span>(())
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#192" id="192" data-nosnippet="">192</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#193" id="193" data-nosnippet="">193</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#194" id="194" data-nosnippet="">194</a>    <span class="attr">#[inline]
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#195" id="195" data-nosnippet="">195</a>    </span><span class="kw">fn </span>write_char(<span class="kw-2">&amp;mut </span><span class="self">self</span>, c: char) -&gt; <span class="prelude-ty">Result</span>&lt;(), std::fmt::Error&gt; {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#196" id="196" data-nosnippet="">196</a>        <span class="self">self</span>.<span class="number">0</span>.push(c);
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#197" id="197" data-nosnippet="">197</a>        <span class="prelude-val">Ok</span>(())
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#198" id="198" data-nosnippet="">198</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#199" id="199" data-nosnippet="">199</a>}
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#200" id="200" data-nosnippet="">200</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#201" id="201" data-nosnippet="">201</a><span class="doccomment">/// Color-unaware printing. Never uses coloring.
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#202" id="202" data-nosnippet="">202</a></span><span class="kw">impl </span>std::fmt::Display <span class="kw">for </span>StyledStr {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#203" id="203" data-nosnippet="">203</a>    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; std::fmt::Result {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#204" id="204" data-nosnippet="">204</a>        <span class="kw">for </span>part <span class="kw">in </span><span class="self">self</span>.iter_text() {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#205" id="205" data-nosnippet="">205</a>            part.fmt(f)<span class="question-mark">?</span>;
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#206" id="206" data-nosnippet="">206</a>        }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#207" id="207" data-nosnippet="">207</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#208" id="208" data-nosnippet="">208</a>        <span class="prelude-val">Ok</span>(())
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#209" id="209" data-nosnippet="">209</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html#210" id="210" data-nosnippet="">210</a>}</code></pre></div></section></main></div></body></html>

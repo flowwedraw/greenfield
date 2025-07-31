@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<!-- saved from url=(0082)https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#27 -->
+<html lang="en" data-theme="dark" data-docs-rs-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/builder/value_hint.rs`."><title>value_hint.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="/-/rustdoc.static/${f}">`).join(""))</script><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceSerif4-Regular-6b053e98.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Italic-81dc35de.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Regular-0fe48ade.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-MediumItalic-ccf7e434.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Medium-e1aa3f0a.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Regular-8badfe75.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Semibold-aa29a496.ttf.woff2"><link rel="stylesheet" href="./value_hint.rs - source_files/normalize-9960930a.css"><link rel="stylesheet" href="./value_hint.rs - source_files/vendored.css" media="all"><link rel="stylesheet" href="./value_hint.rs - source_files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="/-/rustdoc.static/" data-current-crate="clap_builder" data-themes="" data-resource-suffix="-20250608-1.89.0-nightly-6ccd44760" data-rustdoc-version="1.89.0-nightly (6ccd44760 2025-06-08)" data-channel="nightly" data-search-js="search-f7877310.js" data-settings-js="settings-5514c975.js"><script src="./value_hint.rs - source_files/storage-4e99c027.js.Без названия"></script><script defer="" src="./value_hint.rs - source_files/src-script-63605ae7.js.Без названия"></script><script defer="" src="./value_hint.rs - source_files/src-files-20250608-1.89.0-nightly-6ccd44760.js.Без названия"></script><script defer="" src="./value_hint.rs - source_files/main-fd3af306.js.Без названия"></script><noscript><link rel="stylesheet" href="/-/rustdoc.static/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="https://docs.rs/-/rustdoc.static/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="https://docs.rs/-/rustdoc.static/favicon-044be391.svg"><link rel="stylesheet" href="./value_hint.rs - source_files/rustdoc-2021-12-05.css" media="all"><link rel="stylesheet" href="./value_hint.rs - source_files/font-awesome.css" media="all">
+
+        <link rel="search" href="https://docs.rs/-/static/opensearch.xml" type="application/opensearchdescription+xml" title="Docs.rs">
+
+        <script type="text/javascript">(function() {
+    function applyTheme(theme) {
+        if (theme) {
+            document.documentElement.dataset.docsRsTheme = theme;
+        }
+    }
+
+    window.addEventListener("storage", ev => {
+        if (ev.key === "rustdoc-theme") {
+            applyTheme(ev.newValue);
+        }
+    });
+
+    // see ./storage-change-detection.html for details
+    window.addEventListener("message", ev => {
+        if (ev.data && ev.data.storage && ev.data.storage.key === "rustdoc-theme") {
+            applyTheme(ev.data.storage.value);
+        }
+    });
+
+    applyTheme(window.localStorage.getItem("rustdoc-theme"));
+})();</script></head><div style="display: none; position: fixed; width: 100%; height: 100%; z-index: 1;"></div><body class="rustdoc-page">
+<div class="nav-container">
+    <div class="container">
+        <div class="pure-menu pure-menu-horizontal" role="navigation" aria-label="Main navigation">
+            <form action="https://docs.rs/releases/search" method="GET" id="nav-search-form" class="landing-search-form-nav  ">
+
+                
+                <a href="https://docs.rs/" class="pure-menu-heading pure-menu-link docsrs-logo" aria-label="Docs.rs">
+                    <span title="Docs.rs"><span class="fa fa-solid fa-cubes " aria-hidden="true"></span></span>
+                    <span class="title">Docs.rs</span>
+                </a><ul class="pure-menu-list">
+    <script id="crate-metadata" type="application/json">
+        
+        {
+            "name": "clap_builder",
+            "version": "4.5.40"
+        }
+    </script><li class="pure-menu-item pure-menu-has-children">
+            <a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#" class="pure-menu-link crate-name" title="A simple to use, efficient, and full-featured Command Line Argument Parser" aria-haspopup="menu">
+                <span class="fa fa-solid fa-cube " aria-hidden="true"></span>
+                <span class="title">clap_builder-4.5.40</span>
+            </a><div class="pure-menu-children package-details-menu" role="menu">
+                
+                <ul class="pure-menu-list menu-item-divided">
+                    <li class="pure-menu-heading" id="crate-title">
+                        clap_builder 4.5.40
+                        <span id="clipboard" class="svg-clipboard" title="Copy crate name and version information"></span>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/crate/clap_builder/4.5.40" class="pure-menu-link description" title="See clap_builder in docs.rs">
+                            <span class="fa fa-solid fa-cube " aria-hidden="true"></span> Docs.rs crate page
+                        </a>
+                    </li><li class="pure-menu-item">
+                            <span class="pure-menu-link description"><span class="fa fa-solid fa-scale-unbalanced-flip " aria-hidden="true"></span>
+                            <a href="https://spdx.org/licenses/MIT" class="pure-menu-sublink">MIT</a> OR <a href="https://spdx.org/licenses/Apache-2.0" class="pure-menu-sublink">Apache-2.0</a></span>
+                        </li></ul>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Links</li>
+
+                            <li class="pure-menu-item">
+                                    <a href="https://github.com/clap-rs/clap" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-code-branch " aria-hidden="true"></span> Repository
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                <a href="https://crates.io/crates/clap_builder" class="pure-menu-link" title="See clap_builder in crates.io">
+                                    <span class="fa fa-solid fa-cube " aria-hidden="true"></span> crates.io
+                                </a>
+                            </li>
+
+                            
+                            <li class="pure-menu-item">
+                                <a href="https://docs.rs/crate/clap_builder/4.5.40/source/" title="Browse source of clap_builder-4.5.40" class="pure-menu-link">
+                                    <span class="fa fa-solid fa-folder-open " aria-hidden="true"></span> Source
+                                </a>
+                            </li>
+                        </ul>
+                    </div><div class="pure-u-1-2">
+                        <ul class="pure-menu-list" id="topbar-owners">
+                            <li class="pure-menu-heading">Owners</li><li class="pure-menu-item">
+                                    <a href="https://crates.io/users/epage" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> epage
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                    <a href="https://crates.io/teams/github:clap-rs:admins" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> github:clap-rs:admins
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                    <a href="https://crates.io/teams/github:rust-cli:maintainers" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> github:rust-cli:maintainers
+                                    </a>
+                                </li></ul>
+                    </div>
+                </div>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Dependencies</li>
+
+                            
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" tabindex="-1">
+                                    <ul class="pure-menu-list">
+                                        
+    <li class="pure-menu-item"><a href="https://docs.rs/anstream/%5E0.6.7" class="pure-menu-link">
+                        anstream ^0.6.7
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/anstyle/%5E1.0.8" class="pure-menu-link">
+                        anstyle ^1.0.8
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/backtrace/%5E0.3.73" class="pure-menu-link">
+                        backtrace ^0.3.73
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/clap_lex/%5E0.7.4" class="pure-menu-link">
+                        clap_lex ^0.7.4
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/strsim/%5E0.11.0" class="pure-menu-link">
+                        strsim ^0.11.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/terminal_size/%5E0.4.0" class="pure-menu-link">
+                        terminal_size ^0.4.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/unicase/%5E2.6.0" class="pure-menu-link">
+                        unicase ^2.6.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/unicode-width/%5E0.2.0" class="pure-menu-link">
+                        unicode-width ^0.2.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/color-print/%5E0.3.6" class="pure-menu-link">
+                        color-print ^0.3.6
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/static_assertions/%5E1.1.0" class="pure-menu-link">
+                        static_assertions ^1.1.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/unic-emoji-char/%5E0.9.0" class="pure-menu-link">
+                        unic-emoji-char ^0.9.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pure-u-1-2">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Versions</li>
+
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" id="releases-list" tabindex="-1" data-url="/crate/clap_builder/4.5.40/menus/releases/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_hint.rs.html">
+                                    <span class="rotate"><span class="fa fa-solid fa-spinner " aria-hidden="true"></span></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                    
+                    
+                    <div class="pure-g">
+                        <div class="pure-u-1">
+                            <ul class="pure-menu-list">
+                                <li>
+                                    <a href="https://docs.rs/crate/clap_builder/4.5.40" class="pure-menu-link">
+                                        <b>100%</b>
+                                        of the crate is documented
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div></div>
+        </li><li class="pure-menu-item pure-menu-has-children">
+                <a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#" class="pure-menu-link" aria-label="Platform" aria-haspopup="menu">
+                    <span class="fa fa-solid fa-gears " aria-hidden="true"></span>
+                    <span class="title">Platform</span>
+                </a>
+
+                
+                <ul class="pure-menu-children" id="platforms" data-url="/crate/clap_builder/4.5.40/menus/platforms/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_hint.rs.html" role="menu"><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap_builder/4.5.40/target-redirect/i686-pc-windows-msvc/src/clap_builder/builder/value_hint.rs.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">i686-pc-windows-msvc</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap_builder/4.5.40/target-redirect/i686-unknown-linux-gnu/src/clap_builder/builder/value_hint.rs.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">i686-unknown-linux-gnu</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap_builder/4.5.40/target-redirect/x86_64-apple-darwin/src/clap_builder/builder/value_hint.rs.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">x86_64-apple-darwin</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap_builder/4.5.40/target-redirect/x86_64-pc-windows-msvc/src/clap_builder/builder/value_hint.rs.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">x86_64-pc-windows-msvc</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap_builder/4.5.40/target-redirect/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_hint.rs.html" class="pure-menu-link current" data-fragment="retain" rel="nofollow">x86_64-unknown-linux-gnu</a>
+        </li></ul>
+            </li><li class="pure-menu-item">
+                <a href="https://docs.rs/crate/clap_builder/4.5.40/features" title="Browse available feature flags of clap_builder-4.5.40" class="pure-menu-link">
+                    <span class="fa fa-solid fa-flag " aria-hidden="true"></span>
+                    <span class="title">Feature flags</span>
+                </a>
+            </li>
+        
+    
+</ul><div class="spacer"></div>
+                
+                
+
+<ul class="pure-menu-list">
+                    <li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#" class="pure-menu-link" aria-label="docs.rs" aria-haspopup="menu">docs.rs</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://docs.rs/about">
+            About docs.rs
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://foundation.rust-lang.org/policies/privacy-policy/#docs.rs" target="_blank">
+            Privacy policy
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="pure-menu-list"><li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#" class="pure-menu-link" aria-label="Rust" aria-haspopup="menu">Rust</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://www.rust-lang.org/" target="_blank">
+            Rust website
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/book/" target="_blank">
+            The Book
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/std/" target="_blank">
+            Standard Library API Reference
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/rust-by-example/" target="_blank">
+            Rust by Example
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/cargo/guide/" target="_blank">
+            The Cargo Guide
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/nightly/clippy" target="_blank">
+            Clippy Documentation
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div id="search-input-nav">
+                    <label for="nav-search">
+                        <span class="fa fa-solid fa-magnifying-glass " aria-hidden="true"></span>
+                    </label>
+
+                    
+                    
+                    <input id="nav-search" name="query" type="text" aria-label="Find crate by search query" tabindex="-1" placeholder="Find crate">
+                </div>
+            </form>
+        </div>
+    </div>
+</div><div class="rustdoc src container-rustdoc" id="rustdoc_body_wrapper" tabindex="-1"><script async="" src="./value_hint.rs - source_files/menu.js.Без названия"></script>
+<script async="" src="./value_hint.rs - source_files/index.js.Без названия"></script>
+
+<iframe src="./value_hint.rs - source_files/storage-change-detection.html" width="0" height="0" style="display: none"></iframe><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div><div id="src-sidebar"><details class="dir-entry" open=""><summary>clap_builder</summary><div class="folders"><details class="dir-entry" open=""><summary>builder</summary><div class="folders"></div><div class="files"><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/action.rs.html">action.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/app_settings.rs.html">app_settings.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/arg.rs.html">arg.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/arg_group.rs.html">arg_group.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/arg_predicate.rs.html">arg_predicate.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/arg_settings.rs.html">arg_settings.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/command.rs.html">command.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/debug_asserts.rs.html">debug_asserts.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/ext.rs.html">ext.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/mod.rs.html">mod.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/os_str.rs.html">os_str.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/possible_value.rs.html">possible_value.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/range.rs.html">range.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/resettable.rs.html">resettable.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/str.rs.html">str.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styled_str.rs.html">styled_str.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/styling.rs.html">styling.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html" class="selected">value_hint.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_parser.rs.html">value_parser.rs</a></div></details><details class="dir-entry"><summary>error</summary><div class="folders"></div><div class="files"><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/error/context.rs.html">context.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/error/format.rs.html">format.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/error/kind.rs.html">kind.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/error/mod.rs.html">mod.rs</a></div></details><details class="dir-entry"><summary>output</summary><div class="folders"><details class="dir-entry"><summary>textwrap</summary><div class="folders"></div><div class="files"><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/output/textwrap/core.rs.html">core.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/output/textwrap/mod.rs.html">mod.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/output/textwrap/word_separators.rs.html">word_separators.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/output/textwrap/wrap_algorithms.rs.html">wrap_algorithms.rs</a></div></details></div><div class="files"><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/output/fmt.rs.html">fmt.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/output/help.rs.html">help.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/output/help_template.rs.html">help_template.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/output/mod.rs.html">mod.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/output/usage.rs.html">usage.rs</a></div></details><details class="dir-entry"><summary>parser</summary><div class="folders"><details class="dir-entry"><summary>features</summary><div class="folders"></div><div class="files"><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/features/mod.rs.html">mod.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/features/suggestions.rs.html">suggestions.rs</a></div></details><details class="dir-entry"><summary>matches</summary><div class="folders"></div><div class="files"><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/matches/arg_matches.rs.html">arg_matches.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/matches/matched_arg.rs.html">matched_arg.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/matches/mod.rs.html">mod.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/matches/value_source.rs.html">value_source.rs</a></div></details></div><div class="files"><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/arg_matcher.rs.html">arg_matcher.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/error.rs.html">error.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/mod.rs.html">mod.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/parser.rs.html">parser.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/parser/validator.rs.html">validator.rs</a></div></details><details class="dir-entry"><summary>util</summary><div class="folders"></div><div class="files"><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/util/any_value.rs.html">any_value.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/util/color.rs.html">color.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/util/flat_map.rs.html">flat_map.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/util/flat_set.rs.html">flat_set.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/util/graph.rs.html">graph.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/util/id.rs.html">id.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/util/mod.rs.html">mod.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/util/str_to_bool.rs.html">str_to_bool.rs</a></div></details></div><div class="files"><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/derive.rs.html">derive.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/lib.rs.html">lib.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/macros.rs.html">macros.rs</a><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/mkeymap.rs.html">mkeymap.rs</a></div></details></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><rustdoc-search><nav class="sub">
+            <form class="search-form">
+                <span></span> <!-- This empty span is a hacky fix for Safari - See #93184 -->
+                <div id="sidebar-button" tabindex="-1">
+                    <a href="https://docs.rs/clap_builder/4.5.40/clap_builder/all.html" title="show sidebar"></a>
+                </div>
+                <input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search">
+            </form>
+        </nav></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">clap_builder/builder/</div>value_hint.rs</h1><rustdoc-toolbar>
+        <div id="settings-menu" tabindex="-1">
+            <a href="https://docs.rs/clap_builder/4.5.40/settings.html"><span class="label">Settings</span></a>
+        </div>
+        <div id="help-button" tabindex="-1">
+            <a href="https://docs.rs/clap_builder/4.5.40/help.html"><span class="label">Help</span></a>
+        </div>
+        <button id="toggle-all-docs"><span class="label">Summary</span></button></rustdoc-toolbar></div><div class="example-wrap digits-2"><pre class="rust"><code><a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#1" id="1" data-nosnippet="">1</a><span class="kw">use </span>std::str::FromStr;
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#2" id="2" data-nosnippet="">2</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#3" id="3" data-nosnippet="">3</a><span class="doccomment">/// Provide shell with hint on how to complete an argument.
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#4" id="4" data-nosnippet="">4</a>///
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#5" id="5" data-nosnippet="">5</a>/// See [`Arg::value_hint`][crate::Arg::value_hint] to set this on an argument.
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#6" id="6" data-nosnippet="">6</a>///
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#7" id="7" data-nosnippet="">7</a>/// See the `clap_complete` crate for completion script generation.
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#8" id="8" data-nosnippet="">8</a>///
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#9" id="9" data-nosnippet="">9</a>/// Overview of which hints are supported by which shell:
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#10" id="10" data-nosnippet="">10</a>///
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#11" id="11" data-nosnippet="">11</a>/// | Hint                   | zsh | fish[^1] | dynamic |
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#12" id="12" data-nosnippet="">12</a>/// | ---------------------- | --- | ---------|---------|
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#13" id="13" data-nosnippet="">13</a>/// | `AnyPath`              | Yes | Yes      | Yes     |
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#14" id="14" data-nosnippet="">14</a>/// | `FilePath`             | Yes | Yes      | Yes     |
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#15" id="15" data-nosnippet="">15</a>/// | `DirPath`              | Yes | Yes      | Yes     |
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#16" id="16" data-nosnippet="">16</a>/// | `ExecutablePath`       | Yes | Partial  | Yes     |
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#17" id="17" data-nosnippet="">17</a>/// | `CommandName`          | Yes | Yes      | No      |
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#18" id="18" data-nosnippet="">18</a>/// | `CommandString`        | Yes | Partial  | No      |
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#19" id="19" data-nosnippet="">19</a>/// | `CommandWithArguments` | Yes |          | No      |
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#20" id="20" data-nosnippet="">20</a>/// | `Username`             | Yes | Yes      | No      |
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#21" id="21" data-nosnippet="">21</a>/// | `Hostname`             | Yes | Yes      | No      |
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#22" id="22" data-nosnippet="">22</a>/// | `Url`                  | Yes |          | No      |
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#23" id="23" data-nosnippet="">23</a>/// | `EmailAddress`         | Yes |          | No      |
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#24" id="24" data-nosnippet="">24</a>///
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#25" id="25" data-nosnippet="">25</a>/// [^1]: fish completions currently only support named arguments (e.g. -o or --opt), not
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#26" id="26" data-nosnippet="">26</a>///       positional arguments.
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#27" id="27" data-nosnippet="" class="line-highlighted">27</a></span><span class="attr">#[derive(Debug, Default, PartialEq, Eq, Hash, Copy, Clone)]
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#28" id="28" data-nosnippet="">28</a>#[non_exhaustive]
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#29" id="29" data-nosnippet="">29</a></span><span class="kw">pub enum </span>ValueHint {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#30" id="30" data-nosnippet="">30</a>    <span class="doccomment">/// Default value if hint is not specified. Follows shell default behavior, which is usually
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#31" id="31" data-nosnippet="">31</a>    /// auto-completing filenames.
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#32" id="32" data-nosnippet="">32</a>    </span><span class="attr">#[default]
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#33" id="33" data-nosnippet="">33</a>    </span>Unknown,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#34" id="34" data-nosnippet="">34</a>    <span class="doccomment">/// None of the hints below apply. Disables shell completion for this argument.
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#35" id="35" data-nosnippet="">35</a>    </span>Other,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#36" id="36" data-nosnippet="">36</a>    <span class="doccomment">/// Any existing path.
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#37" id="37" data-nosnippet="">37</a>    </span>AnyPath,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#38" id="38" data-nosnippet="">38</a>    <span class="doccomment">/// Path to a file.
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#39" id="39" data-nosnippet="">39</a>    </span>FilePath,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#40" id="40" data-nosnippet="">40</a>    <span class="doccomment">/// Path to a directory.
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#41" id="41" data-nosnippet="">41</a>    </span>DirPath,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#42" id="42" data-nosnippet="">42</a>    <span class="doccomment">/// Path to an executable file.
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#43" id="43" data-nosnippet="">43</a>    </span>ExecutablePath,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#44" id="44" data-nosnippet="">44</a>    <span class="doccomment">/// Name of a command, without arguments. May be relative to PATH, or full path to executable.
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#45" id="45" data-nosnippet="">45</a>    </span>CommandName,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#46" id="46" data-nosnippet="">46</a>    <span class="doccomment">/// A single string containing a command and its arguments.
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#47" id="47" data-nosnippet="">47</a>    </span>CommandString,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#48" id="48" data-nosnippet="">48</a>    <span class="doccomment">/// Capture the remaining arguments as a command name and arguments for that command. This is
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#49" id="49" data-nosnippet="">49</a>    /// common when writing shell wrappers that execute anther command, for example `sudo` or `env`.
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#50" id="50" data-nosnippet="">50</a>    ///
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#51" id="51" data-nosnippet="">51</a>    /// This hint is special, the argument must be a positional argument and have
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#52" id="52" data-nosnippet="">52</a>    /// [`.num_args(1..)`] and Command must use [`Command::trailing_var_arg(true)`]. The result is that the
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#53" id="53" data-nosnippet="">53</a>    /// command line `my_app ls -la /` will be parsed as `["ls", "-la", "/"]` and clap won't try to
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#54" id="54" data-nosnippet="">54</a>    /// parse the `-la` argument itself.
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#55" id="55" data-nosnippet="">55</a>    ///
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#56" id="56" data-nosnippet="">56</a>    /// [`Command::trailing_var_arg(true)`]: crate::Command::trailing_var_arg
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#57" id="57" data-nosnippet="">57</a>    /// [`.num_args(1..)`]: crate::Arg::num_args()
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#58" id="58" data-nosnippet="">58</a>    </span>CommandWithArguments,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#59" id="59" data-nosnippet="">59</a>    <span class="doccomment">/// Name of a local operating system user.
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#60" id="60" data-nosnippet="">60</a>    </span>Username,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#61" id="61" data-nosnippet="">61</a>    <span class="doccomment">/// Host name of a computer.
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#62" id="62" data-nosnippet="">62</a>    /// Shells usually parse `/etc/hosts` and `.ssh/known_hosts` to complete hostnames.
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#63" id="63" data-nosnippet="">63</a>    </span>Hostname,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#64" id="64" data-nosnippet="">64</a>    <span class="doccomment">/// Complete web address.
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#65" id="65" data-nosnippet="">65</a>    </span>Url,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#66" id="66" data-nosnippet="">66</a>    <span class="doccomment">/// Email address.
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#67" id="67" data-nosnippet="">67</a>    </span>EmailAddress,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#68" id="68" data-nosnippet="">68</a>}
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#69" id="69" data-nosnippet="">69</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#70" id="70" data-nosnippet="">70</a><span class="attr">#[cfg(feature = <span class="string">"unstable-ext"</span>)]
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#71" id="71" data-nosnippet="">71</a></span><span class="kw">impl </span><span class="kw">crate</span>::builder::ArgExt <span class="kw">for </span>ValueHint {}
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#72" id="72" data-nosnippet="">72</a>
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#73" id="73" data-nosnippet="">73</a><span class="kw">impl </span>FromStr <span class="kw">for </span>ValueHint {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#74" id="74" data-nosnippet="">74</a>    <span class="kw">type </span><span class="prelude-val">Err </span>= String;
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#75" id="75" data-nosnippet="">75</a>    <span class="kw">fn </span>from_str(s: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, &lt;<span class="self">Self </span><span class="kw">as </span>FromStr&gt;::Err&gt; {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#76" id="76" data-nosnippet="">76</a>        <span class="prelude-val">Ok</span>(<span class="kw">match </span><span class="kw-2">&amp;*</span>s.to_ascii_lowercase() {
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#77" id="77" data-nosnippet="">77</a>            <span class="string">"unknown" </span>=&gt; ValueHint::Unknown,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#78" id="78" data-nosnippet="">78</a>            <span class="string">"other" </span>=&gt; ValueHint::Other,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#79" id="79" data-nosnippet="">79</a>            <span class="string">"anypath" </span>=&gt; ValueHint::AnyPath,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#80" id="80" data-nosnippet="">80</a>            <span class="string">"filepath" </span>=&gt; ValueHint::FilePath,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#81" id="81" data-nosnippet="">81</a>            <span class="string">"dirpath" </span>=&gt; ValueHint::DirPath,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#82" id="82" data-nosnippet="">82</a>            <span class="string">"executablepath" </span>=&gt; ValueHint::ExecutablePath,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#83" id="83" data-nosnippet="">83</a>            <span class="string">"commandname" </span>=&gt; ValueHint::CommandName,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#84" id="84" data-nosnippet="">84</a>            <span class="string">"commandstring" </span>=&gt; ValueHint::CommandString,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#85" id="85" data-nosnippet="">85</a>            <span class="string">"commandwitharguments" </span>=&gt; ValueHint::CommandWithArguments,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#86" id="86" data-nosnippet="">86</a>            <span class="string">"username" </span>=&gt; ValueHint::Username,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#87" id="87" data-nosnippet="">87</a>            <span class="string">"hostname" </span>=&gt; ValueHint::Hostname,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#88" id="88" data-nosnippet="">88</a>            <span class="string">"url" </span>=&gt; ValueHint::Url,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#89" id="89" data-nosnippet="">89</a>            <span class="string">"emailaddress" </span>=&gt; ValueHint::EmailAddress,
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#90" id="90" data-nosnippet="">90</a>            <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">"unknown ValueHint: `{s}`"</span>)),
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#91" id="91" data-nosnippet="">91</a>        })
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#92" id="92" data-nosnippet="">92</a>    }
+<a href="https://docs.rs/clap_builder/4.5.40/src/clap_builder/builder/value_hint.rs.html#93" id="93" data-nosnippet="">93</a>}</code></pre></div></section></main></div></body></html>

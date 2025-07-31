@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html -->
+<html lang="en" data-theme="dark" data-docs-rs-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Parse/validate argument values"><title>TypedValueParser in clap::builder - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="/-/rustdoc.static/${f}">`).join(""))</script><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceSerif4-Regular-6b053e98.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Italic-81dc35de.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Regular-0fe48ade.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-MediumItalic-ccf7e434.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Medium-e1aa3f0a.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Regular-8badfe75.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Semibold-aa29a496.ttf.woff2"><link rel="stylesheet" href="./TypedValueParser in clap__builder - Rust_files/normalize-9960930a.css"><link rel="stylesheet" href="./TypedValueParser in clap__builder - Rust_files/vendored.css" media="all"><link rel="stylesheet" href="./TypedValueParser in clap__builder - Rust_files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="/-/rustdoc.static/" data-current-crate="clap" data-themes="" data-resource-suffix="-20250608-1.89.0-nightly-6ccd44760" data-rustdoc-version="1.89.0-nightly (6ccd44760 2025-06-08)" data-channel="nightly" data-search-js="search-f7877310.js" data-settings-js="settings-5514c975.js"><script src="./TypedValueParser in clap__builder - Rust_files/storage-4e99c027.js.Без названия"></script><script defer="" src="./TypedValueParser in clap__builder - Rust_files/sidebar-items-20250608-1.89.0-nightly-6ccd44760.js.Без названия"></script><script defer="" src="./TypedValueParser in clap__builder - Rust_files/main-fd3af306.js.Без названия"></script><script defer="" src="./TypedValueParser in clap__builder - Rust_files/scrape-examples-5e967b76.js.Без названия"></script><noscript><link rel="stylesheet" href="/-/rustdoc.static/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="https://docs.rs/-/rustdoc.static/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="https://docs.rs/-/rustdoc.static/favicon-044be391.svg"><link rel="stylesheet" href="./TypedValueParser in clap__builder - Rust_files/rustdoc-2021-12-05.css" media="all"><link rel="stylesheet" href="./TypedValueParser in clap__builder - Rust_files/font-awesome.css" media="all">
+
+        <link rel="search" href="https://docs.rs/-/static/opensearch.xml" type="application/opensearchdescription+xml" title="Docs.rs">
+
+        <script type="text/javascript">(function() {
+    function applyTheme(theme) {
+        if (theme) {
+            document.documentElement.dataset.docsRsTheme = theme;
+        }
+    }
+
+    window.addEventListener("storage", ev => {
+        if (ev.key === "rustdoc-theme") {
+            applyTheme(ev.newValue);
+        }
+    });
+
+    // see ./storage-change-detection.html for details
+    window.addEventListener("message", ev => {
+        if (ev.data && ev.data.storage && ev.data.storage.key === "rustdoc-theme") {
+            applyTheme(ev.data.storage.value);
+        }
+    });
+
+    applyTheme(window.localStorage.getItem("rustdoc-theme"));
+})();</script></head><div style="display: none; position: fixed; width: 100%; height: 100%; z-index: 1;"></div><body class="rustdoc-page">
+<div class="nav-container">
+    <div class="container">
+        <div class="pure-menu pure-menu-horizontal" role="navigation" aria-label="Main navigation">
+            <form action="https://docs.rs/releases/search" method="GET" id="nav-search-form" class="landing-search-form-nav  ">
+
+                
+                <a href="https://docs.rs/" class="pure-menu-heading pure-menu-link docsrs-logo" aria-label="Docs.rs">
+                    <span title="Docs.rs"><span class="fa fa-solid fa-cubes " aria-hidden="true"></span></span>
+                    <span class="title">Docs.rs</span>
+                </a><ul class="pure-menu-list">
+    <script id="crate-metadata" type="application/json">
+        
+        {
+            "name": "clap",
+            "version": "4.5.40"
+        }
+    </script><li class="pure-menu-item pure-menu-has-children">
+            <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#" class="pure-menu-link crate-name" title="A simple to use, efficient, and full-featured Command Line Argument Parser" aria-haspopup="menu">
+                <span class="fa fa-solid fa-cube " aria-hidden="true"></span>
+                <span class="title">clap-4.5.40</span>
+            </a><div class="pure-menu-children package-details-menu" role="menu">
+                
+                <ul class="pure-menu-list menu-item-divided">
+                    <li class="pure-menu-heading" id="crate-title">
+                        clap 4.5.40
+                        <span id="clipboard" class="svg-clipboard" title="Copy crate name and version information"></span>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/clap/4.5.40/clap/builder/trait.TypedValueParser.html" class="pure-menu-link description" id="permalink" title="Get a link to this specific version">
+                            <span class="fa fa-solid fa-link " aria-hidden="true"></span> Permalink
+                        </a>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/crate/clap/latest" class="pure-menu-link description" title="See clap in docs.rs">
+                            <span class="fa fa-solid fa-cube " aria-hidden="true"></span> Docs.rs crate page
+                        </a>
+                    </li><li class="pure-menu-item">
+                            <span class="pure-menu-link description"><span class="fa fa-solid fa-scale-unbalanced-flip " aria-hidden="true"></span>
+                            <a href="https://spdx.org/licenses/MIT" class="pure-menu-sublink">MIT</a> OR <a href="https://spdx.org/licenses/Apache-2.0" class="pure-menu-sublink">Apache-2.0</a></span>
+                        </li></ul>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Links</li>
+
+                            <li class="pure-menu-item">
+                                    <a href="https://github.com/clap-rs/clap" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-code-branch " aria-hidden="true"></span> Repository
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                <a href="https://crates.io/crates/clap" class="pure-menu-link" title="See clap in crates.io">
+                                    <span class="fa fa-solid fa-cube " aria-hidden="true"></span> crates.io
+                                </a>
+                            </li>
+
+                            
+                            <li class="pure-menu-item">
+                                <a href="https://docs.rs/crate/clap/latest/source/" title="Browse source of clap-4.5.40" class="pure-menu-link">
+                                    <span class="fa fa-solid fa-folder-open " aria-hidden="true"></span> Source
+                                </a>
+                            </li>
+                        </ul>
+                    </div><div class="pure-u-1-2">
+                        <ul class="pure-menu-list" id="topbar-owners">
+                            <li class="pure-menu-heading">Owners</li><li class="pure-menu-item">
+                                    <a href="https://crates.io/users/kbknapp" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> kbknapp
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                    <a href="https://crates.io/teams/github:clap-rs:admins" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> github:clap-rs:admins
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                    <a href="https://crates.io/teams/github:rust-cli:maintainers" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> github:rust-cli:maintainers
+                                    </a>
+                                </li></ul>
+                    </div>
+                </div>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Dependencies</li>
+
+                            
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" tabindex="-1">
+                                    <ul class="pure-menu-list">
+                                        
+    <li class="pure-menu-item"><a href="https://docs.rs/clap_builder/=4.5.40" class="pure-menu-link">
+                        clap_builder =4.5.40
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/clap_derive/=4.5.40" class="pure-menu-link">
+                        clap_derive =4.5.40
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/automod/%5E1.0.14" class="pure-menu-link">
+                        automod ^1.0.14
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/clap-cargo/%5E0.15.0" class="pure-menu-link">
+                        clap-cargo ^0.15.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/jiff/%5E0.2.3" class="pure-menu-link">
+                        jiff ^0.2.3
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/rustversion/%5E1.0.15" class="pure-menu-link">
+                        rustversion ^1.0.15
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/shlex/%5E1.3.0" class="pure-menu-link">
+                        shlex ^1.3.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/snapbox/%5E0.6.16" class="pure-menu-link">
+                        snapbox ^0.6.16
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/trybuild/%5E1.0.91" class="pure-menu-link">
+                        trybuild ^1.0.91
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/trycmd/%5E0.15.3" class="pure-menu-link">
+                        trycmd ^0.15.3
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pure-u-1-2">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Versions</li>
+
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" id="releases-list" tabindex="-1" data-url="/crate/clap/latest/menus/releases/x86_64-unknown-linux-gnu/clap/builder/trait.TypedValueParser.html">
+                                    <span class="rotate"><span class="fa fa-solid fa-spinner " aria-hidden="true"></span></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                    
+                    
+                    <div class="pure-g">
+                        <div class="pure-u-1">
+                            <ul class="pure-menu-list">
+                                <li>
+                                    <a href="https://docs.rs/crate/clap/latest" class="pure-menu-link">
+                                        <b>47.89%</b>
+                                        of the crate is documented
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div></div>
+        </li><li class="pure-menu-item pure-menu-has-children">
+                <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#" class="pure-menu-link" aria-label="Platform" aria-haspopup="menu">
+                    <span class="fa fa-solid fa-gears " aria-hidden="true"></span>
+                    <span class="title">Platform</span>
+                </a>
+
+                
+                <ul class="pure-menu-children" id="platforms" data-url="/crate/clap/latest/menus/platforms/x86_64-unknown-linux-gnu/clap/builder/trait.TypedValueParser.html" role="menu"><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap/latest/target-redirect/i686-pc-windows-msvc/clap/builder/trait.TypedValueParser.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">i686-pc-windows-msvc</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap/latest/target-redirect/i686-unknown-linux-gnu/clap/builder/trait.TypedValueParser.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">i686-unknown-linux-gnu</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap/latest/target-redirect/x86_64-apple-darwin/clap/builder/trait.TypedValueParser.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">x86_64-apple-darwin</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap/latest/target-redirect/x86_64-pc-windows-msvc/clap/builder/trait.TypedValueParser.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">x86_64-pc-windows-msvc</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap/latest/target-redirect/x86_64-unknown-linux-gnu/clap/builder/trait.TypedValueParser.html" class="pure-menu-link current" data-fragment="retain" rel="nofollow">x86_64-unknown-linux-gnu</a>
+        </li></ul>
+            </li><li class="pure-menu-item">
+                <a href="https://docs.rs/crate/clap/latest/features" title="Browse available feature flags of clap-4.5.40" class="pure-menu-link">
+                    <span class="fa fa-solid fa-flag " aria-hidden="true"></span>
+                    <span class="title">Feature flags</span>
+                </a>
+            </li>
+        
+    
+</ul><div class="spacer"></div>
+                
+                
+
+<ul class="pure-menu-list">
+                    <li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#" class="pure-menu-link" aria-label="docs.rs" aria-haspopup="menu">docs.rs</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://docs.rs/about">
+            About docs.rs
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://foundation.rust-lang.org/policies/privacy-policy/#docs.rs" target="_blank">
+            Privacy policy
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="pure-menu-list"><li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#" class="pure-menu-link" aria-label="Rust" aria-haspopup="menu">Rust</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://www.rust-lang.org/" target="_blank">
+            Rust website
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/book/" target="_blank">
+            The Book
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/std/" target="_blank">
+            Standard Library API Reference
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/rust-by-example/" target="_blank">
+            Rust by Example
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/cargo/guide/" target="_blank">
+            The Cargo Guide
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/nightly/clippy" target="_blank">
+            Clippy Documentation
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div id="search-input-nav">
+                    <label for="nav-search">
+                        <span class="fa fa-solid fa-magnifying-glass " aria-hidden="true"></span>
+                    </label>
+
+                    
+                    
+                    <input id="nav-search" name="query" type="text" aria-label="Find crate by search query" tabindex="-1" placeholder="Find crate">
+                </div>
+            </form>
+        </div>
+    </div>
+</div><div class="rustdoc trait container-rustdoc" id="rustdoc_body_wrapper" tabindex="-1"><script async="" src="./TypedValueParser in clap__builder - Rust_files/menu.js.Без названия"></script>
+<script async="" src="./TypedValueParser in clap__builder - Rust_files/index.js.Без названия"></script>
+
+<iframe src="./TypedValueParser in clap__builder - Rust_files/storage-change-detection.html" width="0" height="0" style="display: none"></iframe><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button><a class="logo-container" href="https://docs.rs/clap/latest/clap/index.html"><img src="./TypedValueParser in clap__builder - Rust_files/clap.png" alt=""></a><h2 class="location"><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#">Typed<wbr>Value<wbr>Parser</a></h2></nav><nav class="sidebar"><div class="sidebar-crate"><a class="logo-container" href="https://docs.rs/clap/latest/clap/index.html"><img src="./TypedValueParser in clap__builder - Rust_files/clap.png" alt="logo"></a><h2><a href="https://docs.rs/clap/latest/clap/index.html">clap</a><span class="version">4.5.40</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#">Typed<wbr>Value<wbr>Parser</a></h2><h3><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#">Sections</a></h3><ul class="block top-toc"><li><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#example" title="Example">Example</a></li></ul><h3><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#required-associated-types">Required Associated Types</a></h3><ul class="block"><li><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" title="Value">Value</a></li></ul><h3><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#required-methods">Required Methods</a></h3><ul class="block"><li><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#tymethod.parse_ref" title="parse_ref">parse_ref</a></li></ul><h3><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#method.map" title="map">map</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#method.parse" title="parse">parse</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#method.parse_" title="parse_">parse_</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#method.parse_ref_" title="parse_ref_">parse_ref_</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#method.possible_values" title="possible_values">possible_values</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#method.try_map" title="try_map">try_map</a></li></ul><h3><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="https://docs.rs/clap/latest/clap/builder/index.html">In clap::<wbr>builder</a></h2><h3><a href="https://docs.rs/clap/latest/clap/builder/index.html#modules">Modules</a></h3><ul class="block mod"><li><a href="https://docs.rs/clap/latest/clap/builder/styling/index.html">styling</a></li></ul><h3><a href="https://docs.rs/clap/latest/clap/builder/index.html#structs">Structs</a></h3><ul class="block struct"><li><a href="https://docs.rs/clap/latest/clap/builder/struct.Arg.html">Arg</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.ArgGroup.html">ArgGroup</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.BoolValueParser.html">BoolValueParser</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.BoolishValueParser.html">BoolishValueParser</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.Command.html">Command</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.EnumValueParser.html">EnumValueParser</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.FalseyValueParser.html">FalseyValueParser</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.MapValueParser.html">MapValueParser</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.NonEmptyStringValueParser.html">NonEmptyStringValueParser</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.OsStr.html">OsStr</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.OsStringValueParser.html">OsStringValueParser</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.PathBufValueParser.html">PathBufValueParser</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.PossibleValue.html">PossibleValue</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.PossibleValuesParser.html">PossibleValuesParser</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.RangedI64ValueParser.html">RangedI64ValueParser</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.RangedU64ValueParser.html">RangedU64ValueParser</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.Str.html">Str</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.StringValueParser.html">StringValueParser</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.StyledStr.html">StyledStr</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.Styles.html">Styles</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.TryMapValueParser.html">TryMapValueParser</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.UnknownArgumentValueParser.html">UnknownArgumentValueParser</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.ValueParser.html">ValueParser</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/struct.ValueRange.html">ValueRange</a></li></ul><h3><a href="https://docs.rs/clap/latest/clap/builder/index.html#enums">Enums</a></h3><ul class="block enum"><li><a href="https://docs.rs/clap/latest/clap/builder/enum.ArgAction.html">ArgAction</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/enum.ArgPredicate.html">ArgPredicate</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/enum.Resettable.html">Resettable</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/enum.ValueHint.html">ValueHint</a></li></ul><h3><a href="https://docs.rs/clap/latest/clap/builder/index.html#traits">Traits</a></h3><ul class="block trait"><li><a href="https://docs.rs/clap/latest/clap/builder/trait.ArgExt.html">ArgExt</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/trait.CommandExt.html">CommandExt</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/trait.IntoResettable.html">IntoResettable</a></li><li class="current"><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html">TypedValueParser</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/trait.ValueParserFactory.html">ValueParserFactory</a></li></ul></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search><nav class="sub">
+            <form class="search-form">
+                <span></span> <!-- This empty span is a hacky fix for Safari - See #93184 -->
+                <div id="sidebar-button" tabindex="-1">
+                    <a href="https://docs.rs/clap/latest/clap/all.html" title="show sidebar"></a>
+                </div>
+                <input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search">
+            </form>
+        </nav></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="https://docs.rs/clap/latest/clap/index.html">clap</a>::<wbr><a href="https://docs.rs/clap/latest/clap/builder/index.html">builder</a></div><h1>Trait <span class="trait">TypedValueParser</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar>
+        <div id="settings-menu" tabindex="-1">
+            <a href="https://docs.rs/clap/latest/settings.html"><span class="label">Settings</span></a>
+        </div>
+        <div id="help-button" tabindex="-1">
+            <a href="https://docs.rs/clap/latest/help.html"><span class="label">Help</span></a>
+        </div>
+        <button id="toggle-all-docs"><span class="label">Summary</span></button></rustdoc-toolbar><span class="sub-heading"><a class="src" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#711">Source</a> </span></div><pre class="rust item-decl"><code>pub trait TypedValueParser:
+    <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>
+    + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a>
+    + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a>
+    + 'static {
+    type <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" class="associatedtype">Value</a>: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>;
+
+    // Required method
+    fn <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#tymethod.parse_ref" class="fn">parse_ref</a>(
+        &amp;self,
+        cmd: &amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.Command.html" title="struct clap::Command">Command</a>,
+        arg: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.Arg.html" title="struct clap::Arg">Arg</a>&gt;,
+        value: &amp;<a class="struct" href="https://doc.rust-lang.org/nightly/std/ffi/os_str/struct.OsStr.html" title="struct std::ffi::os_str::OsStr">OsStr</a>,
+    ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;Self::<a class="associatedtype" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" title="type clap::builder::TypedValueParser::Value">Value</a>, <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&gt;;
+
+    // Provided methods
+    fn <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#method.parse_ref_" class="fn">parse_ref_</a>(
+        &amp;self,
+        cmd: &amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.Command.html" title="struct clap::Command">Command</a>,
+        arg: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.Arg.html" title="struct clap::Arg">Arg</a>&gt;,
+        value: &amp;<a class="struct" href="https://doc.rust-lang.org/nightly/std/ffi/os_str/struct.OsStr.html" title="struct std::ffi::os_str::OsStr">OsStr</a>,
+        _source: <a class="enum" href="https://docs.rs/clap/latest/clap/parser/enum.ValueSource.html" title="enum clap::parser::ValueSource">ValueSource</a>,
+    ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;Self::<a class="associatedtype" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" title="type clap::builder::TypedValueParser::Value">Value</a>, <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#method.parse" class="fn">parse</a>(
+        &amp;self,
+        cmd: &amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.Command.html" title="struct clap::Command">Command</a>,
+        arg: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.Arg.html" title="struct clap::Arg">Arg</a>&gt;,
+        value: <a class="struct" href="https://doc.rust-lang.org/nightly/std/ffi/os_str/struct.OsString.html" title="struct std::ffi::os_str::OsString">OsString</a>,
+    ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;Self::<a class="associatedtype" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" title="type clap::builder::TypedValueParser::Value">Value</a>, <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#method.parse_" class="fn">parse_</a>(
+        &amp;self,
+        cmd: &amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.Command.html" title="struct clap::Command">Command</a>,
+        arg: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.Arg.html" title="struct clap::Arg">Arg</a>&gt;,
+        value: <a class="struct" href="https://doc.rust-lang.org/nightly/std/ffi/os_str/struct.OsString.html" title="struct std::ffi::os_str::OsString">OsString</a>,
+        _source: <a class="enum" href="https://docs.rs/clap/latest/clap/parser/enum.ValueSource.html" title="enum clap::parser::ValueSource">ValueSource</a>,
+    ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;Self::<a class="associatedtype" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" title="type clap::builder::TypedValueParser::Value">Value</a>, <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#method.possible_values" class="fn">possible_values</a>(
+        &amp;self,
+    ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;dyn <a class="trait" href="https://doc.rust-lang.org/nightly/core/iter/traits/iterator/trait.Iterator.html" title="trait core::iter::traits::iterator::Iterator">Iterator</a>&lt;Item = <a class="struct" href="https://docs.rs/clap/latest/clap/builder/struct.PossibleValue.html" title="struct clap::builder::PossibleValue">PossibleValue</a>&gt; + '_&gt;&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#method.map" class="fn">map</a>&lt;T, F&gt;(self, func: F) -&gt; <a class="struct" href="https://docs.rs/clap/latest/clap/builder/struct.MapValueParser.html" title="struct clap::builder::MapValueParser">MapValueParser</a>&lt;Self, F&gt;
+       <span class="where">where T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,
+             F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(Self::<a class="associatedtype" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" title="type clap::builder::TypedValueParser::Value">Value</a>) -&gt; T + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a></span> { ... }
+<span class="item-spacer"></span>    fn <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#method.try_map" class="fn">try_map</a>&lt;T, E, F&gt;(self, func: F) -&gt; <a class="struct" href="https://docs.rs/clap/latest/clap/builder/struct.TryMapValueParser.html" title="struct clap::builder::TryMapValueParser">TryMapValueParser</a>&lt;Self, F&gt;
+       <span class="where">where F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(Self::<a class="associatedtype" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" title="type clap::builder::TypedValueParser::Value">Value</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;T, E&gt; + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,
+             T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,
+             E: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;dyn <a class="trait" href="https://doc.rust-lang.org/nightly/core/error/trait.Error.html" title="trait core::error::Error">Error</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a>&gt;&gt;</span> { ... }
+}</code></pre><details class="toggle top-doc" open=""><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Parse/validate argument values</p>
+<p>As alternatives to implementing <code>TypedValueParser</code>,</p>
+<ul>
+<li>Use <code>Fn(&amp;str) -&gt; Result&lt;T, E&gt;</code> which implements <code>TypedValueParser</code></li>
+<li><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#method.map" title="method clap::builder::TypedValueParser::map"><code>TypedValueParser::map</code></a> or <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#method.try_map" title="method clap::builder::TypedValueParser::try_map"><code>TypedValueParser::try_map</code></a> to adapt an existing <code>TypedValueParser</code></li>
+</ul>
+<p>See <code>ValueParserFactory</code> to register <code>TypedValueParser::Value</code> with
+<a href="https://docs.rs/clap/latest/clap/macro.value_parser.html" title="macro clap::value_parser"><code>value_parser!</code></a>.</p>
+<h2 id="example"><a class="doc-anchor" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#example">§</a>Example</h2>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attr">#[derive(Clone)]
+</span><span class="kw">struct </span>Custom(u32);
+
+<span class="attr">#[derive(Clone)]
+</span><span class="kw">struct </span>CustomValueParser;
+
+<span class="kw">impl </span>clap::builder::TypedValueParser <span class="kw">for </span>CustomValueParser {
+    <span class="kw">type </span>Value = Custom;
+
+    <span class="kw">fn </span>parse_ref(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        cmd: <span class="kw-2">&amp;</span>clap::Command,
+        arg: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>clap::Arg&gt;,
+        value: <span class="kw-2">&amp;</span>std::ffi::OsStr,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, clap::Error&gt; {
+        <span class="kw">let </span>inner = <span class="macro">clap::value_parser!</span>(u32);
+        <span class="kw">let </span>val = inner.parse_ref(cmd, arg, value)<span class="question-mark">?</span>;
+
+        <span class="kw">const </span>INVALID_VALUE: u32 = <span class="number">10</span>;
+        <span class="kw">if </span>val == INVALID_VALUE {
+            <span class="kw">let </span><span class="kw-2">mut </span>err = clap::Error::new(ErrorKind::ValueValidation)
+                .with_cmd(cmd);
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(arg) = arg {
+                err.insert(ContextKind::InvalidArg, ContextValue::String(arg.to_string()));
+            }
+            err.insert(ContextKind::InvalidValue, ContextValue::String(INVALID_VALUE.to_string()));
+            <span class="kw">return </span><span class="prelude-val">Err</span>(err);
+        }
+
+        <span class="prelude-val">Ok</span>(Custom(val))
+    }
+}</code></pre></div>
+</div></details><h2 id="required-associated-types" class="section-header">Required Associated Types<a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#required-associated-types" class="anchor">§</a></h2><div class="methods"><details class="toggle" open=""><summary><section id="associatedtype.Value" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#713">Source</a><h4 class="code-header">type <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" class="associatedtype">Value</a>: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a></h4></section></summary><div class="docblock"><p>Argument’s value type</p>
+</div></details></div><h2 id="required-methods" class="section-header">Required Methods<a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#required-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open=""><summary><section id="tymethod.parse_ref" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#718-723">Source</a><h4 class="code-header">fn <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#tymethod.parse_ref" class="fn">parse_ref</a>(
+    &amp;self,
+    cmd: &amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.Command.html" title="struct clap::Command">Command</a>,
+    arg: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.Arg.html" title="struct clap::Arg">Arg</a>&gt;,
+    value: &amp;<a class="struct" href="https://doc.rust-lang.org/nightly/std/ffi/os_str/struct.OsStr.html" title="struct std::ffi::os_str::OsStr">OsStr</a>,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;Self::<a class="associatedtype" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" title="type clap::builder::TypedValueParser::Value">Value</a>, <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Parse the argument value</p>
+<p>When <code>arg</code> is <code>None</code>, an external subcommand value is being parsed.</p>
+</div></details></div><h2 id="provided-methods" class="section-header">Provided Methods<a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open=""><summary><section id="method.parse_ref_" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#728-734">Source</a><h4 class="code-header">fn <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#method.parse_ref_" class="fn">parse_ref_</a>(
+    &amp;self,
+    cmd: &amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.Command.html" title="struct clap::Command">Command</a>,
+    arg: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.Arg.html" title="struct clap::Arg">Arg</a>&gt;,
+    value: &amp;<a class="struct" href="https://doc.rust-lang.org/nightly/std/ffi/os_str/struct.OsStr.html" title="struct std::ffi::os_str::OsStr">OsStr</a>,
+    _source: <a class="enum" href="https://docs.rs/clap/latest/clap/parser/enum.ValueSource.html" title="enum clap::parser::ValueSource">ValueSource</a>,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;Self::<a class="associatedtype" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" title="type clap::builder::TypedValueParser::Value">Value</a>, <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Parse the argument value</p>
+<p>When <code>arg</code> is <code>None</code>, an external subcommand value is being parsed.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.parse" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#741-746">Source</a><h4 class="code-header">fn <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#method.parse" class="fn">parse</a>(
+    &amp;self,
+    cmd: &amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.Command.html" title="struct clap::Command">Command</a>,
+    arg: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.Arg.html" title="struct clap::Arg">Arg</a>&gt;,
+    value: <a class="struct" href="https://doc.rust-lang.org/nightly/std/ffi/os_str/struct.OsString.html" title="struct std::ffi::os_str::OsString">OsString</a>,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;Self::<a class="associatedtype" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" title="type clap::builder::TypedValueParser::Value">Value</a>, <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Parse the argument value</p>
+<p>When <code>arg</code> is <code>None</code>, an external subcommand value is being parsed.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.parse_" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#753-759">Source</a><h4 class="code-header">fn <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#method.parse_" class="fn">parse_</a>(
+    &amp;self,
+    cmd: &amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.Command.html" title="struct clap::Command">Command</a>,
+    arg: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.Arg.html" title="struct clap::Arg">Arg</a>&gt;,
+    value: <a class="struct" href="https://doc.rust-lang.org/nightly/std/ffi/os_str/struct.OsString.html" title="struct std::ffi::os_str::OsString">OsString</a>,
+    _source: <a class="enum" href="https://docs.rs/clap/latest/clap/parser/enum.ValueSource.html" title="enum clap::parser::ValueSource">ValueSource</a>,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;Self::<a class="associatedtype" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" title="type clap::builder::TypedValueParser::Value">Value</a>, <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Parse the argument value</p>
+<p>When <code>arg</code> is <code>None</code>, an external subcommand value is being parsed.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.possible_values" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#767-769">Source</a><h4 class="code-header">fn <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#method.possible_values" class="fn">possible_values</a>(
+    &amp;self,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;dyn <a class="trait" href="https://doc.rust-lang.org/nightly/core/iter/traits/iterator/trait.Iterator.html" title="trait core::iter::traits::iterator::Iterator">Iterator</a>&lt;Item = <a class="struct" href="https://docs.rs/clap/latest/clap/builder/struct.PossibleValue.html" title="struct clap::builder::PossibleValue">PossibleValue</a>&gt; + '_&gt;&gt;</h4></section></summary><div class="docblock"><p>Reflect on enumerated value properties</p>
+<p>Error checking should not be done with this; it is mostly targeted at user-facing
+applications like errors and completion.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.map" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#810-813">Source</a><h4 class="code-header">fn <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#method.map" class="fn">map</a>&lt;T, F&gt;(self, func: F) -&gt; <a class="struct" href="https://docs.rs/clap/latest/clap/builder/struct.MapValueParser.html" title="struct clap::builder::MapValueParser">MapValueParser</a>&lt;Self, F&gt;<div class="where">where
+    T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,
+    F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(Self::<a class="associatedtype" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" title="type clap::builder::TypedValueParser::Value">Value</a>) -&gt; T + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,</div></h4></section></summary><div class="docblock"><p>Adapt a <code>TypedValueParser</code> from one value to another</p>
+<h5 id="example-1"><a class="doc-anchor" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#example-1">§</a>Example</h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let </span>cmd = Command::new(<span class="string">"mycmd"</span>)
+    .arg(
+        Arg::new(<span class="string">"flag"</span>)
+            .long(<span class="string">"flag"</span>)
+            .action(clap::ArgAction::SetTrue)
+            .value_parser(
+                BoolishValueParser::new()
+                .map(|b| -&gt; usize {
+                    <span class="kw">if </span>b { <span class="number">10 </span>} <span class="kw">else </span>{ <span class="number">5 </span>}
+                })
+            )
+    );
+
+<span class="kw">let </span>matches = cmd.clone().try_get_matches_from([<span class="string">"mycmd"</span>, <span class="string">"--flag"</span>]).unwrap();
+<span class="macro">assert!</span>(matches.contains_id(<span class="string">"flag"</span>));
+<span class="macro">assert_eq!</span>(
+    matches.get_one::&lt;usize&gt;(<span class="string">"flag"</span>).copied(),
+    <span class="prelude-val">Some</span>(<span class="number">10</span>)
+);
+
+<span class="kw">let </span>matches = cmd.try_get_matches_from([<span class="string">"mycmd"</span>]).unwrap();
+<span class="macro">assert!</span>(matches.contains_id(<span class="string">"flag"</span>));
+<span class="macro">assert_eq!</span>(
+    matches.get_one::&lt;usize&gt;(<span class="string">"flag"</span>).copied(),
+    <span class="prelude-val">Some</span>(<span class="number">5</span>)
+);</code></pre></div>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.try_map" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#860-864">Source</a><h4 class="code-header">fn <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#method.try_map" class="fn">try_map</a>&lt;T, E, F&gt;(self, func: F) -&gt; <a class="struct" href="https://docs.rs/clap/latest/clap/builder/struct.TryMapValueParser.html" title="struct clap::builder::TryMapValueParser">TryMapValueParser</a>&lt;Self, F&gt;<div class="where">where
+    F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(Self::<a class="associatedtype" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" title="type clap::builder::TypedValueParser::Value">Value</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;T, E&gt; + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,
+    T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,
+    E: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;dyn <a class="trait" href="https://doc.rust-lang.org/nightly/core/error/trait.Error.html" title="trait core::error::Error">Error</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a>&gt;&gt;,</div></h4></section></summary><div class="docblock"><p>Adapt a <code>TypedValueParser</code> from one value to another</p>
+<h5 id="example-2"><a class="doc-anchor" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#example-2">§</a>Example</h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let </span>cmd = Command::new(<span class="string">"mycmd"</span>)
+    .arg(
+        Arg::new(<span class="string">"flag"</span>)
+            .long(<span class="string">"flag"</span>)
+            .value_parser(
+                OsStringValueParser::new()
+                .try_map(verify_ext)
+            )
+    );
+
+<span class="kw">fn </span>verify_ext(os: OsString) -&gt; <span class="prelude-ty">Result</span>&lt;PathBuf, <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; {
+    <span class="kw">let </span>path = PathBuf::from(os);
+    <span class="kw">if </span>path.extension() != <span class="prelude-val">Some</span>(OsStr::new(<span class="string">"rs"</span>)) {
+        <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="string">"only Rust files are supported"</span>);
+    }
+    <span class="prelude-val">Ok</span>(path)
+}
+
+<span class="kw">let </span>error = cmd.clone().try_get_matches_from([<span class="string">"mycmd"</span>, <span class="string">"--flag"</span>, <span class="string">"foo.txt"</span>]).unwrap_err();
+error.print();
+
+<span class="kw">let </span>matches = cmd.try_get_matches_from([<span class="string">"mycmd"</span>, <span class="string">"--flag"</span>, <span class="string">"foo.rs"</span>]).unwrap();
+<span class="macro">assert!</span>(matches.contains_id(<span class="string">"flag"</span>));
+<span class="macro">assert_eq!</span>(
+    matches.get_one::&lt;PathBuf&gt;(<span class="string">"flag"</span>).map(|s| s.as_path()),
+    <span class="prelude-val">Some</span>(Path::new(<span class="string">"foo.rs"</span>))
+);</code></pre></div>
+</div></details></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#implementors" class="anchor">§</a></h2><div id="implementors-list"><details class="toggle implementors-toggle"><summary><section id="impl-TypedValueParser-for-BoolValueParser" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#1693">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#impl-TypedValueParser-for-BoolValueParser" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html" title="trait clap::builder::TypedValueParser">TypedValueParser</a> for <a class="struct" href="https://docs.rs/clap/latest/clap/builder/struct.BoolValueParser.html" title="struct clap::builder::BoolValueParser">BoolValueParser</a></h3></section></summary><div class="impl-items"><section id="associatedtype.Value-1" class="associatedtype trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#1694">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value-1" class="anchor">§</a><h4 class="code-header">type <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" class="associatedtype">Value</a> = <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TypedValueParser-for-BoolishValueParser" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#1894">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#impl-TypedValueParser-for-BoolishValueParser" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html" title="trait clap::builder::TypedValueParser">TypedValueParser</a> for <a class="struct" href="https://docs.rs/clap/latest/clap/builder/struct.BoolishValueParser.html" title="struct clap::builder::BoolishValueParser">BoolishValueParser</a></h3></section></summary><div class="impl-items"><section id="associatedtype.Value-2" class="associatedtype trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#1895">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value-2" class="anchor">§</a><h4 class="code-header">type <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" class="associatedtype">Value</a> = <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TypedValueParser-for-FalseyValueParser" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#1795">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#impl-TypedValueParser-for-FalseyValueParser" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html" title="trait clap::builder::TypedValueParser">TypedValueParser</a> for <a class="struct" href="https://docs.rs/clap/latest/clap/builder/struct.FalseyValueParser.html" title="struct clap::builder::FalseyValueParser">FalseyValueParser</a></h3></section></summary><div class="impl-items"><section id="associatedtype.Value-3" class="associatedtype trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#1796">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value-3" class="anchor">§</a><h4 class="code-header">type <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" class="associatedtype">Value</a> = <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TypedValueParser-for-NonEmptyStringValueParser" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#1977">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#impl-TypedValueParser-for-NonEmptyStringValueParser" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html" title="trait clap::builder::TypedValueParser">TypedValueParser</a> for <a class="struct" href="https://docs.rs/clap/latest/clap/builder/struct.NonEmptyStringValueParser.html" title="struct clap::builder::NonEmptyStringValueParser">NonEmptyStringValueParser</a></h3></section></summary><div class="impl-items"><section id="associatedtype.Value-4" class="associatedtype trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#1978">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value-4" class="anchor">§</a><h4 class="code-header">type <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" class="associatedtype">Value</a> = <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a></h4></section></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TypedValueParser-for-OsStringValueParser" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#962">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#impl-TypedValueParser-for-OsStringValueParser" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html" title="trait clap::builder::TypedValueParser">TypedValueParser</a> for <a class="struct" href="https://docs.rs/clap/latest/clap/builder/struct.OsStringValueParser.html" title="struct clap::builder::OsStringValueParser">OsStringValueParser</a></h3></section></summary><div class="impl-items"><section id="associatedtype.Value-5" class="associatedtype trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#963">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value-5" class="anchor">§</a><h4 class="code-header">type <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" class="associatedtype">Value</a> = <a class="struct" href="https://doc.rust-lang.org/nightly/std/ffi/os_str/struct.OsString.html" title="struct std::ffi::os_str::OsString">OsString</a></h4></section></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TypedValueParser-for-PathBufValueParser" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#1004">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#impl-TypedValueParser-for-PathBufValueParser" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html" title="trait clap::builder::TypedValueParser">TypedValueParser</a> for <a class="struct" href="https://docs.rs/clap/latest/clap/builder/struct.PathBufValueParser.html" title="struct clap::builder::PathBufValueParser">PathBufValueParser</a></h3></section></summary><div class="impl-items"><section id="associatedtype.Value-6" class="associatedtype trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#1005">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value-6" class="anchor">§</a><h4 class="code-header">type <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" class="associatedtype">Value</a> = <a class="struct" href="https://doc.rust-lang.org/nightly/std/path/struct.PathBuf.html" title="struct std::path::PathBuf">PathBuf</a></h4></section></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TypedValueParser-for-PossibleValuesParser" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#1205">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#impl-TypedValueParser-for-PossibleValuesParser" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html" title="trait clap::builder::TypedValueParser">TypedValueParser</a> for <a class="struct" href="https://docs.rs/clap/latest/clap/builder/struct.PossibleValuesParser.html" title="struct clap::builder::PossibleValuesParser">PossibleValuesParser</a></h3></section></summary><div class="impl-items"><section id="associatedtype.Value-7" class="associatedtype trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#1206">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value-7" class="anchor">§</a><h4 class="code-header">type <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" class="associatedtype">Value</a> = <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a></h4></section></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TypedValueParser-for-StringValueParser" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#914">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#impl-TypedValueParser-for-StringValueParser" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html" title="trait clap::builder::TypedValueParser">TypedValueParser</a> for <a class="struct" href="https://docs.rs/clap/latest/clap/builder/struct.StringValueParser.html" title="struct clap::builder::StringValueParser">StringValueParser</a></h3></section></summary><div class="impl-items"><section id="associatedtype.Value-8" class="associatedtype trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#915">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value-8" class="anchor">§</a><h4 class="code-header">type <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" class="associatedtype">Value</a> = <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a></h4></section></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TypedValueParser-for-UnknownArgumentValueParser" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#2188">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#impl-TypedValueParser-for-UnknownArgumentValueParser" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html" title="trait clap::builder::TypedValueParser">TypedValueParser</a> for <a class="struct" href="https://docs.rs/clap/latest/clap/builder/struct.UnknownArgumentValueParser.html" title="struct clap::builder::UnknownArgumentValueParser">UnknownArgumentValueParser</a></h3></section></summary><div class="impl-items"><section id="associatedtype.Value-9" class="associatedtype trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#2189">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value-9" class="anchor">§</a><h4 class="code-header">type <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" class="associatedtype">Value</a> = <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a></h4></section></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TypedValueParser-for-EnumValueParser%3CE%3E" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#1091">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#impl-TypedValueParser-for-EnumValueParser%3CE%3E" class="anchor">§</a><h3 class="code-header">impl&lt;E&gt; <a class="trait" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html" title="trait clap::builder::TypedValueParser">TypedValueParser</a> for <a class="struct" href="https://docs.rs/clap/latest/clap/builder/struct.EnumValueParser.html" title="struct clap::builder::EnumValueParser">EnumValueParser</a>&lt;E&gt;<div class="where">where
+    E: <a class="trait" href="https://docs.rs/clap/latest/clap/trait.ValueEnum.html" title="trait clap::ValueEnum">ValueEnum</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,</div></h3></section></summary><div class="impl-items"><section id="associatedtype.Value-10" class="associatedtype trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#1092">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value-10" class="anchor">§</a><h4 class="code-header">type <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" class="associatedtype">Value</a> = E</h4></section></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TypedValueParser-for-F" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#870-874">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#impl-TypedValueParser-for-F" class="anchor">§</a><h3 class="code-header">impl&lt;F, T, E&gt; <a class="trait" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html" title="trait clap::builder::TypedValueParser">TypedValueParser</a> for F<div class="where">where
+    F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;T, E&gt; + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,
+    E: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;dyn <a class="trait" href="https://doc.rust-lang.org/nightly/core/error/trait.Error.html" title="trait core::error::Error">Error</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a>&gt;&gt;,
+    T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,</div></h3></section></summary><div class="impl-items"><section id="associatedtype.Value-11" class="associatedtype trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#876">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value-11" class="anchor">§</a><h4 class="code-header">type <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" class="associatedtype">Value</a> = T</h4></section></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TypedValueParser-for-MapValueParser%3CP,+F%3E" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#2031-2036">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#impl-TypedValueParser-for-MapValueParser%3CP,+F%3E" class="anchor">§</a><h3 class="code-header">impl&lt;P, F, T&gt; <a class="trait" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html" title="trait clap::builder::TypedValueParser">TypedValueParser</a> for <a class="struct" href="https://docs.rs/clap/latest/clap/builder/struct.MapValueParser.html" title="struct clap::builder::MapValueParser">MapValueParser</a>&lt;P, F&gt;<div class="where">where
+    P: <a class="trait" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html" title="trait clap::builder::TypedValueParser">TypedValueParser</a>,
+    &lt;P as <a class="trait" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html" title="trait clap::builder::TypedValueParser">TypedValueParser</a>&gt;::<a class="associatedtype" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" title="type clap::builder::TypedValueParser::Value">Value</a>: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,
+    F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&lt;P as <a class="trait" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html" title="trait clap::builder::TypedValueParser">TypedValueParser</a>&gt;::<a class="associatedtype" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" title="type clap::builder::TypedValueParser::Value">Value</a>) -&gt; T + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,
+    T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,</div></h3></section></summary><div class="impl-items"><section id="associatedtype.Value-12" class="associatedtype trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#2038">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value-12" class="anchor">§</a><h4 class="code-header">type <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" class="associatedtype">Value</a> = T</h4></section></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TypedValueParser-for-TryMapValueParser%3CP,+F%3E" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#2091-2097">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#impl-TypedValueParser-for-TryMapValueParser%3CP,+F%3E" class="anchor">§</a><h3 class="code-header">impl&lt;P, F, T, E&gt; <a class="trait" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html" title="trait clap::builder::TypedValueParser">TypedValueParser</a> for <a class="struct" href="https://docs.rs/clap/latest/clap/builder/struct.TryMapValueParser.html" title="struct clap::builder::TryMapValueParser">TryMapValueParser</a>&lt;P, F&gt;<div class="where">where
+    P: <a class="trait" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html" title="trait clap::builder::TypedValueParser">TypedValueParser</a>,
+    &lt;P as <a class="trait" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html" title="trait clap::builder::TypedValueParser">TypedValueParser</a>&gt;::<a class="associatedtype" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" title="type clap::builder::TypedValueParser::Value">Value</a>: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,
+    F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&lt;P as <a class="trait" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html" title="trait clap::builder::TypedValueParser">TypedValueParser</a>&gt;::<a class="associatedtype" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" title="type clap::builder::TypedValueParser::Value">Value</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;T, E&gt; + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,
+    T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,
+    E: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;dyn <a class="trait" href="https://doc.rust-lang.org/nightly/core/error/trait.Error.html" title="trait core::error::Error">Error</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a>&gt;&gt;,</div></h3></section></summary><div class="impl-items"><section id="associatedtype.Value-13" class="associatedtype trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#2099">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value-13" class="anchor">§</a><h4 class="code-header">type <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" class="associatedtype">Value</a> = T</h4></section></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TypedValueParser-for-RangedI64ValueParser%3CT%3E" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#1400-1402">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#impl-TypedValueParser-for-RangedI64ValueParser%3CT%3E" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html" title="trait clap::builder::TypedValueParser">TypedValueParser</a> for <a class="struct" href="https://docs.rs/clap/latest/clap/builder/struct.RangedI64ValueParser.html" title="struct clap::builder::RangedI64ValueParser">RangedI64ValueParser</a>&lt;T&gt;<div class="where">where
+    T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>&gt; + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,
+    &lt;T as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a>: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static + <a class="trait" href="https://doc.rust-lang.org/nightly/core/error/trait.Error.html" title="trait core::error::Error">Error</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/alloc/string/trait.ToString.html" title="trait alloc::string::ToString">ToString</a>,</div></h3></section></summary><div class="impl-items"><section id="associatedtype.Value-14" class="associatedtype trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#1404">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value-14" class="anchor">§</a><h4 class="code-header">type <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" class="associatedtype">Value</a> = T</h4></section></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TypedValueParser-for-RangedU64ValueParser%3CT%3E" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#1599-1601">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#impl-TypedValueParser-for-RangedU64ValueParser%3CT%3E" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html" title="trait clap::builder::TypedValueParser">TypedValueParser</a> for <a class="struct" href="https://docs.rs/clap/latest/clap/builder/struct.RangedU64ValueParser.html" title="struct clap::builder::RangedU64ValueParser">RangedU64ValueParser</a>&lt;T&gt;<div class="where">where
+    T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>&gt; + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static,
+    &lt;T as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a>: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> + 'static + <a class="trait" href="https://doc.rust-lang.org/nightly/core/error/trait.Error.html" title="trait core::error::Error">Error</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/alloc/string/trait.ToString.html" title="trait alloc::string::ToString">ToString</a>,</div></h3></section></summary><div class="impl-items"><section id="associatedtype.Value-15" class="associatedtype trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/builder/value_parser.rs.html#1603">Source</a><a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value-15" class="anchor">§</a><h4 class="code-header">type <a href="https://docs.rs/clap/latest/clap/builder/trait.TypedValueParser.html#associatedtype.Value" class="associatedtype">Value</a> = T</h4></section></div></details></div><script src="./TypedValueParser in clap__builder - Rust_files/trait.TypedValueParser.js.Без названия" data-ignore-extern-crates="clap_builder" async=""></script></section></div></main></div></body></html>

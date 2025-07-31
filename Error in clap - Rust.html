@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://docs.rs/clap/latest/clap/type.Error.html -->
+<html lang="en" data-theme="dark" data-docs-rs-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Command Line Argument Parser Error"><title>Error in clap - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="/-/rustdoc.static/${f}">`).join(""))</script><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceSerif4-Regular-6b053e98.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Italic-81dc35de.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Regular-0fe48ade.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-MediumItalic-ccf7e434.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Medium-e1aa3f0a.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Regular-8badfe75.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Semibold-aa29a496.ttf.woff2"><link rel="stylesheet" href="./Error in clap - Rust_files/normalize-9960930a.css"><link rel="stylesheet" href="./Error in clap - Rust_files/vendored.css" media="all"><link rel="stylesheet" href="./Error in clap - Rust_files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="/-/rustdoc.static/" data-current-crate="clap" data-themes="" data-resource-suffix="-20250608-1.89.0-nightly-6ccd44760" data-rustdoc-version="1.89.0-nightly (6ccd44760 2025-06-08)" data-channel="nightly" data-search-js="search-f7877310.js" data-settings-js="settings-5514c975.js"><script src="./Error in clap - Rust_files/storage-4e99c027.js.Без названия"></script><script defer="" src="./Error in clap - Rust_files/sidebar-items-20250608-1.89.0-nightly-6ccd44760.js.Без названия"></script><script defer="" src="./Error in clap - Rust_files/main-fd3af306.js.Без названия"></script><script defer="" src="./Error in clap - Rust_files/scrape-examples-5e967b76.js.Без названия"></script><noscript><link rel="stylesheet" href="/-/rustdoc.static/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="https://docs.rs/-/rustdoc.static/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="https://docs.rs/-/rustdoc.static/favicon-044be391.svg"><link rel="stylesheet" href="./Error in clap - Rust_files/rustdoc-2021-12-05.css" media="all"><link rel="stylesheet" href="./Error in clap - Rust_files/font-awesome.css" media="all">
+
+        <link rel="search" href="https://docs.rs/-/static/opensearch.xml" type="application/opensearchdescription+xml" title="Docs.rs">
+
+        <script type="text/javascript">(function() {
+    function applyTheme(theme) {
+        if (theme) {
+            document.documentElement.dataset.docsRsTheme = theme;
+        }
+    }
+
+    window.addEventListener("storage", ev => {
+        if (ev.key === "rustdoc-theme") {
+            applyTheme(ev.newValue);
+        }
+    });
+
+    // see ./storage-change-detection.html for details
+    window.addEventListener("message", ev => {
+        if (ev.data && ev.data.storage && ev.data.storage.key === "rustdoc-theme") {
+            applyTheme(ev.data.storage.value);
+        }
+    });
+
+    applyTheme(window.localStorage.getItem("rustdoc-theme"));
+})();</script></head><div style="display: none; position: fixed; width: 100%; height: 100%; z-index: 1;"></div><body class="rustdoc-page">
+<div class="nav-container">
+    <div class="container">
+        <div class="pure-menu pure-menu-horizontal" role="navigation" aria-label="Main navigation">
+            <form action="https://docs.rs/releases/search" method="GET" id="nav-search-form" class="landing-search-form-nav  ">
+
+                
+                <a href="https://docs.rs/" class="pure-menu-heading pure-menu-link docsrs-logo" aria-label="Docs.rs">
+                    <span title="Docs.rs"><span class="fa fa-solid fa-cubes " aria-hidden="true"></span></span>
+                    <span class="title">Docs.rs</span>
+                </a><ul class="pure-menu-list">
+    <script id="crate-metadata" type="application/json">
+        
+        {
+            "name": "clap",
+            "version": "4.5.40"
+        }
+    </script><li class="pure-menu-item pure-menu-has-children">
+            <a href="https://docs.rs/clap/latest/clap/type.Error.html#" class="pure-menu-link crate-name" title="A simple to use, efficient, and full-featured Command Line Argument Parser" aria-haspopup="menu">
+                <span class="fa fa-solid fa-cube " aria-hidden="true"></span>
+                <span class="title">clap-4.5.40</span>
+            </a><div class="pure-menu-children package-details-menu" role="menu">
+                
+                <ul class="pure-menu-list menu-item-divided">
+                    <li class="pure-menu-heading" id="crate-title">
+                        clap 4.5.40
+                        <span id="clipboard" class="svg-clipboard" title="Copy crate name and version information"></span>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/clap/4.5.40/clap/type.Error.html" class="pure-menu-link description" id="permalink" title="Get a link to this specific version">
+                            <span class="fa fa-solid fa-link " aria-hidden="true"></span> Permalink
+                        </a>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/crate/clap/latest" class="pure-menu-link description" title="See clap in docs.rs">
+                            <span class="fa fa-solid fa-cube " aria-hidden="true"></span> Docs.rs crate page
+                        </a>
+                    </li><li class="pure-menu-item">
+                            <span class="pure-menu-link description"><span class="fa fa-solid fa-scale-unbalanced-flip " aria-hidden="true"></span>
+                            <a href="https://spdx.org/licenses/MIT" class="pure-menu-sublink">MIT</a> OR <a href="https://spdx.org/licenses/Apache-2.0" class="pure-menu-sublink">Apache-2.0</a></span>
+                        </li></ul>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Links</li>
+
+                            <li class="pure-menu-item">
+                                    <a href="https://github.com/clap-rs/clap" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-code-branch " aria-hidden="true"></span> Repository
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                <a href="https://crates.io/crates/clap" class="pure-menu-link" title="See clap in crates.io">
+                                    <span class="fa fa-solid fa-cube " aria-hidden="true"></span> crates.io
+                                </a>
+                            </li>
+
+                            
+                            <li class="pure-menu-item">
+                                <a href="https://docs.rs/crate/clap/latest/source/" title="Browse source of clap-4.5.40" class="pure-menu-link">
+                                    <span class="fa fa-solid fa-folder-open " aria-hidden="true"></span> Source
+                                </a>
+                            </li>
+                        </ul>
+                    </div><div class="pure-u-1-2">
+                        <ul class="pure-menu-list" id="topbar-owners">
+                            <li class="pure-menu-heading">Owners</li><li class="pure-menu-item">
+                                    <a href="https://crates.io/users/kbknapp" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> kbknapp
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                    <a href="https://crates.io/teams/github:clap-rs:admins" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> github:clap-rs:admins
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                    <a href="https://crates.io/teams/github:rust-cli:maintainers" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> github:rust-cli:maintainers
+                                    </a>
+                                </li></ul>
+                    </div>
+                </div>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Dependencies</li>
+
+                            
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" tabindex="-1">
+                                    <ul class="pure-menu-list">
+                                        
+    <li class="pure-menu-item"><a href="https://docs.rs/clap_builder/=4.5.40" class="pure-menu-link">
+                        clap_builder =4.5.40
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/clap_derive/=4.5.40" class="pure-menu-link">
+                        clap_derive =4.5.40
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/automod/%5E1.0.14" class="pure-menu-link">
+                        automod ^1.0.14
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/clap-cargo/%5E0.15.0" class="pure-menu-link">
+                        clap-cargo ^0.15.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/jiff/%5E0.2.3" class="pure-menu-link">
+                        jiff ^0.2.3
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/rustversion/%5E1.0.15" class="pure-menu-link">
+                        rustversion ^1.0.15
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/shlex/%5E1.3.0" class="pure-menu-link">
+                        shlex ^1.3.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/snapbox/%5E0.6.16" class="pure-menu-link">
+                        snapbox ^0.6.16
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/trybuild/%5E1.0.91" class="pure-menu-link">
+                        trybuild ^1.0.91
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/trycmd/%5E0.15.3" class="pure-menu-link">
+                        trycmd ^0.15.3
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pure-u-1-2">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Versions</li>
+
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" id="releases-list" tabindex="-1" data-url="/crate/clap/latest/menus/releases/x86_64-unknown-linux-gnu/clap/type.Error.html">
+                                    <span class="rotate"><span class="fa fa-solid fa-spinner " aria-hidden="true"></span></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                    
+                    
+                    <div class="pure-g">
+                        <div class="pure-u-1">
+                            <ul class="pure-menu-list">
+                                <li>
+                                    <a href="https://docs.rs/crate/clap/latest" class="pure-menu-link">
+                                        <b>47.89%</b>
+                                        of the crate is documented
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div></div>
+        </li><li class="pure-menu-item pure-menu-has-children">
+                <a href="https://docs.rs/clap/latest/clap/type.Error.html#" class="pure-menu-link" aria-label="Platform" aria-haspopup="menu">
+                    <span class="fa fa-solid fa-gears " aria-hidden="true"></span>
+                    <span class="title">Platform</span>
+                </a>
+
+                
+                <ul class="pure-menu-children" id="platforms" data-url="/crate/clap/latest/menus/platforms/x86_64-unknown-linux-gnu/clap/type.Error.html" role="menu"><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap/latest/target-redirect/i686-pc-windows-msvc/clap/type.Error.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">i686-pc-windows-msvc</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap/latest/target-redirect/i686-unknown-linux-gnu/clap/type.Error.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">i686-unknown-linux-gnu</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap/latest/target-redirect/x86_64-apple-darwin/clap/type.Error.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">x86_64-apple-darwin</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap/latest/target-redirect/x86_64-pc-windows-msvc/clap/type.Error.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">x86_64-pc-windows-msvc</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/clap/latest/target-redirect/x86_64-unknown-linux-gnu/clap/type.Error.html" class="pure-menu-link current" data-fragment="retain" rel="nofollow">x86_64-unknown-linux-gnu</a>
+        </li></ul>
+            </li><li class="pure-menu-item">
+                <a href="https://docs.rs/crate/clap/latest/features" title="Browse available feature flags of clap-4.5.40" class="pure-menu-link">
+                    <span class="fa fa-solid fa-flag " aria-hidden="true"></span>
+                    <span class="title">Feature flags</span>
+                </a>
+            </li>
+        
+    
+</ul><div class="spacer"></div>
+                
+                
+
+<ul class="pure-menu-list">
+                    <li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/clap/latest/clap/type.Error.html#" class="pure-menu-link" aria-label="docs.rs" aria-haspopup="menu">docs.rs</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://docs.rs/about">
+            About docs.rs
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://foundation.rust-lang.org/policies/privacy-policy/#docs.rs" target="_blank">
+            Privacy policy
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="pure-menu-list"><li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/clap/latest/clap/type.Error.html#" class="pure-menu-link" aria-label="Rust" aria-haspopup="menu">Rust</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://www.rust-lang.org/" target="_blank">
+            Rust website
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/book/" target="_blank">
+            The Book
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/std/" target="_blank">
+            Standard Library API Reference
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/rust-by-example/" target="_blank">
+            Rust by Example
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/cargo/guide/" target="_blank">
+            The Cargo Guide
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/nightly/clippy" target="_blank">
+            Clippy Documentation
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div id="search-input-nav">
+                    <label for="nav-search">
+                        <span class="fa fa-solid fa-magnifying-glass " aria-hidden="true"></span>
+                    </label>
+
+                    
+                    
+                    <input id="nav-search" name="query" type="text" aria-label="Find crate by search query" tabindex="-1" placeholder="Find crate">
+                </div>
+            </form>
+        </div>
+    </div>
+</div><div class="rustdoc type container-rustdoc" id="rustdoc_body_wrapper" tabindex="-1"><script async="" src="./Error in clap - Rust_files/menu.js.Без названия"></script>
+<script async="" src="./Error in clap - Rust_files/index.js.Без названия"></script>
+
+<iframe src="./Error in clap - Rust_files/storage-change-detection.html" width="0" height="0" style="display: none"></iframe><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button><a class="logo-container" href="https://docs.rs/clap/latest/clap/index.html"><img src="./Error in clap - Rust_files/clap.png" alt=""></a><h2 class="location"><a href="https://docs.rs/clap/latest/clap/type.Error.html#">Error</a></h2></nav><nav class="sidebar"><div class="sidebar-crate"><a class="logo-container" href="https://docs.rs/clap/latest/clap/index.html"><img src="./Error in clap - Rust_files/clap.png" alt="logo"></a><h2><a href="https://docs.rs/clap/latest/clap/index.html">clap</a><span class="version">4.5.40</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="https://docs.rs/clap/latest/clap/type.Error.html#">Error</a></h2><h3><a href="https://docs.rs/clap/latest/clap/type.Error.html#aliased-type">Aliased Type</a></h3><h3><a href="https://docs.rs/clap/latest/clap/type.Error.html#implementations">Methods</a></h3><ul class="block method"><li><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.apply">apply</a></li><li><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.context">context</a></li><li><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.exit">exit</a></li><li><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.exit_code">exit_code</a></li><li><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.format">format</a></li><li><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.get">get</a></li><li><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.insert">insert</a></li><li><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.kind">kind</a></li><li><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.new">new</a></li><li><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.print">print</a></li><li><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.raw">raw</a></li><li><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.remove">remove</a></li><li><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.render">render</a></li><li><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.use_stderr">use_stderr</a></li><li><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.with_cmd">with_cmd</a></li></ul><h3><a href="https://docs.rs/clap/latest/clap/type.Error.html#trait-implementations">Trait Implementations</a></h3><ul class="block trait-implementation"><li><a href="https://docs.rs/clap/latest/clap/type.Error.html#impl-Debug-for-Error%3CF%3E">Debug</a></li><li><a href="https://docs.rs/clap/latest/clap/type.Error.html#impl-Display-for-Error%3CF%3E">Display</a></li><li><a href="https://docs.rs/clap/latest/clap/type.Error.html#impl-Error-for-Error%3CF%3E">Error</a></li><li><a href="https://docs.rs/clap/latest/clap/type.Error.html#impl-From%3CError%3E-for-Error%3CF%3E">From&lt;Error&gt;</a></li><li><a href="https://docs.rs/clap/latest/clap/type.Error.html#impl-From%3CError%3E-for-Error%3CF%3E-1">From&lt;Error&gt;</a></li></ul></section><div id="rustdoc-modnav"><h2 class="in-crate"><a href="https://docs.rs/clap/latest/clap/index.html">In crate clap</a></h2><h3><a href="https://docs.rs/clap/latest/clap/index.html#modules">Modules</a></h3><ul class="block mod"><li><a href="https://docs.rs/clap/latest/clap/_cookbook/index.html">_cookbook</a></li><li><a href="https://docs.rs/clap/latest/clap/_derive/index.html">_derive</a></li><li><a href="https://docs.rs/clap/latest/clap/_faq/index.html">_faq</a></li><li><a href="https://docs.rs/clap/latest/clap/_features/index.html">_features</a></li><li><a href="https://docs.rs/clap/latest/clap/_tutorial/index.html">_tutorial</a></li><li><a href="https://docs.rs/clap/latest/clap/builder/index.html">builder</a></li><li><a href="https://docs.rs/clap/latest/clap/error/index.html">error</a></li><li><a href="https://docs.rs/clap/latest/clap/parser/index.html">parser</a></li></ul><h3><a href="https://docs.rs/clap/latest/clap/index.html#macros">Macros</a></h3><ul class="block macro"><li><a href="https://docs.rs/clap/latest/clap/macro.arg.html">arg</a></li><li><a href="https://docs.rs/clap/latest/clap/macro.command.html">command</a></li><li><a href="https://docs.rs/clap/latest/clap/macro.crate_authors.html">crate_authors</a></li><li><a href="https://docs.rs/clap/latest/clap/macro.crate_description.html">crate_description</a></li><li><a href="https://docs.rs/clap/latest/clap/macro.crate_name.html">crate_name</a></li><li><a href="https://docs.rs/clap/latest/clap/macro.crate_version.html">crate_version</a></li><li><a href="https://docs.rs/clap/latest/clap/macro.value_parser.html">value_parser</a></li></ul><h3><a href="https://docs.rs/clap/latest/clap/index.html#structs">Structs</a></h3><ul class="block struct"><li><a href="https://docs.rs/clap/latest/clap/struct.Arg.html">Arg</a></li><li><a href="https://docs.rs/clap/latest/clap/struct.ArgGroup.html">ArgGroup</a></li><li><a href="https://docs.rs/clap/latest/clap/struct.ArgMatches.html">ArgMatches</a></li><li><a href="https://docs.rs/clap/latest/clap/struct.Command.html">Command</a></li><li><a href="https://docs.rs/clap/latest/clap/struct.Id.html">Id</a></li></ul><h3><a href="https://docs.rs/clap/latest/clap/index.html#enums">Enums</a></h3><ul class="block enum"><li><a href="https://docs.rs/clap/latest/clap/enum.ArgAction.html">ArgAction</a></li><li><a href="https://docs.rs/clap/latest/clap/enum.ColorChoice.html">ColorChoice</a></li><li><a href="https://docs.rs/clap/latest/clap/enum.ValueHint.html">ValueHint</a></li></ul><h3><a href="https://docs.rs/clap/latest/clap/index.html#traits">Traits</a></h3><ul class="block trait"><li><a href="https://docs.rs/clap/latest/clap/trait.Args.html">Args</a></li><li><a href="https://docs.rs/clap/latest/clap/trait.CommandFactory.html">CommandFactory</a></li><li><a href="https://docs.rs/clap/latest/clap/trait.FromArgMatches.html">FromArgMatches</a></li><li><a href="https://docs.rs/clap/latest/clap/trait.Parser.html">Parser</a></li><li><a href="https://docs.rs/clap/latest/clap/trait.Subcommand.html">Subcommand</a></li><li><a href="https://docs.rs/clap/latest/clap/trait.ValueEnum.html">ValueEnum</a></li></ul><h3><a href="https://docs.rs/clap/latest/clap/index.html#types">Type Aliases</a></h3><ul class="block type"><li class="current"><a href="https://docs.rs/clap/latest/clap/type.Error.html">Error</a></li></ul></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search><nav class="sub">
+            <form class="search-form">
+                <span></span> <!-- This empty span is a hacky fix for Safari - See #93184 -->
+                <div id="sidebar-button" tabindex="-1">
+                    <a href="https://docs.rs/clap/latest/clap/all.html" title="show sidebar"></a>
+                </div>
+                <input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search">
+            </form>
+        </nav></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="https://docs.rs/clap/latest/clap/index.html">clap</a></div><h1>Type Alias <span class="type">Error</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar>
+        <div id="settings-menu" tabindex="-1">
+            <a href="https://docs.rs/clap/latest/settings.html"><span class="label">Settings</span></a>
+        </div>
+        <div id="help-button" tabindex="-1">
+            <a href="https://docs.rs/clap/latest/help.html"><span class="label">Help</span></a>
+        </div>
+        <button id="toggle-all-docs"><span class="label">Summary</span></button></rustdoc-toolbar><span class="sub-heading"><a class="src" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/lib.rs.html#30">Source</a> </span></div><pre class="rust item-decl"><code>pub type Error = <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>;</code></pre><details class="toggle top-doc" open=""><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Command Line Argument Parser Error</p>
+<p>See <a href="https://docs.rs/clap/latest/clap/struct.Command.html#method.error" title="method clap::Command::error"><code>Command::error</code></a> to create an error.</p>
+</div></details><h2 id="aliased-type" class="section-header">Aliased Type<a href="https://docs.rs/clap/latest/clap/type.Error.html#aliased-type" class="anchor">§</a></h2><pre class="rust item-decl"><code>pub struct Error { <span class="comment">/* private fields */</span> }</code></pre><script src="./Error in clap - Rust_files/struct.Error.js.Без названия" data-self-path="clap::Error" async=""></script><h2 id="implementations">Implementations</h2><div id="implementations-list"><details class="toggle implementors-toggle" open=""><summary><section id="impl-Error%3CF%3E" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#79">Source</a><a href="https://docs.rs/clap/latest/clap/type.Error.html#impl-Error%3CF%3E" class="anchor">§</a><h3 class="code-header">impl&lt;F&gt; <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&lt;F&gt;<div class="where">where
+    F: <a class="trait" href="https://docs.rs/clap/latest/clap/error/trait.ErrorFormatter.html" title="trait clap::error::ErrorFormatter">ErrorFormatter</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.raw" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#88">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/clap/latest/clap/error/struct.Error.html#tymethod.raw" class="fn">raw</a>(kind: <a class="enum" href="https://docs.rs/clap/latest/clap/error/enum.ErrorKind.html" title="enum clap::error::ErrorKind">ErrorKind</a>, message: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html" title="trait core::fmt::Display">Display</a>) -&gt; <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&lt;F&gt;</h4></section></summary><div class="docblock"><p>Create an unformatted error</p>
+<p>This is for you need to pass the error up to
+a place that has access to the <code>Command</code> at which point you can call <a href="https://docs.rs/clap/latest/clap/error/struct.Error.html#method.format" title="method clap::error::Error::format"><code>Error::format</code></a>.</p>
+<p>Prefer <a href="https://docs.rs/clap/latest/clap/struct.Command.html#method.error" title="method clap::Command::error"><code>Command::error</code></a> for generating errors.</p>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="https://docs.rs/clap/latest/clap/type.Error.html#scraped-examples">Examples found in repository</a><a class="scrape-help" href="https://docs.rs/clap/latest/scrape-examples-help.html">?</a></h5><div class="scraped-example" data-locs="[[[4,7],&quot;src/interop_hand_subcommand/hand_subcommand.rs.html#27-30&quot;,&quot;lines 27-30&quot;],[[8,11],&quot;src/interop_hand_subcommand/hand_subcommand.rs.html#31-34&quot;,&quot;lines 31-34&quot;],[[19,22],&quot;src/interop_hand_subcommand/hand_subcommand.rs.html#42-45&quot;,&quot;lines 42-45&quot;]]"><div class="scraped-example-title">examples/derive_ref/hand_subcommand.rs (<a href="https://docs.rs/clap/latest/src/interop_hand_subcommand/hand_subcommand.rs.html#27-30">lines 27-30</a>)</div><div class="example-wrap digits-2"><pre class="rust"><code><span data-nosnippet="">23</span>    <span class="kw">fn </span>from_arg_matches(matches: <span class="kw-2">&amp;</span>ArgMatches) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, Error&gt; {
+<span data-nosnippet="">24</span>        <span class="kw">match </span>matches.subcommand() {
+<span data-nosnippet="">25</span>            <span class="prelude-val">Some</span>((<span class="string">"add"</span>, args)) =&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::Add(AddArgs::from_arg_matches(args)<span class="question-mark">?</span>)),
+<span data-nosnippet="">26</span>            <span class="prelude-val">Some</span>((<span class="string">"remove"</span>, args)) =&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::Remove(RemoveArgs::from_arg_matches(args)<span class="question-mark">?</span>)),
+<span data-nosnippet="">27</span>            <span class="prelude-val">Some</span>((<span class="kw">_</span>, <span class="kw">_</span>)) =&gt; <span class="prelude-val">Err</span>(<span class="highlight focus">Error::raw</span>(
+<span data-nosnippet="">28</span>                ErrorKind::InvalidSubcommand,
+<span data-nosnippet="">29</span>                <span class="string">"Valid subcommands are `add` and `remove`"</span>,
+<span data-nosnippet="">30</span>            )),
+<span data-nosnippet="">31</span>            <span class="prelude-val">None </span>=&gt; <span class="prelude-val">Err</span>(<span class="highlight">Error::raw</span>(
+<span data-nosnippet="">32</span>                ErrorKind::MissingSubcommand,
+<span data-nosnippet="">33</span>                <span class="string">"Valid subcommands are `add` and `remove`"</span>,
+<span data-nosnippet="">34</span>            )),
+<span data-nosnippet="">35</span>        }
+<span data-nosnippet="">36</span>    }
+<span data-nosnippet="">37</span>    <span class="kw">fn </span>update_from_arg_matches(<span class="kw-2">&amp;mut </span><span class="self">self</span>, matches: <span class="kw-2">&amp;</span>ArgMatches) -&gt; <span class="prelude-ty">Result</span>&lt;(), Error&gt; {
+<span data-nosnippet="">38</span>        <span class="kw">match </span>matches.subcommand() {
+<span data-nosnippet="">39</span>            <span class="prelude-val">Some</span>((<span class="string">"add"</span>, args)) =&gt; <span class="kw-2">*</span><span class="self">self </span>= <span class="self">Self</span>::Add(AddArgs::from_arg_matches(args)<span class="question-mark">?</span>),
+<span data-nosnippet="">40</span>            <span class="prelude-val">Some</span>((<span class="string">"remove"</span>, args)) =&gt; <span class="kw-2">*</span><span class="self">self </span>= <span class="self">Self</span>::Remove(RemoveArgs::from_arg_matches(args)<span class="question-mark">?</span>),
+<span data-nosnippet="">41</span>            <span class="prelude-val">Some</span>((<span class="kw">_</span>, <span class="kw">_</span>)) =&gt; {
+<span data-nosnippet="">42</span>                <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="highlight">Error::raw</span>(
+<span data-nosnippet="">43</span>                    ErrorKind::InvalidSubcommand,
+<span data-nosnippet="">44</span>                    <span class="string">"Valid subcommands are `add` and `remove`"</span>,
+<span data-nosnippet="">45</span>                ))
+<span data-nosnippet="">46</span>            }
+<span data-nosnippet="">47</span>            <span class="prelude-val">None </span>=&gt; (),
+<span data-nosnippet="">48</span>        };
+<span data-nosnippet="">49</span>        <span class="prelude-val">Ok</span>(())
+<span data-nosnippet="">50</span>    }</code></pre></div></div></div></details><details class="toggle method-toggle" open=""><summary><section id="method.format" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#94">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/clap/latest/clap/error/struct.Error.html#tymethod.format" class="fn">format</a>(self, cmd: &amp;mut <a class="struct" href="https://docs.rs/clap/latest/clap/struct.Command.html" title="struct clap::Command">Command</a>) -&gt; <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&lt;F&gt;</h4></section></summary><div class="docblock"><p>Format the existing message with the Command’s context</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.new" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#128">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/clap/latest/clap/error/struct.Error.html#tymethod.new" class="fn">new</a>(kind: <a class="enum" href="https://docs.rs/clap/latest/clap/error/enum.ErrorKind.html" title="enum clap::error::ErrorKind">ErrorKind</a>) -&gt; <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&lt;F&gt;</h4></section></summary><div class="docblock"><p>Create an error with a pre-defined message</p>
+<p>See also</p>
+<ul>
+<li><a href="https://docs.rs/clap/latest/clap/error/struct.Error.html#method.insert" title="method clap::error::Error::insert"><code>Error::insert</code></a></li>
+<li><a href="https://docs.rs/clap/latest/clap/error/struct.Error.html#method.with_cmd" title="method clap::error::Error::with_cmd"><code>Error::with_cmd</code></a></li>
+</ul>
+<h5 id="example"><a class="doc-anchor" href="https://docs.rs/clap/latest/clap/type.Error.html#example">§</a>Example</h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>
+<span class="kw">let </span>cmd = clap::Command::new(<span class="string">"prog"</span>);
+
+<span class="kw">let </span><span class="kw-2">mut </span>err = clap::Error::new(ErrorKind::ValueValidation)
+    .with_cmd(<span class="kw-2">&amp;</span>cmd);
+err.insert(ContextKind::InvalidArg, ContextValue::String(<span class="string">"--foo"</span>.to_owned()));
+err.insert(ContextKind::InvalidValue, ContextValue::String(<span class="string">"bar"</span>.to_owned()));
+
+err.print();</code></pre></div>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.with_cmd" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#149">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/clap/latest/clap/error/struct.Error.html#tymethod.with_cmd" class="fn">with_cmd</a>(self, cmd: &amp;<a class="struct" href="https://docs.rs/clap/latest/clap/struct.Command.html" title="struct clap::Command">Command</a>) -&gt; <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&lt;F&gt;</h4></section></summary><div class="docblock"><p>Apply <a href="https://docs.rs/clap/latest/clap/struct.Command.html" title="struct clap::Command"><code>Command</code></a>’s formatting to the error</p>
+<p>Generally, this is used with <a href="https://docs.rs/clap/latest/clap/error/struct.Error.html#method.new" title="associated function clap::error::Error::new"><code>Error::new</code></a></p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.apply" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#172">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/clap/latest/clap/error/struct.Error.html#tymethod.apply" class="fn">apply</a>&lt;EF&gt;(self) -&gt; <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&lt;EF&gt;<div class="where">where
+    EF: <a class="trait" href="https://docs.rs/clap/latest/clap/error/trait.ErrorFormatter.html" title="trait clap::error::ErrorFormatter">ErrorFormatter</a>,</div></h4></section></summary><div class="docblock"><p>Apply an alternative formatter to the error</p>
+<h5 id="example-1"><a class="doc-anchor" href="https://docs.rs/clap/latest/clap/type.Error.html#example-1">§</a>Example</h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let </span>cmd = Command::new(<span class="string">"foo"</span>)
+    .arg(Arg::new(<span class="string">"input"</span>).required(<span class="bool-val">true</span>));
+<span class="kw">let </span>matches = cmd
+    .try_get_matches_from([<span class="string">"foo"</span>, <span class="string">"input.txt"</span>])
+    .map_err(|e| e.apply::&lt;KindFormatter&gt;())
+    .unwrap_or_else(|e| e.exit());</code></pre></div>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.kind" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#180">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/clap/latest/clap/error/struct.Error.html#tymethod.kind" class="fn">kind</a>(&amp;self) -&gt; <a class="enum" href="https://docs.rs/clap/latest/clap/error/enum.ErrorKind.html" title="enum clap::error::ErrorKind">ErrorKind</a></h4></section></summary><div class="docblock"><p>Type of error for programmatic processing</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.context" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#186">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/clap/latest/clap/error/struct.Error.html#tymethod.context" class="fn">context</a>(&amp;self) -&gt; impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/iter/traits/iterator/trait.Iterator.html" title="trait core::iter::traits::iterator::Iterator">Iterator</a>&lt;Item = (<a class="enum" href="https://docs.rs/clap/latest/clap/error/enum.ContextKind.html" title="enum clap::error::ContextKind">ContextKind</a>, &amp;<a class="enum" href="https://docs.rs/clap/latest/clap/error/enum.ContextValue.html" title="enum clap::error::ContextValue">ContextValue</a>)&gt;</h4></section></summary><div class="docblock"><p>Additional information to further qualify the error</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.get" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#193">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/clap/latest/clap/error/struct.Error.html#tymethod.get" class="fn">get</a>(&amp;self, kind: <a class="enum" href="https://docs.rs/clap/latest/clap/error/enum.ContextKind.html" title="enum clap::error::ContextKind">ContextKind</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="enum" href="https://docs.rs/clap/latest/clap/error/enum.ContextValue.html" title="enum clap::error::ContextValue">ContextValue</a>&gt;</h4></section></summary><div class="docblock"><p>Lookup a piece of context</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.insert" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#202">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/clap/latest/clap/error/struct.Error.html#tymethod.insert" class="fn">insert</a>(
+    &amp;mut self,
+    kind: <a class="enum" href="https://docs.rs/clap/latest/clap/error/enum.ContextKind.html" title="enum clap::error::ContextKind">ContextKind</a>,
+    value: <a class="enum" href="https://docs.rs/clap/latest/clap/error/enum.ContextValue.html" title="enum clap::error::ContextValue">ContextValue</a>,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="enum" href="https://docs.rs/clap/latest/clap/error/enum.ContextValue.html" title="enum clap::error::ContextValue">ContextValue</a>&gt;</h4></section></summary><div class="docblock"><p>Insert a piece of context</p>
+<p>If this <code>ContextKind</code> is already present, its value is replaced and the old value is returned.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.remove" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#212">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/clap/latest/clap/error/struct.Error.html#tymethod.remove" class="fn">remove</a>(&amp;mut self, kind: <a class="enum" href="https://docs.rs/clap/latest/clap/error/enum.ContextKind.html" title="enum clap::error::ContextKind">ContextKind</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="enum" href="https://docs.rs/clap/latest/clap/error/enum.ContextValue.html" title="enum clap::error::ContextValue">ContextValue</a>&gt;</h4></section></summary><div class="docblock"><p>Remove a piece of context, return the old value if any</p>
+<p>The context is currently implemented in a vector, so <code>remove</code> takes
+linear time.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.use_stderr" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#218">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/clap/latest/clap/error/struct.Error.html#tymethod.use_stderr" class="fn">use_stderr</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Should the message be written to <code>stdout</code> or not?</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.exit_code" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#233">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/clap/latest/clap/error/struct.Error.html#tymethod.exit_code" class="fn">exit_code</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the exit code that <code>.exit</code> will exit the process with.</p>
+<p>When the error’s kind would print to <code>stderr</code> this returns <code>2</code>,
+else it returns <code>0</code>.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.exit" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#245">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/clap/latest/clap/error/struct.Error.html#tymethod.exit" class="fn">exit</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.never.html">!</a></h4></section></summary><div class="docblock"><p>Prints the error and exits.</p>
+<p>Depending on the error kind, this either prints to <code>stderr</code> and exits with a status of <code>2</code>
+or prints to <code>stdout</code> and exits with a status of <code>0</code>.</p>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1"><a href="https://docs.rs/clap/latest/clap/type.Error.html#scraped-examples-1">Examples found in repository</a><a class="scrape-help" href="https://docs.rs/clap/latest/scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[7,7],&quot;src/interop_augment_subcommands/augment_subcommands.rs.html#18&quot;,&quot;line 18&quot;]]"><div class="scraped-example-title">examples/derive_ref/augment_subcommands.rs (<a href="https://docs.rs/clap/latest/src/interop_augment_subcommands/augment_subcommands.rs.html#18">line 18</a>)</div><div class="example-wrap digits-2"><pre class="rust"><code><span data-nosnippet="">11</span><span class="kw">fn </span>main() {
+<span data-nosnippet="">12</span>    <span class="kw">let </span>cli = Command::new(<span class="string">"Built CLI"</span>);
+<span data-nosnippet="">13</span>    <span class="comment">// Augment with derived subcommands
+<span data-nosnippet="">14</span>    </span><span class="kw">let </span>cli = Subcommands::augment_subcommands(cli);
+<span data-nosnippet="">15</span>
+<span data-nosnippet="">16</span>    <span class="kw">let </span>matches = cli.get_matches();
+<span data-nosnippet="">17</span>    <span class="kw">let </span>derived_subcommands = Subcommands::from_arg_matches(<span class="kw-2">&amp;</span>matches)
+<span data-nosnippet="">18</span>        .map_err(|err| err.<span class="highlight focus">exit</span>())
+<span data-nosnippet="">19</span>        .unwrap();
+<span data-nosnippet="">20</span>    <span class="macro">println!</span>(<span class="string">"Derived subcommands: {derived_subcommands:#?}"</span>);
+<span data-nosnippet="">21</span>}</code></pre></div></div><details class="toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="scraped-example" data-locs="[[[15,15],&quot;src/interop_augment_args/augment_args.rs.html#24&quot;,&quot;line 24&quot;]]"><div class="scraped-example-title">examples/derive_ref/augment_args.rs (<a href="https://docs.rs/clap/latest/src/interop_augment_args/augment_args.rs.html#24">line 24</a>)</div><div class="example-wrap digits-2"><pre class="rust"><code><span data-nosnippet="">9</span><span class="kw">fn </span>main() {
+<span data-nosnippet="">10</span>    <span class="kw">let </span>cli = Command::new(<span class="string">"CLI"</span>).arg(<span class="macro">arg!</span>(-b - -built).action(clap::ArgAction::SetTrue));
+<span data-nosnippet="">11</span>    <span class="comment">// Augment built args with derived args
+<span data-nosnippet="">12</span>    </span><span class="kw">let </span>cli = DerivedArgs::augment_args(cli);
+<span data-nosnippet="">13</span>
+<span data-nosnippet="">14</span>    <span class="kw">let </span>matches = cli.get_matches();
+<span data-nosnippet="">15</span>    <span class="macro">println!</span>(<span class="string">"Value of built: {:?}"</span>, matches.get_flag(<span class="string">"built"</span>));
+<span data-nosnippet="">16</span>    <span class="macro">println!</span>(
+<span data-nosnippet="">17</span>        <span class="string">"Value of derived via ArgMatches: {:?}"</span>,
+<span data-nosnippet="">18</span>        matches.get_flag(<span class="string">"derived"</span>)
+<span data-nosnippet="">19</span>    );
+<span data-nosnippet="">20</span>
+<span data-nosnippet="">21</span>    <span class="comment">// Since DerivedArgs implements FromArgMatches, we can extract it from the unstructured ArgMatches.
+<span data-nosnippet="">22</span>    // This is the main benefit of using derived arguments.
+<span data-nosnippet="">23</span>    </span><span class="kw">let </span>derived_matches = DerivedArgs::from_arg_matches(<span class="kw-2">&amp;</span>matches)
+<span data-nosnippet="">24</span>        .map_err(|err| err.<span class="highlight focus">exit</span>())
+<span data-nosnippet="">25</span>        .unwrap();
+<span data-nosnippet="">26</span>    <span class="macro">println!</span>(<span class="string">"Value of derived: {derived_matches:#?}"</span>);
+<span data-nosnippet="">27</span>}</code></pre></div></div><div class="scraped-example" data-locs="[[[16,16],&quot;src/04_04_custom_derive/04_04_custom.rs.html#50&quot;,&quot;line 50&quot;],[[32,32],&quot;src/04_04_custom_derive/04_04_custom.rs.html#66&quot;,&quot;line 66&quot;],[[53,53],&quot;src/04_04_custom_derive/04_04_custom.rs.html#87&quot;,&quot;line 87&quot;]]"><div class="scraped-example-title">examples/tutorial_derive/04_04_custom.rs (<a href="https://docs.rs/clap/latest/src/04_04_custom_derive/04_04_custom.rs.html#50">line 50</a>)</div><div class="example-wrap digits-2"><pre class="rust"><code><span data-nosnippet="">34</span><span class="kw">fn </span>main() {
+<span data-nosnippet="">35</span>    <span class="kw">let </span>cli = Cli::parse();
+<span data-nosnippet="">36</span>
+<span data-nosnippet="">37</span>    <span class="comment">// Let's assume the old version 1.2.3
+<span data-nosnippet="">38</span>    </span><span class="kw">let </span><span class="kw-2">mut </span>major = <span class="number">1</span>;
+<span data-nosnippet="">39</span>    <span class="kw">let </span><span class="kw-2">mut </span>minor = <span class="number">2</span>;
+<span data-nosnippet="">40</span>    <span class="kw">let </span><span class="kw-2">mut </span>patch = <span class="number">3</span>;
+<span data-nosnippet="">41</span>
+<span data-nosnippet="">42</span>    <span class="comment">// See if --set-ver was used to set the version manually
+<span data-nosnippet="">43</span>    </span><span class="kw">let </span>version = <span class="kw">if let </span><span class="prelude-val">Some</span>(ver) = cli.set_ver.as_deref() {
+<span data-nosnippet="">44</span>        <span class="kw">if </span>cli.major || cli.minor || cli.patch {
+<span data-nosnippet="">45</span>            <span class="kw">let </span><span class="kw-2">mut </span>cmd = Cli::command();
+<span data-nosnippet="">46</span>            cmd.error(
+<span data-nosnippet="">47</span>                ErrorKind::ArgumentConflict,
+<span data-nosnippet="">48</span>                <span class="string">"Can't do relative and absolute version change"</span>,
+<span data-nosnippet="">49</span>            )
+<span data-nosnippet="">50</span>            .<span class="highlight focus">exit</span>();
+<span data-nosnippet="">51</span>        }
+<span data-nosnippet="">52</span>        ver.to_string()
+<span data-nosnippet="">53</span>    } <span class="kw">else </span>{
+<span data-nosnippet="">54</span>        <span class="comment">// Increment the one requested (in a real program, we'd reset the lower numbers)
+<span data-nosnippet="">55</span>        </span><span class="kw">let </span>(maj, min, pat) = (cli.major, cli.minor, cli.patch);
+<span data-nosnippet="">56</span>        <span class="kw">match </span>(maj, min, pat) {
+<span data-nosnippet="">57</span>            (<span class="bool-val">true</span>, <span class="bool-val">false</span>, <span class="bool-val">false</span>) =&gt; major += <span class="number">1</span>,
+<span data-nosnippet="">58</span>            (<span class="bool-val">false</span>, <span class="bool-val">true</span>, <span class="bool-val">false</span>) =&gt; minor += <span class="number">1</span>,
+<span data-nosnippet="">59</span>            (<span class="bool-val">false</span>, <span class="bool-val">false</span>, <span class="bool-val">true</span>) =&gt; patch += <span class="number">1</span>,
+<span data-nosnippet="">60</span>            <span class="kw">_ </span>=&gt; {
+<span data-nosnippet="">61</span>                <span class="kw">let </span><span class="kw-2">mut </span>cmd = Cli::command();
+<span data-nosnippet="">62</span>                cmd.error(
+<span data-nosnippet="">63</span>                    ErrorKind::ArgumentConflict,
+<span data-nosnippet="">64</span>                    <span class="string">"Can only modify one version field"</span>,
+<span data-nosnippet="">65</span>                )
+<span data-nosnippet="">66</span>                .<span class="highlight">exit</span>();
+<span data-nosnippet="">67</span>            }
+<span data-nosnippet="">68</span>        };
+<span data-nosnippet="">69</span>        <span class="macro">format!</span>(<span class="string">"{major}.{minor}.{patch}"</span>)
+<span data-nosnippet="">70</span>    };
+<span data-nosnippet="">71</span>
+<span data-nosnippet="">72</span>    <span class="macro">println!</span>(<span class="string">"Version: {version}"</span>);
+<span data-nosnippet="">73</span>
+<span data-nosnippet="">74</span>    <span class="comment">// Check for usage of -c
+<span data-nosnippet="">75</span>    </span><span class="kw">if let </span><span class="prelude-val">Some</span>(config) = cli.config.as_deref() {
+<span data-nosnippet="">76</span>        <span class="kw">let </span>input = cli
+<span data-nosnippet="">77</span>            .input_file
+<span data-nosnippet="">78</span>            .as_deref()
+<span data-nosnippet="">79</span>            <span class="comment">// 'or' is preferred to 'or_else' here since `Option::as_deref` is 'const'
+<span data-nosnippet="">80</span>            </span>.or(cli.spec_in.as_deref())
+<span data-nosnippet="">81</span>            .unwrap_or_else(|| {
+<span data-nosnippet="">82</span>                <span class="kw">let </span><span class="kw-2">mut </span>cmd = Cli::command();
+<span data-nosnippet="">83</span>                cmd.error(
+<span data-nosnippet="">84</span>                    ErrorKind::MissingRequiredArgument,
+<span data-nosnippet="">85</span>                    <span class="string">"INPUT_FILE or --spec-in is required when using --config"</span>,
+<span data-nosnippet="">86</span>                )
+<span data-nosnippet="">87</span>                .<span class="highlight">exit</span>()
+<span data-nosnippet="">88</span>            });
+<span data-nosnippet="">89</span>        <span class="macro">println!</span>(<span class="string">"Doing work using input {input} and config {config}"</span>);
+<span data-nosnippet="">90</span>    }
+<span data-nosnippet="">91</span>}</code></pre></div></div></div></details></div></details><details class="toggle method-toggle" open=""><summary><section id="method.print" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#268">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/clap/latest/clap/error/struct.Error.html#tymethod.print" class="fn">print</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://doc.rust-lang.org/nightly/std/io/error/struct.Error.html" title="struct std::io::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Prints formatted and colored error to <code>stdout</code> or <code>stderr</code> according to its error kind</p>
+<h5 id="example-2"><a class="doc-anchor" href="https://docs.rs/clap/latest/clap/type.Error.html#example-2">§</a>Example</h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::Command;
+
+<span class="kw">match </span>Command::new(<span class="string">"Command"</span>).try_get_matches() {
+    <span class="prelude-val">Ok</span>(matches) =&gt; {
+        <span class="comment">// do_something
+    </span>},
+    <span class="prelude-val">Err</span>(err) =&gt; {
+        err.print().expect(<span class="string">"Error writing Error"</span>);
+        <span class="comment">// do_something
+    </span>},
+};</code></pre></div>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.render" class="method"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#300">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/clap/latest/clap/error/struct.Error.html#tymethod.render" class="fn">render</a>(&amp;self) -&gt; <a class="struct" href="https://docs.rs/clap/latest/clap/builder/struct.StyledStr.html" title="struct clap::builder::StyledStr">StyledStr</a></h4></section></summary><div class="docblock"><p>Render the error message to a <a href="https://docs.rs/clap/latest/clap/builder/struct.StyledStr.html" title="struct clap::builder::StyledStr"><code>StyledStr</code></a>.</p>
+<h5 id="example-3"><a class="doc-anchor" href="https://docs.rs/clap/latest/clap/type.Error.html#example-3">§</a>Example</h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::Command;
+
+<span class="kw">match </span>Command::new(<span class="string">"Command"</span>).try_get_matches() {
+    <span class="prelude-val">Ok</span>(matches) =&gt; {
+        <span class="comment">// do_something
+    </span>},
+    <span class="prelude-val">Err</span>(err) =&gt; {
+        <span class="kw">let </span>err = err.render();
+        <span class="macro">println!</span>(<span class="string">"{err}"</span>);
+        <span class="comment">// do_something
+    </span>},
+};</code></pre></div>
+</div></details></div></details></div><h2 id="trait-implementations">Trait Implementations</h2><div id="trait-implementations-list"><details class="toggle implementors-toggle" open=""><summary><section id="impl-Debug-for-Error%3CF%3E" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#830">Source</a><a href="https://docs.rs/clap/latest/clap/type.Error.html#impl-Debug-for-Error%3CF%3E" class="anchor">§</a><h3 class="code-header">impl&lt;F&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&lt;F&gt;<div class="where">where
+    F: <a class="trait" href="https://docs.rs/clap/latest/clap/error/trait.ErrorFormatter.html" title="trait clap::error::ErrorFormatter">ErrorFormatter</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.fmt" class="method trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#831">Source</a><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.fmt" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt" class="fn">fmt</a>(&amp;self, f: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>&lt;'_&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Error.html" title="struct core::fmt::Error">Error</a>&gt;</h4></section></summary><div class="docblock">Formats the value using the given formatter. <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt">Read more</a></div></details></div></details><details class="toggle implementors-toggle" open=""><summary><section id="impl-Display-for-Error%3CF%3E" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#843">Source</a><a href="https://docs.rs/clap/latest/clap/type.Error.html#impl-Display-for-Error%3CF%3E" class="anchor">§</a><h3 class="code-header">impl&lt;F&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html" title="trait core::fmt::Display">Display</a> for <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&lt;F&gt;<div class="where">where
+    F: <a class="trait" href="https://docs.rs/clap/latest/clap/error/trait.ErrorFormatter.html" title="trait clap::error::ErrorFormatter">ErrorFormatter</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.fmt-1" class="method trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#844">Source</a><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.fmt-1" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html#tymethod.fmt" class="fn">fmt</a>(&amp;self, f: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>&lt;'_&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Error.html" title="struct core::fmt::Error">Error</a>&gt;</h4></section></summary><div class="docblock">Formats the value using the given formatter. <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html#tymethod.fmt">Read more</a></div></details></div></details><details class="toggle implementors-toggle" open=""><summary><section id="impl-Error-for-Error%3CF%3E" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#836">Source</a><a href="https://docs.rs/clap/latest/clap/type.Error.html#impl-Error-for-Error%3CF%3E" class="anchor">§</a><h3 class="code-header">impl&lt;F&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/error/trait.Error.html" title="trait core::error::Error">Error</a> for <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&lt;F&gt;<div class="where">where
+    F: <a class="trait" href="https://docs.rs/clap/latest/clap/error/trait.ErrorFormatter.html" title="trait clap::error::ErrorFormatter">ErrorFormatter</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.source" class="method trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#838">Source</a><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.source" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/error/trait.Error.html#method.source" class="fn">source</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;(dyn <a class="trait" href="https://doc.rust-lang.org/nightly/core/error/trait.Error.html" title="trait core::error::Error">Error</a> + 'static)&gt;</h4></section></summary><div class="docblock">Returns the lower-level source of this error, if any. <a href="https://doc.rust-lang.org/nightly/core/error/trait.Error.html#method.source">Read more</a></div></details><details class="toggle method-toggle" open=""><summary><section id="method.description" class="method trait-impl"><span class="rightside"><span class="since" title="Stable since Rust version 1.0.0">1.0.0</span> · <a class="src" href="https://doc.rust-lang.org/nightly/src/core/error.rs.html#131">Source</a></span><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.description" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/error/trait.Error.html#method.description" class="fn">description</a>(&amp;self) -&gt; &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a></h4></section></summary><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated since 1.42.0: use the Display impl or to_string()</span></div></span><div class="docblock"> <a href="https://doc.rust-lang.org/nightly/core/error/trait.Error.html#method.description">Read more</a></div></details><details class="toggle method-toggle" open=""><summary><section id="method.cause" class="method trait-impl"><span class="rightside"><span class="since" title="Stable since Rust version 1.0.0">1.0.0</span> · <a class="src" href="https://doc.rust-lang.org/nightly/src/core/error.rs.html#141">Source</a></span><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.cause" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/error/trait.Error.html#method.cause" class="fn">cause</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;dyn <a class="trait" href="https://doc.rust-lang.org/nightly/core/error/trait.Error.html" title="trait core::error::Error">Error</a>&gt;</h4></section></summary><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated since 1.33.0: replaced by Error::source, which can support downcasting</span></div></span></details><details class="toggle method-toggle" open=""><summary><section id="method.provide" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/error.rs.html#204">Source</a><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.provide" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/error/trait.Error.html#method.provide" class="fn">provide</a>&lt;'a&gt;(&amp;'a self, request: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/error/struct.Request.html" title="struct core::error::Request">Request</a>&lt;'a&gt;)</h4></section></summary><span class="item-info"><div class="stab unstable"><span class="emoji">🔬</span><span>This is a nightly-only experimental API. (<code>error_generic_member_access</code>)</span></div></span><div class="docblock">Provides type-based access to context intended for error reports. <a href="https://doc.rust-lang.org/nightly/core/error/trait.Error.html#method.provide">Read more</a></div></details></div></details><details class="toggle implementors-toggle" open=""><summary><section id="impl-From%3CError%3E-for-Error%3CF%3E" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#818">Source</a><a href="https://docs.rs/clap/latest/clap/type.Error.html#impl-From%3CError%3E-for-Error%3CF%3E" class="anchor">§</a><h3 class="code-header">impl&lt;F&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/std/io/error/struct.Error.html" title="struct std::io::error::Error">Error</a>&gt; for <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&lt;F&gt;<div class="where">where
+    F: <a class="trait" href="https://docs.rs/clap/latest/clap/error/trait.ErrorFormatter.html" title="trait clap::error::ErrorFormatter">ErrorFormatter</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.from" class="method trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#819">Source</a><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.from" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from" class="fn">from</a>(e: <a class="struct" href="https://doc.rust-lang.org/nightly/std/io/error/struct.Error.html" title="struct std::io::error::Error">Error</a>) -&gt; <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&lt;F&gt;</h4></section></summary><div class="docblock">Converts to this type from the input type.</div></details></div></details><details class="toggle implementors-toggle" open=""><summary><section id="impl-From%3CError%3E-for-Error%3CF%3E-1" class="impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#824">Source</a><a href="https://docs.rs/clap/latest/clap/type.Error.html#impl-From%3CError%3E-for-Error%3CF%3E-1" class="anchor">§</a><h3 class="code-header">impl&lt;F&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Error.html" title="struct core::fmt::Error">Error</a>&gt; for <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&lt;F&gt;<div class="where">where
+    F: <a class="trait" href="https://docs.rs/clap/latest/clap/error/trait.ErrorFormatter.html" title="trait clap::error::ErrorFormatter">ErrorFormatter</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.from-1" class="method trait-impl"><a class="src rightside" href="https://docs.rs/clap_builder/4.5.40/x86_64-unknown-linux-gnu/src/clap_builder/error/mod.rs.html#825">Source</a><a href="https://docs.rs/clap/latest/clap/type.Error.html#method.from-1" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from" class="fn">from</a>(e: <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Error.html" title="struct core::fmt::Error">Error</a>) -&gt; <a class="struct" href="https://docs.rs/clap/latest/clap/error/struct.Error.html" title="struct clap::error::Error">Error</a>&lt;F&gt;</h4></section></summary><div class="docblock">Converts to this type from the input type.</div></details></div></details></div></section></div></main></div></body></html>
