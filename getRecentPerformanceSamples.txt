@@ -1,0 +1,327 @@
+# getRecentPerformanceSamples
+
+> Returns a list of recent performance samples, in reverse slot order. Performance samples are taken every 60 seconds and include the number of transactions and slots that occur in a given time window..
+
+## OpenAPI
+
+````yaml openapi/rpc-http/getRecentPerformanceSamples.yaml post /
+paths:
+  path: /
+  method: post
+  servers:
+    - url: https://mainnet.helius-rpc.com
+      description: Mainnet RPC endpoint
+    - url: https://devnet.helius-rpc.com
+      description: Devnet RPC endpoint
+  request:
+    security:
+      - title: ApiKeyQuery
+        parameters:
+          query:
+            api-key:
+              type: apiKey
+              description: >-
+                Your Helius API key. You can get one for free in the
+                [dashboard](https://dashboard.helius.dev/api-keys).
+          header: {}
+          cookie: {}
+    parameters:
+      path: {}
+      query: {}
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    description: The JSON-RPC protocol version.
+                    enum:
+                      - '2.0'
+                    example: '2.0'
+                    default: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: A unique identifier for the request.
+                    example: '1'
+                    default: '1'
+              method:
+                allOf:
+                  - type: string
+                    description: The name of the RPC method to invoke.
+                    enum:
+                      - getRecentPerformanceSamples
+                    example: getRecentPerformanceSamples
+                    default: getRecentPerformanceSamples
+              params:
+                allOf:
+                  - type: array
+                    description: >-
+                      Optional parameter to limit the number of samples to
+                      return.
+                    default:
+                      - 4
+                    items:
+                      type: integer
+                      description: >-
+                        Number of historical performance sample intervals to
+                        retrieve (maximum 720, representing up to 12 hours).
+                      example: 4
+            required: true
+            requiredProperties:
+              - jsonrpc
+              - id
+              - method
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              method: getRecentPerformanceSamples
+              params:
+                - 4
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    description: The JSON-RPC protocol version.
+                    enum:
+                      - '2.0'
+                    example: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: Identifier matching the request.
+                    example: '1'
+              result:
+                allOf:
+                  - type: array
+                    description: List of performance samples.
+                    items:
+                      type: object
+                      description: Performance sample data.
+                      properties:
+                        slot:
+                          type: integer
+                          description: >-
+                            Solana blockchain slot at the end of this
+                            performance sampling period.
+                          example: 348125
+                        numTransactions:
+                          type: integer
+                          description: >-
+                            Total number of transactions processed during this
+                            sampling window, including both user transactions
+                            and validator votes.
+                          example: 126
+                        numNonVoteTransactions:
+                          type: integer
+                          description: >-
+                            Number of actual user transactions (excluding
+                            validator consensus votes) processed in this period.
+                          example: 1
+                        samplePeriodSecs:
+                          type: integer
+                          format: int16
+                          description: >-
+                            Duration of this performance measurement window in
+                            seconds, typically 60-second intervals.
+                          example: 60
+                        numSlots:
+                          type: integer
+                          description: >-
+                            Number of Solana slots successfully produced during
+                            this sampling period, indicating blockchain
+                            progress.
+                          example: 126
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              result:
+                - slot: 348125
+                  numTransactions: 126
+                  numNonVoteTransactions: 1
+                  samplePeriodSecs: 60
+                  numSlots: 126
+        description: Successfully retrieved performance samples.
+    '400':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - &ref_0
+                    type: string
+                    description: The JSON-RPC protocol version.
+                    enum:
+                      - '2.0'
+                    example: '2.0'
+              error:
+                allOf:
+                  - &ref_1
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        description: The error code.
+                        example: -32602
+                      message:
+                        type: string
+                        description: The error message.
+                      data:
+                        type: object
+                        description: Additional data about the error.
+              id:
+                allOf:
+                  - &ref_2
+                    type: string
+                    description: Identifier matching the request.
+                    example: '1'
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32602
+                message: Invalid params
+              id: '1'
+        description: Bad Request - Invalid request parameters or malformed request.
+    '401':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32001
+                message: Unauthorized
+              id: '1'
+        description: Unauthorized - Invalid or missing API key.
+    '429':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32005
+                message: Too many requests
+              id: '1'
+        description: Too Many Requests - Rate limit exceeded.
+    '500':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32603
+                message: Internal error
+              id: '1'
+        description: Internal Server Error - An error occurred on the server.
+    '503':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32002
+                message: Service unavailable
+              id: '1'
+        description: Service Unavailable - The service is temporarily unavailable.
+    '504':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: Gateway timeout
+              id: '1'
+        description: Gateway Timeout - The request timed out.
+  deprecated: false
+  type: path
+components:
+  schemas: {}
+
+````

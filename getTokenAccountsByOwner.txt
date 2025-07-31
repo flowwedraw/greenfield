@@ -1,0 +1,478 @@
+# getTokenAccountsByOwner
+
+> Returns all SPL Token accounts by token owner.
+
+## OpenAPI
+
+````yaml openapi/rpc-http/getTokenAccountsByOwner.yaml post /
+paths:
+  path: /
+  method: post
+  servers:
+    - url: https://mainnet.helius-rpc.com
+      description: Mainnet RPC endpoint
+    - url: https://devnet.helius-rpc.com
+      description: Devnet RPC endpoint
+  request:
+    security:
+      - title: ApiKeyQuery
+        parameters:
+          query:
+            api-key:
+              type: apiKey
+              description: >-
+                Your Helius API key. You can get one for free in the
+                [dashboard](https://dashboard.helius.dev/api-keys).
+          header: {}
+          cookie: {}
+    parameters:
+      path: {}
+      query: {}
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+                    description: The JSON-RPC protocol version.
+                    example: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: A unique identifier for the request.
+                    example: '1'
+              method:
+                allOf:
+                  - type: string
+                    enum:
+                      - getTokenAccountsByOwner
+                    description: The name of the RPC method to invoke.
+                    example: getTokenAccountsByOwner
+                    default: getTokenAccountsByOwner
+              params:
+                allOf:
+                  - type: array
+                    description: >-
+                      Parameters for querying token accounts owned by a specific
+                      public key.
+                    default:
+                      - A1TMhSGzQxMr1TboBKtgixKz1sS6REASMxPo1qsyTSJd
+                      - programId: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA
+                      - encoding: jsonParsed
+                    items:
+                      oneOf:
+                        - type: string
+                          description: >-
+                            Solana wallet address (pubkey) of the account owner
+                            to query token holdings for, as a base-58 encoded
+                            string.
+                          example: A1TMhSGzQxMr1TboBKtgixKz1sS6REASMxPo1qsyTSJd
+                        - type: object
+                          description: >-
+                            Filter configuration to narrow down token accounts
+                            by mint address or program ID.
+                          properties:
+                            mint:
+                              type: string
+                              description: >-
+                                Specific Solana token mint address to retrieve
+                                only accounts for a particular token or NFT.
+                              example: 2cHr7QS3xfuSV8wdxo3ztuF4xbiarF6Nrgx3qpx3HzXR
+                            programId:
+                              type: string
+                              description: >-
+                                Specific Solana token program ID (typically SPL
+                                Token program) that created the token accounts.
+                              example: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA
+                        - type: object
+                          description: Configuration object with optional fields.
+                          properties:
+                            commitment:
+                              type: string
+                              description: The commitment level for the request.
+                              enum:
+                                - confirmed
+                                - finalized
+                                - processed
+                              example: finalized
+                            minContextSlot:
+                              type: integer
+                              description: >-
+                                The minimum slot that the request can be
+                                evaluated at.
+                              example: 1000
+                            dataSlice:
+                              type: object
+                              description: Request a slice of the account's data.
+                              properties:
+                                length:
+                                  type: integer
+                                  description: Number of bytes to return.
+                                  example: 10
+                                offset:
+                                  type: integer
+                                  description: Byte offset from which to start reading.
+                                  example: 0
+                            encoding:
+                              type: string
+                              description: Encoding format for Account data.
+                              enum:
+                                - base58
+                                - base64
+                                - base64+zstd
+                                - jsonParsed
+                              example: jsonParsed
+            required: true
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              method: getTokenAccountsByOwner
+              params:
+                - A1TMhSGzQxMr1TboBKtgixKz1sS6REASMxPo1qsyTSJd
+                - programId: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA
+                - encoding: jsonParsed
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+                    description: The JSON-RPC protocol version.
+                    example: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: Identifier matching the request.
+                    example: '1'
+              result:
+                allOf:
+                  - type: object
+                    description: Context and account details.
+                    properties:
+                      context:
+                        type: object
+                        description: Context of the response.
+                        properties:
+                          apiVersion:
+                            type: string
+                            description: API version.
+                            example: 2.0.15
+                          slot:
+                            type: integer
+                            description: Slot in which the data was fetched.
+                            example: 341197933
+                      value:
+                        type: array
+                        description: List of token accounts.
+                        items:
+                          type: object
+                          properties:
+                            pubkey:
+                              type: string
+                              description: Account Pubkey as a base-58 encoded string.
+                              example: BGocb4GEpbTFm8UFV2VsDSaBXHELPfAXrvd4vtt8QWrA
+                            account:
+                              type: object
+                              description: Token account details.
+                              properties:
+                                lamports:
+                                  type: integer
+                                  description: Number of lamports assigned to the account.
+                                  example: 2039280
+                                owner:
+                                  type: string
+                                  description: >-
+                                    Pubkey of the program this account has been
+                                    assigned to.
+                                  example: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA
+                                data:
+                                  type: object
+                                  description: >-
+                                    Token state data associated with the
+                                    account.
+                                  properties:
+                                    program:
+                                      type: string
+                                      description: Program name.
+                                      example: spl-token
+                                    parsed:
+                                      type: object
+                                      description: Parsed token data.
+                                      properties:
+                                        info:
+                                          type: object
+                                          description: Token account information.
+                                          properties:
+                                            isNative:
+                                              type: boolean
+                                              description: >-
+                                                Indicates if the account holds native
+                                                SOL.
+                                              example: false
+                                            mint:
+                                              type: string
+                                              description: Pubkey of the token mint.
+                                              example: >-
+                                                2cHr7QS3xfuSV8wdxo3ztuF4xbiarF6Nrgx3qpx3HzXR
+                                            owner:
+                                              type: string
+                                              description: Pubkey of the account owner.
+                                              example: >-
+                                                A1TMhSGzQxMr1TboBKtgixKz1sS6REASMxPo1qsyTSJd
+                                            state:
+                                              type: string
+                                              description: Token account state.
+                                              example: initialized
+                                            tokenAmount:
+                                              type: object
+                                              description: Token amount details.
+                                              properties:
+                                                amount:
+                                                  type: string
+                                                  description: Raw balance without decimals.
+                                                  example: '420000000000000'
+                                                decimals:
+                                                  type: integer
+                                                  description: Number of decimals.
+                                                  example: 6
+                                                uiAmount:
+                                                  type: number
+                                                  description: Balance in user-friendly format.
+                                                  example: 420000000
+                                                uiAmountString:
+                                                  type: string
+                                                  description: Balance as a string.
+                                                  example: '420000000'
+                                    space:
+                                      type: integer
+                                      description: Space allocated for the account.
+                                      example: 165
+                                executable:
+                                  type: boolean
+                                  description: Indicates if the account contains a program.
+                                  example: false
+                                rentEpoch:
+                                  type: integer
+                                  description: >-
+                                    Epoch at which the account will next owe
+                                    rent.
+                                  example: 18446744073709552000
+                                space:
+                                  type: integer
+                                  description: Data size of the account.
+                                  example: 165
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              result:
+                context:
+                  apiVersion: 2.0.15
+                  slot: 341197933
+                value:
+                  - pubkey: BGocb4GEpbTFm8UFV2VsDSaBXHELPfAXrvd4vtt8QWrA
+                    account:
+                      lamports: 2039280
+                      owner: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA
+                      data:
+                        program: spl-token
+                        parsed:
+                          info:
+                            isNative: false
+                            mint: 2cHr7QS3xfuSV8wdxo3ztuF4xbiarF6Nrgx3qpx3HzXR
+                            owner: A1TMhSGzQxMr1TboBKtgixKz1sS6REASMxPo1qsyTSJd
+                            state: initialized
+                            tokenAmount:
+                              amount: '420000000000000'
+                              decimals: 6
+                              uiAmount: 420000000
+                              uiAmountString: '420000000'
+                        space: 165
+                      executable: false
+                      rentEpoch: 18446744073709552000
+                      space: 165
+        description: Successfully retrieved token accounts by owner.
+    '400':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - &ref_0
+                    type: string
+                    description: The JSON-RPC protocol version.
+                    enum:
+                      - '2.0'
+                    example: '2.0'
+              error:
+                allOf:
+                  - &ref_1
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        description: The error code.
+                        example: -32602
+                      message:
+                        type: string
+                        description: The error message.
+                      data:
+                        type: object
+                        description: Additional data about the error.
+              id:
+                allOf:
+                  - &ref_2
+                    type: string
+                    description: Identifier matching the request.
+                    example: '1'
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32602
+                message: Invalid params
+              id: '1'
+        description: Bad Request - Invalid request parameters or malformed request.
+    '401':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32001
+                message: Unauthorized
+              id: '1'
+        description: Unauthorized - Invalid or missing API key.
+    '429':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32005
+                message: Too many requests
+              id: '1'
+        description: Too Many Requests - Rate limit exceeded.
+    '500':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32603
+                message: Internal error
+              id: '1'
+        description: Internal Server Error - An error occurred on the server.
+    '503':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32002
+                message: Service unavailable
+              id: '1'
+        description: Service Unavailable - The service is temporarily unavailable.
+    '504':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: Gateway timeout
+              id: '1'
+        description: Gateway Timeout - The request timed out.
+  deprecated: false
+  type: path
+components:
+  schemas: {}
+
+````

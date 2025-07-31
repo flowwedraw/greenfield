@@ -1,0 +1,305 @@
+# getSlotLeaders
+
+> Returns the slot leaders for a given slot range.
+
+## OpenAPI
+
+````yaml openapi/rpc-http/getSlotLeaders.yaml post /
+paths:
+  path: /
+  method: post
+  servers:
+    - url: https://mainnet.helius-rpc.com
+      description: Mainnet RPC endpoint
+    - url: https://devnet.helius-rpc.com
+      description: Devnet RPC endpoint
+  request:
+    security:
+      - title: ApiKeyQuery
+        parameters:
+          query:
+            api-key:
+              type: apiKey
+              description: >-
+                Your Helius API key. You can get one for free in the
+                [dashboard](https://dashboard.helius.dev/api-keys).
+          header: {}
+          cookie: {}
+    parameters:
+      path: {}
+      query: {}
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+                    description: The JSON-RPC protocol version.
+                    example: '2.0'
+                    default: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: A unique identifier for the request.
+                    example: '1'
+                    default: '1'
+              method:
+                allOf:
+                  - type: string
+                    enum:
+                      - getSlotLeaders
+                    description: The name of the RPC method to invoke.
+                    example: getSlotLeaders
+                    default: getSlotLeaders
+              params:
+                allOf:
+                  - type: array
+                    description: Parameters for specifying the start slot and limit.
+                    default:
+                      - 100
+                      - 10
+                    items:
+                      oneOf:
+                        - type: integer
+                          description: >-
+                            Starting Solana slot number to begin retrieving the
+                            validator schedule from.
+                          example: 100
+                        - type: integer
+                          description: >-
+                            Number of consecutive slots to retrieve the
+                            scheduled validator identities for (1-5,000).
+                          example: 10
+            required: true
+        examples:
+          example1:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              method: getSlotLeaders
+              params:
+                - 100
+                - 10
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+                    description: The JSON-RPC protocol version.
+                    example: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: Identifier matching the request.
+                    example: '1'
+              result:
+                allOf:
+                  - type: array
+                    description: >-
+                      Ordered sequence of Solana validator identities scheduled
+                      for upcoming block production.
+                    items:
+                      type: string
+                      description: >-
+                        Solana validator identity (public key) scheduled as
+                        block producer for a specific slot.
+                      example: ChorusmmK7i1AxXeiTtQgQZhQNiXYU84ULeaYF1EH15n
+        examples:
+          example1:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              result:
+                - ChorusmmK7i1AxXeiTtQgQZhQNiXYU84ULeaYF1EH15n
+                - ChorusmmK7i1AxXeiTtQgQZhQNiXYU84ULeaYF1EH15n
+                - ChorusmmK7i1AxXeiTtQgQZhQNiXYU84ULeaYF1EH15n
+                - ChorusmmK7i1AxXeiTtQgQZhQNiXYU84ULeaYF1EH15n
+                - Awes4Tr6TX8JDzEhCZY2QVNimT6iD1zWHzf1vNyGvpLM
+                - Awes4Tr6TX8JDzEhCZY2QVNimT6iD1zWHzf1vNyGvpLM
+                - Awes4Tr6TX8JDzEhCZY2QVNimT6iD1zWHzf1vNyGvpLM
+                - Awes4Tr6TX8JDzEhCZY2QVNimT6iD1zWHzf1vNyGvpLM
+                - DWvDTSh3qfn88UoQTEKRV2JnLt5jtJAVoiCo3ivtMwXP
+                - DWvDTSh3qfn88UoQTEKRV2JnLt5jtJAVoiCo3ivtMwXP
+        description: Successfully retrieved slot leaders.
+    '400':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - &ref_0
+                    type: string
+                    description: The JSON-RPC protocol version.
+                    enum:
+                      - '2.0'
+                    example: '2.0'
+              error:
+                allOf:
+                  - &ref_1
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        description: The error code.
+                        example: -32602
+                      message:
+                        type: string
+                        description: The error message.
+                      data:
+                        type: object
+                        description: Additional data about the error.
+              id:
+                allOf:
+                  - &ref_2
+                    type: string
+                    description: Identifier matching the request.
+                    example: '1'
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32602
+                message: Invalid params
+              id: '1'
+        description: Bad Request - Invalid request parameters or malformed request.
+    '401':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32001
+                message: Unauthorized
+              id: '1'
+        description: Unauthorized - Invalid or missing API key.
+    '429':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32005
+                message: Too many requests
+              id: '1'
+        description: Too Many Requests - Rate limit exceeded.
+    '500':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32603
+                message: Internal error
+              id: '1'
+        description: Internal Server Error - An error occurred on the server.
+    '503':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32002
+                message: Service unavailable
+              id: '1'
+        description: Service Unavailable - The service is temporarily unavailable.
+    '504':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: Gateway timeout
+              id: '1'
+        description: Gateway Timeout - The request timed out.
+  deprecated: false
+  type: path
+components:
+  schemas: {}
+
+````

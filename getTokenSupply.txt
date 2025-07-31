@@ -1,0 +1,335 @@
+# getTokenSupply
+
+> Returns the total supply of an SPL Token type.
+
+## OpenAPI
+
+````yaml openapi/rpc-http/getTokenSupply.yaml post /
+paths:
+  path: /
+  method: post
+  servers:
+    - url: https://mainnet.helius-rpc.com
+      description: Mainnet RPC endpoint
+    - url: https://devnet.helius-rpc.com
+      description: Devnet RPC endpoint
+  request:
+    security:
+      - title: ApiKeyQuery
+        parameters:
+          query:
+            api-key:
+              type: apiKey
+              description: >-
+                Your Helius API key. You can get one for free in the
+                [dashboard](https://dashboard.helius.dev/api-keys).
+          header: {}
+          cookie: {}
+    parameters:
+      path: {}
+      query: {}
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+                    description: The JSON-RPC protocol version.
+                    example: '2.0'
+                    default: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: A unique identifier for the request.
+                    example: '1'
+                    default: '1'
+              method:
+                allOf:
+                  - type: string
+                    enum:
+                      - getTokenSupply
+                    description: The name of the RPC method to invoke.
+                    example: getTokenSupply
+                    default: getTokenSupply
+              params:
+                allOf:
+                  - type: array
+                    description: Parameters for querying the token supply.
+                    default:
+                      - 7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU
+                    items:
+                      oneOf:
+                        - type: string
+                          description: >-
+                            Solana token mint address to retrieve supply metrics
+                            for (SPL token's unique identifier).
+                          example: 7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU
+                        - type: object
+                          description: Configuration object.
+                          properties:
+                            commitment:
+                              type: string
+                              description: The commitment level for the request.
+                              enum:
+                                - confirmed
+                                - finalized
+                                - processed
+                              example: finalized
+            required: true
+        examples:
+          requestExample:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              method: getTokenSupply
+              params:
+                - 7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+                    description: The JSON-RPC protocol version.
+                    example: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: Identifier matching the request.
+                    example: '1'
+              result:
+                allOf:
+                  - type: object
+                    description: Context and token supply details.
+                    properties:
+                      context:
+                        type: object
+                        description: Context of the response.
+                        properties:
+                          slot:
+                            type: integer
+                            description: Slot in which the data was fetched.
+                            example: 1114
+                      value:
+                        type: object
+                        description: Token supply details.
+                        properties:
+                          amount:
+                            type: string
+                            description: >-
+                              The raw total Solana token supply as a precise
+                              integer string without decimal formatting.
+                            example: '100000'
+                          decimals:
+                            type: integer
+                            description: >-
+                              Number of decimal places defined by the token for
+                              accurate supply representation.
+                            example: 2
+                          uiAmount:
+                            type: number
+                            description: >-
+                              The human-readable token supply with proper
+                              decimal formatting (deprecated).
+                            example: 1000
+                          uiAmountString:
+                            type: string
+                            description: >-
+                              The canonical string representation of the total
+                              token supply with correct decimal places.
+                            example: '1000'
+        examples:
+          responseExample:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              result:
+                context:
+                  slot: 1114
+                value:
+                  amount: '100000'
+                  decimals: 2
+                  uiAmount: 1000
+                  uiAmountString: '1000'
+        description: Successfully retrieved the token supply.
+    '400':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - &ref_0
+                    type: string
+                    description: The JSON-RPC protocol version.
+                    enum:
+                      - '2.0'
+                    example: '2.0'
+              error:
+                allOf:
+                  - &ref_1
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        description: The error code.
+                        example: -32602
+                      message:
+                        type: string
+                        description: The error message.
+                      data:
+                        type: object
+                        description: Additional data about the error.
+              id:
+                allOf:
+                  - &ref_2
+                    type: string
+                    description: Identifier matching the request.
+                    example: '1'
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32602
+                message: Invalid params
+              id: '1'
+        description: Bad Request - Invalid request parameters or malformed request.
+    '401':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32001
+                message: Unauthorized
+              id: '1'
+        description: Unauthorized - Invalid or missing API key.
+    '429':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32005
+                message: Too many requests
+              id: '1'
+        description: Too Many Requests - Rate limit exceeded.
+    '500':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32603
+                message: Internal error
+              id: '1'
+        description: Internal Server Error - An error occurred on the server.
+    '503':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32002
+                message: Service unavailable
+              id: '1'
+        description: Service Unavailable - The service is temporarily unavailable.
+    '504':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: Gateway timeout
+              id: '1'
+        description: Gateway Timeout - The request timed out.
+  deprecated: false
+  type: path
+components:
+  schemas: {}
+
+````

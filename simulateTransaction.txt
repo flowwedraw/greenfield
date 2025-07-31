@@ -1,0 +1,425 @@
+# simulateTransaction
+
+> Simulate sending a transaction.
+
+## OpenAPI
+
+````yaml openapi/rpc-http/simulateTransaction.yaml post /
+paths:
+  path: /
+  method: post
+  servers:
+    - url: https://mainnet.helius-rpc.com
+      description: Mainnet RPC endpoint
+    - url: https://devnet.helius-rpc.com
+      description: Devnet RPC endpoint
+  request:
+    security:
+      - title: ApiKeyQuery
+        parameters:
+          query:
+            api-key:
+              type: apiKey
+              description: >-
+                Your Helius API key. You can get one for free in the
+                [dashboard](https://dashboard.helius.dev/api-keys).
+          header: {}
+          cookie: {}
+    parameters:
+      path: {}
+      query: {}
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+                    description: The JSON-RPC protocol version.
+                    example: '2.0'
+                    default: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: A unique identifier for the request.
+                    example: '1'
+                    default: '1'
+              method:
+                allOf:
+                  - type: string
+                    enum:
+                      - simulateTransaction
+                    description: The name of the RPC method to invoke.
+                    example: simulateTransaction
+                    default: simulateTransaction
+              params:
+                allOf:
+                  - type: array
+                    description: Parameters for simulating a transaction.
+                    default:
+                      - >-
+                        AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAEDArczbMia1tLmq7zz4DinMNN0pJ1JtLdqIJPUw3YrGCzYAMHBsgN27lcgB6H2WQvFgyZuJYHa46puOQo9yQ8CVQbd9uHXZaGT2cvhRs7reawctIXtX1s3kTqM9YV+/wCp20C7Wj2aiuk5TReAXo+VTVg8QTHjs0UjNMMKCvpzZ+ABAgEBARU=
+                      - encoding: base64
+                    items:
+                      oneOf:
+                        - type: string
+                          description: >-
+                            The signed transaction, as an encoded string (base58
+                            or base64).
+                          example: >-
+                            AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAEDArczbMia1tLmq7zz4DinMNN0pJ1JtLdqIJPUw3YrGCzYAMHBsgN27lcgB6H2WQvFgyZuJYHa46puOQo9yQ8CVQbd9uHXZaGT2cvhRs7reawctIXtX1s3kTqM9YV+/wCp20C7Wj2aiuk5TReAXo+VTVg8QTHjs0UjNMMKCvpzZ+ABAgEBARU=
+                        - type: object
+                          description: Configuration object for the simulation.
+                          properties:
+                            encoding:
+                              type: string
+                              description: Encoding used for the transaction data.
+                              enum:
+                                - base58
+                                - base64
+                              example: base64
+                            skipPreflight:
+                              type: boolean
+                              description: Skip the preflight transaction checks.
+                              example: false
+                            preflightCommitment:
+                              type: string
+                              description: Commitment level to use for preflight.
+                              enum:
+                                - confirmed
+                                - finalized
+                                - processed
+                              example: finalized
+                            sigVerify:
+                              type: boolean
+                              description: If true, verify the transaction signatures.
+                              example: false
+                            replaceRecentBlockhash:
+                              type: boolean
+                              description: >-
+                                If true, replace the transaction recent
+                                blockhash with the most recent one.
+                              example: false
+                            minContextSlot:
+                              type: integer
+                              description: >-
+                                Minimum slot at which to perform preflight
+                                transaction checks.
+                              example: 1000
+                            innerInstructions:
+                              type: boolean
+                              description: >-
+                                If true, include inner instructions in the
+                                response.
+                              example: false
+                            accounts:
+                              type: object
+                              properties:
+                                addresses:
+                                  type: array
+                                  description: >-
+                                    Array of accounts to return, as base-58
+                                    encoded strings.
+                                  items:
+                                    type: string
+                                    example: >-
+                                      83astBRguLMdt2h5U1Tpdq5tjFoJ6noeGwaY3mDLVcri
+                                encoding:
+                                  type: string
+                                  description: Encoding format for returned account data.
+                                  enum:
+                                    - base64
+                                    - base58
+                                    - base64+zstd
+                                    - jsonParsed
+                                  example: base64
+            required: true
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              method: simulateTransaction
+              params:
+                - >-
+                  AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAEDArczbMia1tLmq7zz4DinMNN0pJ1JtLdqIJPUw3YrGCzYAMHBsgN27lcgB6H2WQvFgyZuJYHa46puOQo9yQ8CVQbd9uHXZaGT2cvhRs7reawctIXtX1s3kTqM9YV+/wCp20C7Wj2aiuk5TReAXo+VTVg8QTHjs0UjNMMKCvpzZ+ABAgEBARU=
+                - encoding: base64
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+                    description: The JSON-RPC protocol version.
+                    example: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    description: Identifier matching the request.
+                    example: '1'
+              result:
+                allOf:
+                  - type: object
+                    description: Result of the simulated transaction.
+                    properties:
+                      context:
+                        type: object
+                        description: Context of the simulation response.
+                        properties:
+                          slot:
+                            type: integer
+                            description: Slot in which the data was fetched.
+                            example: 218
+                      value:
+                        type: object
+                        description: Details of the simulated transaction result.
+                        properties:
+                          err:
+                            type:
+                              - object
+                              - 'null'
+                            description: >-
+                              Error if the transaction failed, null if
+                              successful.
+                            example: null
+                          logs:
+                            type:
+                              - array
+                              - 'null'
+                            items:
+                              type: string
+                              example: >-
+                                Program
+                                83astBRguLMdt2h5U1Tpdq5tjFoJ6noeGwaY3mDLVcri
+                                invoke [1]
+                          accounts:
+                            type:
+                              - array
+                              - 'null'
+                            items:
+                              type: object
+                              description: Account details associated with the transaction.
+                              example:
+                                lamports: 5000
+                                owner: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA
+                          returnData:
+                            type:
+                              - object
+                              - 'null'
+                            properties:
+                              programId:
+                                type: string
+                                example: 83astBRguLMdt2h5U1Tpdq5tjFoJ6noeGwaY3mDLVcri
+                              data:
+                                type: array
+                                items:
+                                  type: string
+                                  example: Kg==
+                              computeUnitsConsumed:
+                                type: integer
+                                example: 2366
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              result:
+                context:
+                  slot: 218
+                value:
+                  err: null
+                  logs:
+                    - >-
+                      Program 83astBRguLMdt2h5U1Tpdq5tjFoJ6noeGwaY3mDLVcri
+                      invoke [1]
+                    - >-
+                      Program 83astBRguLMdt2h5U1Tpdq5tjFoJ6noeGwaY3mDLVcri
+                      consumed 2366 of 1400000 compute units
+                  accounts: null
+                  returnData:
+                    programId: 83astBRguLMdt2h5U1Tpdq5tjFoJ6noeGwaY3mDLVcri
+                    data:
+                      - Kg==
+                      - base64
+                    computeUnitsConsumed: 2366
+        description: Successfully simulated the transaction.
+    '400':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - &ref_0
+                    type: string
+                    description: The JSON-RPC protocol version.
+                    enum:
+                      - '2.0'
+                    example: '2.0'
+              error:
+                allOf:
+                  - &ref_1
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        description: The error code.
+                        example: -32602
+                      message:
+                        type: string
+                        description: The error message.
+                      data:
+                        type: object
+                        description: Additional data about the error.
+              id:
+                allOf:
+                  - &ref_2
+                    type: string
+                    description: Identifier matching the request.
+                    example: '1'
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32602
+                message: Invalid params
+              id: '1'
+        description: Bad Request - Invalid request parameters or malformed request.
+    '401':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32001
+                message: Unauthorized
+              id: '1'
+        description: Unauthorized - Invalid or missing API key.
+    '429':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32005
+                message: Too many requests
+              id: '1'
+        description: Too Many Requests - Rate limit exceeded.
+    '500':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32603
+                message: Internal error
+              id: '1'
+        description: Internal Server Error - An error occurred on the server.
+    '503':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32002
+                message: Service unavailable
+              id: '1'
+        description: Service Unavailable - The service is temporarily unavailable.
+    '504':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: Gateway timeout
+              id: '1'
+        description: Gateway Timeout - The request timed out.
+  deprecated: false
+  type: path
+components:
+  schemas: {}
+
+````

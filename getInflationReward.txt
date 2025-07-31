@@ -1,0 +1,361 @@
+# getInflationReward
+
+ Returns the inflation  staking reward for a list of addresses for an epoch.
+
+## OpenAPI
+
+````yaml openapirpc-httpgetInflationReward.yaml post 
+paths
+  path 
+  method post
+  servers
+    - url httpsmainnet.helius-rpc.com
+      description Mainnet RPC endpoint
+    - url httpsdevnet.helius-rpc.com
+      description Devnet RPC endpoint
+  request
+    security
+      - title ApiKeyQuery
+        parameters
+          query
+            api-key
+              type apiKey
+              description -
+                Your Helius API key. You can get one for free in the
+                [dashboard](httpsdashboard.helius.devapi-keys).
+          header {}
+          cookie {}
+    parameters
+      path {}
+      query {}
+      header {}
+      cookie {}
+    body
+      applicationjson
+        schemaArray
+          - type object
+            properties
+              jsonrpc
+                allOf
+                  - type string
+                    description The JSON-RPC protocol version.
+                    enum
+                      - '2.0'
+                    example '2.0'
+                    default '2.0'
+              id
+                allOf
+                  - type string
+                    description A unique identifier for the request.
+                    example '1'
+                    default '1'
+              method
+                allOf
+                  - type string
+                    description The name of the RPC method to invoke.
+                    enum
+                      - getInflationReward
+                    example getInflationReward
+                    default getInflationReward
+              params
+                allOf
+                  - type array
+                    description Parameters for the method.
+                    default
+                      - - 6dmNQ5jwLeLk5REvio1JcMshcbvkYMwy26sJ8pbkvStu
+                    items
+                      oneOf
+                        - type array
+                          description -
+                            List of Solana addresses (validators or delegators)
+                            to retrieve staking rewards for, as base-58 encoded
+                            strings.
+                          items
+                            type string
+                          example
+                            - 6dmNQ5jwLeLk5REvio1JcMshcbvkYMwy26sJ8pbkvStu
+                            - BGsqMegLpV6n6Ve146sSX2dTjUMj3M92HnU8BbNRMhF2
+                        - type object
+                          description Configuration object containing optional parameters.
+                          properties
+                            commitment
+                              type string
+                              description The commitment level for the request.
+                              enum
+                                - confirmed
+                                - finalized
+                              example finalized
+                            epoch
+                              type integer
+                              description -
+                                Specific Solana epoch number to retrieve rewards
+                                for. If omitted, returns the most recently
+                                distributed rewards.
+                              example 2
+                            minContextSlot
+                              type integer
+                              description -
+                                The minimum slot that the request can be
+                                evaluated at.
+                              example 1000
+            required true
+            requiredProperties
+              - jsonrpc
+              - id
+              - method
+        examples
+          example
+            value
+              jsonrpc '2.0'
+              id '1'
+              method getInflationReward
+              params
+                - - 6dmNQ5jwLeLk5REvio1JcMshcbvkYMwy26sJ8pbkvStu
+  response
+    '200'
+      applicationjson
+        schemaArray
+          - type object
+            properties
+              jsonrpc
+                allOf
+                  - type string
+                    description The JSON-RPC protocol version.
+                    enum
+                      - '2.0'
+                    example '2.0'
+              id
+                allOf
+                  - type string
+                    description Identifier matching the request.
+                    example '1'
+              result
+                allOf
+                  - type array
+                    description -
+                      Array of detailed staking reward information for each
+                      requested account, in the same order as requested.
+                    items
+                      oneOf
+                        - type object
+                          description Solana staking reward details for this account.
+                          properties
+                            epoch
+                              type integer
+                              description -
+                                Solana epoch number when these staking rewards
+                                were distributed.
+                              example 2
+                            effectiveSlot
+                              type integer
+                              description -
+                                Specific blockchain slot when these rewards were
+                                calculated and became effective.
+                              example 224
+                            amount
+                              type integer
+                              description -
+                                Staking reward amount in lamports (1 SOL =
+                                1,000,000,000 lamports) earned by this account.
+                              example 2500
+                            postBalance
+                              type integer
+                              description -
+                                Account balance in lamports after this staking
+                                reward was credited.
+                              example 499999442500
+                            commission
+                              type integer
+                              description -
+                                Validator commission percentage taken from
+                                delegator rewards (null for delegator accounts,
+                                0-100 for validators).
+                              nullable true
+                              example 5
+                        - type 'null'
+                          description -
+                            Null if this account did not receive any staking
+                            rewards during the specified epoch.
+                          example null
+        examples
+          example
+            value
+              jsonrpc '2.0'
+              id '1'
+              result
+                - epoch 2
+                  effectiveSlot 224
+                  amount 2500
+                  postBalance 499999442500
+                  commission 5
+        description Successfully retrieved inflation reward information.
+    '400'
+      applicationjson
+        schemaArray
+          - type object
+            properties
+              jsonrpc
+                allOf
+                  - &ref_0
+                    type string
+                    description The JSON-RPC protocol version.
+                    enum
+                      - '2.0'
+                    example '2.0'
+              error
+                allOf
+                  - &ref_1
+                    type object
+                    properties
+                      code
+                        type integer
+                        description The error code.
+                        example -32602
+                      message
+                        type string
+                        description The error message.
+                      data
+                        type object
+                        description Additional data about the error.
+              id
+                allOf
+                  - &ref_2
+                    type string
+                    description Identifier matching the request.
+                    example '1'
+            refIdentifier '#componentsschemasErrorResponse'
+        examples
+          example
+            value
+              jsonrpc '2.0'
+              error
+                code -32602
+                message Invalid params
+              id '1'
+        description Bad Request - Invalid request parameters or malformed request.
+    '401'
+      applicationjson
+        schemaArray
+          - type object
+            properties
+              jsonrpc
+                allOf
+                  - ref_0
+              error
+                allOf
+                  - ref_1
+              id
+                allOf
+                  - ref_2
+            refIdentifier '#componentsschemasErrorResponse'
+        examples
+          example
+            value
+              jsonrpc '2.0'
+              error
+                code -32001
+                message Unauthorized
+              id '1'
+        description Unauthorized - Invalid or missing API key.
+    '429'
+      applicationjson
+        schemaArray
+          - type object
+            properties
+              jsonrpc
+                allOf
+                  - ref_0
+              error
+                allOf
+                  - ref_1
+              id
+                allOf
+                  - ref_2
+            refIdentifier '#componentsschemasErrorResponse'
+        examples
+          example
+            value
+              jsonrpc '2.0'
+              error
+                code -32005
+                message Too many requests
+              id '1'
+        description Too Many Requests - Rate limit exceeded.
+    '500'
+      applicationjson
+        schemaArray
+          - type object
+            properties
+              jsonrpc
+                allOf
+                  - ref_0
+              error
+                allOf
+                  - ref_1
+              id
+                allOf
+                  - ref_2
+            refIdentifier '#componentsschemasErrorResponse'
+        examples
+          example
+            value
+              jsonrpc '2.0'
+              error
+                code -32603
+                message Internal error
+              id '1'
+        description Internal Server Error - An error occurred on the server.
+    '503'
+      applicationjson
+        schemaArray
+          - type object
+            properties
+              jsonrpc
+                allOf
+                  - ref_0
+              error
+                allOf
+                  - ref_1
+              id
+                allOf
+                  - ref_2
+            refIdentifier '#componentsschemasErrorResponse'
+        examples
+          example
+            value
+              jsonrpc '2.0'
+              error
+                code -32002
+                message Service unavailable
+              id '1'
+        description Service Unavailable - The service is temporarily unavailable.
+    '504'
+      applicationjson
+        schemaArray
+          - type object
+            properties
+              jsonrpc
+                allOf
+                  - ref_0
+              error
+                allOf
+                  - ref_1
+              id
+                allOf
+                  - ref_2
+            refIdentifier '#componentsschemasErrorResponse'
+        examples
+          example
+            value
+              jsonrpc '2.0'
+              error
+                code -32003
+                message Gateway timeout
+              id '1'
+        description Gateway Timeout - The request timed out.
+  deprecated false
+  type path
+components
+  schemas {}
+
+````

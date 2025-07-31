@@ -1,0 +1,399 @@
+# getSignaturesForAddress
+
+> Returns signatures for confirmed transactions that include the given address in their `accountKeys` list. Returns signatures backwards in time from the provided signature or most recent confirmed block
+
+## OpenAPI
+
+````yaml openapi/rpc-http/getSignaturesForAddress.yaml post /
+paths:
+  path: /
+  method: post
+  servers:
+    - url: https://mainnet.helius-rpc.com
+      description: Mainnet RPC endpoint
+    - url: https://devnet.helius-rpc.com
+      description: Devnet RPC endpoint
+  request:
+    security:
+      - title: ApiKeyQuery
+        parameters:
+          query:
+            api-key:
+              type: apiKey
+              description: >-
+                Your Helius API key. You can get one for free in the
+                [dashboard](https://dashboard.helius.dev/api-keys).
+          header: {}
+          cookie: {}
+    parameters:
+      path: {}
+      query: {}
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+                    example: '2.0'
+                    description: The JSON-RPC protocol version.
+                    default: '2.0'
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+                    description: A unique identifier for the request.
+                    default: '1'
+              method:
+                allOf:
+                  - type: string
+                    enum:
+                      - getSignaturesForAddress
+                    example: getSignaturesForAddress
+                    description: The name of the RPC method to invoke.
+                    default: getSignaturesForAddress
+              params:
+                allOf:
+                  - type: array
+                    description: >-
+                      Array containing the required account address and optional
+                      configuration object.
+                    default:
+                      - Vote111111111111111111111111111111111111111
+                    items:
+                      oneOf:
+                        - type: string
+                          description: >-
+                            Solana account address to retrieve transaction
+                            history for (wallet, token, program, NFT, etc.).
+                          example: Vote111111111111111111111111111111111111111
+                        - type: object
+                          description: >-
+                            Advanced query configuration for customizing
+                            transaction history retrieval.
+                          properties:
+                            commitment:
+                              type: string
+                              description: The commitment level for the request.
+                              enum:
+                                - confirmed
+                                - finalized
+                                - processed
+                              example: finalized
+                            minContextSlot:
+                              type: integer
+                              description: >-
+                                The minimum slot that the request can be
+                                evaluated at.
+                              example: 1000
+                            limit:
+                              type: integer
+                              description: >-
+                                Maximum number of transaction signatures to
+                                return in a single request (1-1,000).
+                              example: 1000
+                            before:
+                              type: string
+                              description: >-
+                                Pagination parameter to get transactions before
+                                this signature (earlier in time).
+                              example: >-
+                                5h6xBEauJ3PK6SWCZ1PGjBvj8vDdWG3KpwATGy1ARAXFSDwt8GFXM7W5Ncn16wmqokgpiKRLuS83KUxyZyv2sUYv
+                            until:
+                              type: string
+                              description: >-
+                                Get transactions until this signature is
+                                reached, useful for specific time ranges.
+                              example: >-
+                                3jweEauJ3PK6SWCZ1PGjBvj8vDdWG3KpwATGy1ARAXFSDwt8GFXM7W5Ncn16wmqokgpiKRLuS83KUxyZyv2sUYv
+            required: true
+            requiredProperties:
+              - jsonrpc
+              - id
+              - method
+              - params
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: '1'
+              method: getSignaturesForAddress
+              params:
+                - Vote111111111111111111111111111111111111111
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+                    example: '2.0'
+                    description: The JSON-RPC protocol version.
+              id:
+                allOf:
+                  - type: string
+                    example: '1'
+                    description: Identifier matching the request.
+              result:
+                allOf:
+                  - type: array
+                    description: List of transaction signature information.
+                    items:
+                      type: object
+                      description: Details for each transaction signature.
+                      properties:
+                        signature:
+                          type: string
+                          description: Transaction signature as a base-58 encoded string.
+                          example: >-
+                            5h6xBEauJ3PK6SWCZ1PGjBvj8vDdWG3KpwATGy1ARAXFSDwt8GFXM7W5Ncn16wmqokgpiKRLuS83KUxyZyv2sUYv
+                        slot:
+                          type: integer
+                          description: >-
+                            The slot that contains the block with the
+                            transaction.
+                          example: 114
+                        err:
+                          oneOf:
+                            - type: object
+                              description: Error if the transaction failed
+                            - type: 'null'
+                          description: >-
+                            Error if the transaction failed, or null if
+                            successful.
+                          example: null
+                        memo:
+                          oneOf:
+                            - type: string
+                              description: Memo associated with the transaction
+                            - type: 'null'
+                          description: >-
+                            Memo associated with the transaction, or null if
+                            none.
+                          example: null
+                        blockTime:
+                          oneOf:
+                            - type: integer
+                              description: Estimated production time as Unix timestamp
+                            - type: 'null'
+                          description: >-
+                            Estimated production time as Unix timestamp (seconds
+                            since epoch), or null if not available.
+                          example: null
+                        confirmationStatus:
+                          oneOf:
+                            - type: string
+                              enum:
+                                - processed
+                                - confirmed
+                                - finalized
+                              description: Transaction's cluster confirmation status
+                            - type: 'null'
+                          description: Transaction's cluster confirmation status.
+                          example: finalized
+        examples:
+          response:
+            value:
+              jsonrpc: '2.0'
+              id: 1
+              result:
+                - signature: >-
+                    5h6xBEauJ3PK6SWCZ1PGjBvj8vDdWG3KpwATGy1ARAXFSDwt8GFXM7W5Ncn16wmqokgpiKRLuS83KUxyZyv2sUYv
+                  slot: 114
+                  err: null
+                  memo: null
+                  blockTime: null
+                  confirmationStatus: finalized
+        description: Successfully retrieved signatures for the specified address.
+      application/json; schema=examples/request:
+        schemaArray:
+          - type: any
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: 1
+              method: getSignaturesForAddress
+              params:
+                - Vote111111111111111111111111111111111111111
+                - limit: 1
+        description: Successfully retrieved signatures for the specified address.
+    '400':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - &ref_0
+                    type: string
+                    description: The JSON-RPC protocol version.
+                    enum:
+                      - '2.0'
+                    example: '2.0'
+              error:
+                allOf:
+                  - &ref_1
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        description: The error code.
+                        example: -32602
+                      message:
+                        type: string
+                        description: The error message.
+                      data:
+                        type: object
+                        description: Additional data about the error.
+              id:
+                allOf:
+                  - &ref_2
+                    type: string
+                    description: Identifier matching the request.
+                    example: '1'
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32602
+                message: Invalid params
+              id: '1'
+        description: Bad Request - Invalid request parameters or malformed request.
+    '401':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32001
+                message: Unauthorized
+              id: '1'
+        description: Unauthorized - Invalid or missing API key.
+    '429':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32005
+                message: Too many requests
+              id: '1'
+        description: Too Many Requests - Rate limit exceeded.
+    '500':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32603
+                message: Internal error
+              id: '1'
+        description: Internal Server Error - An error occurred on the server.
+    '503':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32002
+                message: Service unavailable
+              id: '1'
+        description: Service Unavailable - The service is temporarily unavailable.
+    '504':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: Gateway timeout
+              id: '1'
+        description: Gateway Timeout - The request timed out.
+  deprecated: false
+  type: path
+components:
+  schemas: {}
+
+````
