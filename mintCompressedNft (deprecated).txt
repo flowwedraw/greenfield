@@ -1,0 +1,488 @@
+# mintCompressedNft (deprecated)
+
+## OpenAPI
+
+````yaml openapi/mint-api/mintCompressedNft.yaml post /
+paths:
+  path: /
+  method: post
+  servers:
+    - url: https://mainnet.helius-rpc.com
+      description: Mainnet RPC endpoint
+    - url: https://devnet.helius-rpc.com
+      description: Devnet RPC endpoint
+  request:
+    security:
+      - title: apiKey
+        parameters:
+          query:
+            api-key:
+              type: apiKey
+          header: {}
+          cookie: {}
+    parameters:
+      path: {}
+      query:
+        api-key:
+          schema:
+            - type: string
+              required: true
+              description: >-
+                Your Helius API key for authentication and access to compressed
+                NFT minting.
+              example: string
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+                    description: The version of the JSON-RPC protocol.
+              id:
+                allOf:
+                  - type: string
+                    description: An ID to identify the request.
+              method:
+                allOf:
+                  - type: string
+                    enum:
+                      - mintCompressedNft
+                    description: The name of the RPC method to invoke.
+              params:
+                allOf:
+                  - type: object
+                    properties:
+                      name:
+                        type: string
+                        description: >-
+                          The name of the compressed Solana NFT to be minted,
+                          displayed on marketplaces and wallets.
+                        example: Exodia the Forbidden One
+                      symbol:
+                        type: string
+                        description: >-
+                          The symbol of the compressed Solana NFT collection,
+                          typically a short identifier for the project.
+                        example: ETFO
+                      description:
+                        type: string
+                        description: >-
+                          Detailed description of the compressed NFT for
+                          marketplaces and indexers.
+                        example: >-
+                          Exodia the Forbidden One is a powerful, legendary
+                          creature.
+                      owner:
+                        type: string
+                        description: >-
+                          The Solana wallet address that will receive and own
+                          the compressed NFT after minting is complete.
+                        example: DCQnfUH6mHA333mzkU22b4hMvyqcejUBociodq8bB5HF
+                      delegate:
+                        type: string
+                        description: >-
+                          Optional delegate address for the compressed NFT with
+                          usage permissions.
+                        example: DCQnfUH6mHA333mzkU22b4hMvyqcejUBociodq8bB5HF
+                      collection:
+                        type: string
+                        description: >-
+                          Collection address to add this compressed NFT to for
+                          grouping, discovery and verification on Solana
+                          marketplaces.
+                      uri:
+                        type: string
+                        description: >-
+                          The URI pointing to the off-chain JSON metadata for
+                          the compressed NFT, typically hosted on Arweave or
+                          IPFS.
+                      attributes:
+                        type: array
+                        description: >-
+                          Array of traits and attributes that define the
+                          compressed NFT's characteristics.
+                        items:
+                          type: object
+                          properties:
+                            trait_type:
+                              type: string
+                              description: >-
+                                The category or type of the trait for the
+                                compressed NFT.
+                              example: Rarity
+                            value:
+                              type: string
+                              description: >-
+                                The specific value of the trait for the
+                                compressed NFT.
+                              example: Mythical
+                          required:
+                            - trait_type
+                            - value
+                      imageUrl:
+                        type: string
+                        description: >-
+                          Direct URL to the image that represents the compressed
+                          NFT on marketplaces.
+                        example: >-
+                          https://cdna.artstation.com/p/assets/images/images/052/118/830/large/julie-almoneda-03.jpg?1658992401
+                      externalUrl:
+                        type: string
+                        description: >-
+                          Optional website URL related to the compressed NFT or
+                          collection.
+                        example: https://www.yugioh-card.com/en/
+                      sellerFeeBasisPoints:
+                        type: integer
+                        description: >-
+                          Royalty percentage for creator earnings on secondary
+                          sales in basis points (100 = 1%, 1000 = 10%) on Solana
+                          marketplaces.
+                        example: 5000
+                      creators:
+                        type: array
+                        description: >-
+                          Array of creator addresses that contributed to the
+                          compressed NFT with royalty shares.
+                        items:
+                          type: object
+                          properties:
+                            address:
+                              type: string
+                              description: >-
+                                Solana wallet address of the creator to receive
+                                royalties.
+                              example: DCQnfUH6mHA333mzkU22b4hMvyqcejUBociodq8bB5HF
+                            share:
+                              type: integer
+                              description: >-
+                                Percentage share of royalties allocated to this
+                                creator (sum must equal 100).
+                              example: 100
+                              minimum: 0
+                              maximum: 100
+                          required:
+                            - address
+                            - share
+                      confirmTransaction:
+                        type: boolean
+                        description: >-
+                          If true, the API will wait for on-chain confirmation
+                          before responding.
+                    required:
+                      - name
+                      - symbol
+                      - description
+                      - owner
+            requiredProperties:
+              - jsonrpc
+              - id
+              - method
+              - params
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: <string>
+              method: mintCompressedNft
+              params:
+                name: Exodia the Forbidden One
+                symbol: ETFO
+                description: Exodia the Forbidden One is a powerful, legendary creature.
+                owner: DCQnfUH6mHA333mzkU22b4hMvyqcejUBociodq8bB5HF
+                delegate: DCQnfUH6mHA333mzkU22b4hMvyqcejUBociodq8bB5HF
+                collection: <string>
+                uri: <string>
+                attributes:
+                  - trait_type: Rarity
+                    value: Mythical
+                imageUrl: >-
+                  https://cdna.artstation.com/p/assets/images/images/052/118/830/large/julie-almoneda-03.jpg?1658992401
+                externalUrl: https://www.yugioh-card.com/en/
+                sellerFeeBasisPoints: 5000
+                creators:
+                  - address: DCQnfUH6mHA333mzkU22b4hMvyqcejUBociodq8bB5HF
+                    share: 100
+                confirmTransaction: true
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - type: string
+                    enum:
+                      - '2.0'
+                    description: The version of the JSON-RPC protocol.
+              id:
+                allOf:
+                  - type: string
+                    description: The ID used to identify the request.
+              result:
+                allOf:
+                  - type: object
+                    properties:
+                      signature:
+                        type: string
+                        description: >-
+                          The Solana blockchain transaction signature of the
+                          successful compressed NFT mint operation for
+                          verification.
+                        example: >-
+                          4FRxjAvHLGCEUXJqkucG7SdKrrmAeqjfTQKmhMZWvqGvkPGvWeZXY8Vfj8oxXtGnf7q3n4n8XHVDsExkpCtAEdKj
+                      minted:
+                        type: boolean
+                        description: >-
+                          Confirmation that the compressed NFT was successfully
+                          minted on Solana.
+                        example: true
+                      assetId:
+                        type: string
+                        description: >-
+                          The unique Solana asset ID of the minted compressed
+                          NFT, used for querying with the Digital Asset Standard
+                          (DAS) API.
+                        example: 6sx2ChPvudKVt4Gc6qr3X4FFwtM4vVa6uZMmQHn5udQE
+            requiredProperties:
+              - jsonrpc
+              - id
+              - result
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              id: <string>
+              result:
+                signature: >-
+                  4FRxjAvHLGCEUXJqkucG7SdKrrmAeqjfTQKmhMZWvqGvkPGvWeZXY8Vfj8oxXtGnf7q3n4n8XHVDsExkpCtAEdKj
+                minted: true
+                assetId: 6sx2ChPvudKVt4Gc6qr3X4FFwtM4vVa6uZMmQHn5udQE
+        description: Successfully minted compressed Solana NFT
+    '400':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - &ref_0
+                    type: string
+                    description: The JSON-RPC protocol version.
+                    enum:
+                      - '2.0'
+                    example: '2.0'
+              error:
+                allOf:
+                  - &ref_1
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        description: The error code.
+                        example: -32602
+                      message:
+                        type: string
+                        description: The error message.
+                      data:
+                        type: object
+                        description: Additional data about the error.
+              id:
+                allOf:
+                  - &ref_2
+                    type: string
+                    description: Identifier matching the request.
+                    example: '1'
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32602
+                message: Invalid params
+              id: '1'
+        description: Invalid request.
+    '401':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32001
+                message: Unauthorized
+              id: '1'
+        description: Unauthorized request.
+    '403':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: Forbidden
+              id: '1'
+        description: Request was forbidden.
+    '404':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32601
+                message: Method not found
+              id: '1'
+        description: The specified resource was not found.
+    '429':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32005
+                message: Rate limit exceeded
+              id: '1'
+        description: Exceeded rate limit.
+    '500':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32603
+                message: Internal error
+              id: '1'
+        description: >-
+          The server encountered an unexpected condition that prevented it from
+          fulfilling the request.
+    '503':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32002
+                message: Service unavailable
+              id: '1'
+        description: The service is temporarily unavailable.
+    '504':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            refIdentifier: '#/components/schemas/ErrorResponse'
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: Gateway timeout
+              id: '1'
+        description: The request timed out.
+  deprecated: false
+  type: path
+components:
+  schemas: {}
+
+````

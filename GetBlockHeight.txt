@@ -1,0 +1,43 @@
+# GetBlockHeight
+
+> Get the current block height of the Solana blockchain using the LaserStream gRPC API.
+
+<hide>
+  ## Endpoints
+
+  gRPC services are available on mainnet and devnet with the following URLs:
+
+  * **Mainnet** `https://laserstream-mainnet.helius-rpc.com:443`
+  * **Devnet** `https://laserstream-devnet.helius-rpc.com:443`
+</hide>
+
+## Authorizations
+
+<ParamField query="x-token" type="string" required>
+  Your Helius API key. You can get one for free in the
+  [dashboard](https://dashboard.helius.dev/api-keys).
+</ParamField>
+
+## Message
+
+This method takes an empty request and returns the current block height.
+
+<RequestExample>
+  ```json Empty Request
+  {}
+  ```
+</RequestExample>
+
+## Response
+
+<ResponseField name="blockHeight" type="integer">
+  The current block height of the Solana blockchain.
+</ResponseField>
+
+<ResponseExample>
+  ```json Block Height Response
+  {
+    "blockHeight": 189554321
+  }
+  ```
+</ResponseExample>

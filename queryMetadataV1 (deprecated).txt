@@ -1,0 +1,605 @@
+# queryMetadataV1 (deprecated)
+
+## OpenAPI
+
+````yaml openapi/openapi-definition.yaml post /v0/token-metadata
+paths:
+  path: /v0/token-metadata
+  method: post
+  servers:
+    - url: https://api.helius.xyz
+      description: Mainnet RPC endpoint
+    - url: https://api-devnet.helius.xyz
+      description: Devnet RPC endpoint
+  request:
+    security:
+      - title: ApiKeyQuery
+        parameters:
+          query:
+            api-key:
+              type: apiKey
+              description: >-
+                Your Helius API key. You can get one for free in the
+                [dashboard](https://dashboard.helius.dev/api-keys).
+          header: {}
+          cookie: {}
+    parameters:
+      path: {}
+      query: {}
+      header: {}
+      cookie: {}
+    body:
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              mintAccounts:
+                allOf:
+                  - type: array
+                    items:
+                      type: string
+                      description: The mint account of the token to retrieve metadata for.
+                    maxItems: 100
+              includeOffChain:
+                allOf:
+                  - type: boolean
+                    default: false
+                    description: >-
+                      Include offchain data referenced in the uri of the
+                      metadata account. Omitting defaults to false.
+              disableCache:
+                allOf:
+                  - type: boolean
+                    default: false
+                    description: >-
+                      Disable usage of cache, useful for monitoring metadata
+                      changes.
+            required: true
+            refIdentifier: '#/components/schemas/TokensMetadataRequestV1'
+        examples:
+          example:
+            value:
+              mintAccounts:
+                - <string>
+              includeOffChain: false
+              disableCache: false
+  response:
+    '200':
+      application/json:
+        schemaArray:
+          - type: array
+            items:
+              allOf:
+                - type: object
+                  description: >-
+                    Token metadata stored both on-chain and in the old token
+                    list.
+                  properties:
+                    account:
+                      type: string
+                    onChainAccountInfo:
+                      $ref: '#/components/schemas/OnChainAccountInfoResult'
+                    onChainMetadata:
+                      $ref: '#/components/schemas/OnChainMetadataResult'
+                    offChainMetadata:
+                      $ref: '#/components/schemas/OffChainMetadataResult'
+                    legacyMetadata:
+                      $ref: '#/components/schemas/LegacyMetadata'
+            refIdentifier: '#/components/schemas/TokensMetadataResponseV1'
+        examples:
+          example:
+            value:
+              - account: <string>
+                onChainAccountInfo:
+                  accountInfo:
+                    key: <string>
+                    isSigner: true
+                    isWritable: true
+                    lamports: 123
+                    data:
+                      parsed:
+                        info:
+                          decimals: 123
+                          freezeAuthority: <string>
+                          isInitialized: true
+                          mintAuthority: <string>
+                          supply: <string>
+                        type: <string>
+                      program: <string>
+                      space: 123
+                    owner: <string>
+                    executable: true
+                    rentEpoch: 123
+                  error: ''
+                onChainMetadata:
+                  metadata:
+                    key: <string>
+                    mint: <string>
+                    updateAuthority: <string>
+                    data:
+                      name: <string>
+                      symbol: <string>
+                      uri: <string>
+                      sellerFeeBasisPoints: 123
+                      creators:
+                        - address: <string>
+                          share: <string>
+                          verified: true
+                    tokenStandard: <string>
+                    primarySaleHappened: true
+                    isMutable: true
+                    editionNonce: 123
+                    collection:
+                      key: <string>
+                      verified: true
+                    collectionDetails:
+                      size: 123
+                    uses:
+                      useMethod: <string>
+                      remaining: 123
+                      total: 123
+                  error: ''
+                offChainMetadata:
+                  metadata:
+                    name: <string>
+                    symbol: <string>
+                    attributes:
+                      - traitType: <string>
+                        value: <string>
+                    sellerFeeBasisPoints: 123
+                    image: <string>
+                    properties:
+                      category: <string>
+                      files:
+                        - uri: <string>
+                          type: <string>
+                      creators:
+                        - address: <string>
+                          share: <string>
+                  uri: <string>
+                  error: ''
+                legacyMetadata:
+                  chainId: 123
+                  address: <string>
+                  symbol: <string>
+                  name: <string>
+                  decimals: 123
+                  logoURI: <string>
+                  tags:
+                    - <string>
+                  extensions: {}
+        description: Query result.
+    '400':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - &ref_0
+                    type: string
+                    example: '2.0'
+                    description: JSON-RPC version
+              error:
+                allOf:
+                  - &ref_1
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        description: Error code
+                        example: -32602
+                      message:
+                        type: string
+                        description: Error message
+                        example: Invalid params
+              id:
+                allOf:
+                  - &ref_2
+                    type: string
+                    description: Request identifier
+                    example: '1'
+            description: JSON-RPC error response format
+            refIdentifier: '#/components/schemas/ErrorResponse'
+            requiredProperties: &ref_3
+              - jsonrpc
+              - error
+              - id
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32602
+                message: Invalid params
+              id: '1'
+        description: Invalid request.
+    '401':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            description: JSON-RPC error response format
+            refIdentifier: '#/components/schemas/ErrorResponse'
+            requiredProperties: *ref_3
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32001
+                message: Unauthorized
+              id: '1'
+        description: Unauthorized request.
+    '403':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            description: JSON-RPC error response format
+            refIdentifier: '#/components/schemas/ErrorResponse'
+            requiredProperties: *ref_3
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: Forbidden
+              id: '1'
+        description: Request was forbidden.
+    '404':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            description: JSON-RPC error response format
+            refIdentifier: '#/components/schemas/ErrorResponse'
+            requiredProperties: *ref_3
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32601
+                message: Method not found
+              id: '1'
+        description: The specified resource was not found.
+    '429':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            description: JSON-RPC error response format
+            refIdentifier: '#/components/schemas/ErrorResponse'
+            requiredProperties: *ref_3
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32005
+                message: Rate limit exceeded
+              id: '1'
+        description: Exceeded rate limit.
+    '500':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            description: JSON-RPC error response format
+            refIdentifier: '#/components/schemas/ErrorResponse'
+            requiredProperties: *ref_3
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32603
+                message: Internal error
+              id: '1'
+        description: >-
+          The server encountered an unexpected condition that prevented it from
+          fulfilling the request.
+    '503':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            description: JSON-RPC error response format
+            refIdentifier: '#/components/schemas/ErrorResponse'
+            requiredProperties: *ref_3
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32002
+                message: Service unavailable
+              id: '1'
+        description: The service is temporarily unavailable.
+    '504':
+      application/json:
+        schemaArray:
+          - type: object
+            properties:
+              jsonrpc:
+                allOf:
+                  - *ref_0
+              error:
+                allOf:
+                  - *ref_1
+              id:
+                allOf:
+                  - *ref_2
+            description: JSON-RPC error response format
+            refIdentifier: '#/components/schemas/ErrorResponse'
+            requiredProperties: *ref_3
+        examples:
+          example:
+            value:
+              jsonrpc: '2.0'
+              error:
+                code: -32003
+                message: Gateway timeout
+              id: '1'
+        description: The request timed out.
+  deprecated: false
+  type: path
+components:
+  schemas:
+    OnChainMetadata:
+      type: object
+      description: Metaplex metadata that is stored on-chain.
+      properties:
+        key:
+          type: string
+        mint:
+          type: string
+        updateAuthority:
+          type: string
+        data:
+          type: object
+          properties:
+            name:
+              type: string
+            symbol:
+              type: string
+            uri:
+              type: string
+            sellerFeeBasisPoints:
+              type: integer
+            creators:
+              type: array
+              items:
+                type: object
+                properties:
+                  address:
+                    type: string
+                  share:
+                    type: string
+                  verified:
+                    type: boolean
+        tokenStandard:
+          type: string
+        primarySaleHappened:
+          type: boolean
+        isMutable:
+          type: boolean
+        editionNonce:
+          type: integer
+        collection:
+          type: object
+          properties:
+            key:
+              type: string
+            verified:
+              type: boolean
+        collectionDetails:
+          type: object
+          properties:
+            size:
+              type: integer
+        uses:
+          type: object
+          properties:
+            useMethod:
+              type: string
+            remaining:
+              type: integer
+            total:
+              type: integer
+    OffChainMetadata:
+      type: object
+      description: Metaplex metadata that is stored off-chain.
+      properties:
+        name:
+          type: string
+        symbol:
+          type: string
+        attributes:
+          type: array
+          items:
+            properties:
+              traitType:
+                type: string
+              value:
+                type: string
+        sellerFeeBasisPoints:
+          type: integer
+        image:
+          type: string
+        properties:
+          type: object
+          properties:
+            category:
+              type: string
+            files:
+              type: array
+              items:
+                properties:
+                  uri:
+                    type: string
+                  type:
+                    type: string
+            creators:
+              type: array
+              items:
+                properties:
+                  address:
+                    type: string
+                  share:
+                    type: string
+    OnChainAccountInfoResult:
+      type: object
+      properties:
+        accountInfo:
+          $ref: '#/components/schemas/OnChainAccountInfo'
+        error:
+          $ref: '#/components/schemas/AccountErrorType'
+    OnChainMetadataResult:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/OnChainMetadata'
+        error:
+          $ref: '#/components/schemas/AccountErrorType'
+    OffChainMetadataResult:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/OffChainMetadata'
+        uri:
+          type: string
+        error:
+          $ref: '#/components/schemas/AccountErrorType'
+    OnChainAccountInfo:
+      type: object
+      description: Account data that is stored on-chain.
+      properties:
+        key:
+          type: string
+        isSigner:
+          type: boolean
+        isWritable:
+          type: boolean
+        lamports:
+          type: integer
+        data:
+          type: object
+          properties:
+            parsed:
+              type: object
+              properties:
+                info:
+                  type: object
+                  properties:
+                    decimals:
+                      type: integer
+                    freezeAuthority:
+                      type: string
+                    isInitialized:
+                      type: boolean
+                    mintAuthority:
+                      type: string
+                    supply:
+                      type: string
+                type:
+                  type: string
+            program:
+              type: string
+            space:
+              type: integer
+        owner:
+          type: string
+        executable:
+          type: boolean
+        rentEpoch:
+          type: integer
+    LegacyMetadata:
+      type: object
+      description: Data from the old SPL token list.
+      properties:
+        chainId:
+          type: integer
+        address:
+          type: string
+        symbol:
+          type: string
+        name:
+          type: string
+        decimals:
+          type: integer
+        logoURI:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        extensions:
+          type: object
+    AccountErrorType:
+      type: string
+      example: ''
+      enum:
+        - UNKNOWN
+        - EMPTY_ACCOUNT
+        - TIMEOUT
+        - INVALID_ACCOUNT
+        - INVALID_PUBKEY
+
+````
