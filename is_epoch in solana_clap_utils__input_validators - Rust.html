@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<!-- saved from url=(0092)https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_epoch.html -->
+<html lang="en" data-theme="dark" data-docs-rs-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `is_epoch` fn in crate `solana_clap_utils`."><title>is_epoch in solana_clap_utils::input_validators - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="/-/rustdoc.static/${f}">`).join(""))</script><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceSerif4-Regular-6b053e98.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Italic-81dc35de.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Regular-0fe48ade.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-MediumItalic-ccf7e434.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Medium-e1aa3f0a.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Regular-8badfe75.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Semibold-aa29a496.ttf.woff2"><link rel="stylesheet" href="./is_epoch in solana_clap_utils__input_validators - Rust_files/normalize-9960930a.css"><link rel="stylesheet" href="./is_epoch in solana_clap_utils__input_validators - Rust_files/vendored.css" media="all"><link rel="stylesheet" href="./is_epoch in solana_clap_utils__input_validators - Rust_files/rustdoc-aa0817cf.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="/-/rustdoc.static/" data-current-crate="solana_clap_utils" data-themes="" data-resource-suffix="-20250703-1.90.0-nightly-da58c0513" data-rustdoc-version="1.90.0-nightly (da58c0513 2025-07-03)" data-channel="nightly" data-search-js="search-179e01a3.js" data-settings-js="settings-5514c975.js"><script src="./is_epoch in solana_clap_utils__input_validators - Rust_files/storage-4e99c027.js.Без названия"></script><script defer="" src="./is_epoch in solana_clap_utils__input_validators - Rust_files/sidebar-items-20250703-1.90.0-nightly-da58c0513.js.Без названия"></script><script defer="" src="./is_epoch in solana_clap_utils__input_validators - Rust_files/main-673ee1e0.js.Без названия"></script><noscript><link rel="stylesheet" href="/-/rustdoc.static/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="https://docs.rs/-/rustdoc.static/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="https://docs.rs/-/rustdoc.static/favicon-044be391.svg"><link rel="stylesheet" href="./is_epoch in solana_clap_utils__input_validators - Rust_files/rustdoc-2021-12-05.css" media="all"><link rel="stylesheet" href="./is_epoch in solana_clap_utils__input_validators - Rust_files/font-awesome.css" media="all">
+
+        <link rel="search" href="https://docs.rs/-/static/opensearch.xml" type="application/opensearchdescription+xml" title="Docs.rs">
+
+        <script type="text/javascript">(function() {
+    function applyTheme(theme) {
+        if (theme) {
+            document.documentElement.dataset.docsRsTheme = theme;
+        }
+    }
+
+    window.addEventListener("storage", ev => {
+        if (ev.key === "rustdoc-theme") {
+            applyTheme(ev.newValue);
+        }
+    });
+
+    // see ./storage-change-detection.html for details
+    window.addEventListener("message", ev => {
+        if (ev.data && ev.data.storage && ev.data.storage.key === "rustdoc-theme") {
+            applyTheme(ev.data.storage.value);
+        }
+    });
+
+    applyTheme(window.localStorage.getItem("rustdoc-theme"));
+})();</script></head><div style="display: none; position: fixed; width: 100%; height: 100%; z-index: 1;"></div><body class="rustdoc-page">
+<div class="nav-container">
+    <div class="container">
+        <div class="pure-menu pure-menu-horizontal" role="navigation" aria-label="Main navigation">
+            <form action="https://docs.rs/releases/search" method="GET" id="nav-search-form" class="landing-search-form-nav  ">
+
+                
+                <a href="https://docs.rs/" class="pure-menu-heading pure-menu-link docsrs-logo" aria-label="Docs.rs">
+                    <span title="Docs.rs"><span class="fa fa-solid fa-cubes " aria-hidden="true"></span></span>
+                    <span class="title">Docs.rs</span>
+                </a><ul class="pure-menu-list">
+    <script id="crate-metadata" type="application/json">
+        
+        {
+            "name": "solana-clap-utils",
+            "version": "2.3.3"
+        }
+    </script><li class="pure-menu-item pure-menu-has-children">
+            <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_epoch.html#" class="pure-menu-link crate-name" title="Solana utilities for the clap" aria-haspopup="menu">
+                <span class="fa fa-solid fa-cube " aria-hidden="true"></span>
+                <span class="title">solana-clap-utils-2.3.3</span>
+            </a><div class="pure-menu-children package-details-menu" role="menu">
+                
+                <ul class="pure-menu-list menu-item-divided">
+                    <li class="pure-menu-heading" id="crate-title">
+                        solana-clap-utils 2.3.3
+                        <span id="clipboard" class="svg-clipboard" title="Copy crate name and version information"></span>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/solana-clap-utils/2.3.3/solana_clap_utils/input_validators/fn.is_epoch.html" class="pure-menu-link description" id="permalink" title="Get a link to this specific version">
+                            <span class="fa fa-solid fa-link " aria-hidden="true"></span> Permalink
+                        </a>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/crate/solana-clap-utils/latest" class="pure-menu-link description" title="See solana-clap-utils in docs.rs">
+                            <span class="fa fa-solid fa-cube " aria-hidden="true"></span> Docs.rs crate page
+                        </a>
+                    </li><li class="pure-menu-item">
+                            <span class="pure-menu-link description"><span class="fa fa-solid fa-scale-unbalanced-flip " aria-hidden="true"></span>
+                            <a href="https://spdx.org/licenses/Apache-2.0" class="pure-menu-sublink">Apache-2.0</a></span>
+                        </li></ul>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Links</li>
+
+                            <li class="pure-menu-item">
+                                    <a href="https://anza.xyz/" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-house " aria-hidden="true"></span> Homepage
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                    <a href="https://github.com/anza-xyz/agave" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-code-branch " aria-hidden="true"></span> Repository
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                <a href="https://crates.io/crates/solana-clap-utils" class="pure-menu-link" title="See solana-clap-utils in crates.io">
+                                    <span class="fa fa-solid fa-cube " aria-hidden="true"></span> crates.io
+                                </a>
+                            </li>
+
+                            
+                            <li class="pure-menu-item">
+                                <a href="https://docs.rs/crate/solana-clap-utils/latest/source/" title="Browse source of solana-clap-utils-2.3.3" class="pure-menu-link">
+                                    <span class="fa fa-solid fa-folder-open " aria-hidden="true"></span> Source
+                                </a>
+                            </li>
+                        </ul>
+                    </div><div class="pure-u-1-2">
+                        <ul class="pure-menu-list" id="topbar-owners">
+                            <li class="pure-menu-heading">Owners</li><li class="pure-menu-item">
+                                    <a href="https://crates.io/users/anza-team" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> anza-team
+                                    </a>
+                                </li></ul>
+                    </div>
+                </div>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Dependencies</li>
+
+                            
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" tabindex="-1">
+                                    <ul class="pure-menu-list">
+                                        
+    <li class="pure-menu-item"><a href="https://docs.rs/chrono/%5E0.4.41" class="pure-menu-link">
+                        chrono ^0.4.41
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/clap/%5E2.33.0" class="pure-menu-link">
+                        clap ^2.33.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/rpassword/%5E7.4" class="pure-menu-link">
+                        rpassword ^7.4
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-clock/%5E2.2.2" class="pure-menu-link">
+                        solana-clock ^2.2.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-cluster-type/%5E2.2.1" class="pure-menu-link">
+                        solana-cluster-type ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-commitment-config/%5E2.2.1" class="pure-menu-link">
+                        solana-commitment-config ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-derivation-path/%5E2.2.1" class="pure-menu-link">
+                        solana-derivation-path ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-hash/%5E2.3.0" class="pure-menu-link">
+                        solana-hash ^2.3.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-keypair/%5E2.2.1" class="pure-menu-link">
+                        solana-keypair ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-message/%5E2.4.0" class="pure-menu-link">
+                        solana-message ^2.4.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-native-token/%5E2.2.2" class="pure-menu-link">
+                        solana-native-token ^2.2.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-presigner/%5E2.2.1" class="pure-menu-link">
+                        solana-presigner ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-pubkey/%5E2.4.0" class="pure-menu-link">
+                        solana-pubkey ^2.4.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-remote-wallet/=2.3.3" class="pure-menu-link">
+                        solana-remote-wallet =2.3.3
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-seed-phrase/%5E2.2.1" class="pure-menu-link">
+                        solana-seed-phrase ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-signature/%5E2.3.0" class="pure-menu-link">
+                        solana-signature ^2.3.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-signer/%5E2.2.1" class="pure-menu-link">
+                        solana-signer ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/thiserror/%5E2.0.12" class="pure-menu-link">
+                        thiserror ^2.0.12
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/tiny-bip39/%5E0.8.2" class="pure-menu-link">
+                        tiny-bip39 ^0.8.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/uriparse/%5E0.6.4" class="pure-menu-link">
+                        uriparse ^0.6.4
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/url/%5E2.5.4" class="pure-menu-link">
+                        url ^2.5.4
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/assert_matches/%5E1.5.0" class="pure-menu-link">
+                        assert_matches ^1.5.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-pubkey/%5E2.4.0" class="pure-menu-link">
+                        solana-pubkey ^2.4.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-system-interface/%5E1.0" class="pure-menu-link">
+                        solana-system-interface ^1.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/tempfile/%5E3.20.0" class="pure-menu-link">
+                        tempfile ^3.20.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pure-u-1-2">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Versions</li>
+
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" id="releases-list" tabindex="-1" data-url="/crate/solana-clap-utils/latest/menus/releases/x86_64-unknown-linux-gnu/solana_clap_utils/input_validators/fn.is_epoch.html">
+                                    <span class="rotate"><span class="fa fa-solid fa-spinner " aria-hidden="true"></span></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                    
+                    
+                    <div class="pure-g">
+                        <div class="pure-u-1">
+                            <ul class="pure-menu-list">
+                                <li>
+                                    <a href="https://docs.rs/crate/solana-clap-utils/latest" class="pure-menu-link">
+                                        <b>14.73%</b>
+                                        of the crate is documented
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div></div>
+        </li><li class="pure-menu-item pure-menu-has-children">
+                <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_epoch.html#" class="pure-menu-link" aria-label="Platform" aria-haspopup="menu">
+                    <span class="fa fa-solid fa-gears " aria-hidden="true"></span>
+                    <span class="title">Platform</span>
+                </a>
+
+                
+                <ul class="pure-menu-children" id="platforms" data-url="/crate/solana-clap-utils/latest/menus/platforms/x86_64-unknown-linux-gnu/solana_clap_utils/input_validators/fn.is_epoch.html" role="menu"><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/solana-clap-utils/latest/target-redirect/x86_64-unknown-linux-gnu/solana_clap_utils/input_validators/fn.is_epoch.html" class="pure-menu-link current" data-fragment="retain" rel="nofollow">x86_64-unknown-linux-gnu</a>
+        </li></ul>
+            </li><li class="pure-menu-item">
+                <a href="https://docs.rs/crate/solana-clap-utils/latest/features" title="Browse available feature flags of solana-clap-utils-2.3.3" class="pure-menu-link">
+                    <span class="fa fa-solid fa-flag " aria-hidden="true"></span>
+                    <span class="title">Feature flags</span>
+                </a>
+            </li>
+        
+    
+</ul><div class="spacer"></div>
+                
+                
+
+<ul class="pure-menu-list">
+                    <li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_epoch.html#" class="pure-menu-link" aria-label="docs.rs" aria-haspopup="menu">docs.rs</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://docs.rs/about">
+            About docs.rs
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://foundation.rust-lang.org/policies/privacy-policy/#docs.rs" target="_blank">
+            Privacy policy
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="pure-menu-list"><li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_epoch.html#" class="pure-menu-link" aria-label="Rust" aria-haspopup="menu">Rust</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://www.rust-lang.org/" target="_blank">
+            Rust website
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/book/" target="_blank">
+            The Book
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/std/" target="_blank">
+            Standard Library API Reference
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/rust-by-example/" target="_blank">
+            Rust by Example
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/cargo/guide/" target="_blank">
+            The Cargo Guide
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/nightly/clippy" target="_blank">
+            Clippy Documentation
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div id="search-input-nav">
+                    <label for="nav-search">
+                        <span class="fa fa-solid fa-magnifying-glass " aria-hidden="true"></span>
+                    </label>
+
+                    
+                    
+                    <input id="nav-search" name="query" type="text" aria-label="Find crate by search query" tabindex="-1" placeholder="Find crate">
+                </div>
+            </form>
+        </div>
+    </div>
+</div><div class="rustdoc fn container-rustdoc" id="rustdoc_body_wrapper" tabindex="-1"><script async="" src="./is_epoch in solana_clap_utils__input_validators - Rust_files/menu.js.Без названия"></script>
+<script async="" src="./is_epoch in solana_clap_utils__input_validators - Rust_files/index.js.Без названия"></script>
+
+<iframe src="./is_epoch in solana_clap_utils__input_validators - Rust_files/storage-change-detection.html" width="0" height="0" style="display: none"></iframe><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button><h2 class="location"></h2></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/index.html">solana_<wbr>clap_<wbr>utils</a><span class="version">2.3.3</span></h2></div><div class="sidebar-elems"><div id="rustdoc-modnav"><h2><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/index.html">In solana_<wbr>clap_<wbr>utils::<wbr>input_<wbr>validators</a></h2><h3><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/index.html#functions">Functions</a></h3><ul class="block fn"><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_amount.html">is_amount</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_amount_or_all.html">is_amount_or_all</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_amount_or_all_or_available.html">is_amount_or_all_or_available</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_derivation.html">is_derivation</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_derived_address_seed.html">is_derived_address_seed</a></li><li class="current"><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_epoch.html">is_epoch</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_hash.html">is_hash</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_keypair.html">is_keypair</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_keypair_or_ask_keyword.html">is_keypair_or_ask_keyword</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_parsable.html">is_parsable</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_port.html">is_port</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_pow2.html">is_pow2</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_prompt_signer_source.html">is_prompt_signer_source</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_pubkey.html">is_pubkey</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_pubkey_or_keypair.html">is_pubkey_or_keypair</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_pubkey_sig.html">is_pubkey_sig</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_rfc3339_datetime.html">is_rfc3339_datetime</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_slot.html">is_slot</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_structured_seed.html">is_structured_seed</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_url.html">is_url</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_url_or_moniker.html">is_url_or_moniker</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_valid_percentage.html">is_valid_percentage</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_valid_pubkey.html">is_valid_pubkey</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_valid_signer.html">is_valid_signer</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.is_within_range.html">is_within_range</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.normalize_to_url_if_moniker.html">normalize_to_url_if_moniker</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.validate_cpu_ranges.html">validate_cpu_ranges</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.validate_maximum_full_snapshot_archives_to_retain.html">validate_maximum_full_snapshot_archives_to_retain</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/fn.validate_maximum_incremental_snapshot_archives_to_retain.html">validate_maximum_incremental_snapshot_archives_to_retain</a></li></ul></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search><nav class="sub">
+            <form class="search-form">
+                <span></span> <!-- This empty span is a hacky fix for Safari - See #93184 -->
+                <div id="sidebar-button" tabindex="-1">
+                    <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/all.html" title="show sidebar"></a>
+                </div>
+                <input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search">
+            </form>
+        </nav></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/index.html">solana_clap_utils</a>::<wbr><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/input_validators/index.html">input_validators</a></div><h1>Function <span class="fn">is_epoch</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar>
+        <div id="settings-menu" tabindex="-1">
+            <a href="https://docs.rs/solana-clap-utils/latest/settings.html"><span class="label">Settings</span></a>
+        </div>
+        <div id="help-button" tabindex="-1">
+            <a href="https://docs.rs/solana-clap-utils/latest/help.html"><span class="label">Help</span></a>
+        </div>
+        <button id="toggle-all-docs"><span class="label">Summary</span></button></rustdoc-toolbar><span class="sub-heading"><a class="src" href="https://docs.rs/solana-clap-utils/latest/src/solana_clap_utils/input_validators.rs.html#223-228">Source</a> </span></div><pre class="rust item-decl"><code>pub fn is_epoch&lt;T&gt;(epoch: T) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;<div class="where">where
+    T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt; + <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html" title="trait core::fmt::Display">Display</a>,</div></code></pre></section></div></main></div></body></html>
