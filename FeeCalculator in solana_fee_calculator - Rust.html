@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<!-- saved from url=(0091)https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html -->
+<html lang="en" data-theme="dark" data-docs-rs-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `FeeCalculator` struct in crate `solana_fee_calculator`."><title>FeeCalculator in solana_fee_calculator - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="/-/rustdoc.static/${f}">`).join(""))</script><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceSerif4-Regular-6b053e98.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Italic-81dc35de.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Regular-0fe48ade.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-MediumItalic-ccf7e434.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Medium-e1aa3f0a.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Regular-8badfe75.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Semibold-aa29a496.ttf.woff2"><link rel="stylesheet" href="./FeeCalculator in solana_fee_calculator - Rust_files/normalize-9960930a.css"><link rel="stylesheet" href="./FeeCalculator in solana_fee_calculator - Rust_files/vendored.css" media="all"><link rel="stylesheet" href="./FeeCalculator in solana_fee_calculator - Rust_files/rustdoc-0ce1a80b.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="/-/rustdoc.static/" data-current-crate="solana_fee_calculator" data-themes="" data-resource-suffix="-20250524-1.89.0-nightly-5e16c6620" data-rustdoc-version="1.89.0-nightly (5e16c6620 2025-05-24)" data-channel="nightly" data-search-js="search-f7877310.js" data-settings-js="settings-5514c975.js"><script src="./FeeCalculator in solana_fee_calculator - Rust_files/storage-4e99c027.js.Без названия"></script><script defer="" src="./FeeCalculator in solana_fee_calculator - Rust_files/sidebar-items-20250524-1.89.0-nightly-5e16c6620.js.Без названия"></script><script defer="" src="./FeeCalculator in solana_fee_calculator - Rust_files/main-fd3af306.js.Без названия"></script><noscript><link rel="stylesheet" href="/-/rustdoc.static/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="https://docs.rs/-/rustdoc.static/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="https://docs.rs/-/rustdoc.static/favicon-044be391.svg"><link rel="stylesheet" href="./FeeCalculator in solana_fee_calculator - Rust_files/rustdoc-2021-12-05.css" media="all"><link rel="stylesheet" href="./FeeCalculator in solana_fee_calculator - Rust_files/font-awesome.css" media="all">
+
+        <link rel="search" href="https://docs.rs/-/static/opensearch.xml" type="application/opensearchdescription+xml" title="Docs.rs">
+
+        <script type="text/javascript">(function() {
+    function applyTheme(theme) {
+        if (theme) {
+            document.documentElement.dataset.docsRsTheme = theme;
+        }
+    }
+
+    window.addEventListener("storage", ev => {
+        if (ev.key === "rustdoc-theme") {
+            applyTheme(ev.newValue);
+        }
+    });
+
+    // see ./storage-change-detection.html for details
+    window.addEventListener("message", ev => {
+        if (ev.data && ev.data.storage && ev.data.storage.key === "rustdoc-theme") {
+            applyTheme(ev.data.storage.value);
+        }
+    });
+
+    applyTheme(window.localStorage.getItem("rustdoc-theme"));
+})();</script></head><div style="display: none; position: fixed; width: 100%; height: 100%; z-index: 1;"></div><body class="rustdoc-page">
+<div class="nav-container">
+    <div class="container">
+        <div class="pure-menu pure-menu-horizontal" role="navigation" aria-label="Main navigation">
+            <form action="https://docs.rs/releases/search" method="GET" id="nav-search-form" class="landing-search-form-nav  ">
+
+                
+                <a href="https://docs.rs/" class="pure-menu-heading pure-menu-link docsrs-logo" aria-label="Docs.rs">
+                    <span title="Docs.rs"><span class="fa fa-solid fa-cubes " aria-hidden="true"></span></span>
+                    <span class="title">Docs.rs</span>
+                </a><ul class="pure-menu-list">
+    <script id="crate-metadata" type="application/json">
+        
+        {
+            "name": "solana-fee-calculator",
+            "version": "2.2.1"
+        }
+    </script><li class="pure-menu-item pure-menu-has-children">
+            <a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#" class="pure-menu-link crate-name" title="Solana transaction fee calculation" aria-haspopup="menu">
+                <span class="fa fa-solid fa-cube " aria-hidden="true"></span>
+                <span class="title">solana-fee-calculator-2.2.1</span>
+            </a><div class="pure-menu-children package-details-menu" role="menu">
+                
+                <ul class="pure-menu-list menu-item-divided">
+                    <li class="pure-menu-heading" id="crate-title">
+                        solana-fee-calculator 2.2.1
+                        <span id="clipboard" class="svg-clipboard" title="Copy crate name and version information"></span>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/crate/solana-fee-calculator/2.2.1" class="pure-menu-link description" title="See solana-fee-calculator in docs.rs">
+                            <span class="fa fa-solid fa-cube " aria-hidden="true"></span> Docs.rs crate page
+                        </a>
+                    </li><li class="pure-menu-item">
+                            <span class="pure-menu-link description"><span class="fa fa-solid fa-scale-unbalanced-flip " aria-hidden="true"></span>
+                            <a href="https://spdx.org/licenses/Apache-2.0" class="pure-menu-sublink">Apache-2.0</a></span>
+                        </li></ul>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Links</li>
+
+                            <li class="pure-menu-item">
+                                    <a href="https://anza.xyz/" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-house " aria-hidden="true"></span> Homepage
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                    <a href="https://github.com/anza-xyz/agave" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-code-branch " aria-hidden="true"></span> Repository
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                <a href="https://crates.io/crates/solana-fee-calculator" class="pure-menu-link" title="See solana-fee-calculator in crates.io">
+                                    <span class="fa fa-solid fa-cube " aria-hidden="true"></span> crates.io
+                                </a>
+                            </li>
+
+                            
+                            <li class="pure-menu-item">
+                                <a href="https://docs.rs/crate/solana-fee-calculator/2.2.1/source/" title="Browse source of solana-fee-calculator-2.2.1" class="pure-menu-link">
+                                    <span class="fa fa-solid fa-folder-open " aria-hidden="true"></span> Source
+                                </a>
+                            </li>
+                        </ul>
+                    </div><div class="pure-u-1-2">
+                        <ul class="pure-menu-list" id="topbar-owners">
+                            <li class="pure-menu-heading">Owners</li><li class="pure-menu-item">
+                                    <a href="https://crates.io/users/anza-team" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> anza-team
+                                    </a>
+                                </li></ul>
+                    </div>
+                </div>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Dependencies</li>
+
+                            
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" tabindex="-1">
+                                    <ul class="pure-menu-list">
+                                        
+    <li class="pure-menu-item"><a href="https://docs.rs/log/%5E0.4.25" class="pure-menu-link">
+                        log ^0.4.25
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/serde/%5E1.0.217" class="pure-menu-link">
+                        serde ^1.0.217
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/serde_derive/%5E1.0.217" class="pure-menu-link">
+                        serde_derive ^1.0.217
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-frozen-abi/%5E2.2.1" class="pure-menu-link">
+                        solana-frozen-abi ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-frozen-abi-macro/%5E2.2.1" class="pure-menu-link">
+                        solana-frozen-abi-macro ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-clock/%5E2.2.1" class="pure-menu-link">
+                        solana-clock ^2.2.1
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-logger/%5E2.2.1" class="pure-menu-link">
+                        solana-logger ^2.2.1
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/static_assertions/%5E1.1.0" class="pure-menu-link">
+                        static_assertions ^1.1.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pure-u-1-2">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Versions</li>
+
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" id="releases-list" tabindex="-1" data-url="/crate/solana-fee-calculator/2.2.1/menus/releases/x86_64-unknown-linux-gnu/solana_fee_calculator/struct.FeeCalculator.html">
+                                    <span class="rotate"><span class="fa fa-solid fa-spinner " aria-hidden="true"></span></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                    
+                    
+                    <div class="pure-g">
+                        <div class="pure-u-1">
+                            <ul class="pure-menu-list">
+                                <li>
+                                    <a href="https://docs.rs/crate/solana-fee-calculator/2.2.1" class="pure-menu-link">
+                                        <b>21.05%</b>
+                                        of the crate is documented
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div></div>
+        </li><li class="pure-menu-item pure-menu-has-children">
+                <a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#" class="pure-menu-link" aria-label="Platform" aria-haspopup="menu">
+                    <span class="fa fa-solid fa-gears " aria-hidden="true"></span>
+                    <span class="title">Platform</span>
+                </a>
+
+                
+                <ul class="pure-menu-children" id="platforms" data-url="/crate/solana-fee-calculator/2.2.1/menus/platforms/x86_64-unknown-linux-gnu/solana_fee_calculator/struct.FeeCalculator.html" role="menu"><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/solana-fee-calculator/2.2.1/target-redirect/x86_64-unknown-linux-gnu/solana_fee_calculator/struct.FeeCalculator.html" class="pure-menu-link current" data-fragment="retain" rel="nofollow">x86_64-unknown-linux-gnu</a>
+        </li></ul>
+            </li><li class="pure-menu-item">
+                <a href="https://docs.rs/crate/solana-fee-calculator/2.2.1/features" title="Browse available feature flags of solana-fee-calculator-2.2.1" class="pure-menu-link">
+                    <span class="fa fa-solid fa-flag " aria-hidden="true"></span>
+                    <span class="title">Feature flags</span>
+                </a>
+            </li>
+        
+    
+</ul><div class="spacer"></div>
+                
+                
+
+<ul class="pure-menu-list">
+                    <li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#" class="pure-menu-link" aria-label="docs.rs" aria-haspopup="menu">docs.rs</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://docs.rs/about">
+            About docs.rs
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://foundation.rust-lang.org/policies/privacy-policy/#docs.rs" target="_blank">
+            Privacy policy
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="pure-menu-list"><li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#" class="pure-menu-link" aria-label="Rust" aria-haspopup="menu">Rust</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://www.rust-lang.org/" target="_blank">
+            Rust website
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/book/" target="_blank">
+            The Book
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/std/" target="_blank">
+            Standard Library API Reference
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/rust-by-example/" target="_blank">
+            Rust by Example
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/cargo/guide/" target="_blank">
+            The Cargo Guide
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/nightly/clippy" target="_blank">
+            Clippy Documentation
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div id="search-input-nav">
+                    <label for="nav-search">
+                        <span class="fa fa-solid fa-magnifying-glass " aria-hidden="true"></span>
+                    </label>
+
+                    
+                    
+                    <input id="nav-search" name="query" type="text" aria-label="Find crate by search query" tabindex="-1" placeholder="Find crate">
+                </div>
+            </form>
+        </div>
+    </div>
+</div><div class="rustdoc struct container-rustdoc" id="rustdoc_body_wrapper" tabindex="-1"><script async="" src="./FeeCalculator in solana_fee_calculator - Rust_files/menu.js.Без названия"></script>
+<script async="" src="./FeeCalculator in solana_fee_calculator - Rust_files/index.js.Без названия"></script>
+
+<iframe src="./FeeCalculator in solana_fee_calculator - Rust_files/storage-change-detection.html" width="0" height="0" style="display: none"></iframe><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button><h2 class="location"><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#">FeeCalculator</a></h2></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/index.html">solana_<wbr>fee_<wbr>calculator</a><span class="version">2.2.1</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#">FeeCalculator</a></h2><h3><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#fields">Fields</a></h3><ul class="block structfield"><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#structfield.lamports_per_signature" title="lamports_per_signature">lamports_per_signature</a></li></ul><h3><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#implementations">Methods</a></h3><ul class="block method"><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#method.new" title="new">new</a></li></ul><h3><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#trait-implementations">Trait Implementations</a></h3><ul class="block trait-implementation"><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Clone-for-FeeCalculator" title="Clone">Clone</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Copy-for-FeeCalculator" title="Copy">Copy</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Debug-for-FeeCalculator" title="Debug">Debug</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Default-for-FeeCalculator" title="Default">Default</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Deserialize%3C&#39;de%3E-for-FeeCalculator" title="Deserialize&lt;&#39;de&gt;">Deserialize&lt;'de&gt;</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Eq-for-FeeCalculator" title="Eq">Eq</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-PartialEq-for-FeeCalculator" title="PartialEq">PartialEq</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Serialize-for-FeeCalculator" title="Serialize">Serialize</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-StructuralPartialEq-for-FeeCalculator" title="StructuralPartialEq">StructuralPartialEq</a></li></ul><h3><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#synthetic-implementations">Auto Trait Implementations</a></h3><ul class="block synthetic-implementation"><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Freeze-for-FeeCalculator" title="Freeze">Freeze</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-RefUnwindSafe-for-FeeCalculator" title="RefUnwindSafe">RefUnwindSafe</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Send-for-FeeCalculator" title="Send">Send</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Sync-for-FeeCalculator" title="Sync">Sync</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Unpin-for-FeeCalculator" title="Unpin">Unpin</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-UnwindSafe-for-FeeCalculator" title="UnwindSafe">UnwindSafe</a></li></ul><h3><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#blanket-implementations">Blanket Implementations</a></h3><ul class="block blanket-implementation"><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Any-for-T" title="Any">Any</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Borrow%3CT%3E-for-T" title="Borrow&lt;T&gt;">Borrow&lt;T&gt;</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-BorrowMut%3CT%3E-for-T" title="BorrowMut&lt;T&gt;">BorrowMut&lt;T&gt;</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-CloneToUninit-for-T" title="CloneToUninit">CloneToUninit</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-DeserializeOwned-for-T" title="DeserializeOwned">DeserializeOwned</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-From%3CT%3E-for-T" title="From&lt;T&gt;">From&lt;T&gt;</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Into%3CU%3E-for-T" title="Into&lt;U&gt;">Into&lt;U&gt;</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-ToOwned-for-T" title="ToOwned">ToOwned</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-TryFrom%3CU%3E-for-T" title="TryFrom&lt;U&gt;">TryFrom&lt;U&gt;</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-TryInto%3CU%3E-for-T" title="TryInto&lt;U&gt;">TryInto&lt;U&gt;</a></li></ul></section><div id="rustdoc-modnav"><h2 class="in-crate"><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/index.html">In crate solana_<wbr>fee_<wbr>calculator</a></h2><h3><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/index.html#structs">Structs</a></h3><ul class="block struct"><li class="current"><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html">FeeCalculator</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeRateGovernor.html">FeeRateGovernor</a></li></ul><h3><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/index.html#constants">Constants</a></h3><ul class="block constant"><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/constant.DEFAULT_BURN_PERCENT.html">DEFAULT_BURN_PERCENT</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/constant.DEFAULT_TARGET_LAMPORTS_PER_SIGNATURE.html">DEFAULT_TARGET_LAMPORTS_PER_SIGNATURE</a></li><li><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/constant.DEFAULT_TARGET_SIGNATURES_PER_SLOT.html">DEFAULT_TARGET_SIGNATURES_PER_SLOT</a></li></ul></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search><nav class="sub">
+            <form class="search-form">
+                <span></span> <!-- This empty span is a hacky fix for Safari - See #93184 -->
+                <div id="sidebar-button" tabindex="-1">
+                    <a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/all.html" title="show sidebar"></a>
+                </div>
+                <input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search">
+            </form>
+        </nav></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/index.html">solana_fee_calculator</a></div><h1>Struct <span class="struct">FeeCalculator</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar>
+        <div id="settings-menu" tabindex="-1">
+            <a href="https://docs.rs/solana-fee-calculator/2.2.1/settings.html"><span class="label">Settings</span></a>
+        </div>
+        <div id="help-button" tabindex="-1">
+            <a href="https://docs.rs/solana-fee-calculator/2.2.1/help.html"><span class="label">Help</span></a>
+        </div>
+        <button id="toggle-all-docs"><span class="label">Summary</span></button></rustdoc-toolbar><span class="sub-heading"><a class="src" href="https://docs.rs/solana-fee-calculator/2.2.1/src/solana_fee_calculator/lib.rs.html#18-24">Source</a> </span></div><pre class="rust item-decl"><code><div class="code-attribute">#[repr(C)]</div>pub struct FeeCalculator {
+    pub lamports_per_signature: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>,
+}</code></pre><h2 id="fields" class="fields section-header">Fields<a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#fields" class="anchor">§</a></h2><span id="structfield.lamports_per_signature" class="structfield section-header"><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#structfield.lamports_per_signature" class="anchor field">§</a><code>lamports_per_signature: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span><div class="docblock"><p>The current cost of a signature.</p>
+<p>This amount may increase/decrease over time based on cluster processing
+load.</p>
+</div><h2 id="implementations" class="section-header">Implementations<a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#implementations" class="anchor">§</a></h2><div id="implementations-list"><details class="toggle implementors-toggle" open=""><summary><section id="impl-FeeCalculator" class="impl"><a class="src rightside" href="https://docs.rs/solana-fee-calculator/2.2.1/src/solana_fee_calculator/lib.rs.html#26-32">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-FeeCalculator" class="anchor">§</a><h3 class="code-header">impl <a class="struct" href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html" title="struct solana_fee_calculator::FeeCalculator">FeeCalculator</a></h3></section></summary><div class="impl-items"><section id="method.new" class="method"><a class="src rightside" href="https://docs.rs/solana-fee-calculator/2.2.1/src/solana_fee_calculator/lib.rs.html#27-31">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#method.new" class="fn">new</a>(lamports_per_signature: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>) -&gt; Self</h4></section></div></details></div><h2 id="trait-implementations" class="section-header">Trait Implementations<a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#trait-implementations" class="anchor">§</a></h2><div id="trait-implementations-list"><details class="toggle implementors-toggle" open=""><summary><section id="impl-Clone-for-FeeCalculator" class="impl"><a class="src rightside" href="https://docs.rs/solana-fee-calculator/2.2.1/src/solana_fee_calculator/lib.rs.html#16">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Clone-for-FeeCalculator" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html" title="struct solana_fee_calculator::FeeCalculator">FeeCalculator</a></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.clone" class="method trait-impl"><a class="src rightside" href="https://docs.rs/solana-fee-calculator/2.2.1/src/solana_fee_calculator/lib.rs.html#16">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#method.clone" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone" class="fn">clone</a>(&amp;self) -&gt; <a class="struct" href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html" title="struct solana_fee_calculator::FeeCalculator">FeeCalculator</a></h4></section></summary><div class="docblock">Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></div></details><details class="toggle method-toggle" open=""><summary><section id="method.clone_from" class="method trait-impl"><span class="rightside"><span class="since" title="Stable since Rust version 1.0.0">1.0.0</span> · <a class="src" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#174">Source</a></span><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#method.clone_from" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from" class="fn">clone_from</a>(&amp;mut self, source: &amp;Self)</h4></section></summary><div class="docblock">Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></div></details></div></details><details class="toggle implementors-toggle" open=""><summary><section id="impl-Debug-for-FeeCalculator" class="impl"><a class="src rightside" href="https://docs.rs/solana-fee-calculator/2.2.1/src/solana_fee_calculator/lib.rs.html#16">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Debug-for-FeeCalculator" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html" title="struct solana_fee_calculator::FeeCalculator">FeeCalculator</a></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.fmt" class="method trait-impl"><a class="src rightside" href="https://docs.rs/solana-fee-calculator/2.2.1/src/solana_fee_calculator/lib.rs.html#16">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#method.fmt" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt" class="fn">fmt</a>(&amp;self, f: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>&lt;'_&gt;) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></h4></section></summary><div class="docblock">Formats the value using the given formatter. <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt">Read more</a></div></details></div></details><details class="toggle implementors-toggle" open=""><summary><section id="impl-Default-for-FeeCalculator" class="impl"><a class="src rightside" href="https://docs.rs/solana-fee-calculator/2.2.1/src/solana_fee_calculator/lib.rs.html#16">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Default-for-FeeCalculator" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html" title="trait core::default::Default">Default</a> for <a class="struct" href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html" title="struct solana_fee_calculator::FeeCalculator">FeeCalculator</a></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.default" class="method trait-impl"><a class="src rightside" href="https://docs.rs/solana-fee-calculator/2.2.1/src/solana_fee_calculator/lib.rs.html#16">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#method.default" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default" class="fn">default</a>() -&gt; <a class="struct" href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html" title="struct solana_fee_calculator::FeeCalculator">FeeCalculator</a></h4></section></summary><div class="docblock">Returns the “default value” for a type. <a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default">Read more</a></div></details></div></details><details class="toggle implementors-toggle" open=""><summary><section id="impl-Deserialize%3C&#39;de%3E-for-FeeCalculator" class="impl"><a class="src rightside" href="https://docs.rs/solana-fee-calculator/2.2.1/src/solana_fee_calculator/lib.rs.html#14">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Deserialize%3C&#39;de%3E-for-FeeCalculator" class="anchor">§</a><h3 class="code-header">impl&lt;'de&gt; <a class="trait" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/de/trait.Deserialize.html" title="trait serde::de::Deserialize">Deserialize</a>&lt;'de&gt; for <a class="struct" href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html" title="struct solana_fee_calculator::FeeCalculator">FeeCalculator</a></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.deserialize" class="method trait-impl"><a class="src rightside" href="https://docs.rs/solana-fee-calculator/2.2.1/src/solana_fee_calculator/lib.rs.html#14">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#method.deserialize" class="anchor">§</a><h4 class="code-header">fn <a href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/de/trait.Deserialize.html#tymethod.deserialize" class="fn">deserialize</a>&lt;__D&gt;(__deserializer: __D) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;Self, __D::<a class="associatedtype" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/de/trait.Deserializer.html#associatedtype.Error" title="type serde::de::Deserializer::Error">Error</a>&gt;<div class="where">where
+    __D: <a class="trait" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/de/trait.Deserializer.html" title="trait serde::de::Deserializer">Deserializer</a>&lt;'de&gt;,</div></h4></section></summary><div class="docblock">Deserialize this value from the given Serde deserializer. <a href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/de/trait.Deserialize.html#tymethod.deserialize">Read more</a></div></details></div></details><details class="toggle implementors-toggle" open=""><summary><section id="impl-PartialEq-for-FeeCalculator" class="impl"><a class="src rightside" href="https://docs.rs/solana-fee-calculator/2.2.1/src/solana_fee_calculator/lib.rs.html#16">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-PartialEq-for-FeeCalculator" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html" title="trait core::cmp::PartialEq">PartialEq</a> for <a class="struct" href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html" title="struct solana_fee_calculator::FeeCalculator">FeeCalculator</a></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.eq" class="method trait-impl"><a class="src rightside" href="https://docs.rs/solana-fee-calculator/2.2.1/src/solana_fee_calculator/lib.rs.html#16">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#method.eq" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq" class="fn">eq</a>(&amp;self, other: &amp;<a class="struct" href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html" title="struct solana_fee_calculator::FeeCalculator">FeeCalculator</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock">Tests for <code>self</code> and <code>other</code> values to be equal, and is used by <code>==</code>.</div></details><details class="toggle method-toggle" open=""><summary><section id="method.ne" class="method trait-impl"><span class="rightside"><span class="since" title="Stable since Rust version 1.0.0">1.0.0</span> · <a class="src" href="https://doc.rust-lang.org/nightly/src/core/cmp.rs.html#262">Source</a></span><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#method.ne" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne" class="fn">ne</a>(&amp;self, other: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Rhs</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock">Tests for <code>!=</code>. The default implementation is almost always sufficient,
+and should not be overridden without very good reason.</div></details></div></details><details class="toggle implementors-toggle" open=""><summary><section id="impl-Serialize-for-FeeCalculator" class="impl"><a class="src rightside" href="https://docs.rs/solana-fee-calculator/2.2.1/src/solana_fee_calculator/lib.rs.html#14">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Serialize-for-FeeCalculator" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/ser/trait.Serialize.html" title="trait serde::ser::Serialize">Serialize</a> for <a class="struct" href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html" title="struct solana_fee_calculator::FeeCalculator">FeeCalculator</a></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.serialize" class="method trait-impl"><a class="src rightside" href="https://docs.rs/solana-fee-calculator/2.2.1/src/solana_fee_calculator/lib.rs.html#14">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#method.serialize" class="anchor">§</a><h4 class="code-header">fn <a href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/ser/trait.Serialize.html#tymethod.serialize" class="fn">serialize</a>&lt;__S&gt;(&amp;self, __serializer: __S) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;__S::<a class="associatedtype" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/ser/trait.Serializer.html#associatedtype.Ok" title="type serde::ser::Serializer::Ok">Ok</a>, __S::<a class="associatedtype" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/ser/trait.Serializer.html#associatedtype.Error" title="type serde::ser::Serializer::Error">Error</a>&gt;<div class="where">where
+    __S: <a class="trait" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/ser/trait.Serializer.html" title="trait serde::ser::Serializer">Serializer</a>,</div></h4></section></summary><div class="docblock">Serialize this value into the given Serde serializer. <a href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/ser/trait.Serialize.html#tymethod.serialize">Read more</a></div></details></div></details><section id="impl-Copy-for-FeeCalculator" class="impl"><a class="src rightside" href="https://docs.rs/solana-fee-calculator/2.2.1/src/solana_fee_calculator/lib.rs.html#16">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Copy-for-FeeCalculator" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html" title="trait core::marker::Copy">Copy</a> for <a class="struct" href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html" title="struct solana_fee_calculator::FeeCalculator">FeeCalculator</a></h3></section><section id="impl-Eq-for-FeeCalculator" class="impl"><a class="src rightside" href="https://docs.rs/solana-fee-calculator/2.2.1/src/solana_fee_calculator/lib.rs.html#16">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Eq-for-FeeCalculator" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/cmp/trait.Eq.html" title="trait core::cmp::Eq">Eq</a> for <a class="struct" href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html" title="struct solana_fee_calculator::FeeCalculator">FeeCalculator</a></h3></section><section id="impl-StructuralPartialEq-for-FeeCalculator" class="impl"><a class="src rightside" href="https://docs.rs/solana-fee-calculator/2.2.1/src/solana_fee_calculator/lib.rs.html#16">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-StructuralPartialEq-for-FeeCalculator" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.StructuralPartialEq.html" title="trait core::marker::StructuralPartialEq">StructuralPartialEq</a> for <a class="struct" href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html" title="struct solana_fee_calculator::FeeCalculator">FeeCalculator</a></h3></section></div><h2 id="synthetic-implementations" class="section-header">Auto Trait Implementations<a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#synthetic-implementations" class="anchor">§</a></h2><div id="synthetic-implementations-list"><section id="impl-Freeze-for-FeeCalculator" class="impl"><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Freeze-for-FeeCalculator" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Freeze.html" title="trait core::marker::Freeze">Freeze</a> for <a class="struct" href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html" title="struct solana_fee_calculator::FeeCalculator">FeeCalculator</a></h3></section><section id="impl-RefUnwindSafe-for-FeeCalculator" class="impl"><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-RefUnwindSafe-for-FeeCalculator" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/panic/unwind_safe/trait.RefUnwindSafe.html" title="trait core::panic::unwind_safe::RefUnwindSafe">RefUnwindSafe</a> for <a class="struct" href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html" title="struct solana_fee_calculator::FeeCalculator">FeeCalculator</a></h3></section><section id="impl-Send-for-FeeCalculator" class="impl"><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Send-for-FeeCalculator" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> for <a class="struct" href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html" title="struct solana_fee_calculator::FeeCalculator">FeeCalculator</a></h3></section><section id="impl-Sync-for-FeeCalculator" class="impl"><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Sync-for-FeeCalculator" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> for <a class="struct" href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html" title="struct solana_fee_calculator::FeeCalculator">FeeCalculator</a></h3></section><section id="impl-Unpin-for-FeeCalculator" class="impl"><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Unpin-for-FeeCalculator" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Unpin.html" title="trait core::marker::Unpin">Unpin</a> for <a class="struct" href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html" title="struct solana_fee_calculator::FeeCalculator">FeeCalculator</a></h3></section><section id="impl-UnwindSafe-for-FeeCalculator" class="impl"><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-UnwindSafe-for-FeeCalculator" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/panic/unwind_safe/trait.UnwindSafe.html" title="trait core::panic::unwind_safe::UnwindSafe">UnwindSafe</a> for <a class="struct" href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html" title="struct solana_fee_calculator::FeeCalculator">FeeCalculator</a></h3></section></div><h2 id="blanket-implementations" class="section-header">Blanket Implementations<a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#blanket-implementations" class="anchor">§</a></h2><div id="blanket-implementations-list"><details class="toggle implementors-toggle"><summary><section id="impl-Any-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/any.rs.html#138">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Any-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/any/trait.Any.html" title="trait core::any::Any">Any</a> for T<div class="where">where
+    T: 'static + ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.type_id" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/any.rs.html#139">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#method.type_id" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/any/trait.Any.html#tymethod.type_id" class="fn">type_id</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/core/any/struct.TypeId.html" title="struct core::any::TypeId">TypeId</a></h4></section></summary><div class="docblock">Gets the <code>TypeId</code> of <code>self</code>. <a href="https://doc.rust-lang.org/nightly/core/any/trait.Any.html#tymethod.type_id">Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-Borrow%3CT%3E-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/borrow.rs.html#209">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Borrow%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html" title="trait core::borrow::Borrow">Borrow</a>&lt;T&gt; for T<div class="where">where
+    T: ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.borrow" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/borrow.rs.html#211">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#method.borrow" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html#tymethod.borrow" class="fn">borrow</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;T</a></h4></section></summary><div class="docblock">Immutably borrows from an owned value. <a href="https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html#tymethod.borrow">Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-BorrowMut%3CT%3E-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/borrow.rs.html#217">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-BorrowMut%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/borrow/trait.BorrowMut.html" title="trait core::borrow::BorrowMut">BorrowMut</a>&lt;T&gt; for T<div class="where">where
+    T: ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.borrow_mut" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/borrow.rs.html#218">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#method.borrow_mut" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/borrow/trait.BorrowMut.html#tymethod.borrow_mut" class="fn">borrow_mut</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut T</a></h4></section></summary><div class="docblock">Mutably borrows from an owned value. <a href="https://doc.rust-lang.org/nightly/core/borrow/trait.BorrowMut.html#tymethod.borrow_mut">Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-CloneToUninit-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#441">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-CloneToUninit-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.CloneToUninit.html" title="trait core::clone::CloneToUninit">CloneToUninit</a> for T<div class="where">where
+    T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.clone_to_uninit" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#443">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#method.clone_to_uninit" class="anchor">§</a><h4 class="code-header">unsafe fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.CloneToUninit.html#tymethod.clone_to_uninit" class="fn">clone_to_uninit</a>(&amp;self, dest: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*mut </a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>)</h4></section></summary><span class="item-info"><div class="stab unstable"><span class="emoji">🔬</span><span>This is a nightly-only experimental API. (<code>clone_to_uninit</code>)</span></div></span><div class="docblock">Performs copy-assignment from <code>self</code> to <code>dest</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.CloneToUninit.html#tymethod.clone_to_uninit">Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-From%3CT%3E-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#773">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-From%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;T&gt; for T</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.from" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#776">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#method.from" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from" class="fn">from</a>(t: T) -&gt; T</h4></section></summary><div class="docblock"><p>Returns the argument unchanged.</p>
+</div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-Into%3CU%3E-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#756-758">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-Into%3CU%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;U&gt; for T<div class="where">where
+    U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;T&gt;,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.into" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#766">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#method.into" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html#tymethod.into" class="fn">into</a>(self) -&gt; U</h4></section></summary><div class="docblock"><p>Calls <code>U::from(self)</code>.</p>
+<p>That is, this conversion is whatever the implementation of
+<code><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;T&gt; for U</code> chooses to do.</p>
+</div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-ToOwned-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/alloc/borrow.rs.html#82-84">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-ToOwned-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html" title="trait alloc::borrow::ToOwned">ToOwned</a> for T<div class="where">where
+    T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle" open=""><summary><section id="associatedtype.Owned" class="associatedtype trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/alloc/borrow.rs.html#86">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#associatedtype.Owned" class="anchor">§</a><h4 class="code-header">type <a href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html#associatedtype.Owned" class="associatedtype">Owned</a> = T</h4></section></summary><div class="docblock">The resulting type after obtaining ownership.</div></details><details class="toggle method-toggle" open=""><summary><section id="method.to_owned" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/alloc/borrow.rs.html#87">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#method.to_owned" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html#tymethod.to_owned" class="fn">to_owned</a>(&amp;self) -&gt; T</h4></section></summary><div class="docblock">Creates owned data from borrowed data, usually by cloning. <a href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html#tymethod.to_owned">Read more</a></div></details><details class="toggle method-toggle" open=""><summary><section id="method.clone_into" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/alloc/borrow.rs.html#91">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#method.clone_into" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html#method.clone_into" class="fn">clone_into</a>(&amp;self, target: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut T</a>)</h4></section></summary><div class="docblock">Uses borrowed data to replace owned data, usually by cloning. <a href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html#method.clone_into">Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TryFrom%3CU%3E-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#812-814">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-TryFrom%3CU%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;U&gt; for T<div class="where">where
+    U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;T&gt;,</div></h3></section></summary><div class="impl-items"><details class="toggle" open=""><summary><section id="associatedtype.Error-1" class="associatedtype trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#816">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#associatedtype.Error-1" class="anchor">§</a><h4 class="code-header">type <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" class="associatedtype">Error</a> = <a class="enum" href="https://doc.rust-lang.org/nightly/core/convert/enum.Infallible.html" title="enum core::convert::Infallible">Infallible</a></h4></section></summary><div class="docblock">The type returned in the event of a conversion error.</div></details><details class="toggle method-toggle" open=""><summary><section id="method.try_from" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#819">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#method.try_from" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#tymethod.try_from" class="fn">try_from</a>(value: U) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;T, &lt;T as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;U&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a>&gt;</h4></section></summary><div class="docblock">Performs the conversion.</div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TryInto%3CU%3E-for-T" class="impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#797-799">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-TryInto%3CU%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html" title="trait core::convert::TryInto">TryInto</a>&lt;U&gt; for T<div class="where">where
+    U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;,</div></h3></section></summary><div class="impl-items"><details class="toggle" open=""><summary><section id="associatedtype.Error" class="associatedtype trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#801">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#associatedtype.Error" class="anchor">§</a><h4 class="code-header">type <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html#associatedtype.Error" class="associatedtype">Error</a> = &lt;U as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a></h4></section></summary><div class="docblock">The type returned in the event of a conversion error.</div></details><details class="toggle method-toggle" open=""><summary><section id="method.try_into" class="method trait-impl"><a class="src rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#804">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#method.try_into" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html#tymethod.try_into" class="fn">try_into</a>(self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;U, &lt;U as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a>&gt;</h4></section></summary><div class="docblock">Performs the conversion.</div></details></div></details><section id="impl-DeserializeOwned-for-T" class="impl"><a class="src rightside" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/src/serde/de/mod.rs.html#614">Source</a><a href="https://docs.rs/solana-fee-calculator/2.2.1/solana_fee_calculator/struct.FeeCalculator.html#impl-DeserializeOwned-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/de/trait.DeserializeOwned.html" title="trait serde::de::DeserializeOwned">DeserializeOwned</a> for T<div class="where">where
+    T: for&lt;'de&gt; <a class="trait" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/de/trait.Deserialize.html" title="trait serde::de::Deserialize">Deserialize</a>&lt;'de&gt;,</div></h3></section></div></section></div></main></div></body></html>

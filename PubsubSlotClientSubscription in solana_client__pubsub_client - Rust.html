@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<!-- saved from url=(0103)https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html -->
+<html lang="en" data-theme="dark" data-docs-rs-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `PubsubSlotClientSubscription` type in crate `solana_client`."><title>PubsubSlotClientSubscription in solana_client::pubsub_client - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="/-/rustdoc.static/${f}">`).join(""))</script><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceSerif4-Regular-6b053e98.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Italic-81dc35de.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Regular-0fe48ade.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-MediumItalic-ccf7e434.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Medium-e1aa3f0a.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Regular-8badfe75.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Semibold-aa29a496.ttf.woff2"><link rel="stylesheet" href="./PubsubSlotClientSubscription in solana_client__pubsub_client - Rust_files/normalize-9960930a.css"><link rel="stylesheet" href="./PubsubSlotClientSubscription in solana_client__pubsub_client - Rust_files/vendored.css" media="all"><link rel="stylesheet" href="./PubsubSlotClientSubscription in solana_client__pubsub_client - Rust_files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="/-/rustdoc.static/" data-current-crate="solana_client" data-themes="" data-resource-suffix="-20250626-1.90.0-nightly-b03b3a7ec" data-rustdoc-version="1.90.0-nightly (b03b3a7ec 2025-06-26)" data-channel="nightly" data-search-js="search-92309212.js" data-settings-js="settings-5514c975.js"><script src="./PubsubSlotClientSubscription in solana_client__pubsub_client - Rust_files/storage-4e99c027.js.Без названия"></script><script defer="" src="./PubsubSlotClientSubscription in solana_client__pubsub_client - Rust_files/sidebar-items-20250626-1.90.0-nightly-b03b3a7ec.js.Без названия"></script><script defer="" src="./PubsubSlotClientSubscription in solana_client__pubsub_client - Rust_files/main-340f468f.js.Без названия"></script><noscript><link rel="stylesheet" href="/-/rustdoc.static/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="https://docs.rs/-/rustdoc.static/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="https://docs.rs/-/rustdoc.static/favicon-044be391.svg"><link rel="stylesheet" href="./PubsubSlotClientSubscription in solana_client__pubsub_client - Rust_files/rustdoc-2021-12-05.css" media="all"><link rel="stylesheet" href="./PubsubSlotClientSubscription in solana_client__pubsub_client - Rust_files/font-awesome.css" media="all">
+
+        <link rel="search" href="https://docs.rs/-/static/opensearch.xml" type="application/opensearchdescription+xml" title="Docs.rs">
+
+        <script type="text/javascript">(function() {
+    function applyTheme(theme) {
+        if (theme) {
+            document.documentElement.dataset.docsRsTheme = theme;
+        }
+    }
+
+    window.addEventListener("storage", ev => {
+        if (ev.key === "rustdoc-theme") {
+            applyTheme(ev.newValue);
+        }
+    });
+
+    // see ./storage-change-detection.html for details
+    window.addEventListener("message", ev => {
+        if (ev.data && ev.data.storage && ev.data.storage.key === "rustdoc-theme") {
+            applyTheme(ev.data.storage.value);
+        }
+    });
+
+    applyTheme(window.localStorage.getItem("rustdoc-theme"));
+})();</script></head><div style="display: none; position: fixed; width: 100%; height: 100%; z-index: 1;"></div><body class="rustdoc-page">
+<div class="nav-container">
+    <div class="container">
+        <div class="pure-menu pure-menu-horizontal" role="navigation" aria-label="Main navigation">
+            <form action="https://docs.rs/releases/search" method="GET" id="nav-search-form" class="landing-search-form-nav  ">
+
+                
+                <a href="https://docs.rs/" class="pure-menu-heading pure-menu-link docsrs-logo" aria-label="Docs.rs">
+                    <span title="Docs.rs"><span class="fa fa-solid fa-cubes " aria-hidden="true"></span></span>
+                    <span class="title">Docs.rs</span>
+                </a><ul class="pure-menu-list">
+    <script id="crate-metadata" type="application/json">
+        
+        {
+            "name": "solana-client",
+            "version": "2.3.2"
+        }
+    </script><li class="pure-menu-item pure-menu-has-children">
+            <a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html#" class="pure-menu-link crate-name" title="Solana Client" aria-haspopup="menu">
+                <span class="fa fa-solid fa-cube " aria-hidden="true"></span>
+                <span class="title">solana-client-2.3.2</span>
+            </a><div class="pure-menu-children package-details-menu" role="menu">
+                
+                <ul class="pure-menu-list menu-item-divided">
+                    <li class="pure-menu-heading" id="crate-title">
+                        solana-client 2.3.2
+                        <span id="clipboard" class="svg-clipboard" title="Copy crate name and version information"></span>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/solana-client/2.3.2/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html" class="pure-menu-link description" id="permalink" title="Get a link to this specific version">
+                            <span class="fa fa-solid fa-link " aria-hidden="true"></span> Permalink
+                        </a>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/crate/solana-client/latest" class="pure-menu-link description" title="See solana-client in docs.rs">
+                            <span class="fa fa-solid fa-cube " aria-hidden="true"></span> Docs.rs crate page
+                        </a>
+                    </li><li class="pure-menu-item">
+                            <span class="pure-menu-link description"><span class="fa fa-solid fa-scale-unbalanced-flip " aria-hidden="true"></span>
+                            <a href="https://spdx.org/licenses/Apache-2.0" class="pure-menu-sublink">Apache-2.0</a></span>
+                        </li></ul>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Links</li>
+
+                            <li class="pure-menu-item">
+                                    <a href="https://anza.xyz/" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-house " aria-hidden="true"></span> Homepage
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                    <a href="https://github.com/anza-xyz/agave" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-code-branch " aria-hidden="true"></span> Repository
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                <a href="https://crates.io/crates/solana-client" class="pure-menu-link" title="See solana-client in crates.io">
+                                    <span class="fa fa-solid fa-cube " aria-hidden="true"></span> crates.io
+                                </a>
+                            </li>
+
+                            
+                            <li class="pure-menu-item">
+                                <a href="https://docs.rs/crate/solana-client/latest/source/" title="Browse source of solana-client-2.3.2" class="pure-menu-link">
+                                    <span class="fa fa-solid fa-folder-open " aria-hidden="true"></span> Source
+                                </a>
+                            </li>
+                        </ul>
+                    </div><div class="pure-u-1-2">
+                        <ul class="pure-menu-list" id="topbar-owners">
+                            <li class="pure-menu-heading">Owners</li><li class="pure-menu-item">
+                                    <a href="https://crates.io/users/anza-team" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> anza-team
+                                    </a>
+                                </li></ul>
+                    </div>
+                </div>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Dependencies</li>
+
+                            
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" tabindex="-1">
+                                    <ul class="pure-menu-list">
+                                        
+    <li class="pure-menu-item"><a href="https://docs.rs/async-trait/%5E0.1.88" class="pure-menu-link">
+                        async-trait ^0.1.88
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/bincode/%5E1.3.3" class="pure-menu-link">
+                        bincode ^1.3.3
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/dashmap/%5E5.5.3" class="pure-menu-link">
+                        dashmap ^5.5.3
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/futures/%5E0.3.31" class="pure-menu-link">
+                        futures ^0.3.31
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/futures-util/%5E0.3.29" class="pure-menu-link">
+                        futures-util ^0.3.29
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/indexmap/%5E2.9.0" class="pure-menu-link">
+                        indexmap ^2.9.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/indicatif/%5E0.17.11" class="pure-menu-link">
+                        indicatif ^0.17.11
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/log/%5E0.4.27" class="pure-menu-link">
+                        log ^0.4.27
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/quinn/%5E0.11.8" class="pure-menu-link">
+                        quinn ^0.11.8
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/rayon/%5E1.10.0" class="pure-menu-link">
+                        rayon ^1.10.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-account/%5E2.2.1" class="pure-menu-link">
+                        solana-account ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-client-traits/%5E2.2.1" class="pure-menu-link">
+                        solana-client-traits ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-commitment-config/%5E2.2.1" class="pure-menu-link">
+                        solana-commitment-config ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-connection-cache/=2.3.2" class="pure-menu-link">
+                        solana-connection-cache =2.3.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-epoch-info/%5E2.2.1" class="pure-menu-link">
+                        solana-epoch-info ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-hash/%5E2.3.0" class="pure-menu-link">
+                        solana-hash ^2.3.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-instruction/%5E2.3.0" class="pure-menu-link">
+                        solana-instruction ^2.3.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-keypair/%5E2.2.1" class="pure-menu-link">
+                        solana-keypair ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-measure/=2.3.2" class="pure-menu-link">
+                        solana-measure =2.3.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-message/%5E2.4.0" class="pure-menu-link">
+                        solana-message ^2.4.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-pubkey/%5E2.4.0" class="pure-menu-link">
+                        solana-pubkey ^2.4.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-pubsub-client/=2.3.2" class="pure-menu-link">
+                        solana-pubsub-client =2.3.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-quic-client/=2.3.2" class="pure-menu-link">
+                        solana-quic-client =2.3.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-quic-definitions/%5E2.2.1" class="pure-menu-link">
+                        solana-quic-definitions ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-rpc-client/=2.3.2" class="pure-menu-link">
+                        solana-rpc-client =2.3.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-rpc-client-api/=2.3.2" class="pure-menu-link">
+                        solana-rpc-client-api =2.3.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-rpc-client-nonce-utils/=2.3.2" class="pure-menu-link">
+                        solana-rpc-client-nonce-utils =2.3.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-signature/%5E2.3.0" class="pure-menu-link">
+                        solana-signature ^2.3.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-signer/%5E2.2.1" class="pure-menu-link">
+                        solana-signer ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-streamer/=2.3.2" class="pure-menu-link">
+                        solana-streamer =2.3.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-thin-client/=2.3.2" class="pure-menu-link">
+                        solana-thin-client =2.3.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-time-utils/%5E2.2.1" class="pure-menu-link">
+                        solana-time-utils ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-tpu-client/=2.3.2" class="pure-menu-link">
+                        solana-tpu-client =2.3.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-transaction/%5E2.2.2" class="pure-menu-link">
+                        solana-transaction ^2.2.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-transaction-error/%5E2.2.1" class="pure-menu-link">
+                        solana-transaction-error ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-udp-client/=2.3.2" class="pure-menu-link">
+                        solana-udp-client =2.3.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/thiserror/%5E2.0.12" class="pure-menu-link">
+                        thiserror ^2.0.12
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/tokio/%5E1.45.0" class="pure-menu-link">
+                        tokio ^1.45.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/crossbeam-channel/%5E0.5.15" class="pure-menu-link">
+                        crossbeam-channel ^0.5.15
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-net-utils/=2.3.2" class="pure-menu-link">
+                        solana-net-utils =2.3.2
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pure-u-1-2">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Versions</li>
+
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" id="releases-list" tabindex="-1" data-url="/crate/solana-client/latest/menus/releases/x86_64-unknown-linux-gnu/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html">
+                                    <span class="rotate"><span class="fa fa-solid fa-spinner " aria-hidden="true"></span></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                    
+                    
+                    <div class="pure-g">
+                        <div class="pure-u-1">
+                            <ul class="pure-menu-list">
+                                <li>
+                                    <a href="https://docs.rs/crate/solana-client/latest" class="pure-menu-link">
+                                        <b>30%</b>
+                                        of the crate is documented
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div></div>
+        </li><li class="pure-menu-item pure-menu-has-children">
+                <a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html#" class="pure-menu-link" aria-label="Platform" aria-haspopup="menu">
+                    <span class="fa fa-solid fa-gears " aria-hidden="true"></span>
+                    <span class="title">Platform</span>
+                </a>
+
+                
+                <ul class="pure-menu-children" id="platforms" data-url="/crate/solana-client/latest/menus/platforms/x86_64-unknown-linux-gnu/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html" role="menu"><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/solana-client/latest/target-redirect/x86_64-unknown-linux-gnu/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html" class="pure-menu-link current" data-fragment="retain" rel="nofollow">x86_64-unknown-linux-gnu</a>
+        </li></ul>
+            </li><li class="pure-menu-item">
+                <a href="https://docs.rs/crate/solana-client/latest/features" title="Browse available feature flags of solana-client-2.3.2" class="pure-menu-link">
+                    <span class="fa fa-solid fa-flag " aria-hidden="true"></span>
+                    <span class="title">Feature flags</span>
+                </a>
+            </li>
+        
+    
+</ul><div class="spacer"></div>
+                
+                
+
+<ul class="pure-menu-list">
+                    <li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html#" class="pure-menu-link" aria-label="docs.rs" aria-haspopup="menu">docs.rs</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://docs.rs/about">
+            About docs.rs
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://foundation.rust-lang.org/policies/privacy-policy/#docs.rs" target="_blank">
+            Privacy policy
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="pure-menu-list"><li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html#" class="pure-menu-link" aria-label="Rust" aria-haspopup="menu">Rust</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://www.rust-lang.org/" target="_blank">
+            Rust website
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/book/" target="_blank">
+            The Book
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/std/" target="_blank">
+            Standard Library API Reference
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/rust-by-example/" target="_blank">
+            Rust by Example
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/cargo/guide/" target="_blank">
+            The Cargo Guide
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/nightly/clippy" target="_blank">
+            Clippy Documentation
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div id="search-input-nav">
+                    <label for="nav-search">
+                        <span class="fa fa-solid fa-magnifying-glass " aria-hidden="true"></span>
+                    </label>
+
+                    
+                    
+                    <input id="nav-search" name="query" type="text" aria-label="Find crate by search query" tabindex="-1" placeholder="Find crate">
+                </div>
+            </form>
+        </div>
+    </div>
+</div><div class="rustdoc type container-rustdoc" id="rustdoc_body_wrapper" tabindex="-1"><script async="" src="./PubsubSlotClientSubscription in solana_client__pubsub_client - Rust_files/menu.js.Без названия"></script>
+<script async="" src="./PubsubSlotClientSubscription in solana_client__pubsub_client - Rust_files/index.js.Без названия"></script>
+
+<iframe src="./PubsubSlotClientSubscription in solana_client__pubsub_client - Rust_files/storage-change-detection.html" width="0" height="0" style="display: none"></iframe><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button><h2 class="location"><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html#">Pubsub<wbr>Slot<wbr>Client<wbr>Subscription</a></h2></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="https://docs.rs/solana-client/latest/solana_client/index.html">solana_<wbr>client</a><span class="version">2.3.2</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html#">Pubsub<wbr>Slot<wbr>Client<wbr>Subscription</a></h2><h3><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html#aliased-type">Aliased Type</a></h3><h3><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html#implementations">Methods</a></h3><ul class="block method"><li><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html#method.send_unsubscribe">send_unsubscribe</a></li><li><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html#method.shutdown">shutdown</a></li></ul><h3><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html#trait-implementations">Trait Implementations</a></h3><ul class="block trait-implementation"><li><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html#impl-Drop-for-PubsubClientSubscription%3CT%3E">Drop</a></li></ul></section><div id="rustdoc-modnav"><h2><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/index.html">In solana_<wbr>client::<wbr>pubsub_<wbr>client</a></h2><h3><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/index.html#structs">Structs</a></h3><ul class="block struct"><li><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/struct.PubsubClient.html">PubsubClient</a></li><li><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/struct.PubsubClientSubscription.html">PubsubClientSubscription</a></li></ul><h3><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/index.html#enums">Enums</a></h3><ul class="block enum"><li><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/enum.PubsubClientError.html">PubsubClientError</a></li></ul><h3><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/index.html#types">Type Aliases</a></h3><ul class="block type"><li><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.AccountSubscription.html">AccountSubscription</a></li><li><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.BlockSubscription.html">BlockSubscription</a></li><li><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.LogsSubscription.html">LogsSubscription</a></li><li><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.ProgramSubscription.html">ProgramSubscription</a></li><li><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubAccountClientSubscription.html">PubsubAccountClientSubscription</a></li><li><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubBlockClientSubscription.html">PubsubBlockClientSubscription</a></li><li><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubLogsClientSubscription.html">PubsubLogsClientSubscription</a></li><li><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubProgramClientSubscription.html">PubsubProgramClientSubscription</a></li><li><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubRootClientSubscription.html">PubsubRootClientSubscription</a></li><li><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubSignatureClientSubscription.html">PubsubSignatureClientSubscription</a></li><li class="current"><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html">PubsubSlotClientSubscription</a></li><li><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubVoteClientSubscription.html">PubsubVoteClientSubscription</a></li><li><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.RootSubscription.html">RootSubscription</a></li><li><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.SignatureSubscription.html">SignatureSubscription</a></li><li><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.SlotsSubscription.html">SlotsSubscription</a></li><li><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.VoteSubscription.html">VoteSubscription</a></li></ul></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search><nav class="sub">
+            <form class="search-form">
+                <span></span> <!-- This empty span is a hacky fix for Safari - See #93184 -->
+                <div id="sidebar-button" tabindex="-1">
+                    <a href="https://docs.rs/solana-client/latest/solana_client/all.html" title="show sidebar"></a>
+                </div>
+                <input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search">
+            </form>
+        </nav></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="https://docs.rs/solana-client/latest/solana_client/index.html">solana_client</a>::<wbr><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/index.html">pubsub_client</a></div><h1>Type Alias <span class="type">PubsubSlotClientSubscription</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar>
+        <div id="settings-menu" tabindex="-1">
+            <a href="https://docs.rs/solana-client/latest/settings.html"><span class="label">Settings</span></a>
+        </div>
+        <div id="help-button" tabindex="-1">
+            <a href="https://docs.rs/solana-client/latest/help.html"><span class="label">Help</span></a>
+        </div>
+        <button id="toggle-all-docs"><span class="label">Summary</span></button></rustdoc-toolbar><span class="sub-heading"><a class="src" href="https://docs.rs/solana-pubsub-client/2.3.2/x86_64-unknown-linux-gnu/src/solana_pubsub_client/pubsub_client.rs.html#262">Source</a> </span></div><pre class="rust item-decl"><code>pub type PubsubSlotClientSubscription = <a class="struct" href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/struct.PubsubClientSubscription.html" title="struct solana_client::pubsub_client::PubsubClientSubscription">PubsubClientSubscription</a>&lt;<a class="struct" href="https://docs.rs/solana-client/latest/solana_client/rpc_response/struct.SlotInfo.html" title="struct solana_client::rpc_response::SlotInfo">SlotInfo</a>&gt;;</code></pre><h2 id="aliased-type" class="section-header">Aliased Type<a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html#aliased-type" class="anchor">§</a></h2><pre class="rust item-decl"><code>pub struct PubsubSlotClientSubscription { <span class="comment">/* private fields */</span> }</code></pre><script src="./PubsubSlotClientSubscription in solana_client__pubsub_client - Rust_files/struct.PubsubClientSubscription.js.Без названия" data-self-path="solana_client::pubsub_client::PubsubSlotClientSubscription" async=""></script><h2 id="implementations">Implementations</h2><div id="implementations-list"><details class="toggle implementors-toggle" open=""><summary><section id="impl-PubsubClientSubscription%3CT%3E" class="impl"><a class="src rightside" href="https://docs.rs/solana-pubsub-client/2.3.2/x86_64-unknown-linux-gnu/src/solana_pubsub_client/pubsub_client.rs.html#160-162">Source</a><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html#impl-PubsubClientSubscription%3CT%3E" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="struct" href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/struct.PubsubClientSubscription.html" title="struct solana_client::pubsub_client::PubsubClientSubscription">PubsubClientSubscription</a>&lt;T&gt;<div class="where">where
+    T: <a class="trait" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/de/trait.DeserializeOwned.html" title="trait serde::de::DeserializeOwned">DeserializeOwned</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.send_unsubscribe" class="method"><a class="src rightside" href="https://docs.rs/solana-pubsub-client/2.3.2/x86_64-unknown-linux-gnu/src/solana_pubsub_client/pubsub_client.rs.html#197">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/struct.PubsubClientSubscription.html#tymethod.send_unsubscribe" class="fn">send_unsubscribe</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/enum.PubsubClientError.html" title="enum solana_client::pubsub_client::PubsubClientError">PubsubClientError</a>&gt;</h4></section></summary><div class="docblock"><p>Send an unsubscribe message to the server.</p>
+<p>Note that this will block as long as the internal subscription receiver
+is waiting on messages from the server, and this can take an unbounded
+amount of time if the server does not send any messages.</p>
+<p>If a pubsub client needs to shutdown reliably it should use
+the async client in <a href="https://docs.rs/solana-pubsub-client/2.3.2/x86_64-unknown-linux-gnu/solana_pubsub_client/nonblocking/pubsub_client/index.html" title="mod solana_pubsub_client::nonblocking::pubsub_client"><code>crate::nonblocking::pubsub_client</code></a>.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.shutdown" class="method"><a class="src rightside" href="https://docs.rs/solana-pubsub-client/2.3.2/x86_64-unknown-linux-gnu/src/solana_pubsub_client/pubsub_client.rs.html#242">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/struct.PubsubClientSubscription.html#tymethod.shutdown" class="fn">shutdown</a>(&amp;mut self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;dyn <a class="trait" href="https://doc.rust-lang.org/nightly/core/any/trait.Any.html" title="trait core::any::Any">Any</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a>&gt;&gt;</h4></section></summary><div class="docblock"><p>Shutdown the internel message receiver and wait for its thread to exit.</p>
+<p>Note that this will block as long as the subscription receiver is
+waiting on messages from the server, and this can take an unbounded
+amount of time if the server does not send any messages.</p>
+<p>If a pubsub client needs to shutdown reliably it should use
+the async client in <a href="https://docs.rs/solana-pubsub-client/2.3.2/x86_64-unknown-linux-gnu/solana_pubsub_client/nonblocking/pubsub_client/index.html" title="mod solana_pubsub_client::nonblocking::pubsub_client"><code>crate::nonblocking::pubsub_client</code></a>.</p>
+</div></details></div></details></div><h2 id="trait-implementations">Trait Implementations</h2><div id="trait-implementations-list"><details class="toggle implementors-toggle" open=""><summary><section id="impl-Drop-for-PubsubClientSubscription%3CT%3E" class="impl"><a class="src rightside" href="https://docs.rs/solana-pubsub-client/2.3.2/x86_64-unknown-linux-gnu/src/solana_pubsub_client/pubsub_client.rs.html#145-147">Source</a><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html#impl-Drop-for-PubsubClientSubscription%3CT%3E" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/drop/trait.Drop.html" title="trait core::ops::drop::Drop">Drop</a> for <a class="struct" href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/struct.PubsubClientSubscription.html" title="struct solana_client::pubsub_client::PubsubClientSubscription">PubsubClientSubscription</a>&lt;T&gt;<div class="where">where
+    T: <a class="trait" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/de/trait.DeserializeOwned.html" title="trait serde::de::DeserializeOwned">DeserializeOwned</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.drop" class="method trait-impl"><a class="src rightside" href="https://docs.rs/solana-pubsub-client/2.3.2/x86_64-unknown-linux-gnu/src/solana_pubsub_client/pubsub_client.rs.html#149">Source</a><a href="https://docs.rs/solana-client/latest/solana_client/pubsub_client/type.PubsubSlotClientSubscription.html#method.drop" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/ops/drop/trait.Drop.html#tymethod.drop" class="fn">drop</a>(&amp;mut self)</h4></section></summary><div class="docblock">Executes the destructor for this type. <a href="https://doc.rust-lang.org/nightly/core/ops/drop/trait.Drop.html#tymethod.drop">Read more</a></div></details></div></details></div></section></div></main></div></body></html>
