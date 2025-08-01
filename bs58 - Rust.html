@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://docs.rs/bs58/0.5.1/bs58/index.html -->
+<html lang="en" data-theme="dark" data-docs-rs-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Another Base58 codec implementation."><title>bs58 - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="/-/rustdoc.static/${f}">`).join(""))</script><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceSerif4-Regular-6b053e98.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Italic-81dc35de.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Regular-0fe48ade.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-MediumItalic-ccf7e434.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Medium-e1aa3f0a.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Regular-8badfe75.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Semibold-aa29a496.ttf.woff2"><link rel="stylesheet" href="./bs58 - Rust_files/normalize-9960930a.css"><link rel="stylesheet" href="./bs58 - Rust_files/vendored.css" media="all"><link rel="stylesheet" href="./bs58 - Rust_files/rustdoc-1a91846b.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="/-/rustdoc.static/" data-current-crate="bs58" data-themes="" data-resource-suffix="-20250509-1.89.0-nightly-dcecb9917" data-rustdoc-version="1.89.0-nightly (dcecb9917 2025-05-09)" data-channel="nightly" data-search-js="search-f7877310.js" data-settings-js="settings-5514c975.js"><script src="./bs58 - Rust_files/storage-4e99c027.js.Без названия"></script><script defer="" src="./bs58 - Rust_files/crates-20250509-1.89.0-nightly-dcecb9917.js.Без названия"></script><script defer="" src="./bs58 - Rust_files/main-7ef8a74a.js.Без названия"></script><noscript><link rel="stylesheet" href="/-/rustdoc.static/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="https://docs.rs/-/rustdoc.static/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="https://docs.rs/-/rustdoc.static/favicon-044be391.svg"><link rel="stylesheet" href="./bs58 - Rust_files/rustdoc-2021-12-05.css" media="all"><link rel="stylesheet" href="./bs58 - Rust_files/font-awesome.css" media="all">
+
+        <link rel="search" href="https://docs.rs/-/static/opensearch.xml" type="application/opensearchdescription+xml" title="Docs.rs">
+
+        <script type="text/javascript">(function() {
+    function applyTheme(theme) {
+        if (theme) {
+            document.documentElement.dataset.docsRsTheme = theme;
+        }
+    }
+
+    window.addEventListener("storage", ev => {
+        if (ev.key === "rustdoc-theme") {
+            applyTheme(ev.newValue);
+        }
+    });
+
+    // see ./storage-change-detection.html for details
+    window.addEventListener("message", ev => {
+        if (ev.data && ev.data.storage && ev.data.storage.key === "rustdoc-theme") {
+            applyTheme(ev.data.storage.value);
+        }
+    });
+
+    applyTheme(window.localStorage.getItem("rustdoc-theme"));
+})();</script></head><div style="display: none; position: fixed; width: 100%; height: 100%; z-index: 1;"></div><body class="rustdoc-page">
+<div class="nav-container">
+    <div class="container">
+        <div class="pure-menu pure-menu-horizontal" role="navigation" aria-label="Main navigation">
+            <form action="https://docs.rs/releases/search" method="GET" id="nav-search-form" class="landing-search-form-nav  ">
+
+                
+                <a href="https://docs.rs/" class="pure-menu-heading pure-menu-link docsrs-logo" aria-label="Docs.rs">
+                    <span title="Docs.rs"><span class="fa fa-solid fa-cubes " aria-hidden="true"></span></span>
+                    <span class="title">Docs.rs</span>
+                </a><ul class="pure-menu-list">
+    <script id="crate-metadata" type="application/json">
+        
+        {
+            "name": "bs58",
+            "version": "0.5.1"
+        }
+    </script><li class="pure-menu-item pure-menu-has-children">
+            <a href="https://docs.rs/bs58/0.5.1/bs58/index.html#" class="pure-menu-link crate-name" title="Another Base58 codec implementation." aria-haspopup="menu">
+                <span class="fa fa-solid fa-cube " aria-hidden="true"></span>
+                <span class="title">bs58-0.5.1</span>
+            </a><div class="pure-menu-children package-details-menu" role="menu">
+                
+                <ul class="pure-menu-list menu-item-divided">
+                    <li class="pure-menu-heading" id="crate-title">
+                        bs58 0.5.1
+                        <span id="clipboard" class="svg-clipboard" title="Copy crate name and version information"></span>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/crate/bs58/0.5.1" class="pure-menu-link description" title="See bs58 in docs.rs">
+                            <span class="fa fa-solid fa-cube " aria-hidden="true"></span> Docs.rs crate page
+                        </a>
+                    </li><li class="pure-menu-item">
+                            <span class="pure-menu-link description"><span class="fa fa-solid fa-scale-unbalanced-flip " aria-hidden="true"></span>
+                            <a href="https://spdx.org/licenses/MIT" class="pure-menu-sublink">MIT</a>/<a href="https://spdx.org/licenses/Apache-2.0" class="pure-menu-sublink">Apache-2.0</a></span>
+                        </li></ul>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Links</li>
+
+                            <li class="pure-menu-item">
+                                    <a href="https://github.com/Nullus157/bs58-rs" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-code-branch " aria-hidden="true"></span> Repository
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                <a href="https://crates.io/crates/bs58" class="pure-menu-link" title="See bs58 in crates.io">
+                                    <span class="fa fa-solid fa-cube " aria-hidden="true"></span> crates.io
+                                </a>
+                            </li>
+
+                            
+                            <li class="pure-menu-item">
+                                <a href="https://docs.rs/crate/bs58/0.5.1/source/" title="Browse source of bs58-0.5.1" class="pure-menu-link">
+                                    <span class="fa fa-solid fa-folder-open " aria-hidden="true"></span> Source
+                                </a>
+                            </li>
+                        </ul>
+                    </div><div class="pure-u-1-2">
+                        <ul class="pure-menu-list" id="topbar-owners">
+                            <li class="pure-menu-heading">Owners</li><li class="pure-menu-item">
+                                    <a href="https://crates.io/users/Nemo157" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> Nemo157
+                                    </a>
+                                </li></ul>
+                    </div>
+                </div>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Dependencies</li>
+
+                            
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" tabindex="-1">
+                                    <ul class="pure-menu-list">
+                                        
+    <li class="pure-menu-item"><a href="https://docs.rs/sha2/%5E0.10" class="pure-menu-link">
+                        sha2 ^0.10
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/smallvec/%5E1" class="pure-menu-link">
+                        smallvec ^1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/tinyvec/%5E1.6.0" class="pure-menu-link">
+                        tinyvec ^1.6.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/assert_matches/%5E1.3.0" class="pure-menu-link">
+                        assert_matches ^1.3.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/base58/%5E0.1.0" class="pure-menu-link">
+                        base58 ^0.1.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/criterion/%5E0.5" class="pure-menu-link">
+                        criterion ^0.5
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/rust-base58/%5E0.0.4" class="pure-menu-link">
+                        rust-base58 ^0.0.4
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/tinyvec/%5E1.6.0" class="pure-menu-link">
+                        tinyvec ^1.6.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pure-u-1-2">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Versions</li>
+
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" id="releases-list" tabindex="-1" data-url="/crate/bs58/0.5.1/menus/releases/x86_64-unknown-linux-gnu/bs58/index.html">
+                                    <span class="rotate"><span class="fa fa-solid fa-spinner " aria-hidden="true"></span></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                    
+                    
+                    <div class="pure-g">
+                        <div class="pure-u-1">
+                            <ul class="pure-menu-list">
+                                <li>
+                                    <a href="https://docs.rs/crate/bs58/0.5.1" class="pure-menu-link">
+                                        <b>100%</b>
+                                        of the crate is documented
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div></div>
+        </li><li class="pure-menu-item pure-menu-has-children">
+                <a href="https://docs.rs/bs58/0.5.1/bs58/index.html#" class="pure-menu-link" aria-label="Platform" aria-haspopup="menu">
+                    <span class="fa fa-solid fa-gears " aria-hidden="true"></span>
+                    <span class="title">Platform</span>
+                </a>
+
+                
+                <ul class="pure-menu-children" id="platforms" data-url="/crate/bs58/0.5.1/menus/platforms/x86_64-unknown-linux-gnu/bs58/index.html" role="menu"><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/bs58/0.5.1/target-redirect/i686-pc-windows-msvc/bs58/index.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">i686-pc-windows-msvc</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/bs58/0.5.1/target-redirect/i686-unknown-linux-gnu/bs58/index.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">i686-unknown-linux-gnu</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/bs58/0.5.1/target-redirect/x86_64-apple-darwin/bs58/index.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">x86_64-apple-darwin</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/bs58/0.5.1/target-redirect/x86_64-pc-windows-msvc/bs58/index.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">x86_64-pc-windows-msvc</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/bs58/0.5.1/target-redirect/x86_64-unknown-linux-gnu/bs58/index.html" class="pure-menu-link current" data-fragment="retain" rel="nofollow">x86_64-unknown-linux-gnu</a>
+        </li></ul>
+            </li><li class="pure-menu-item">
+                <a href="https://docs.rs/crate/bs58/0.5.1/features" title="Browse available feature flags of bs58-0.5.1" class="pure-menu-link">
+                    <span class="fa fa-solid fa-flag " aria-hidden="true"></span>
+                    <span class="title">Feature flags</span>
+                </a>
+            </li>
+        
+    
+</ul><div class="spacer"></div>
+                
+                
+
+<ul class="pure-menu-list">
+                    <li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/bs58/0.5.1/bs58/index.html#" class="pure-menu-link" aria-label="docs.rs" aria-haspopup="menu">docs.rs</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://docs.rs/about">
+            About docs.rs
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://foundation.rust-lang.org/policies/privacy-policy/#docs.rs" target="_blank">
+            Privacy policy
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="pure-menu-list"><li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/bs58/0.5.1/bs58/index.html#" class="pure-menu-link" aria-label="Rust" aria-haspopup="menu">Rust</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://www.rust-lang.org/" target="_blank">
+            Rust website
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/book/" target="_blank">
+            The Book
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/std/" target="_blank">
+            Standard Library API Reference
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/rust-by-example/" target="_blank">
+            Rust by Example
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/cargo/guide/" target="_blank">
+            The Cargo Guide
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/nightly/clippy" target="_blank">
+            Clippy Documentation
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div id="search-input-nav">
+                    <label for="nav-search">
+                        <span class="fa fa-solid fa-magnifying-glass " aria-hidden="true"></span>
+                    </label>
+
+                    
+                    
+                    <input id="nav-search" name="query" type="text" aria-label="Find crate by search query" tabindex="-1" placeholder="Find crate">
+                </div>
+            </form>
+        </div>
+    </div>
+</div><div class="rustdoc mod crate container-rustdoc" id="rustdoc_body_wrapper" tabindex="-1"><script async="" src="./bs58 - Rust_files/menu.js.Без названия"></script>
+<script async="" src="./bs58 - Rust_files/index.js.Без названия"></script>
+
+<iframe src="./bs58 - Rust_files/storage-change-detection.html" width="0" height="0" style="display: none"></iframe><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button><h2 class="location">Crate <a href="https://docs.rs/bs58/0.5.1/bs58/index.html#">bs58</a></h2></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="https://docs.rs/bs58/0.5.1/bs58/index.html">bs58</a><span class="version">0.5.1</span></h2></div><div class="sidebar-elems"><ul class="block"><li><a id="all-types" href="https://docs.rs/bs58/0.5.1/bs58/all.html">All Items</a></li></ul><section id="rustdoc-toc"><h3><a href="https://docs.rs/bs58/0.5.1/bs58/index.html#">Sections</a></h3><ul class="block top-toc"><li><a href="https://docs.rs/bs58/0.5.1/bs58/index.html#features" title="Features">Features</a></li><li><a href="https://docs.rs/bs58/0.5.1/bs58/index.html#examples" title="Examples">Examples</a><ul><li><a href="https://docs.rs/bs58/0.5.1/bs58/index.html#basic-example" title="Basic example">Basic example</a></li><li><a href="https://docs.rs/bs58/0.5.1/bs58/index.html#changing-the-alphabet" title="Changing the alphabet">Changing the alphabet</a></li><li><a href="https://docs.rs/bs58/0.5.1/bs58/index.html#decoding-into-an-existing-buffer" title="Decoding into an existing buffer">Decoding into an existing buffer</a></li></ul></li></ul><h3><a href="https://docs.rs/bs58/0.5.1/bs58/index.html#modules">Crate Items</a></h3><ul class="block"><li><a href="https://docs.rs/bs58/0.5.1/bs58/index.html#modules" title="Modules">Modules</a></li><li><a href="https://docs.rs/bs58/0.5.1/bs58/index.html#structs" title="Structs">Structs</a></li><li><a href="https://docs.rs/bs58/0.5.1/bs58/index.html#functions" title="Functions">Functions</a></li></ul></section><div id="rustdoc-modnav"><h3>Crates</h3><ul class="block crate"><li class="current"><a href="https://docs.rs/bs58/0.5.1/bs58/index.html">bs58</a></li></ul></div></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><rustdoc-search><nav class="sub">
+            <form class="search-form">
+                <span></span> <!-- This empty span is a hacky fix for Safari - See #93184 -->
+                <div id="sidebar-button" tabindex="-1">
+                    <a href="https://docs.rs/bs58/0.5.1/bs58/all.html" title="show sidebar"></a>
+                </div>
+                <input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search">
+            </form>
+        </nav></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1>Crate <span>bs58</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar>
+        <div id="settings-menu" tabindex="-1">
+            <a href="https://docs.rs/bs58/0.5.1/settings.html"><span class="label">Settings</span></a>
+        </div>
+        <div id="help-button" tabindex="-1">
+            <a href="https://docs.rs/bs58/0.5.1/help.html"><span class="label">Help</span></a>
+        </div>
+        <button id="toggle-all-docs"><span class="label">Summary</span></button></rustdoc-toolbar><span class="sub-heading"><a class="src" href="https://docs.rs/bs58/0.5.1/src/bs58/lib.rs.html#1-221">Source</a> </span></div><details class="toggle top-doc" open=""><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Another <a href="https://en.wikipedia.org/wiki/Base58">Base58</a> codec implementation.</p>
+<p>Compared to <a href="https://github.com/debris/base58"><code>base58</code></a> this is significantly faster at decoding (about
+2.4x as fast when decoding 32 bytes), almost the same speed for encoding
+(about 3% slower when encoding 32 bytes) and doesn’t have the 128 byte
+limitation.</p>
+<p>Compared to <a href="https://github.com/nham/rust-base58"><code>rust-base58</code></a> this is massively faster (over ten times as
+fast when decoding 32 bytes, almost 40 times as fast when encoding 32
+bytes) and has no external dependencies.</p>
+<p>Compared to both this supports a configurable alphabet and user provided
+buffers for zero-allocation {en,de}coding.</p>
+<h2 id="features"><a class="doc-anchor" href="https://docs.rs/bs58/0.5.1/bs58/index.html#features">§</a>Features</h2><div><table><thead><tr><th>Feature</th><th>Activation</th><th>Effect</th></tr></thead><tbody>
+<tr><td><code>std</code></td><td><strong>on</strong>-by-default</td><td>Implement <a href="https://doc.rust-lang.org/nightly/core/error/trait.Error.html" title="trait core::error::Error"><code>Error</code></a> for error types</td></tr>
+<tr><td><code>alloc</code></td><td>implied by <code>std</code></td><td>Support encoding/decoding to <a href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec"><code>Vec</code></a> and <a href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String"><code>String</code></a> as appropriate</td></tr>
+<tr><td><code>check</code></td><td><strong>off</strong>-by-default</td><td>Integrated support for <a href="https://en.bitcoin.it/wiki/Base58Check_encoding">Base58Check</a></td></tr>
+<tr><td><code>cb58</code></td><td><strong>off</strong>-by-default</td><td>Integrated support for <a href="https://support.avax.network/en/articles/4587395-what-is-cb58">CB58</a></td></tr>
+</tbody></table>
+</div><h2 id="examples"><a class="doc-anchor" href="https://docs.rs/bs58/0.5.1/bs58/index.html#examples">§</a>Examples</h2><h3 id="basic-example"><a class="doc-anchor" href="https://docs.rs/bs58/0.5.1/bs58/index.html#basic-example">§</a>Basic example</h3>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let </span>decoded = bs58::decode(<span class="string">"he11owor1d"</span>).into_vec()<span class="question-mark">?</span>;
+<span class="kw">let </span>encoded = bs58::encode(decoded).into_string();
+<span class="macro">assert_eq!</span>(<span class="string">"he11owor1d"</span>, encoded);</code></pre></div>
+<h3 id="changing-the-alphabet"><a class="doc-anchor" href="https://docs.rs/bs58/0.5.1/bs58/index.html#changing-the-alphabet">§</a>Changing the alphabet</h3>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let </span>decoded = bs58::decode(<span class="string">"he11owor1d"</span>)
+    .with_alphabet(bs58::Alphabet::RIPPLE)
+    .into_vec()<span class="question-mark">?</span>;
+<span class="kw">let </span>encoded = bs58::encode(decoded)
+    .with_alphabet(bs58::Alphabet::FLICKR)
+    .into_string();
+<span class="macro">assert_eq!</span>(<span class="string">"4DSSNaN1SC"</span>, encoded);</code></pre></div>
+<h3 id="decoding-into-an-existing-buffer"><a class="doc-anchor" href="https://docs.rs/bs58/0.5.1/bs58/index.html#decoding-into-an-existing-buffer">§</a>Decoding into an existing buffer</h3>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let </span>(<span class="kw-2">mut </span>decoded, <span class="kw-2">mut </span>encoded) = ([<span class="number">0xFF</span>; <span class="number">8</span>], String::with_capacity(<span class="number">10</span>));
+bs58::decode(<span class="string">"he11owor1d"</span>).onto(<span class="kw-2">&amp;mut </span>decoded)<span class="question-mark">?</span>;
+bs58::encode(decoded).onto(<span class="kw-2">&amp;mut </span>encoded)<span class="question-mark">?</span>;
+<span class="macro">assert_eq!</span>(<span class="string">"he11owor1d"</span>, encoded);</code></pre></div>
+</div></details><h2 id="modules" class="section-header">Modules<a href="https://docs.rs/bs58/0.5.1/bs58/index.html#modules" class="anchor">§</a></h2><dl class="item-table"><dt><a class="mod" href="https://docs.rs/bs58/0.5.1/bs58/alphabet/index.html" title="mod bs58::alphabet">alphabet</a></dt><dd>Support for configurable alphabets</dd><dt><a class="mod" href="https://docs.rs/bs58/0.5.1/bs58/decode/index.html" title="mod bs58::decode">decode</a></dt><dd>Functions for decoding Base58 encoded strings.</dd><dt><a class="mod" href="https://docs.rs/bs58/0.5.1/bs58/encode/index.html" title="mod bs58::encode">encode</a></dt><dd>Functions for encoding into Base58 encoded strings.</dd></dl><h2 id="structs" class="section-header">Structs<a href="https://docs.rs/bs58/0.5.1/bs58/index.html#structs" class="anchor">§</a></h2><dl class="item-table"><dt><a class="struct" href="https://docs.rs/bs58/0.5.1/bs58/struct.Alphabet.html" title="struct bs58::Alphabet">Alphabet</a></dt><dd>Prepared Alphabet for
+<a href="https://docs.rs/bs58/0.5.1/bs58/encode/struct.EncodeBuilder.html#method.with_alphabet" title="method bs58::encode::EncodeBuilder::with_alphabet"><code>EncodeBuilder::with_alphabet</code></a> and
+<a href="https://docs.rs/bs58/0.5.1/bs58/decode/struct.DecodeBuilder.html#method.with_alphabet" title="method bs58::decode::DecodeBuilder::with_alphabet"><code>DecodeBuilder::with_alphabet</code></a>.</dd></dl><h2 id="functions" class="section-header">Functions<a href="https://docs.rs/bs58/0.5.1/bs58/index.html#functions" class="anchor">§</a></h2><dl class="item-table"><dt><a class="fn" href="https://docs.rs/bs58/0.5.1/bs58/fn.decode.html" title="fn bs58::decode">decode</a></dt><dd>Setup decoder for the given string using the <a href="https://docs.rs/bs58/0.5.1/bs58/struct.Alphabet.html#associatedconstant.DEFAULT" title="associated constant bs58::Alphabet::DEFAULT">default alphabet</a>.</dd><dt><a class="fn" href="https://docs.rs/bs58/0.5.1/bs58/fn.encode.html" title="fn bs58::encode">encode</a></dt><dd>Setup encoder for the given bytes using the <a href="https://docs.rs/bs58/0.5.1/bs58/struct.Alphabet.html#associatedconstant.DEFAULT" title="associated constant bs58::Alphabet::DEFAULT">default alphabet</a>.</dd></dl></section></div></main></div></body></html>
