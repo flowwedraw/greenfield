@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<!-- saved from url=(0091)https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/fn.signer_from_path.html -->
+<html lang="en" data-theme="dark" data-docs-rs-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Loads a Signer from one of several possible sources."><title>signer_from_path in solana_clap_utils::keypair - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="/-/rustdoc.static/${f}">`).join(""))</script><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceSerif4-Regular-6b053e98.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Italic-81dc35de.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Regular-0fe48ade.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-MediumItalic-ccf7e434.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Medium-e1aa3f0a.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Regular-8badfe75.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Semibold-aa29a496.ttf.woff2"><link rel="stylesheet" href="./signer_from_path in solana_clap_utils__keypair - Rust_files/normalize-9960930a.css"><link rel="stylesheet" href="./signer_from_path in solana_clap_utils__keypair - Rust_files/vendored.css" media="all"><link rel="stylesheet" href="./signer_from_path in solana_clap_utils__keypair - Rust_files/rustdoc-aa0817cf.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="/-/rustdoc.static/" data-current-crate="solana_clap_utils" data-themes="" data-resource-suffix="-20250703-1.90.0-nightly-da58c0513" data-rustdoc-version="1.90.0-nightly (da58c0513 2025-07-03)" data-channel="nightly" data-search-js="search-179e01a3.js" data-settings-js="settings-5514c975.js"><script src="./signer_from_path in solana_clap_utils__keypair - Rust_files/storage-4e99c027.js.Без названия"></script><script defer="" src="./signer_from_path in solana_clap_utils__keypair - Rust_files/sidebar-items-20250703-1.90.0-nightly-da58c0513.js.Без названия"></script><script defer="" src="./signer_from_path in solana_clap_utils__keypair - Rust_files/main-673ee1e0.js.Без названия"></script><noscript><link rel="stylesheet" href="/-/rustdoc.static/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="https://docs.rs/-/rustdoc.static/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="https://docs.rs/-/rustdoc.static/favicon-044be391.svg"><link rel="stylesheet" href="./signer_from_path in solana_clap_utils__keypair - Rust_files/rustdoc-2021-12-05.css" media="all"><link rel="stylesheet" href="./signer_from_path in solana_clap_utils__keypair - Rust_files/font-awesome.css" media="all">
+
+        <link rel="search" href="https://docs.rs/-/static/opensearch.xml" type="application/opensearchdescription+xml" title="Docs.rs">
+
+        <script type="text/javascript">(function() {
+    function applyTheme(theme) {
+        if (theme) {
+            document.documentElement.dataset.docsRsTheme = theme;
+        }
+    }
+
+    window.addEventListener("storage", ev => {
+        if (ev.key === "rustdoc-theme") {
+            applyTheme(ev.newValue);
+        }
+    });
+
+    // see ./storage-change-detection.html for details
+    window.addEventListener("message", ev => {
+        if (ev.data && ev.data.storage && ev.data.storage.key === "rustdoc-theme") {
+            applyTheme(ev.data.storage.value);
+        }
+    });
+
+    applyTheme(window.localStorage.getItem("rustdoc-theme"));
+})();</script></head><div style="display: none; position: fixed; width: 100%; height: 100%; z-index: 1;"></div><body class="rustdoc-page">
+<div class="nav-container">
+    <div class="container">
+        <div class="pure-menu pure-menu-horizontal" role="navigation" aria-label="Main navigation">
+            <form action="https://docs.rs/releases/search" method="GET" id="nav-search-form" class="landing-search-form-nav  ">
+
+                
+                <a href="https://docs.rs/" class="pure-menu-heading pure-menu-link docsrs-logo" aria-label="Docs.rs">
+                    <span title="Docs.rs"><span class="fa fa-solid fa-cubes " aria-hidden="true"></span></span>
+                    <span class="title">Docs.rs</span>
+                </a><ul class="pure-menu-list">
+    <script id="crate-metadata" type="application/json">
+        
+        {
+            "name": "solana-clap-utils",
+            "version": "2.3.3"
+        }
+    </script><li class="pure-menu-item pure-menu-has-children">
+            <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/fn.signer_from_path.html#" class="pure-menu-link crate-name" title="Solana utilities for the clap" aria-haspopup="menu">
+                <span class="fa fa-solid fa-cube " aria-hidden="true"></span>
+                <span class="title">solana-clap-utils-2.3.3</span>
+            </a><div class="pure-menu-children package-details-menu" role="menu">
+                
+                <ul class="pure-menu-list menu-item-divided">
+                    <li class="pure-menu-heading" id="crate-title">
+                        solana-clap-utils 2.3.3
+                        <span id="clipboard" class="svg-clipboard" title="Copy crate name and version information"></span>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/solana-clap-utils/2.3.3/solana_clap_utils/keypair/fn.signer_from_path.html" class="pure-menu-link description" id="permalink" title="Get a link to this specific version">
+                            <span class="fa fa-solid fa-link " aria-hidden="true"></span> Permalink
+                        </a>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/crate/solana-clap-utils/latest" class="pure-menu-link description" title="See solana-clap-utils in docs.rs">
+                            <span class="fa fa-solid fa-cube " aria-hidden="true"></span> Docs.rs crate page
+                        </a>
+                    </li><li class="pure-menu-item">
+                            <span class="pure-menu-link description"><span class="fa fa-solid fa-scale-unbalanced-flip " aria-hidden="true"></span>
+                            <a href="https://spdx.org/licenses/Apache-2.0" class="pure-menu-sublink">Apache-2.0</a></span>
+                        </li></ul>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Links</li>
+
+                            <li class="pure-menu-item">
+                                    <a href="https://anza.xyz/" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-house " aria-hidden="true"></span> Homepage
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                    <a href="https://github.com/anza-xyz/agave" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-code-branch " aria-hidden="true"></span> Repository
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                <a href="https://crates.io/crates/solana-clap-utils" class="pure-menu-link" title="See solana-clap-utils in crates.io">
+                                    <span class="fa fa-solid fa-cube " aria-hidden="true"></span> crates.io
+                                </a>
+                            </li>
+
+                            
+                            <li class="pure-menu-item">
+                                <a href="https://docs.rs/crate/solana-clap-utils/latest/source/" title="Browse source of solana-clap-utils-2.3.3" class="pure-menu-link">
+                                    <span class="fa fa-solid fa-folder-open " aria-hidden="true"></span> Source
+                                </a>
+                            </li>
+                        </ul>
+                    </div><div class="pure-u-1-2">
+                        <ul class="pure-menu-list" id="topbar-owners">
+                            <li class="pure-menu-heading">Owners</li><li class="pure-menu-item">
+                                    <a href="https://crates.io/users/anza-team" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> anza-team
+                                    </a>
+                                </li></ul>
+                    </div>
+                </div>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Dependencies</li>
+
+                            
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" tabindex="-1">
+                                    <ul class="pure-menu-list">
+                                        
+    <li class="pure-menu-item"><a href="https://docs.rs/chrono/%5E0.4.41" class="pure-menu-link">
+                        chrono ^0.4.41
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/clap/%5E2.33.0" class="pure-menu-link">
+                        clap ^2.33.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/rpassword/%5E7.4" class="pure-menu-link">
+                        rpassword ^7.4
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-clock/%5E2.2.2" class="pure-menu-link">
+                        solana-clock ^2.2.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-cluster-type/%5E2.2.1" class="pure-menu-link">
+                        solana-cluster-type ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-commitment-config/%5E2.2.1" class="pure-menu-link">
+                        solana-commitment-config ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-derivation-path/%5E2.2.1" class="pure-menu-link">
+                        solana-derivation-path ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-hash/%5E2.3.0" class="pure-menu-link">
+                        solana-hash ^2.3.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-keypair/%5E2.2.1" class="pure-menu-link">
+                        solana-keypair ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-message/%5E2.4.0" class="pure-menu-link">
+                        solana-message ^2.4.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-native-token/%5E2.2.2" class="pure-menu-link">
+                        solana-native-token ^2.2.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-presigner/%5E2.2.1" class="pure-menu-link">
+                        solana-presigner ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-pubkey/%5E2.4.0" class="pure-menu-link">
+                        solana-pubkey ^2.4.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-remote-wallet/=2.3.3" class="pure-menu-link">
+                        solana-remote-wallet =2.3.3
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-seed-phrase/%5E2.2.1" class="pure-menu-link">
+                        solana-seed-phrase ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-signature/%5E2.3.0" class="pure-menu-link">
+                        solana-signature ^2.3.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-signer/%5E2.2.1" class="pure-menu-link">
+                        solana-signer ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/thiserror/%5E2.0.12" class="pure-menu-link">
+                        thiserror ^2.0.12
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/tiny-bip39/%5E0.8.2" class="pure-menu-link">
+                        tiny-bip39 ^0.8.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/uriparse/%5E0.6.4" class="pure-menu-link">
+                        uriparse ^0.6.4
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/url/%5E2.5.4" class="pure-menu-link">
+                        url ^2.5.4
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/assert_matches/%5E1.5.0" class="pure-menu-link">
+                        assert_matches ^1.5.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-pubkey/%5E2.4.0" class="pure-menu-link">
+                        solana-pubkey ^2.4.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-system-interface/%5E1.0" class="pure-menu-link">
+                        solana-system-interface ^1.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/tempfile/%5E3.20.0" class="pure-menu-link">
+                        tempfile ^3.20.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pure-u-1-2">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Versions</li>
+
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" id="releases-list" tabindex="-1" data-url="/crate/solana-clap-utils/latest/menus/releases/x86_64-unknown-linux-gnu/solana_clap_utils/keypair/fn.signer_from_path.html">
+                                    <span class="rotate"><span class="fa fa-solid fa-spinner " aria-hidden="true"></span></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                    
+                    
+                    <div class="pure-g">
+                        <div class="pure-u-1">
+                            <ul class="pure-menu-list">
+                                <li>
+                                    <a href="https://docs.rs/crate/solana-clap-utils/latest" class="pure-menu-link">
+                                        <b>14.73%</b>
+                                        of the crate is documented
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div></div>
+        </li><li class="pure-menu-item pure-menu-has-children">
+                <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/fn.signer_from_path.html#" class="pure-menu-link" aria-label="Platform" aria-haspopup="menu">
+                    <span class="fa fa-solid fa-gears " aria-hidden="true"></span>
+                    <span class="title">Platform</span>
+                </a>
+
+                
+                <ul class="pure-menu-children" id="platforms" data-url="/crate/solana-clap-utils/latest/menus/platforms/x86_64-unknown-linux-gnu/solana_clap_utils/keypair/fn.signer_from_path.html" role="menu"><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/solana-clap-utils/latest/target-redirect/x86_64-unknown-linux-gnu/solana_clap_utils/keypair/fn.signer_from_path.html" class="pure-menu-link current" data-fragment="retain" rel="nofollow">x86_64-unknown-linux-gnu</a>
+        </li></ul>
+            </li><li class="pure-menu-item">
+                <a href="https://docs.rs/crate/solana-clap-utils/latest/features" title="Browse available feature flags of solana-clap-utils-2.3.3" class="pure-menu-link">
+                    <span class="fa fa-solid fa-flag " aria-hidden="true"></span>
+                    <span class="title">Feature flags</span>
+                </a>
+            </li>
+        
+    
+</ul><div class="spacer"></div>
+                
+                
+
+<ul class="pure-menu-list">
+                    <li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/fn.signer_from_path.html#" class="pure-menu-link" aria-label="docs.rs" aria-haspopup="menu">docs.rs</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://docs.rs/about">
+            About docs.rs
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://foundation.rust-lang.org/policies/privacy-policy/#docs.rs" target="_blank">
+            Privacy policy
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="pure-menu-list"><li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/fn.signer_from_path.html#" class="pure-menu-link" aria-label="Rust" aria-haspopup="menu">Rust</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://www.rust-lang.org/" target="_blank">
+            Rust website
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/book/" target="_blank">
+            The Book
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/std/" target="_blank">
+            Standard Library API Reference
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/rust-by-example/" target="_blank">
+            Rust by Example
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/cargo/guide/" target="_blank">
+            The Cargo Guide
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/nightly/clippy" target="_blank">
+            Clippy Documentation
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div id="search-input-nav">
+                    <label for="nav-search">
+                        <span class="fa fa-solid fa-magnifying-glass " aria-hidden="true"></span>
+                    </label>
+
+                    
+                    
+                    <input id="nav-search" name="query" type="text" aria-label="Find crate by search query" tabindex="-1" placeholder="Find crate">
+                </div>
+            </form>
+        </div>
+    </div>
+</div><div class="rustdoc fn container-rustdoc" id="rustdoc_body_wrapper" tabindex="-1"><script async="" src="./signer_from_path in solana_clap_utils__keypair - Rust_files/menu.js.Без названия"></script>
+<script async="" src="./signer_from_path in solana_clap_utils__keypair - Rust_files/index.js.Без названия"></script>
+
+<iframe src="./signer_from_path in solana_clap_utils__keypair - Rust_files/storage-change-detection.html" width="0" height="0" style="display: none"></iframe><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button><h2 class="location"><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/fn.signer_from_path.html#">signer_<wbr>from_<wbr>path</a></h2></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/index.html">solana_<wbr>clap_<wbr>utils</a><span class="version">2.3.3</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/fn.signer_from_path.html#">signer_<wbr>from_<wbr>path</a></h2><h3><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/fn.signer_from_path.html#">Sections</a></h3><ul class="block top-toc"><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/fn.signer_from_path.html#signing-sources" title="Signing sources">Signing sources</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/fn.signer_from_path.html#examples" title="Examples">Examples</a></li></ul></section><div id="rustdoc-modnav"><h2><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/index.html">In solana_<wbr>clap_<wbr>utils::<wbr>keypair</a></h2><h3><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/index.html#structs">Structs</a></h3><ul class="block struct"><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/struct.CliSignerInfo.html">CliSignerInfo</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/struct.DefaultSigner.html">DefaultSigner</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/struct.SignOnly.html">SignOnly</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/struct.SignerFromPathConfig.html">SignerFromPathConfig</a></li></ul><h3><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/index.html#constants">Constants</a></h3><ul class="block constant"><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/constant.ASK_KEYWORD.html">ASK_KEYWORD</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/constant.SKIP_SEED_PHRASE_VALIDATION_ARG.html">SKIP_SEED_PHRASE_VALIDATION_ARG</a></li></ul><h3><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/index.html#functions">Functions</a></h3><ul class="block fn"><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/fn.keypair_from_path.html">keypair_from_path</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/fn.keypair_from_seed_phrase.html">keypair_from_seed_phrase</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/fn.presigner_from_pubkey_sigs.html">presigner_from_pubkey_sigs</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/fn.prompt_passphrase.html">prompt_passphrase</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/fn.pubkey_from_path.html">pubkey_from_path</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/fn.resolve_signer_from_path.html">resolve_signer_from_path</a></li><li class="current"><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/fn.signer_from_path.html">signer_from_path</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/fn.signer_from_path_with_config.html">signer_from_path_with_config</a></li></ul><h3><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/index.html#types">Type Aliases</a></h3><ul class="block type"><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/type.CliSigners.html">CliSigners</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/type.SignerIndex.html">SignerIndex</a></li></ul></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search><nav class="sub">
+            <form class="search-form">
+                <span></span> <!-- This empty span is a hacky fix for Safari - See #93184 -->
+                <div id="sidebar-button" tabindex="-1">
+                    <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/all.html" title="show sidebar"></a>
+                </div>
+                <input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search">
+            </form>
+        </nav></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/index.html">solana_clap_utils</a>::<wbr><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/index.html">keypair</a></div><h1>Function <span class="fn">signer_from_path</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar>
+        <div id="settings-menu" tabindex="-1">
+            <a href="https://docs.rs/solana-clap-utils/latest/settings.html"><span class="label">Settings</span></a>
+        </div>
+        <div id="help-button" tabindex="-1">
+            <a href="https://docs.rs/solana-clap-utils/latest/help.html"><span class="label">Help</span></a>
+        </div>
+        <button id="toggle-all-docs"><span class="label">Summary</span></button></rustdoc-toolbar><span class="sub-heading"><a class="src" href="https://docs.rs/solana-clap-utils/latest/src/solana_clap_utils/keypair.rs.html#684-692">Source</a> </span></div><pre class="rust item-decl"><code>pub fn signer_from_path(
+    matches: &amp;<a class="struct" href="https://docs.rs/clap/2.33.3/x86_64-unknown-linux-gnu/clap/args/arg_matches/struct.ArgMatches.html" title="struct clap::args::arg_matches::ArgMatches">ArgMatches</a>&lt;'_&gt;,
+    path: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
+    keypair_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
+    wallet_manager: &amp;mut <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/rc/struct.Rc.html" title="struct alloc::rc::Rc">Rc</a>&lt;<a class="struct" href="https://docs.rs/solana-remote-wallet/2.3.3/x86_64-unknown-linux-gnu/solana_remote_wallet/remote_wallet/struct.RemoteWalletManager.html" title="struct solana_remote_wallet::remote_wallet::RemoteWalletManager">RemoteWalletManager</a>&gt;&gt;,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;dyn <a class="trait" href="https://docs.rs/solana-signer/2.2.1/x86_64-unknown-linux-gnu/solana_signer/trait.Signer.html" title="trait solana_signer::Signer">Signer</a>&gt;, <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;dyn <a class="trait" href="https://doc.rust-lang.org/nightly/core/error/trait.Error.html" title="trait core::error::Error">Error</a>&gt;&gt;</code></pre><details class="toggle top-doc" open=""><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Loads a <a href="https://docs.rs/solana-signer/2.2.1/x86_64-unknown-linux-gnu/solana_signer/trait.Signer.html" title="trait solana_signer::Signer">Signer</a> from one of several possible sources.</p>
+<p>The <code>path</code> is not strictly a file system path, but is interpreted as various
+types of <em>signing source</em>, depending on its format, one of which is a path
+to a keypair file. Some sources may require user interaction in the course
+of calling this function.</p>
+<p>The result of this function is a boxed object of the <a href="https://docs.rs/solana-signer/2.2.1/x86_64-unknown-linux-gnu/solana_signer/trait.Signer.html" title="trait solana_signer::Signer">Signer</a> trait. To load
+a concrete <a href="https://docs.rs/solana-keypair/2.2.1/x86_64-unknown-linux-gnu/solana_keypair/struct.Keypair.html" title="struct solana_keypair::Keypair">Keypair</a>, use the <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/fn.keypair_from_path.html" title="fn solana_clap_utils::keypair::keypair_from_path">keypair_from_path</a> function, though note that
+it does not support all signer sources.</p>
+<p>The <code>matches</code> argument is the same set of parsed <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/https//docs.rs/clap">clap</a> matches from which
+<code>path</code> was parsed. It is used to parse various additional command line
+arguments, depending on which signing source is requested, as described
+below in “Signing sources”.</p>
+<p>The <code>keypair_name</code> argument is the “name” of the signer, and is typically
+the name of the clap argument from which the <code>path</code> argument was parsed,
+like “keypair”, “from”, or “fee-payer”. It is used solely for interactively
+prompting the user, either when entering seed phrases or selecting from
+multiple hardware wallets.</p>
+<p>The <code>wallet_manager</code> is used for establishing connections to a hardware
+device such as Ledger. If <code>wallet_manager</code> is a reference to <code>None</code>, and a
+hardware signer is requested, then this function will attempt to create a
+wallet manager, assigning it to the mutable <code>wallet_manager</code> reference. This
+argument is typically a reference to <code>None</code>.</p>
+<h2 id="signing-sources"><a class="doc-anchor" href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/fn.signer_from_path.html#signing-sources">§</a>Signing sources</h2>
+<p>The <code>path</code> argument can simply be a path to a keypair file, but it may also
+be interpreted in several other ways, in the following order.</p>
+<p>Firstly, the <code>path</code> argument may be interpreted as a <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URI</a>, with the URI
+scheme indicating where to load the signer from. If it parses as a URI, then
+the following schemes are supported:</p>
+<ul>
+<li>
+<p><code>file:</code> — Read the keypair from a JSON keypair file. The path portion
+of the URI is the file path.</p>
+</li>
+<li>
+<p><code>stdin:</code> — Read the keypair from stdin, in the JSON format used by
+the keypair file.</p>
+<p>Non-scheme parts of the URI are ignored.</p>
+</li>
+<li>
+<p><code>prompt:</code> — The user will be prompted at the command line
+for their seed phrase and passphrase.</p>
+<p>In this URI the <a href="https://en.wikipedia.org/wiki/Query_string">query string</a> may contain zero or one of the
+following key/value pairs that determine the <a href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki">BIP44 derivation path</a>
+of the private key from the seed:</p>
+<ul>
+<li>
+<p><code>key</code> — In this case the value is either one or two numerical
+indexes separated by a slash, which represent the “account”, and
+“change” components of the BIP44 derivation path. Example: <code>key=0/0</code>.</p>
+</li>
+<li>
+<p><code>full-path</code> — In this case the value is a full derivation path,
+and the user is responsible for ensuring it is correct. Example:
+<code>full-path=m/44/501/0/0/0</code>.</p>
+</li>
+</ul>
+<p>If neither is provided, then the default derivation path is used.</p>
+<p>Note that when specifying derivation paths, this routine will convert all
+indexes into <a href="https://wiki.trezor.io/Hardened_and_non-hardened_derivation">“hardened”</a> indexes, even if written as “normal” indexes.</p>
+<p>Other components of the URI besides the scheme and query string are ignored.</p>
+<p>If the “skip_seed_phrase_validation” argument, as defined in
+<a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/constant.SKIP_SEED_PHRASE_VALIDATION_ARG.html" title="constant solana_clap_utils::keypair::SKIP_SEED_PHRASE_VALIDATION_ARG">SKIP_SEED_PHRASE_VALIDATION_ARG</a> is found in <code>matches</code>, then the keypair
+seed will be generated directly from the seed phrase, without parsing or
+validating it as a BIP39 seed phrase. This allows the use of non-BIP39 seed
+phrases.</p>
+</li>
+<li>
+<p><code>usb:</code> — Use a USB hardware device as the signer. In this case, the
+URI host indicates the device type, and is required. The only currently valid host
+value is “ledger”.</p>
+<p>Optionally, the first segment of the URI path indicates the base-58
+encoded pubkey of the wallet, and the “account” and “change” indices of
+the derivation path can be specified with the <code>key=</code> query parameter, as
+with the <code>prompt:</code> URI.</p>
+<p>Examples:</p>
+<ul>
+<li><code>usb://ledger</code></li>
+<li><code>usb://ledger?key=0/0</code></li>
+<li><code>usb://ledger/9rPVSygg3brqghvdZ6wsL2i5YNQTGhXGdJzF65YxaCQd</code></li>
+<li><code>usb://ledger/9rPVSygg3brqghvdZ6wsL2i5YNQTGhXGdJzF65YxaCQd?key=0/0</code></li>
+</ul>
+</li>
+</ul>
+<p>Next the <code>path</code> argument may be one of the following strings:</p>
+<ul>
+<li>
+<p><code>-</code> — Read the keypair from stdin. This is the same as the <code>stdin:</code>
+URI scheme.</p>
+</li>
+<li>
+<p><code>ASK</code> — The user will be prompted at the command line for their seed
+phrase and passphrase. <em>This uses a legacy key derivation method and should
+usually be avoided in favor of <code>prompt:</code>.</em></p>
+</li>
+</ul>
+<p>Next, if the <code>path</code> argument parses as a base-58 public key, then the signer
+is created without a private key, but with presigned signatures, each parsed
+from the additional command line arguments, provided by the <code>matches</code>
+argument.</p>
+<p>In this case, the remaining command line arguments are searched for clap
+arguments named “signer”, as defined by <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/offline/constant.SIGNER_ARG.html" title="constant solana_clap_utils::offline::SIGNER_ARG">SIGNER_ARG</a>, and each is parsed as
+a key-value pair of the form “pubkey=signature”, where <code>pubkey</code> is the same
+base-58 public key, and <code>signature</code> is a serialized signature produced by
+the corresponding keypair. One of the “signer” signatures must be for the
+pubkey specified in <code>path</code> or this function will return an error; unless the
+“sign_only” clap argument, as defined by <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/offline/constant.SIGN_ONLY_ARG.html" title="constant solana_clap_utils::offline::SIGN_ONLY_ARG">SIGN_ONLY_ARG</a>, is present in
+<code>matches</code>, in which case the signer will be created with no associated
+signatures.</p>
+<p>Finally, if <code>path</code>, interpreted as a file path, represents a file on disk,
+then the signer is created by reading that file as a JSON-serialized
+keypair. This is the same as the <code>file:</code> URI scheme.</p>
+<h2 id="examples"><a class="doc-anchor" href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/keypair/fn.signer_from_path.html#examples">§</a>Examples</h2>
+<p>This shows a reasonable way to set up clap to parse all possible signer
+sources. Note the use of the <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/offline/trait.OfflineArgs.html#tymethod.offline_args" title="method solana_clap_utils::offline::OfflineArgs::offline_args"><code>OfflineArgs::offline_args</code></a> method to add
+correct clap definitions of the <code>--signer</code> and <code>--sign-only</code> arguments, as
+required by the base-58 pubkey offline signing method.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::{App, Arg, value_t_or_exit};
+<span class="kw">use </span>solana_clap_utils::keypair::signer_from_path;
+<span class="kw">use </span>solana_clap_utils::offline::OfflineArgs;
+
+<span class="kw">let </span>clap_app = App::new(<span class="string">"my-program"</span>)
+    <span class="comment">// The argument we'll parse as a signer "path"
+    </span>.arg(Arg::with_name(<span class="string">"keypair"</span>)
+        .required(<span class="bool-val">true</span>)
+        .help(<span class="string">"The default signer"</span>))
+    .offline_args();
+
+<span class="kw">let </span>clap_matches = clap_app.get_matches();
+<span class="kw">let </span>keypair_str = <span class="macro">value_t_or_exit!</span>(clap_matches, <span class="string">"keypair"</span>, String);
+<span class="kw">let </span><span class="kw-2">mut </span>wallet_manager = <span class="prelude-val">None</span>;
+<span class="kw">let </span>signer = signer_from_path(
+    <span class="kw-2">&amp;</span>clap_matches,
+    <span class="kw-2">&amp;</span>keypair_str,
+    <span class="string">"keypair"</span>,
+    <span class="kw-2">&amp;mut </span>wallet_manager,
+)<span class="question-mark">?</span>;</code></pre></div>
+</div></details></section></div></main></div></body></html>

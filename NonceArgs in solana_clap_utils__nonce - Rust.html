@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<!-- saved from url=(0085)https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html -->
+<html lang="en" data-theme="dark" data-docs-rs-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `NonceArgs` trait in crate `solana_clap_utils`."><title>NonceArgs in solana_clap_utils::nonce - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="/-/rustdoc.static/${f}">`).join(""))</script><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceSerif4-Regular-6b053e98.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Italic-81dc35de.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Regular-0fe48ade.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-MediumItalic-ccf7e434.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Medium-e1aa3f0a.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Regular-8badfe75.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Semibold-aa29a496.ttf.woff2"><link rel="stylesheet" href="./NonceArgs in solana_clap_utils__nonce - Rust_files/normalize-9960930a.css"><link rel="stylesheet" href="./NonceArgs in solana_clap_utils__nonce - Rust_files/vendored.css" media="all"><link rel="stylesheet" href="./NonceArgs in solana_clap_utils__nonce - Rust_files/rustdoc-aa0817cf.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="/-/rustdoc.static/" data-current-crate="solana_clap_utils" data-themes="" data-resource-suffix="-20250703-1.90.0-nightly-da58c0513" data-rustdoc-version="1.90.0-nightly (da58c0513 2025-07-03)" data-channel="nightly" data-search-js="search-179e01a3.js" data-settings-js="settings-5514c975.js"><script src="./NonceArgs in solana_clap_utils__nonce - Rust_files/storage-4e99c027.js.Без названия"></script><script defer="" src="./NonceArgs in solana_clap_utils__nonce - Rust_files/sidebar-items-20250703-1.90.0-nightly-da58c0513.js.Без названия"></script><script defer="" src="./NonceArgs in solana_clap_utils__nonce - Rust_files/main-673ee1e0.js.Без названия"></script><noscript><link rel="stylesheet" href="/-/rustdoc.static/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="https://docs.rs/-/rustdoc.static/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="https://docs.rs/-/rustdoc.static/favicon-044be391.svg"><link rel="stylesheet" href="./NonceArgs in solana_clap_utils__nonce - Rust_files/rustdoc-2021-12-05.css" media="all"><link rel="stylesheet" href="./NonceArgs in solana_clap_utils__nonce - Rust_files/font-awesome.css" media="all">
+
+        <link rel="search" href="https://docs.rs/-/static/opensearch.xml" type="application/opensearchdescription+xml" title="Docs.rs">
+
+        <script type="text/javascript">(function() {
+    function applyTheme(theme) {
+        if (theme) {
+            document.documentElement.dataset.docsRsTheme = theme;
+        }
+    }
+
+    window.addEventListener("storage", ev => {
+        if (ev.key === "rustdoc-theme") {
+            applyTheme(ev.newValue);
+        }
+    });
+
+    // see ./storage-change-detection.html for details
+    window.addEventListener("message", ev => {
+        if (ev.data && ev.data.storage && ev.data.storage.key === "rustdoc-theme") {
+            applyTheme(ev.data.storage.value);
+        }
+    });
+
+    applyTheme(window.localStorage.getItem("rustdoc-theme"));
+})();</script></head><div style="display: none; position: fixed; width: 100%; height: 100%; z-index: 1;"></div><body class="rustdoc-page">
+<div class="nav-container">
+    <div class="container">
+        <div class="pure-menu pure-menu-horizontal" role="navigation" aria-label="Main navigation">
+            <form action="https://docs.rs/releases/search" method="GET" id="nav-search-form" class="landing-search-form-nav  ">
+
+                
+                <a href="https://docs.rs/" class="pure-menu-heading pure-menu-link docsrs-logo" aria-label="Docs.rs">
+                    <span title="Docs.rs"><span class="fa fa-solid fa-cubes " aria-hidden="true"></span></span>
+                    <span class="title">Docs.rs</span>
+                </a><ul class="pure-menu-list">
+    <script id="crate-metadata" type="application/json">
+        
+        {
+            "name": "solana-clap-utils",
+            "version": "2.3.3"
+        }
+    </script><li class="pure-menu-item pure-menu-has-children">
+            <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html#" class="pure-menu-link crate-name" title="Solana utilities for the clap" aria-haspopup="menu">
+                <span class="fa fa-solid fa-cube " aria-hidden="true"></span>
+                <span class="title">solana-clap-utils-2.3.3</span>
+            </a><div class="pure-menu-children package-details-menu" role="menu">
+                
+                <ul class="pure-menu-list menu-item-divided">
+                    <li class="pure-menu-heading" id="crate-title">
+                        solana-clap-utils 2.3.3
+                        <span id="clipboard" class="svg-clipboard" title="Copy crate name and version information"></span>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/solana-clap-utils/2.3.3/solana_clap_utils/nonce/trait.NonceArgs.html" class="pure-menu-link description" id="permalink" title="Get a link to this specific version">
+                            <span class="fa fa-solid fa-link " aria-hidden="true"></span> Permalink
+                        </a>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/crate/solana-clap-utils/latest" class="pure-menu-link description" title="See solana-clap-utils in docs.rs">
+                            <span class="fa fa-solid fa-cube " aria-hidden="true"></span> Docs.rs crate page
+                        </a>
+                    </li><li class="pure-menu-item">
+                            <span class="pure-menu-link description"><span class="fa fa-solid fa-scale-unbalanced-flip " aria-hidden="true"></span>
+                            <a href="https://spdx.org/licenses/Apache-2.0" class="pure-menu-sublink">Apache-2.0</a></span>
+                        </li></ul>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Links</li>
+
+                            <li class="pure-menu-item">
+                                    <a href="https://anza.xyz/" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-house " aria-hidden="true"></span> Homepage
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                    <a href="https://github.com/anza-xyz/agave" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-code-branch " aria-hidden="true"></span> Repository
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                <a href="https://crates.io/crates/solana-clap-utils" class="pure-menu-link" title="See solana-clap-utils in crates.io">
+                                    <span class="fa fa-solid fa-cube " aria-hidden="true"></span> crates.io
+                                </a>
+                            </li>
+
+                            
+                            <li class="pure-menu-item">
+                                <a href="https://docs.rs/crate/solana-clap-utils/latest/source/" title="Browse source of solana-clap-utils-2.3.3" class="pure-menu-link">
+                                    <span class="fa fa-solid fa-folder-open " aria-hidden="true"></span> Source
+                                </a>
+                            </li>
+                        </ul>
+                    </div><div class="pure-u-1-2">
+                        <ul class="pure-menu-list" id="topbar-owners">
+                            <li class="pure-menu-heading">Owners</li><li class="pure-menu-item">
+                                    <a href="https://crates.io/users/anza-team" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> anza-team
+                                    </a>
+                                </li></ul>
+                    </div>
+                </div>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Dependencies</li>
+
+                            
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" tabindex="-1">
+                                    <ul class="pure-menu-list">
+                                        
+    <li class="pure-menu-item"><a href="https://docs.rs/chrono/%5E0.4.41" class="pure-menu-link">
+                        chrono ^0.4.41
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/clap/%5E2.33.0" class="pure-menu-link">
+                        clap ^2.33.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/rpassword/%5E7.4" class="pure-menu-link">
+                        rpassword ^7.4
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-clock/%5E2.2.2" class="pure-menu-link">
+                        solana-clock ^2.2.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-cluster-type/%5E2.2.1" class="pure-menu-link">
+                        solana-cluster-type ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-commitment-config/%5E2.2.1" class="pure-menu-link">
+                        solana-commitment-config ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-derivation-path/%5E2.2.1" class="pure-menu-link">
+                        solana-derivation-path ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-hash/%5E2.3.0" class="pure-menu-link">
+                        solana-hash ^2.3.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-keypair/%5E2.2.1" class="pure-menu-link">
+                        solana-keypair ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-message/%5E2.4.0" class="pure-menu-link">
+                        solana-message ^2.4.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-native-token/%5E2.2.2" class="pure-menu-link">
+                        solana-native-token ^2.2.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-presigner/%5E2.2.1" class="pure-menu-link">
+                        solana-presigner ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-pubkey/%5E2.4.0" class="pure-menu-link">
+                        solana-pubkey ^2.4.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-remote-wallet/=2.3.3" class="pure-menu-link">
+                        solana-remote-wallet =2.3.3
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-seed-phrase/%5E2.2.1" class="pure-menu-link">
+                        solana-seed-phrase ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-signature/%5E2.3.0" class="pure-menu-link">
+                        solana-signature ^2.3.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-signer/%5E2.2.1" class="pure-menu-link">
+                        solana-signer ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/thiserror/%5E2.0.12" class="pure-menu-link">
+                        thiserror ^2.0.12
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/tiny-bip39/%5E0.8.2" class="pure-menu-link">
+                        tiny-bip39 ^0.8.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/uriparse/%5E0.6.4" class="pure-menu-link">
+                        uriparse ^0.6.4
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/url/%5E2.5.4" class="pure-menu-link">
+                        url ^2.5.4
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/assert_matches/%5E1.5.0" class="pure-menu-link">
+                        assert_matches ^1.5.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-pubkey/%5E2.4.0" class="pure-menu-link">
+                        solana-pubkey ^2.4.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-system-interface/%5E1.0" class="pure-menu-link">
+                        solana-system-interface ^1.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/tempfile/%5E3.20.0" class="pure-menu-link">
+                        tempfile ^3.20.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pure-u-1-2">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Versions</li>
+
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" id="releases-list" tabindex="-1" data-url="/crate/solana-clap-utils/latest/menus/releases/x86_64-unknown-linux-gnu/solana_clap_utils/nonce/trait.NonceArgs.html">
+                                    <span class="rotate"><span class="fa fa-solid fa-spinner " aria-hidden="true"></span></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                    
+                    
+                    <div class="pure-g">
+                        <div class="pure-u-1">
+                            <ul class="pure-menu-list">
+                                <li>
+                                    <a href="https://docs.rs/crate/solana-clap-utils/latest" class="pure-menu-link">
+                                        <b>14.73%</b>
+                                        of the crate is documented
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div></div>
+        </li><li class="pure-menu-item pure-menu-has-children">
+                <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html#" class="pure-menu-link" aria-label="Platform" aria-haspopup="menu">
+                    <span class="fa fa-solid fa-gears " aria-hidden="true"></span>
+                    <span class="title">Platform</span>
+                </a>
+
+                
+                <ul class="pure-menu-children" id="platforms" data-url="/crate/solana-clap-utils/latest/menus/platforms/x86_64-unknown-linux-gnu/solana_clap_utils/nonce/trait.NonceArgs.html" role="menu"><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/solana-clap-utils/latest/target-redirect/x86_64-unknown-linux-gnu/solana_clap_utils/nonce/trait.NonceArgs.html" class="pure-menu-link current" data-fragment="retain" rel="nofollow">x86_64-unknown-linux-gnu</a>
+        </li></ul>
+            </li><li class="pure-menu-item">
+                <a href="https://docs.rs/crate/solana-clap-utils/latest/features" title="Browse available feature flags of solana-clap-utils-2.3.3" class="pure-menu-link">
+                    <span class="fa fa-solid fa-flag " aria-hidden="true"></span>
+                    <span class="title">Feature flags</span>
+                </a>
+            </li>
+        
+    
+</ul><div class="spacer"></div>
+                
+                
+
+<ul class="pure-menu-list">
+                    <li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html#" class="pure-menu-link" aria-label="docs.rs" aria-haspopup="menu">docs.rs</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://docs.rs/about">
+            About docs.rs
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://foundation.rust-lang.org/policies/privacy-policy/#docs.rs" target="_blank">
+            Privacy policy
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="pure-menu-list"><li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html#" class="pure-menu-link" aria-label="Rust" aria-haspopup="menu">Rust</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://www.rust-lang.org/" target="_blank">
+            Rust website
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/book/" target="_blank">
+            The Book
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/std/" target="_blank">
+            Standard Library API Reference
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/rust-by-example/" target="_blank">
+            Rust by Example
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/cargo/guide/" target="_blank">
+            The Cargo Guide
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/nightly/clippy" target="_blank">
+            Clippy Documentation
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div id="search-input-nav">
+                    <label for="nav-search">
+                        <span class="fa fa-solid fa-magnifying-glass " aria-hidden="true"></span>
+                    </label>
+
+                    
+                    
+                    <input id="nav-search" name="query" type="text" aria-label="Find crate by search query" tabindex="-1" placeholder="Find crate">
+                </div>
+            </form>
+        </div>
+    </div>
+</div><div class="rustdoc trait container-rustdoc" id="rustdoc_body_wrapper" tabindex="-1"><script async="" src="./NonceArgs in solana_clap_utils__nonce - Rust_files/menu.js.Без названия"></script>
+<script async="" src="./NonceArgs in solana_clap_utils__nonce - Rust_files/index.js.Без названия"></script>
+
+<iframe src="./NonceArgs in solana_clap_utils__nonce - Rust_files/storage-change-detection.html" width="0" height="0" style="display: none"></iframe><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button><h2 class="location"><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html#">Nonce<wbr>Args</a></h2></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/index.html">solana_<wbr>clap_<wbr>utils</a><span class="version">2.3.3</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html#">Nonce<wbr>Args</a></h2><h3><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html#required-methods">Required Methods</a></h3><ul class="block"><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html#tymethod.nonce_args" title="nonce_args">nonce_args</a></li></ul><h3><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html#foreign-impls">Implementations on Foreign Types</a></h3><ul class="block"><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html#impl-NonceArgs-for-App%3C&#39;_,+&#39;_%3E" title="App&lt;&#39;_, &#39;_&gt;">App&lt;'_, '_&gt;</a></li></ul><h3><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/index.html">In solana_<wbr>clap_<wbr>utils::<wbr>nonce</a></h2><h3><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/index.html#constants">Constants</a></h3><ul class="block constant"><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/constant.NONCE_ARG.html">NONCE_ARG</a></li><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/constant.NONCE_AUTHORITY_ARG.html">NONCE_AUTHORITY_ARG</a></li></ul><h3><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/index.html#traits">Traits</a></h3><ul class="block trait"><li class="current"><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html">NonceArgs</a></li></ul><h3><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/index.html#functions">Functions</a></h3><ul class="block fn"><li><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/fn.nonce_authority_arg.html">nonce_authority_arg</a></li></ul></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search><nav class="sub">
+            <form class="search-form">
+                <span></span> <!-- This empty span is a hacky fix for Safari - See #93184 -->
+                <div id="sidebar-button" tabindex="-1">
+                    <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/all.html" title="show sidebar"></a>
+                </div>
+                <input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search">
+            </form>
+        </nav></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/index.html">solana_clap_utils</a>::<wbr><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/index.html">nonce</a></div><h1>Trait <span class="trait">NonceArgs</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar>
+        <div id="settings-menu" tabindex="-1">
+            <a href="https://docs.rs/solana-clap-utils/latest/settings.html"><span class="label">Settings</span></a>
+        </div>
+        <div id="help-button" tabindex="-1">
+            <a href="https://docs.rs/solana-clap-utils/latest/help.html"><span class="label">Help</span></a>
+        </div>
+        <button id="toggle-all-docs"><span class="label">Summary</span></button></rustdoc-toolbar><span class="sub-heading"><a class="src" href="https://docs.rs/solana-clap-utils/latest/src/solana_clap_utils/nonce.rs.html#40-42">Source</a> </span></div><pre class="rust item-decl"><code>pub trait NonceArgs {
+    // Required method
+    fn <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html#tymethod.nonce_args" class="fn">nonce_args</a>(self, global: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; Self;
+}</code></pre><h2 id="required-methods" class="section-header">Required Methods<a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html#required-methods" class="anchor">§</a></h2><div class="methods"><section id="tymethod.nonce_args" class="method"><a class="src rightside" href="https://docs.rs/solana-clap-utils/latest/src/solana_clap_utils/nonce.rs.html#41">Source</a><h4 class="code-header">fn <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html#tymethod.nonce_args" class="fn">nonce_args</a>(self, global: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; Self</h4></section></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="foreign-impls" class="section-header">Implementations on Foreign Types<a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html#foreign-impls" class="anchor">§</a></h2><details class="toggle implementors-toggle"><summary><section id="impl-NonceArgs-for-App%3C&#39;_,+&#39;_%3E" class="impl"><a class="src rightside" href="https://docs.rs/solana-clap-utils/latest/src/solana_clap_utils/nonce.rs.html#44-52">Source</a><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html#impl-NonceArgs-for-App%3C&#39;_,+&#39;_%3E" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html" title="trait solana_clap_utils::nonce::NonceArgs">NonceArgs</a> for <a class="struct" href="https://docs.rs/clap/2.33.3/x86_64-unknown-linux-gnu/clap/app/struct.App.html" title="struct clap::app::App">App</a>&lt;'_, '_&gt;</h3></section></summary><div class="impl-items"><section id="method.nonce_args" class="method trait-impl"><a class="src rightside" href="https://docs.rs/solana-clap-utils/latest/src/solana_clap_utils/nonce.rs.html#45-51">Source</a><a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html#method.nonce_args" class="anchor">§</a><h4 class="code-header">fn <a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html#tymethod.nonce_args" class="fn">nonce_args</a>(self, global: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; Self</h4></section></div></details><h2 id="implementors" class="section-header">Implementors<a href="https://docs.rs/solana-clap-utils/latest/solana_clap_utils/nonce/trait.NonceArgs.html#implementors" class="anchor">§</a></h2><div id="implementors-list"></div><script src="./NonceArgs in solana_clap_utils__nonce - Rust_files/trait.NonceArgs.js.Без названия" data-ignore-extern-crates="clap" async=""></script></section></div></main></div></body></html>

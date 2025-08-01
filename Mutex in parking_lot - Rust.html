@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html -->
+<html lang="en" data-theme="dark" data-docs-rs-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="A mutual exclusion primitive useful for protecting shared data"><title>Mutex in parking_lot - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="/-/rustdoc.static/${f}">`).join(""))</script><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceSerif4-Regular-6b053e98.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Italic-81dc35de.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Regular-0fe48ade.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-MediumItalic-ccf7e434.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Medium-e1aa3f0a.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Regular-8badfe75.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Semibold-aa29a496.ttf.woff2"><link rel="stylesheet" href="./Mutex in parking_lot - Rust_files/normalize-9960930a.css"><link rel="stylesheet" href="./Mutex in parking_lot - Rust_files/vendored.css" media="all"><link rel="stylesheet" href="./Mutex in parking_lot - Rust_files/rustdoc-0ce1a80b.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="/-/rustdoc.static/" data-current-crate="parking_lot" data-themes="" data-resource-suffix="-20250511-1.89.0-nightly-ce7e97f73" data-rustdoc-version="1.89.0-nightly (ce7e97f73 2025-05-11)" data-channel="nightly" data-search-js="search-f7877310.js" data-settings-js="settings-5514c975.js"><script src="./Mutex in parking_lot - Rust_files/storage-4e99c027.js.Без названия"></script><script defer="" src="./Mutex in parking_lot - Rust_files/sidebar-items-20250511-1.89.0-nightly-ce7e97f73.js.Без названия"></script><script defer="" src="./Mutex in parking_lot - Rust_files/main-7ef8a74a.js.Без названия"></script><noscript><link rel="stylesheet" href="/-/rustdoc.static/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="https://docs.rs/-/rustdoc.static/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="https://docs.rs/-/rustdoc.static/favicon-044be391.svg"><link rel="stylesheet" href="./Mutex in parking_lot - Rust_files/rustdoc-2021-12-05.css" media="all"><link rel="stylesheet" href="./Mutex in parking_lot - Rust_files/font-awesome.css" media="all">
+
+        <link rel="search" href="https://docs.rs/-/static/opensearch.xml" type="application/opensearchdescription+xml" title="Docs.rs">
+
+        <script type="text/javascript">(function() {
+    function applyTheme(theme) {
+        if (theme) {
+            document.documentElement.dataset.docsRsTheme = theme;
+        }
+    }
+
+    window.addEventListener("storage", ev => {
+        if (ev.key === "rustdoc-theme") {
+            applyTheme(ev.newValue);
+        }
+    });
+
+    // see ./storage-change-detection.html for details
+    window.addEventListener("message", ev => {
+        if (ev.data && ev.data.storage && ev.data.storage.key === "rustdoc-theme") {
+            applyTheme(ev.data.storage.value);
+        }
+    });
+
+    applyTheme(window.localStorage.getItem("rustdoc-theme"));
+})();</script></head><div style="display: none; position: fixed; width: 100%; height: 100%; z-index: 1;"></div><body class="rustdoc-page">
+<div class="nav-container">
+    <div class="container">
+        <div class="pure-menu pure-menu-horizontal" role="navigation" aria-label="Main navigation">
+            <form action="https://docs.rs/releases/search" method="GET" id="nav-search-form" class="landing-search-form-nav not-latest ">
+
+                
+                <a href="https://docs.rs/" class="pure-menu-heading pure-menu-link docsrs-logo" aria-label="Docs.rs">
+                    <span title="Docs.rs"><span class="fa fa-solid fa-cubes " aria-hidden="true"></span></span>
+                    <span class="title">Docs.rs</span>
+                </a><ul class="pure-menu-list">
+    <script id="crate-metadata" type="application/json">
+        
+        {
+            "name": "parking_lot",
+            "version": "0.12.3"
+        }
+    </script><li class="pure-menu-item pure-menu-has-children">
+            <a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#" class="pure-menu-link crate-name" title="More compact and efficient implementations of the standard synchronization primitives." aria-haspopup="menu">
+                <span class="fa fa-solid fa-cube " aria-hidden="true"></span>
+                <span class="title">parking_lot-0.12.3</span>
+            </a><div class="pure-menu-children package-details-menu" role="menu">
+                
+                <ul class="pure-menu-list menu-item-divided">
+                    <li class="pure-menu-heading" id="crate-title">
+                        parking_lot 0.12.3
+                        <span id="clipboard" class="svg-clipboard" title="Copy crate name and version information"></span>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/crate/parking_lot/0.12.3" class="pure-menu-link description" title="See parking_lot in docs.rs">
+                            <span class="fa fa-solid fa-cube " aria-hidden="true"></span> Docs.rs crate page
+                        </a>
+                    </li><li class="pure-menu-item">
+                            <span class="pure-menu-link description"><span class="fa fa-solid fa-scale-unbalanced-flip " aria-hidden="true"></span>
+                            <a href="https://spdx.org/licenses/MIT" class="pure-menu-sublink">MIT</a> OR <a href="https://spdx.org/licenses/Apache-2.0" class="pure-menu-sublink">Apache-2.0</a></span>
+                        </li></ul>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Links</li>
+
+                            <li class="pure-menu-item">
+                                    <a href="https://github.com/Amanieu/parking_lot" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-code-branch " aria-hidden="true"></span> Repository
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                <a href="https://crates.io/crates/parking_lot" class="pure-menu-link" title="See parking_lot in crates.io">
+                                    <span class="fa fa-solid fa-cube " aria-hidden="true"></span> crates.io
+                                </a>
+                            </li>
+
+                            
+                            <li class="pure-menu-item">
+                                <a href="https://docs.rs/crate/parking_lot/0.12.3/source/" title="Browse source of parking_lot-0.12.3" class="pure-menu-link">
+                                    <span class="fa fa-solid fa-folder-open " aria-hidden="true"></span> Source
+                                </a>
+                            </li>
+                        </ul>
+                    </div><div class="pure-u-1-2">
+                        <ul class="pure-menu-list" id="topbar-owners">
+                            <li class="pure-menu-heading">Owners</li><li class="pure-menu-item">
+                                    <a href="https://crates.io/users/Amanieu" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> Amanieu
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                    <a href="https://crates.io/users/faern" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> faern
+                                    </a>
+                                </li></ul>
+                    </div>
+                </div>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Dependencies</li>
+
+                            
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" tabindex="-1">
+                                    <ul class="pure-menu-list">
+                                        
+    <li class="pure-menu-item"><a href="https://docs.rs/lock_api/%5E0.4.6" class="pure-menu-link">
+                        lock_api ^0.4.6
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/parking_lot_core/%5E0.9.0" class="pure-menu-link">
+                        parking_lot_core ^0.9.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/bincode/%5E1.3.3" class="pure-menu-link">
+                        bincode ^1.3.3
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/rand/%5E0.8.3" class="pure-menu-link">
+                        rand ^0.8.3
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pure-u-1-2">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Versions</li>
+
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" id="releases-list" tabindex="-1" data-url="/crate/parking_lot/0.12.3/menus/releases/x86_64-unknown-linux-gnu/parking_lot/type.Mutex.html">
+                                    <span class="rotate"><span class="fa fa-solid fa-spinner " aria-hidden="true"></span></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                    
+                    
+                    <div class="pure-g">
+                        <div class="pure-u-1">
+                            <ul class="pure-menu-list">
+                                <li>
+                                    <a href="https://docs.rs/crate/parking_lot/0.12.3" class="pure-menu-link">
+                                        <b>100%</b>
+                                        of the crate is documented
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div></div>
+        </li>
+        <li class="pure-menu-item">
+            <a href="https://docs.rs/crate/parking_lot/latest/target-redirect/x86_64-unknown-linux-gnu/parking_lot/type.Mutex.html" class="pure-menu-link warn" data-fragment="retain" title="You are seeing an outdated version of the parking_lot crate. Click here to go to the latest version.">
+                <span class="fa fa-solid fa-triangle-exclamation " aria-hidden="true"></span>
+                <span class="title">Go to latest version</span>
+            </a>
+        </li><li class="pure-menu-item pure-menu-has-children">
+                <a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#" class="pure-menu-link" aria-label="Platform" aria-haspopup="menu">
+                    <span class="fa fa-solid fa-gears " aria-hidden="true"></span>
+                    <span class="title">Platform</span>
+                </a>
+
+                
+                <ul class="pure-menu-children" id="platforms" data-url="/crate/parking_lot/0.12.3/menus/platforms/x86_64-unknown-linux-gnu/parking_lot/type.Mutex.html" role="menu"><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/parking_lot/0.12.3/target-redirect/i686-pc-windows-msvc/parking_lot/type.Mutex.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">i686-pc-windows-msvc</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/parking_lot/0.12.3/target-redirect/i686-unknown-linux-gnu/parking_lot/type.Mutex.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">i686-unknown-linux-gnu</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/parking_lot/0.12.3/target-redirect/x86_64-apple-darwin/parking_lot/type.Mutex.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">x86_64-apple-darwin</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/parking_lot/0.12.3/target-redirect/x86_64-pc-windows-msvc/parking_lot/type.Mutex.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">x86_64-pc-windows-msvc</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/parking_lot/0.12.3/target-redirect/x86_64-unknown-linux-gnu/parking_lot/type.Mutex.html" class="pure-menu-link current" data-fragment="retain" rel="nofollow">x86_64-unknown-linux-gnu</a>
+        </li></ul>
+            </li><li class="pure-menu-item">
+                <a href="https://docs.rs/crate/parking_lot/0.12.3/features" title="Browse available feature flags of parking_lot-0.12.3" class="pure-menu-link">
+                    <span class="fa fa-solid fa-flag " aria-hidden="true"></span>
+                    <span class="title">Feature flags</span>
+                </a>
+            </li>
+        
+    
+</ul><div class="spacer"></div>
+                
+                
+
+<ul class="pure-menu-list">
+                    <li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#" class="pure-menu-link" aria-label="docs.rs" aria-haspopup="menu">docs.rs</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://docs.rs/about">
+            About docs.rs
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://foundation.rust-lang.org/policies/privacy-policy/#docs.rs" target="_blank">
+            Privacy policy
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="pure-menu-list"><li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#" class="pure-menu-link" aria-label="Rust" aria-haspopup="menu">Rust</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://www.rust-lang.org/" target="_blank">
+            Rust website
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/book/" target="_blank">
+            The Book
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/std/" target="_blank">
+            Standard Library API Reference
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/rust-by-example/" target="_blank">
+            Rust by Example
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/cargo/guide/" target="_blank">
+            The Cargo Guide
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/nightly/clippy" target="_blank">
+            Clippy Documentation
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div id="search-input-nav">
+                    <label for="nav-search">
+                        <span class="fa fa-solid fa-magnifying-glass " aria-hidden="true"></span>
+                    </label>
+
+                    
+                    
+                    <input id="nav-search" name="query" type="text" aria-label="Find crate by search query" tabindex="-1" placeholder="Find crate">
+                </div>
+            </form>
+        </div>
+    </div>
+</div><div class="rustdoc type container-rustdoc" id="rustdoc_body_wrapper" tabindex="-1"><script async="" src="./Mutex in parking_lot - Rust_files/menu.js.Без названия"></script>
+<script async="" src="./Mutex in parking_lot - Rust_files/index.js.Без названия"></script>
+
+<iframe src="./Mutex in parking_lot - Rust_files/storage-change-detection.html" width="0" height="0" style="display: none"></iframe><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button><h2 class="location"><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#">Mutex</a></h2></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/index.html">parking_<wbr>lot</a><span class="version">0.12.3</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#">Mutex</a></h2><h3><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#">Sections</a></h3><ul class="block top-toc"><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#fairness" title="Fairness">Fairness</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#differences-from-the-standard-library-mutex" title="Differences from the standard library `Mutex`">Differences from the standard library <code>Mutex</code></a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#examples" title="Examples">Examples</a></li></ul><h3><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#aliased-type">Aliased Type</a></h3><h3><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#implementations">Methods</a></h3><ul class="block method"><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.const_new">const_new</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.data_ptr">data_ptr</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.force_unlock">force_unlock</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.force_unlock_fair">force_unlock_fair</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.from_raw">from_raw</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.get_mut">get_mut</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.into_inner">into_inner</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.is_locked">is_locked</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.lock">lock</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.lock_arc">lock_arc</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.make_guard_unchecked">make_guard_unchecked</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.new">new</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.raw">raw</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.try_lock">try_lock</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.try_lock_arc">try_lock_arc</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.try_lock_arc_for">try_lock_arc_for</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.try_lock_arc_until">try_lock_arc_until</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.try_lock_for">try_lock_for</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.try_lock_until">try_lock_until</a></li></ul><h3><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#trait-implementations">Trait Implementations</a></h3><ul class="block trait-implementation"><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#impl-Debug-for-Mutex%3CR,+T%3E">Debug</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#impl-Default-for-Mutex%3CR,+T%3E">Default</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#impl-Deserialize%3C&#39;de%3E-for-Mutex%3CR,+T%3E">Deserialize&lt;'de&gt;</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#impl-From%3CT%3E-for-Mutex%3CR,+T%3E">From&lt;T&gt;</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#impl-Send-for-Mutex%3CR,+T%3E">Send</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#impl-Serialize-for-Mutex%3CR,+T%3E">Serialize</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#impl-Sync-for-Mutex%3CR,+T%3E">Sync</a></li></ul></section><div id="rustdoc-modnav"><h2 class="in-crate"><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/index.html">In crate parking_<wbr>lot</a></h2><h3><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/index.html#modules">Modules</a></h3><ul class="block mod"><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/deadlock/index.html">deadlock</a></li></ul><h3><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/index.html#structs">Structs</a></h3><ul class="block struct"><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/struct.ArcMutexGuard.html">ArcMutexGuard</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/struct.ArcReentrantMutexGuard.html">ArcReentrantMutexGuard</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/struct.ArcRwLockReadGuard.html">ArcRwLockReadGuard</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/struct.ArcRwLockUpgradableReadGuard.html">ArcRwLockUpgradableReadGuard</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/struct.ArcRwLockWriteGuard.html">ArcRwLockWriteGuard</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/struct.Condvar.html">Condvar</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/struct.Once.html">Once</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/struct.RawFairMutex.html">RawFairMutex</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/struct.RawMutex.html">RawMutex</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/struct.RawRwLock.html">RawRwLock</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/struct.RawThreadId.html">RawThreadId</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/struct.WaitTimeoutResult.html">WaitTimeoutResult</a></li></ul><h3><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/index.html#enums">Enums</a></h3><ul class="block enum"><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/enum.OnceState.html">OnceState</a></li></ul><h3><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/index.html#functions">Functions</a></h3><ul class="block fn"><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/fn.const_fair_mutex.html">const_fair_mutex</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/fn.const_mutex.html">const_mutex</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/fn.const_reentrant_mutex.html">const_reentrant_mutex</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/fn.const_rwlock.html">const_rwlock</a></li></ul><h3><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/index.html#types">Type Aliases</a></h3><ul class="block type"><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.FairMutex.html">FairMutex</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.FairMutexGuard.html">FairMutexGuard</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.MappedFairMutexGuard.html">MappedFairMutexGuard</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.MappedMutexGuard.html">MappedMutexGuard</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.MappedReentrantMutexGuard.html">MappedReentrantMutexGuard</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.MappedRwLockReadGuard.html">MappedRwLockReadGuard</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.MappedRwLockWriteGuard.html">MappedRwLockWriteGuard</a></li><li class="current"><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html">Mutex</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.MutexGuard.html">MutexGuard</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.ReentrantMutex.html">ReentrantMutex</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.ReentrantMutexGuard.html">ReentrantMutexGuard</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.RwLock.html">RwLock</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.RwLockReadGuard.html">RwLockReadGuard</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.RwLockUpgradableReadGuard.html">RwLockUpgradableReadGuard</a></li><li><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.RwLockWriteGuard.html">RwLockWriteGuard</a></li></ul></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search><nav class="sub">
+            <form class="search-form">
+                <span></span> <!-- This empty span is a hacky fix for Safari - See #93184 -->
+                <div id="sidebar-button" tabindex="-1">
+                    <a href="https://docs.rs/parking_lot/0.12.3/parking_lot/all.html" title="show sidebar"></a>
+                </div>
+                <input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search">
+            </form>
+        </nav></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/index.html">parking_lot</a></div><h1>Type Alias <span class="type">Mutex</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar>
+        <div id="settings-menu" tabindex="-1">
+            <a href="https://docs.rs/parking_lot/0.12.3/settings.html"><span class="label">Settings</span></a>
+        </div>
+        <div id="help-button" tabindex="-1">
+            <a href="https://docs.rs/parking_lot/0.12.3/help.html"><span class="label">Help</span></a>
+        </div>
+        <button id="toggle-all-docs"><span class="label">Summary</span></button></rustdoc-toolbar><span class="sub-heading"><a class="src" href="https://docs.rs/parking_lot/0.12.3/src/parking_lot/mutex.rs.html#86">Source</a> </span></div><pre class="rust item-decl"><code>pub type Mutex&lt;T&gt; = <a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;<a class="struct" href="https://docs.rs/parking_lot/0.12.3/parking_lot/struct.RawMutex.html" title="struct parking_lot::RawMutex">RawMutex</a>, T&gt;;</code></pre><details class="toggle top-doc" open=""><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>A mutual exclusion primitive useful for protecting shared data</p>
+<p>This mutex will block threads waiting for the lock to become available. The
+mutex can be statically initialized or created by the <code>new</code>
+constructor. Each mutex has a type parameter which represents the data that
+it is protecting. The data can only be accessed through the RAII guards
+returned from <code>lock</code> and <code>try_lock</code>, which guarantees that the data is only
+ever accessed when the mutex is locked.</p>
+<h2 id="fairness"><a class="doc-anchor" href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#fairness">§</a>Fairness</h2>
+<p>A typical unfair lock can often end up in a situation where a single thread
+quickly acquires and releases the same mutex in succession, which can starve
+other threads waiting to acquire the mutex. While this improves throughput
+because it doesn’t force a context switch when a thread tries to re-acquire
+a mutex it has just released, this can starve other threads.</p>
+<p>This mutex uses <a href="https://trac.webkit.org/changeset/203350">eventual fairness</a>
+to ensure that the lock will be fair on average without sacrificing
+throughput. This is done by forcing a fair unlock on average every 0.5ms,
+which will force the lock to go to the next thread waiting for the mutex.</p>
+<p>Additionally, any critical section longer than 1ms will always use a fair
+unlock, which has a negligible impact on throughput considering the length
+of the critical section.</p>
+<p>You can also force a fair unlock by calling <code>MutexGuard::unlock_fair</code> when
+unlocking a mutex instead of simply dropping the <code>MutexGuard</code>.</p>
+<h2 id="differences-from-the-standard-library-mutex"><a class="doc-anchor" href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#differences-from-the-standard-library-mutex">§</a>Differences from the standard library <code>Mutex</code></h2>
+<ul>
+<li>No poisoning, the lock is released normally on panic.</li>
+<li>Only requires 1 byte of space, whereas the standard library boxes the
+<code>Mutex</code> due to platform limitations.</li>
+<li>Can be statically constructed.</li>
+<li>Does not require any drop glue when dropped.</li>
+<li>Inline fast path for the uncontended case.</li>
+<li>Efficient handling of micro-contention using adaptive spinning.</li>
+<li>Allows raw locking &amp; unlocking without a guard.</li>
+<li>Supports eventual fairness so that the mutex is fair on average.</li>
+<li>Optionally allows making the mutex fair by calling <code>MutexGuard::unlock_fair</code>.</li>
+</ul>
+<h2 id="examples"><a class="doc-anchor" href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#examples">§</a>Examples</h2>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>parking_lot::Mutex;
+<span class="kw">use </span>std::sync::{Arc, mpsc::channel};
+<span class="kw">use </span>std::thread;
+
+<span class="kw">const </span>N: usize = <span class="number">10</span>;
+
+<span class="comment">// Spawn a few threads to increment a shared variable (non-atomically), and
+// let the main thread know once all increments are done.
+//
+// Here we're using an Arc to share memory among threads, and the data inside
+// the Arc is protected with a mutex.
+</span><span class="kw">let </span>data = Arc::new(Mutex::new(<span class="number">0</span>));
+
+<span class="kw">let </span>(tx, rx) = channel();
+<span class="kw">for _ in </span><span class="number">0</span>..<span class="number">10 </span>{
+    <span class="kw">let </span>(data, tx) = (Arc::clone(<span class="kw-2">&amp;</span>data), tx.clone());
+    thread::spawn(<span class="kw">move </span>|| {
+        <span class="comment">// The shared state can only be accessed once the lock is held.
+        // Our non-atomic increment is safe because we're the only thread
+        // which can access the shared state when the lock is held.
+        </span><span class="kw">let </span><span class="kw-2">mut </span>data = data.lock();
+        <span class="kw-2">*</span>data += <span class="number">1</span>;
+        <span class="kw">if </span><span class="kw-2">*</span>data == N {
+            tx.send(()).unwrap();
+        }
+        <span class="comment">// the lock is unlocked here when `data` goes out of scope.
+    </span>});
+}
+
+rx.recv().unwrap();</code></pre></div>
+</div></details><h2 id="aliased-type" class="section-header">Aliased Type<a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#aliased-type" class="anchor">§</a></h2><pre class="rust item-decl"><code>struct Mutex&lt;T&gt; { <span class="comment">/* private fields */</span> }</code></pre><script src="./Mutex in parking_lot - Rust_files/struct.Mutex.js.Без названия" data-self-path="parking_lot::mutex::Mutex" async=""></script><h2 id="implementations">Implementations</h2><div id="implementations-list"><details class="toggle implementors-toggle" open=""><summary><section id="impl-Mutex%3CR,+T%3E" class="impl"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#146">Source</a><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#impl-Mutex%3CR,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;R, T&gt; <a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;<div class="where">where
+    R: <a class="trait" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/trait.RawMutex.html" title="trait lock_api::mutex::RawMutex">RawMutex</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.new" class="method"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#150">Source</a><h4 class="code-header">pub const fn <a href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html#tymethod.new" class="fn">new</a>(val: T) -&gt; <a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;</h4></section></summary><div class="docblock"><p>Creates a new mutex in an unlocked state ready for use.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.into_inner" class="method"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#169">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html#tymethod.into_inner" class="fn">into_inner</a>(self) -&gt; T</h4></section></summary><div class="docblock"><p>Consumes this mutex, returning the underlying data.</p>
+</div></details></div></details><details class="toggle implementors-toggle" open=""><summary><section id="impl-Mutex%3CR,+T%3E-1" class="impl"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#174">Source</a><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#impl-Mutex%3CR,+T%3E-1" class="anchor">§</a><h3 class="code-header">impl&lt;R, T&gt; <a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.from_raw" class="method"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#177">Source</a><h4 class="code-header">pub const fn <a href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html#tymethod.from_raw" class="fn">from_raw</a>(raw_mutex: R, val: T) -&gt; <a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;</h4></section></summary><div class="docblock"><p>Creates a new mutex based on a pre-existing raw mutex.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.const_new" class="method"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#190">Source</a><h4 class="code-header">pub const fn <a href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html#tymethod.const_new" class="fn">const_new</a>(raw_mutex: R, val: T) -&gt; <a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;</h4></section></summary><div class="docblock"><p>Creates a new mutex based on a pre-existing raw mutex.</p>
+<p>This allows creating a mutex in a constant context on stable Rust.</p>
+<p>This method is a legacy alias for <a href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html#method.from_raw" title="associated function lock_api::mutex::Mutex::from_raw"><code>from_raw</code></a>.</p>
+</div></details></div></details><details class="toggle implementors-toggle" open=""><summary><section id="impl-Mutex%3CR,+T%3E-1" class="impl"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#195">Source</a><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#impl-Mutex%3CR,+T%3E-1" class="anchor">§</a><h3 class="code-header">impl&lt;R, T&gt; <a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;<div class="where">where
+    R: <a class="trait" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/trait.RawMutex.html" title="trait lock_api::mutex::RawMutex">RawMutex</a>,
+    T: ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.make_guard_unchecked" class="method"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#205">Source</a><h4 class="code-header">pub unsafe fn <a href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html#tymethod.make_guard_unchecked" class="fn">make_guard_unchecked</a>(&amp;self) -&gt; <a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.MutexGuard.html" title="struct lock_api::mutex::MutexGuard">MutexGuard</a>&lt;'_, R, T&gt;</h4></section></summary><div class="docblock"><p>Creates a new <code>MutexGuard</code> without checking if the mutex is locked.</p>
+<h5 id="safety"><a class="doc-anchor" href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#safety">§</a>Safety</h5>
+<p>This method must only be called if the thread logically holds the lock.</p>
+<p>Calling this function when a guard has already been produced is undefined behaviour unless
+the guard was forgotten with <code>mem::forget</code>.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.lock" class="method"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#222">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html#tymethod.lock" class="fn">lock</a>(&amp;self) -&gt; <a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.MutexGuard.html" title="struct lock_api::mutex::MutexGuard">MutexGuard</a>&lt;'_, R, T&gt;</h4></section></summary><div class="docblock"><p>Acquires a mutex, blocking the current thread until it is able to do so.</p>
+<p>This function will block the local thread until it is available to acquire
+the mutex. Upon returning, the thread is the only thread with the mutex
+held. An RAII guard is returned to allow scoped unlock of the lock. When
+the guard goes out of scope, the mutex will be unlocked.</p>
+<p>Attempts to lock a mutex in the thread which already holds the lock will
+result in a deadlock.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.try_lock" class="method"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#236">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html#tymethod.try_lock" class="fn">try_lock</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.MutexGuard.html" title="struct lock_api::mutex::MutexGuard">MutexGuard</a>&lt;'_, R, T&gt;&gt;</h4></section></summary><div class="docblock"><p>Attempts to acquire this lock.</p>
+<p>If the lock could not be acquired at this time, then <code>None</code> is returned.
+Otherwise, an RAII guard is returned. The lock will be unlocked when the
+guard is dropped.</p>
+<p>This function does not block.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.get_mut" class="method"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#250">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html#tymethod.get_mut" class="fn">get_mut</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut T</a></h4></section></summary><div class="docblock"><p>Returns a mutable reference to the underlying data.</p>
+<p>Since this call borrows the <code>Mutex</code> mutably, no actual locking needs to
+take place—the mutable borrow statically guarantees no locks exist.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.is_locked" class="method"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#256">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html#tymethod.is_locked" class="fn">is_locked</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Checks whether the mutex is currently locked.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.force_unlock" class="method"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#272">Source</a><h4 class="code-header">pub unsafe fn <a href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html#tymethod.force_unlock" class="fn">force_unlock</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Forcibly unlocks the mutex.</p>
+<p>This is useful when combined with <code>mem::forget</code> to hold a lock without
+the need to maintain a <code>MutexGuard</code> object alive, for example when
+dealing with FFI.</p>
+<h5 id="safety-1"><a class="doc-anchor" href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#safety-1">§</a>Safety</h5>
+<p>This method must only be called if the current thread logically owns a
+<code>MutexGuard</code> but that guard has been discarded using <code>mem::forget</code>.
+Behavior is undefined if a mutex is unlocked when not locked.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.raw" class="method"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#286">Source</a><h4 class="code-header">pub unsafe fn <a href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html#tymethod.raw" class="fn">raw</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;R</a></h4></section></summary><div class="docblock"><p>Returns the underlying raw mutex object.</p>
+<p>Note that you will most likely need to import the <code>RawMutex</code> trait from
+<code>lock_api</code> to be able to call functions on the raw mutex.</p>
+<h5 id="safety-2"><a class="doc-anchor" href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#safety-2">§</a>Safety</h5>
+<p>This method is unsafe because it allows unlocking a mutex while
+still holding a reference to a <code>MutexGuard</code>.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.data_ptr" class="method"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#302">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html#tymethod.data_ptr" class="fn">data_ptr</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*mut T</a></h4></section></summary><div class="docblock"><p>Returns a raw pointer to the underlying data.</p>
+<p>This is useful when combined with <code>mem::forget</code> to hold a lock without
+the need to maintain a <code>MutexGuard</code> object alive, for example when
+dealing with FFI.</p>
+<h5 id="safety-3"><a class="doc-anchor" href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#safety-3">§</a>Safety</h5>
+<p>You must ensure that there are no data races when dereferencing the
+returned pointer, for example if the current thread logically owns
+a <code>MutexGuard</code> but that guard has been discarded using <code>mem::forget</code>.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.lock_arc" class="method"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#329">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html#tymethod.lock_arc" class="fn">lock_arc</a>(self: &amp;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/sync/struct.Arc.html" title="struct alloc::sync::Arc">Arc</a>&lt;<a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;&gt;) -&gt; <a class="struct" href="https://docs.rs/parking_lot/0.12.3/parking_lot/struct.ArcMutexGuard.html" title="struct parking_lot::ArcMutexGuard">ArcMutexGuard</a>&lt;R, T&gt;</h4></section></summary><div class="docblock"><p>Acquires a lock through an <code>Arc</code>.</p>
+<p>This method is similar to the <code>lock</code> method; however, it requires the <code>Mutex</code> to be inside of an <code>Arc</code>
+and the resulting mutex guard has no lifetime requirements.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.try_lock_arc" class="method"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#341">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html#tymethod.try_lock_arc" class="fn">try_lock_arc</a>(self: &amp;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/sync/struct.Arc.html" title="struct alloc::sync::Arc">Arc</a>&lt;<a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://docs.rs/parking_lot/0.12.3/parking_lot/struct.ArcMutexGuard.html" title="struct parking_lot::ArcMutexGuard">ArcMutexGuard</a>&lt;R, T&gt;&gt;</h4></section></summary><div class="docblock"><p>Attempts to acquire a lock through an <code>Arc</code>.</p>
+<p>This method is similar to the <code>try_lock</code> method; however, it requires the <code>Mutex</code> to be inside of an
+<code>Arc</code> and the resulting mutex guard has no lifetime requirements.</p>
+</div></details></div></details><details class="toggle implementors-toggle" open=""><summary><section id="impl-Mutex%3CR,+T%3E-1" class="impl"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#351">Source</a><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#impl-Mutex%3CR,+T%3E-1" class="anchor">§</a><h3 class="code-header">impl&lt;R, T&gt; <a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;<div class="where">where
+    R: <a class="trait" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/trait.RawMutexFair.html" title="trait lock_api::mutex::RawMutexFair">RawMutexFair</a>,
+    T: ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.force_unlock_fair" class="method"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#364">Source</a><h4 class="code-header">pub unsafe fn <a href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html#tymethod.force_unlock_fair" class="fn">force_unlock_fair</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Forcibly unlocks the mutex using a fair unlock protocol.</p>
+<p>This is useful when combined with <code>mem::forget</code> to hold a lock without
+the need to maintain a <code>MutexGuard</code> object alive, for example when
+dealing with FFI.</p>
+<h5 id="safety-1"><a class="doc-anchor" href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#safety-1">§</a>Safety</h5>
+<p>This method must only be called if the current thread logically owns a
+<code>MutexGuard</code> but that guard has been discarded using <code>mem::forget</code>.
+Behavior is undefined if a mutex is unlocked when not locked.</p>
+</div></details></div></details><details class="toggle implementors-toggle" open=""><summary><section id="impl-Mutex%3CR,+T%3E-1" class="impl"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#369">Source</a><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#impl-Mutex%3CR,+T%3E-1" class="anchor">§</a><h3 class="code-header">impl&lt;R, T&gt; <a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;<div class="where">where
+    R: <a class="trait" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/trait.RawMutexTimed.html" title="trait lock_api::mutex::RawMutexTimed">RawMutexTimed</a>,
+    T: ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.try_lock_for" class="method"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#376">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html#tymethod.try_lock_for" class="fn">try_lock_for</a>(
+    &amp;self,
+    timeout: &lt;R as <a class="trait" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/trait.RawMutexTimed.html" title="trait lock_api::mutex::RawMutexTimed">RawMutexTimed</a>&gt;::<a class="associatedtype" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/trait.RawMutexTimed.html#associatedtype.Duration" title="type lock_api::mutex::RawMutexTimed::Duration">Duration</a>,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.MutexGuard.html" title="struct lock_api::mutex::MutexGuard">MutexGuard</a>&lt;'_, R, T&gt;&gt;</h4></section></summary><div class="docblock"><p>Attempts to acquire this lock until a timeout is reached.</p>
+<p>If the lock could not be acquired before the timeout expired, then
+<code>None</code> is returned. Otherwise, an RAII guard is returned. The lock will
+be unlocked when the guard is dropped.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.try_lock_until" class="method"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#391">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html#tymethod.try_lock_until" class="fn">try_lock_until</a>(
+    &amp;self,
+    timeout: &lt;R as <a class="trait" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/trait.RawMutexTimed.html" title="trait lock_api::mutex::RawMutexTimed">RawMutexTimed</a>&gt;::<a class="associatedtype" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/trait.RawMutexTimed.html#associatedtype.Instant" title="type lock_api::mutex::RawMutexTimed::Instant">Instant</a>,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.MutexGuard.html" title="struct lock_api::mutex::MutexGuard">MutexGuard</a>&lt;'_, R, T&gt;&gt;</h4></section></summary><div class="docblock"><p>Attempts to acquire this lock until a timeout is reached.</p>
+<p>If the lock could not be acquired before the timeout expired, then
+<code>None</code> is returned. Otherwise, an RAII guard is returned. The lock will
+be unlocked when the guard is dropped.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.try_lock_arc_for" class="method"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#406">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html#tymethod.try_lock_arc_for" class="fn">try_lock_arc_for</a>(
+    self: &amp;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/sync/struct.Arc.html" title="struct alloc::sync::Arc">Arc</a>&lt;<a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;&gt;,
+    timeout: &lt;R as <a class="trait" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/trait.RawMutexTimed.html" title="trait lock_api::mutex::RawMutexTimed">RawMutexTimed</a>&gt;::<a class="associatedtype" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/trait.RawMutexTimed.html#associatedtype.Duration" title="type lock_api::mutex::RawMutexTimed::Duration">Duration</a>,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://docs.rs/parking_lot/0.12.3/parking_lot/struct.ArcMutexGuard.html" title="struct parking_lot::ArcMutexGuard">ArcMutexGuard</a>&lt;R, T&gt;&gt;</h4></section></summary><div class="docblock"><p>Attempts to acquire this lock through an <code>Arc</code> until a timeout is reached.</p>
+<p>This method is similar to the <code>try_lock_for</code> method; however, it requires the <code>Mutex</code> to be inside of an
+<code>Arc</code> and the resulting mutex guard has no lifetime requirements.</p>
+</div></details><details class="toggle method-toggle" open=""><summary><section id="method.try_lock_arc_until" class="method"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#421-424">Source</a><h4 class="code-header">pub fn <a href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html#tymethod.try_lock_arc_until" class="fn">try_lock_arc_until</a>(
+    self: &amp;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/sync/struct.Arc.html" title="struct alloc::sync::Arc">Arc</a>&lt;<a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;&gt;,
+    timeout: &lt;R as <a class="trait" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/trait.RawMutexTimed.html" title="trait lock_api::mutex::RawMutexTimed">RawMutexTimed</a>&gt;::<a class="associatedtype" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/trait.RawMutexTimed.html#associatedtype.Instant" title="type lock_api::mutex::RawMutexTimed::Instant">Instant</a>,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://docs.rs/parking_lot/0.12.3/parking_lot/struct.ArcMutexGuard.html" title="struct parking_lot::ArcMutexGuard">ArcMutexGuard</a>&lt;R, T&gt;&gt;</h4></section></summary><div class="docblock"><p>Attempts to acquire this lock through an <code>Arc</code> until a timeout is reached.</p>
+<p>This method is similar to the <code>try_lock_until</code> method; however, it requires the <code>Mutex</code> to be inside of
+an <code>Arc</code> and the resulting mutex guard has no lifetime requirements.</p>
+</div></details></div></details></div><h2 id="trait-implementations">Trait Implementations</h2><div id="trait-implementations-list"><details class="toggle implementors-toggle" open=""><summary><section id="impl-Debug-for-Mutex%3CR,+T%3E" class="impl"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#448">Source</a><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#impl-Debug-for-Mutex%3CR,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;R, T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;<div class="where">where
+    R: <a class="trait" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/trait.RawMutex.html" title="trait lock_api::mutex::RawMutex">RawMutex</a>,
+    T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> + ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.fmt" class="method trait-impl"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#449">Source</a><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.fmt" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt" class="fn">fmt</a>(&amp;self, f: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>&lt;'_&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Error.html" title="struct core::fmt::Error">Error</a>&gt;</h4></section></summary><div class="docblock">Formats the value using the given formatter. <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt">Read more</a></div></details></div></details><details class="toggle implementors-toggle" open=""><summary><section id="impl-Default-for-Mutex%3CR,+T%3E" class="impl"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#434">Source</a><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#impl-Default-for-Mutex%3CR,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;R, T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html" title="trait core::default::Default">Default</a> for <a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;<div class="where">where
+    R: <a class="trait" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/trait.RawMutex.html" title="trait lock_api::mutex::RawMutex">RawMutex</a>,
+    T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html" title="trait core::default::Default">Default</a> + ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.default" class="method trait-impl"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#436">Source</a><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.default" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default" class="fn">default</a>() -&gt; <a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;</h4></section></summary><div class="docblock">Returns the “default value” for a type. <a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default">Read more</a></div></details></div></details><details class="toggle implementors-toggle" open=""><summary><section id="impl-Deserialize%3C&#39;de%3E-for-Mutex%3CR,+T%3E" class="impl"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#484-487">Source</a><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#impl-Deserialize%3C&#39;de%3E-for-Mutex%3CR,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;'de, R, T&gt; <a class="trait" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/de/trait.Deserialize.html" title="trait serde::de::Deserialize">Deserialize</a>&lt;'de&gt; for <a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;<div class="where">where
+    R: <a class="trait" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/trait.RawMutex.html" title="trait lock_api::mutex::RawMutex">RawMutex</a>,
+    T: <a class="trait" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/de/trait.Deserialize.html" title="trait serde::de::Deserialize">Deserialize</a>&lt;'de&gt; + ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.deserialize" class="method trait-impl"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#489-491">Source</a><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.deserialize" class="anchor">§</a><h4 class="code-header">fn <a href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/de/trait.Deserialize.html#tymethod.deserialize" class="fn">deserialize</a>&lt;D&gt;(
+    deserializer: D,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;, &lt;D as <a class="trait" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/de/trait.Deserializer.html" title="trait serde::de::Deserializer">Deserializer</a>&lt;'de&gt;&gt;::<a class="associatedtype" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/de/trait.Deserializer.html#associatedtype.Error" title="type serde::de::Deserializer::Error">Error</a>&gt;<div class="where">where
+    D: <a class="trait" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/de/trait.Deserializer.html" title="trait serde::de::Deserializer">Deserializer</a>&lt;'de&gt;,</div></h4></section></summary><div class="docblock">Deserialize this value from the given Serde deserializer. <a href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/de/trait.Deserialize.html#tymethod.deserialize">Read more</a></div></details></div></details><details class="toggle implementors-toggle" open=""><summary><section id="impl-From%3CT%3E-for-Mutex%3CR,+T%3E" class="impl"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#441">Source</a><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#impl-From%3CT%3E-for-Mutex%3CR,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;R, T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;T&gt; for <a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;<div class="where">where
+    R: <a class="trait" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/trait.RawMutex.html" title="trait lock_api::mutex::RawMutex">RawMutex</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.from" class="method trait-impl"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#443">Source</a><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.from" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from" class="fn">from</a>(t: T) -&gt; <a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;</h4></section></summary><div class="docblock">Converts to this type from the input type.</div></details></div></details><details class="toggle implementors-toggle" open=""><summary><section id="impl-Serialize-for-Mutex%3CR,+T%3E" class="impl"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#470-473">Source</a><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#impl-Serialize-for-Mutex%3CR,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;R, T&gt; <a class="trait" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/ser/trait.Serialize.html" title="trait serde::ser::Serialize">Serialize</a> for <a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;<div class="where">where
+    R: <a class="trait" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/trait.RawMutex.html" title="trait lock_api::mutex::RawMutex">RawMutex</a>,
+    T: <a class="trait" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/ser/trait.Serialize.html" title="trait serde::ser::Serialize">Serialize</a> + ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open=""><summary><section id="method.serialize" class="method trait-impl"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#475-477">Source</a><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#method.serialize" class="anchor">§</a><h4 class="code-header">fn <a href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/ser/trait.Serialize.html#tymethod.serialize" class="fn">serialize</a>&lt;S&gt;(
+    &amp;self,
+    serializer: S,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;&lt;S as <a class="trait" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/ser/trait.Serializer.html" title="trait serde::ser::Serializer">Serializer</a>&gt;::<a class="associatedtype" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/ser/trait.Serializer.html#associatedtype.Ok" title="type serde::ser::Serializer::Ok">Ok</a>, &lt;S as <a class="trait" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/ser/trait.Serializer.html" title="trait serde::ser::Serializer">Serializer</a>&gt;::<a class="associatedtype" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/ser/trait.Serializer.html#associatedtype.Error" title="type serde::ser::Serializer::Error">Error</a>&gt;<div class="where">where
+    S: <a class="trait" href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/ser/trait.Serializer.html" title="trait serde::ser::Serializer">Serializer</a>,</div></h4></section></summary><div class="docblock">Serialize this value into the given Serde serializer. <a href="https://docs.rs/serde/1.0.219/x86_64-unknown-linux-gnu/serde/ser/trait.Serialize.html#tymethod.serialize">Read more</a></div></details></div></details><section id="impl-Send-for-Mutex%3CR,+T%3E" class="impl"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#143">Source</a><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#impl-Send-for-Mutex%3CR,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;R, T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> for <a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;<div class="where">where
+    R: <a class="trait" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/trait.RawMutex.html" title="trait lock_api::mutex::RawMutex">RawMutex</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a>,
+    T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>,</div></h3></section><section id="impl-Sync-for-Mutex%3CR,+T%3E" class="impl"><a class="src rightside" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/src/lock_api/mutex.rs.html#144">Source</a><a href="https://docs.rs/parking_lot/0.12.3/parking_lot/type.Mutex.html#impl-Sync-for-Mutex%3CR,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;R, T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> for <a class="struct" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/struct.Mutex.html" title="struct lock_api::mutex::Mutex">Mutex</a>&lt;R, T&gt;<div class="where">where
+    R: <a class="trait" href="https://docs.rs/lock_api/0.4.12/x86_64-unknown-linux-gnu/lock_api/mutex/trait.RawMutex.html" title="trait lock_api::mutex::RawMutex">RawMutex</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a>,
+    T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>,</div></h3></section></div></section></div></main></div></body></html>
