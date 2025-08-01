@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)https://docs.rs/solana-sdk/latest/solana_sdk/ -->
+<html lang="en" data-theme="dark" data-docs-rs-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="The Solana host and client SDK."><title>solana_sdk - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="/-/rustdoc.static/${f}">`).join(""))</script><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceSerif4-Regular-6b053e98.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Italic-81dc35de.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Regular-0fe48ade.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-MediumItalic-ccf7e434.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Medium-e1aa3f0a.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Regular-8badfe75.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Semibold-aa29a496.ttf.woff2"><link rel="stylesheet" href="./solana_sdk - Rust_files/normalize-9960930a.css"><link rel="stylesheet" href="./solana_sdk - Rust_files/vendored.css" media="all"><link rel="stylesheet" href="./solana_sdk - Rust_files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="/-/rustdoc.static/" data-current-crate="solana_sdk" data-themes="" data-resource-suffix="-20250629-1.90.0-nightly-35f603652" data-rustdoc-version="1.90.0-nightly (35f603652 2025-06-29)" data-channel="nightly" data-search-js="search-179e01a3.js" data-settings-js="settings-5514c975.js"><script src="./solana_sdk - Rust_files/storage-4e99c027.js.Без названия"></script><script defer="" src="./solana_sdk - Rust_files/crates-20250629-1.90.0-nightly-35f603652.js.Без названия"></script><script defer="" src="./solana_sdk - Rust_files/main-340f468f.js.Без названия"></script><noscript><link rel="stylesheet" href="/-/rustdoc.static/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="https://docs.rs/-/rustdoc.static/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="https://docs.rs/-/rustdoc.static/favicon-044be391.svg"><link rel="stylesheet" href="./solana_sdk - Rust_files/rustdoc-2021-12-05.css" media="all"><link rel="stylesheet" href="./solana_sdk - Rust_files/font-awesome.css" media="all">
+
+        <link rel="search" href="https://docs.rs/-/static/opensearch.xml" type="application/opensearchdescription+xml" title="Docs.rs">
+
+        <script type="text/javascript">(function() {
+    function applyTheme(theme) {
+        if (theme) {
+            document.documentElement.dataset.docsRsTheme = theme;
+        }
+    }
+
+    window.addEventListener("storage", ev => {
+        if (ev.key === "rustdoc-theme") {
+            applyTheme(ev.newValue);
+        }
+    });
+
+    // see ./storage-change-detection.html for details
+    window.addEventListener("message", ev => {
+        if (ev.data && ev.data.storage && ev.data.storage.key === "rustdoc-theme") {
+            applyTheme(ev.data.storage.value);
+        }
+    });
+
+    applyTheme(window.localStorage.getItem("rustdoc-theme"));
+})();</script></head><div style="display: none; position: fixed; width: 100%; height: 100%; z-index: 1;"></div><body class="rustdoc-page">
+<div class="nav-container">
+    <div class="container">
+        <div class="pure-menu pure-menu-horizontal" role="navigation" aria-label="Main navigation">
+            <form action="https://docs.rs/releases/search" method="GET" id="nav-search-form" class="landing-search-form-nav  ">
+
+                
+                <a href="https://docs.rs/" class="pure-menu-heading pure-menu-link docsrs-logo" aria-label="Docs.rs">
+                    <span title="Docs.rs"><span class="fa fa-solid fa-cubes " aria-hidden="true"></span></span>
+                    <span class="title">Docs.rs</span>
+                </a><ul class="pure-menu-list">
+    <script id="crate-metadata" type="application/json">
+        
+        {
+            "name": "solana-sdk",
+            "version": "2.3.1"
+        }
+    </script><li class="pure-menu-item pure-menu-has-children">
+            <a href="https://docs.rs/solana-sdk/latest/solana_sdk/#" class="pure-menu-link crate-name" title="Solana SDK" aria-haspopup="menu">
+                <span class="fa fa-solid fa-cube " aria-hidden="true"></span>
+                <span class="title">solana-sdk-2.3.1</span>
+            </a><div class="pure-menu-children package-details-menu" role="menu">
+                
+                <ul class="pure-menu-list menu-item-divided">
+                    <li class="pure-menu-heading" id="crate-title">
+                        solana-sdk 2.3.1
+                        <span id="clipboard" class="svg-clipboard" title="Copy crate name and version information"></span>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/solana-sdk/2.3.1/solana_sdk/index.html" class="pure-menu-link description" id="permalink" title="Get a link to this specific version">
+                            <span class="fa fa-solid fa-link " aria-hidden="true"></span> Permalink
+                        </a>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/crate/solana-sdk/latest" class="pure-menu-link description" title="See solana-sdk in docs.rs">
+                            <span class="fa fa-solid fa-cube " aria-hidden="true"></span> Docs.rs crate page
+                        </a>
+                    </li><li class="pure-menu-item">
+                            <span class="pure-menu-link description"><span class="fa fa-solid fa-scale-unbalanced-flip " aria-hidden="true"></span>
+                            <a href="https://spdx.org/licenses/Apache-2.0" class="pure-menu-sublink">Apache-2.0</a></span>
+                        </li></ul>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Links</li>
+
+                            <li class="pure-menu-item">
+                                    <a href="https://anza.xyz/" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-house " aria-hidden="true"></span> Homepage
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                    <a href="https://github.com/anza-xyz/solana-sdk" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-code-branch " aria-hidden="true"></span> Repository
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                <a href="https://crates.io/crates/solana-sdk" class="pure-menu-link" title="See solana-sdk in crates.io">
+                                    <span class="fa fa-solid fa-cube " aria-hidden="true"></span> crates.io
+                                </a>
+                            </li>
+
+                            
+                            <li class="pure-menu-item">
+                                <a href="https://docs.rs/crate/solana-sdk/latest/source/" title="Browse source of solana-sdk-2.3.1" class="pure-menu-link">
+                                    <span class="fa fa-solid fa-folder-open " aria-hidden="true"></span> Source
+                                </a>
+                            </li>
+                        </ul>
+                    </div><div class="pure-u-1-2">
+                        <ul class="pure-menu-list" id="topbar-owners">
+                            <li class="pure-menu-heading">Owners</li><li class="pure-menu-item">
+                                    <a href="https://crates.io/users/anza-team" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> anza-team
+                                    </a>
+                                </li></ul>
+                    </div>
+                </div>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Dependencies</li>
+
+                            
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" tabindex="-1">
+                                    <ul class="pure-menu-list">
+                                        
+    <li class="pure-menu-item"><a href="https://docs.rs/bincode/%5E1.3.3" class="pure-menu-link">
+                        bincode ^1.3.3
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/bs58/%5E0.5.1" class="pure-menu-link">
+                        bs58 ^0.5.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/serde/%5E1.0.217" class="pure-menu-link">
+                        serde ^1.0.217
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/serde_json/%5E1.0.139" class="pure-menu-link">
+                        serde_json ^1.0.139
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-account/%5E2.2.1" class="pure-menu-link">
+                        solana-account ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-bn254/%5E2.2.2" class="pure-menu-link">
+                        solana-bn254 ^2.2.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-client-traits/%5E2.2.1" class="pure-menu-link">
+                        solana-client-traits ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-cluster-type/%5E2.2.1" class="pure-menu-link">
+                        solana-cluster-type ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-commitment-config/%5E2.2.1" class="pure-menu-link">
+                        solana-commitment-config ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-compute-budget-interface/%5E2.2.1" class="pure-menu-link">
+                        solana-compute-budget-interface ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-decode-error/%5E2.2.1" class="pure-menu-link">
+                        solana-decode-error ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-derivation-path/%5E2.2.1" class="pure-menu-link">
+                        solana-derivation-path ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-ed25519-program/%5E2.2.1" class="pure-menu-link">
+                        solana-ed25519-program ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-epoch-info/%5E2.2.1" class="pure-menu-link">
+                        solana-epoch-info ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-epoch-rewards-hasher/%5E2.2.1" class="pure-menu-link">
+                        solana-epoch-rewards-hasher ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-feature-set/%5E2.2.1" class="pure-menu-link">
+                        solana-feature-set ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-fee-structure/%5E2.2.1" class="pure-menu-link">
+                        solana-fee-structure ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-genesis-config/%5E2.2.1" class="pure-menu-link">
+                        solana-genesis-config ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-hard-forks/%5E2.2.1" class="pure-menu-link">
+                        solana-hard-forks ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-inflation/%5E2.2.1" class="pure-menu-link">
+                        solana-inflation ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-instruction/%5E2.3.0" class="pure-menu-link">
+                        solana-instruction ^2.3.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-keypair/%5E2.2.1" class="pure-menu-link">
+                        solana-keypair ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-message/%5E2.2.1" class="pure-menu-link">
+                        solana-message ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-native-token/%5E2.2.1" class="pure-menu-link">
+                        solana-native-token ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-nonce-account/%5E2.2.1" class="pure-menu-link">
+                        solana-nonce-account ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-offchain-message/%5E2.2.1" class="pure-menu-link">
+                        solana-offchain-message ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-packet/%5E2.2.1" class="pure-menu-link">
+                        solana-packet ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-poh-config/%5E2.2.1" class="pure-menu-link">
+                        solana-poh-config ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-precompile-error/%5E2.2.1" class="pure-menu-link">
+                        solana-precompile-error ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-precompiles/%5E2.2.1" class="pure-menu-link">
+                        solana-precompiles ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-presigner/%5E2.2.1" class="pure-menu-link">
+                        solana-presigner ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-program/%5E2.2.1" class="pure-menu-link">
+                        solana-program ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-program-memory/%5E2.2.1" class="pure-menu-link">
+                        solana-program-memory ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-pubkey/%5E2.2.1" class="pure-menu-link">
+                        solana-pubkey ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-quic-definitions/%5E2.2.1" class="pure-menu-link">
+                        solana-quic-definitions ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-rent-collector/%5E2.2.1" class="pure-menu-link">
+                        solana-rent-collector ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-rent-debits/%5E2.2.1" class="pure-menu-link">
+                        solana-rent-debits ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-reserved-account-keys/%5E2.2.1" class="pure-menu-link">
+                        solana-reserved-account-keys ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-reward-info/%5E2.2.1" class="pure-menu-link">
+                        solana-reward-info ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-sanitize/%5E2.2.1" class="pure-menu-link">
+                        solana-sanitize ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-sdk-ids/%5E2.2.1" class="pure-menu-link">
+                        solana-sdk-ids ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-sdk-macro/%5E2.2.1" class="pure-menu-link">
+                        solana-sdk-macro ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-secp256k1-program/%5E2.2.1" class="pure-menu-link">
+                        solana-secp256k1-program ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-secp256k1-recover/%5E2.2.1" class="pure-menu-link">
+                        solana-secp256k1-recover ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-secp256r1-program/%5E2.2.1" class="pure-menu-link">
+                        solana-secp256r1-program ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-seed-derivable/%5E2.2.1" class="pure-menu-link">
+                        solana-seed-derivable ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-seed-phrase/%5E2.2.1" class="pure-menu-link">
+                        solana-seed-phrase ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-serde/%5E2.2.1" class="pure-menu-link">
+                        solana-serde ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-serde-varint/%5E2.2.1" class="pure-menu-link">
+                        solana-serde-varint ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-short-vec/%5E2.2.1" class="pure-menu-link">
+                        solana-short-vec ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-shred-version/%5E2.2.1" class="pure-menu-link">
+                        solana-shred-version ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-signature/%5E2.3.0" class="pure-menu-link">
+                        solana-signature ^2.3.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-signer/%5E2.2.1" class="pure-menu-link">
+                        solana-signer ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-system-transaction/%5E2.2.1" class="pure-menu-link">
+                        solana-system-transaction ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-time-utils/%5E2.2.1" class="pure-menu-link">
+                        solana-time-utils ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-transaction/%5E2.2.1" class="pure-menu-link">
+                        solana-transaction ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-transaction-context/%5E2.2.1" class="pure-menu-link">
+                        solana-transaction-context ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-transaction-error/%5E2.2.1" class="pure-menu-link">
+                        solana-transaction-error ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                                <i>optional</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-validator-exit/%5E2.2.1" class="pure-menu-link">
+                        solana-validator-exit ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/thiserror/%5E2.0.11" class="pure-menu-link">
+                        thiserror ^2.0.11
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/curve25519-dalek/%5E4.1.3" class="pure-menu-link">
+                        curve25519-dalek ^4.1.3
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/ed25519-dalek/=1.0.1" class="pure-menu-link">
+                        ed25519-dalek =1.0.1
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/libsecp256k1/%5E0.6.0" class="pure-menu-link">
+                        libsecp256k1 ^0.6.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/openssl/%5E0.10.72" class="pure-menu-link">
+                        openssl ^0.10.72
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/rand/%5E0.7" class="pure-menu-link">
+                        rand ^0.7
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/serde_derive/%5E1.0.217" class="pure-menu-link">
+                        serde_derive ^1.0.217
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/serde_with/%5E3.12.0" class="pure-menu-link">
+                        serde_with ^3.12.0
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-instructions-sysvar/%5E2.2.1" class="pure-menu-link">
+                        solana-instructions-sysvar ^2.2.1
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-program/%5E2.2.1" class="pure-menu-link">
+                        solana-program ^2.2.1
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/getrandom/%5E0.1.1" class="pure-menu-link">
+                        getrandom ^0.1.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/js-sys/%5E0.3.77" class="pure-menu-link">
+                        js-sys ^0.3.77
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/wasm-bindgen/%5E0.2.100" class="pure-menu-link">
+                        wasm-bindgen ^0.2.100
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pure-u-1-2">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Versions</li>
+
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" id="releases-list" tabindex="-1" data-url="/crate/solana-sdk/latest/menus/releases/x86_64-unknown-linux-gnu/solana_sdk/index.html">
+                                    <span class="rotate"><span class="fa fa-solid fa-spinner " aria-hidden="true"></span></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                    
+                    
+                    <div class="pure-g">
+                        <div class="pure-u-1">
+                            <ul class="pure-menu-list">
+                                <li>
+                                    <a href="https://docs.rs/crate/solana-sdk/latest" class="pure-menu-link">
+                                        <b>23.44%</b>
+                                        of the crate is documented
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div></div>
+        </li><li class="pure-menu-item pure-menu-has-children">
+                <a href="https://docs.rs/solana-sdk/latest/solana_sdk/#" class="pure-menu-link" aria-label="Platform" aria-haspopup="menu">
+                    <span class="fa fa-solid fa-gears " aria-hidden="true"></span>
+                    <span class="title">Platform</span>
+                </a>
+
+                
+                <ul class="pure-menu-children" id="platforms" data-url="/crate/solana-sdk/latest/menus/platforms/x86_64-unknown-linux-gnu/solana_sdk/index.html" role="menu"><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/solana-sdk/latest/target-redirect/x86_64-unknown-linux-gnu/solana_sdk/index.html" class="pure-menu-link current" data-fragment="retain" rel="nofollow">x86_64-unknown-linux-gnu</a>
+        </li></ul>
+            </li><li class="pure-menu-item">
+                <a href="https://docs.rs/crate/solana-sdk/latest/features" title="Browse available feature flags of solana-sdk-2.3.1" class="pure-menu-link">
+                    <span class="fa fa-solid fa-flag " aria-hidden="true"></span>
+                    <span class="title">Feature flags</span>
+                </a>
+            </li>
+        
+    
+</ul><div class="spacer"></div>
+                
+                
+
+<ul class="pure-menu-list">
+                    <li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/solana-sdk/latest/solana_sdk/#" class="pure-menu-link" aria-label="docs.rs" aria-haspopup="menu">docs.rs</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://docs.rs/about">
+            About docs.rs
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://foundation.rust-lang.org/policies/privacy-policy/#docs.rs" target="_blank">
+            Privacy policy
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="pure-menu-list"><li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/solana-sdk/latest/solana_sdk/#" class="pure-menu-link" aria-label="Rust" aria-haspopup="menu">Rust</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://www.rust-lang.org/" target="_blank">
+            Rust website
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/book/" target="_blank">
+            The Book
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/std/" target="_blank">
+            Standard Library API Reference
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/rust-by-example/" target="_blank">
+            Rust by Example
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/cargo/guide/" target="_blank">
+            The Cargo Guide
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/nightly/clippy" target="_blank">
+            Clippy Documentation
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div id="search-input-nav">
+                    <label for="nav-search">
+                        <span class="fa fa-solid fa-magnifying-glass " aria-hidden="true"></span>
+                    </label>
+
+                    
+                    
+                    <input id="nav-search" name="query" type="text" aria-label="Find crate by search query" tabindex="-1" placeholder="Find crate">
+                </div>
+            </form>
+        </div>
+    </div>
+</div><div class="rustdoc mod crate container-rustdoc" id="rustdoc_body_wrapper" tabindex="-1"><script async="" src="./solana_sdk - Rust_files/menu.js.Без названия"></script>
+<script async="" src="./solana_sdk - Rust_files/index.js.Без названия"></script>
+
+<iframe src="./solana_sdk - Rust_files/storage-change-detection.html" width="0" height="0" style="display: none"></iframe><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button><h2 class="location">Crate <a href="https://docs.rs/solana-sdk/latest/solana_sdk/#">solana_sdk</a></h2></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="https://docs.rs/solana-sdk/latest/solana_sdk/index.html">solana_<wbr>sdk</a><span class="version">2.3.1</span></h2></div><div class="sidebar-elems"><ul class="block"><li><a id="all-types" href="https://docs.rs/solana-sdk/latest/solana_sdk/all.html">All Items</a></li></ul><section id="rustdoc-toc"><h3><a href="https://docs.rs/solana-sdk/latest/solana_sdk/#reexports">Crate Items</a></h3><ul class="block"><li><a href="https://docs.rs/solana-sdk/latest/solana_sdk/#reexports" title="Re-exports">Re-exports</a></li><li><a href="https://docs.rs/solana-sdk/latest/solana_sdk/#modules" title="Modules">Modules</a></li><li><a href="https://docs.rs/solana-sdk/latest/solana_sdk/#macros" title="Macros">Macros</a></li></ul></section><div id="rustdoc-modnav"><h3>Crates</h3><ul class="block crate"><li class="current"><a href="https://docs.rs/solana-sdk/latest/solana_sdk/index.html">solana_sdk</a></li></ul></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search><nav class="sub">
+            <form class="search-form">
+                <span></span> <!-- This empty span is a hacky fix for Safari - See #93184 -->
+                <div id="sidebar-button" tabindex="-1">
+                    <a href="https://docs.rs/solana-sdk/latest/solana_sdk/all.html" title="show sidebar"></a>
+                </div>
+                <input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search">
+            </form>
+        </nav></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1>Crate <span>solana_sdk</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar>
+        <div id="settings-menu" tabindex="-1">
+            <a href="https://docs.rs/solana-sdk/latest/settings.html"><span class="label">Settings</span></a>
+        </div>
+        <div id="help-button" tabindex="-1">
+            <a href="https://docs.rs/solana-sdk/latest/help.html"><span class="label">Help</span></a>
+        </div>
+        <button id="toggle-all-docs"><span class="label">Summary</span></button></rustdoc-toolbar><span class="sub-heading"><a class="src" href="https://docs.rs/solana-sdk/latest/src/solana_sdk/lib.rs.html#1-402">Source</a> </span></div><details class="toggle top-doc" open=""><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>The Solana host and client SDK.</p>
+<p>This is the base library for all off-chain programs that interact with
+Solana or otherwise operate on Solana data structures. On-chain programs
+instead use the <a href="https://docs.rs/solana-program"><code>solana-program</code></a> crate, the modules of which are
+re-exported by this crate, like the relationship between the Rust
+<code>core</code> and <code>std</code> crates. As much of the functionality of this crate is
+provided by <code>solana-program</code>, see that crate’s documentation for an
+overview.</p>
+<p>Many of the modules in this crate are primarily of use to the Solana runtime
+itself. Additional crates provide capabilities built on <code>solana-sdk</code>, and
+many programs will need to link to those crates as well, particularly for
+clients communicating with Solana nodes over RPC.</p>
+<p>Such crates include:</p>
+<ul>
+<li><a href="https://docs.rs/solana-client"><code>solana-client</code></a> - For interacting with a Solana node via the <a href="https://solana.com/docs/rpc">JSON-RPC API</a>.</li>
+<li><a href="https://docs.rs/solana-cli-config"><code>solana-cli-config</code></a> - Loading and saving the Solana CLI configuration file.</li>
+<li><a href="https://docs.rs/solana-clap-utils"><code>solana-clap-utils</code></a> - Routines for setting up the CLI using <a href="https://docs.rs/clap"><code>clap</code></a>, as
+used by the Solana CLI. Includes functions for loading all types of
+signers supported by the CLI.</li>
+</ul>
+</div></details><h2 id="reexports" class="section-header">Re-exports<a href="https://docs.rs/solana-sdk/latest/solana_sdk/#reexports" class="anchor">§</a></h2><dl class="item-table reexports"><dt><code>pub extern crate <a class="mod" href="https://docs.rs/bs58/0.5.1/x86_64-unknown-linux-gnu/bs58/index.html" title="mod bs58">bs58</a>;</code></dt><dt id="reexport.account_info"><code>pub use solana_program::<a class="mod" href="https://docs.rs/solana-account-info/2.3.0/x86_64-unknown-linux-gnu/solana_account_info/index.html" title="mod solana_account_info">account_info</a>;</code></dt><dt id="reexport.big_mod_exp"><code>pub use solana_program::<a class="mod" href="https://docs.rs/solana-big-mod-exp/2.2.1/x86_64-unknown-linux-gnu/solana_big_mod_exp/index.html" title="mod solana_big_mod_exp">big_mod_exp</a>;</code></dt><dt id="reexport.blake3"><code>pub use solana_program::<a class="mod" href="https://docs.rs/solana-blake3-hasher/2.2.1/x86_64-unknown-linux-gnu/solana_blake3_hasher/index.html" title="mod solana_blake3_hasher">blake3</a>;</code></dt><dt id="reexport.clock"><code>pub use solana_program::<a class="mod" href="https://docs.rs/solana-clock/2.2.2/x86_64-unknown-linux-gnu/solana_clock/index.html" title="mod solana_clock">clock</a>;</code></dt><dt id="reexport.epoch_rewards"><code>pub use solana_program::<a class="mod" href="https://docs.rs/solana-epoch-rewards/2.2.1/x86_64-unknown-linux-gnu/solana_epoch_rewards/index.html" title="mod solana_epoch_rewards">epoch_rewards</a>;</code></dt><dt id="reexport.fee_calculator"><code>pub use solana_program::<a class="mod" href="https://docs.rs/solana-fee-calculator/2.2.1/x86_64-unknown-linux-gnu/solana_fee_calculator/index.html" title="mod solana_fee_calculator">fee_calculator</a>;</code></dt><dt id="reexport.keccak"><code>pub use solana_program::<a class="mod" href="https://docs.rs/solana-keccak-hasher/2.2.1/x86_64-unknown-linux-gnu/solana_keccak_hasher/index.html" title="mod solana_keccak_hasher">keccak</a>;</code></dt><dt id="reexport.native_token"><code>pub use solana_program::<a class="mod" href="https://docs.rs/solana-native-token/2.3.0/x86_64-unknown-linux-gnu/solana_native_token/index.html" title="mod solana_native_token">native_token</a>;</code></dt><dt id="reexport.program_option"><code>pub use solana_program::<a class="mod" href="https://docs.rs/solana-program-option/2.2.1/x86_64-unknown-linux-gnu/solana_program_option/index.html" title="mod solana_program_option">program_option</a>;</code></dt><dt id="reexport.program_pack"><code>pub use solana_program::<a class="mod" href="https://docs.rs/solana-program-pack/2.2.1/x86_64-unknown-linux-gnu/solana_program_pack/index.html" title="mod solana_program_pack">program_pack</a>;</code></dt><dt id="reexport.rent"><code>pub use solana_program::<a class="mod" href="https://docs.rs/solana-rent/2.2.1/x86_64-unknown-linux-gnu/solana_rent/index.html" title="mod solana_rent">rent</a>;</code></dt><dt id="reexport.serialize_utils"><code>pub use solana_program::<a class="mod" href="https://docs.rs/solana-serialize-utils/2.2.1/x86_64-unknown-linux-gnu/solana_serialize_utils/index.html" title="mod solana_serialize_utils">serialize_utils</a>;</code></dt><dt id="reexport.stable_layout"><code>pub use solana_program::<a class="mod" href="https://docs.rs/solana-stable-layout/2.2.1/x86_64-unknown-linux-gnu/solana_stable_layout/index.html" title="mod solana_stable_layout">stable_layout</a>;</code></dt><dt id="reexport.message"><code>pub use <a class="mod" href="https://docs.rs/solana-message/2.4.0/x86_64-unknown-linux-gnu/solana_message/index.html" title="mod solana_message">solana_message</a> as message;</code></dt><dt id="reexport.shred_version"><code>pub use <a class="mod" href="https://docs.rs/solana-shred-version/2.2.1/x86_64-unknown-linux-gnu/solana_shred_version/index.html" title="mod solana_shred_version">solana_shred_version</a> as shred_version;</code><wbr><span class="stab portability" title="Available on crate feature `full` only"><code>full</code></span></dt><dt id="reexport.account"><code>pub use <a class="mod" href="https://docs.rs/solana-account/2.2.1/x86_64-unknown-linux-gnu/solana_account/index.html" title="mod solana_account">solana_account</a> as account;</code></dt><dt id="reexport.epoch_info"><code>pub use <a class="mod" href="https://docs.rs/solana-epoch-info/2.2.1/x86_64-unknown-linux-gnu/solana_epoch_info/index.html" title="mod solana_epoch_info">solana_epoch_info</a> as epoch_info;</code></dt><dt id="reexport.epoch_rewards_hasher"><code>pub use <a class="mod" href="https://docs.rs/solana-epoch-rewards-hasher/2.2.1/x86_64-unknown-linux-gnu/solana_epoch_rewards_hasher/index.html" title="mod solana_epoch_rewards_hasher">solana_epoch_rewards_hasher</a> as epoch_rewards_hasher;</code></dt><dt id="reexport.fee"><code>pub use <a class="mod" href="https://docs.rs/solana-fee-structure/2.3.0/x86_64-unknown-linux-gnu/solana_fee_structure/index.html" title="mod solana_fee_structure">solana_fee_structure</a> as fee;</code></dt><dt id="reexport.inflation"><code>pub use <a class="mod" href="https://docs.rs/solana-inflation/2.2.1/x86_64-unknown-linux-gnu/solana_inflation/index.html" title="mod solana_inflation">solana_inflation</a> as inflation;</code></dt><dt id="reexport.offchain_message"><code>pub use <a class="mod" href="https://docs.rs/solana-offchain-message/2.2.1/x86_64-unknown-linux-gnu/solana_offchain_message/index.html" title="mod solana_offchain_message">solana_offchain_message</a> as offchain_message;</code><wbr><span class="stab portability" title="Available on crate feature `full` only"><code>full</code></span></dt><dt id="reexport.program_memory"><code>pub use <a class="mod" href="https://docs.rs/solana-program-memory/2.3.1/x86_64-unknown-linux-gnu/solana_program_memory/index.html" title="mod solana_program_memory">solana_program_memory</a> as program_memory;</code></dt><dt id="reexport.sanitize"><code>pub use <a class="mod" href="https://docs.rs/solana-sanitize/2.2.1/x86_64-unknown-linux-gnu/solana_sanitize/index.html" title="mod solana_sanitize">solana_sanitize</a> as sanitize;</code></dt><dt id="reexport.deserialize_utils"><code>pub use <a class="mod" href="https://docs.rs/solana-serde/2.2.1/x86_64-unknown-linux-gnu/solana_serde/index.html" title="mod solana_serde">solana_serde</a> as deserialize_utils;</code></dt><dt id="reexport.serde_varint"><code>pub use <a class="mod" href="https://docs.rs/solana-serde-varint/2.2.2/x86_64-unknown-linux-gnu/solana_serde_varint/index.html" title="mod solana_serde_varint">solana_serde_varint</a> as serde_varint;</code></dt><dt id="reexport.short_vec"><code>pub use <a class="mod" href="https://docs.rs/solana-short-vec/2.2.1/x86_64-unknown-linux-gnu/solana_short_vec/index.html" title="mod solana_short_vec">solana_short_vec</a> as short_vec;</code></dt><dt id="reexport.timing"><code>pub use <a class="mod" href="https://docs.rs/solana-time-utils/2.2.1/x86_64-unknown-linux-gnu/solana_time_utils/index.html" title="mod solana_time_utils">solana_time_utils</a> as timing;</code></dt></dl><h2 id="modules" class="section-header">Modules<a href="https://docs.rs/solana-sdk/latest/solana_sdk/#modules" class="anchor">§</a></h2><dl class="item-table"><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/account_utils/index.html" title="mod solana_sdk::account_utils">account_<wbr>utils</a></dt><dd>Useful extras for <code>Account</code> state.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/address_lookup_table/index.html" title="mod solana_sdk::address_lookup_table">address_<wbr>lookup_<wbr>table</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/alt_bn128/index.html" title="mod solana_sdk::alt_bn128">alt_<wbr>bn128</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/borsh/index.html" title="mod solana_sdk::borsh">borsh</a><wbr><span class="stab portability" title="Available on crate feature `borsh` only"><code>borsh</code></span></dt><dd>Utilities for the <a href="https://borsh.io/">borsh</a> serialization format.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/borsh0_10/index.html" title="mod solana_sdk::borsh0_10">borsh0_<wbr>10</a><wbr><span class="stab portability" title="Available on crate feature `borsh` only"><code>borsh</code></span></dt><dd>Utilities for the <a href="https://borsh.io/">borsh</a> serialization format, version 0.10.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/borsh1/index.html" title="mod solana_sdk::borsh1">borsh1</a><wbr><span class="stab portability" title="Available on crate feature `borsh` only"><code>borsh</code></span></dt><dd>Utilities for the <a href="https://borsh.io/">borsh</a> serialization format, version 1.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/bpf_loader/index.html" title="mod solana_sdk::bpf_loader">bpf_<wbr>loader</a></dt><dd>The latest BPF loader native program.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/bpf_loader_deprecated/index.html" title="mod solana_sdk::bpf_loader_deprecated">bpf_<wbr>loader_<wbr>deprecated</a></dt><dd>The original and now deprecated Solana BPF loader.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/bpf_loader_upgradeable/index.html" title="mod solana_sdk::bpf_loader_upgradeable">bpf_<wbr>loader_<wbr>upgradeable</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/client/index.html" title="mod solana_sdk::client">client</a><wbr><span class="stab deprecated" title="">Deprecated</span><wbr><span class="stab portability" title="Available on crate feature `full` only"><code>full</code></span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/commitment_config/index.html" title="mod solana_sdk::commitment_config">commitment_<wbr>config</a><wbr><span class="stab deprecated" title="">Deprecated</span><wbr><span class="stab portability" title="Available on crate feature `full` only"><code>full</code></span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/compute_budget/index.html" title="mod solana_sdk::compute_budget">compute_<wbr>budget</a><wbr><span class="stab deprecated" title="">Deprecated</span><wbr><span class="stab portability" title="Available on crate feature `full` only"><code>full</code></span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/config/index.html" title="mod solana_sdk::config">config</a></dt><dd>The <a href="https://docs.solanalabs.com/runtime/programs#config-program">config native program</a>.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/debug_account_data/index.html" title="mod solana_sdk::debug_account_data">debug_<wbr>account_<wbr>data</a></dt><dd>Debug-formatting of account data.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/decode_error/index.html" title="mod solana_sdk::decode_error">decode_<wbr>error</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/derivation_path/index.html" title="mod solana_sdk::derivation_path">derivation_<wbr>path</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/ed25519_instruction/index.html" title="mod solana_sdk::ed25519_instruction">ed25519_<wbr>instruction</a><wbr><span class="stab deprecated" title="">Deprecated</span><wbr><span class="stab portability" title="Available on crate feature `full` only"><code>full</code></span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/ed25519_program/index.html" title="mod solana_sdk::ed25519_program">ed25519_<wbr>program</a></dt><dd>The <a href="https://docs.solanalabs.com/runtime/programs#ed25519-program">ed25519 native program</a>.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/entrypoint/index.html" title="mod solana_sdk::entrypoint">entrypoint</a></dt><dd>The Rust-based BPF program entrypoint supported by the latest BPF loader.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/entrypoint_deprecated/index.html" title="mod solana_sdk::entrypoint_deprecated">entrypoint_<wbr>deprecated</a></dt><dd>The Rust-based BPF program entrypoint supported by the original BPF loader.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/epoch_schedule/index.html" title="mod solana_sdk::epoch_schedule">epoch_<wbr>schedule</a></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/exit/index.html" title="mod solana_sdk::exit">exit</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/feature/index.html" title="mod solana_sdk::feature">feature</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/feature_set/index.html" title="mod solana_sdk::feature_set">feature_<wbr>set</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/genesis_config/index.html" title="mod solana_sdk::genesis_config">genesis_<wbr>config</a><wbr><span class="stab deprecated" title="">Deprecated</span><wbr><span class="stab portability" title="Available on crate feature `full` only"><code>full</code></span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/hard_forks/index.html" title="mod solana_sdk::hard_forks">hard_<wbr>forks</a><wbr><span class="stab deprecated" title="">Deprecated</span><wbr><span class="stab portability" title="Available on crate feature `full` only"><code>full</code></span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/hash/index.html" title="mod solana_sdk::hash">hash</a></dt><dd>Hashing with the <a href="https://en.wikipedia.org/wiki/SHA-2">SHA-256</a> hash function, and a general <a href="https://docs.rs/solana-sdk/latest/solana_sdk/hash/struct.Hash.html" title="struct solana_sdk::hash::Hash"><code>Hash</code></a> type.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/incinerator/index.html" title="mod solana_sdk::incinerator">incinerator</a></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/inner_instruction/index.html" title="mod solana_sdk::inner_instruction">inner_<wbr>instruction</a></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/instruction/index.html" title="mod solana_sdk::instruction">instruction</a></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/lamports/index.html" title="mod solana_sdk::lamports">lamports</a></dt><dd>Re-exports the <a href="https://docs.rs/solana-sdk/latest/solana_sdk/lamports/enum.LamportsError.html" title="enum solana_sdk::lamports::LamportsError"><code>LamportsError</code></a> type for backwards compatibility.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/loader_instruction/index.html" title="mod solana_sdk::loader_instruction">loader_<wbr>instruction</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/loader_upgradeable_instruction/index.html" title="mod solana_sdk::loader_upgradeable_instruction">loader_<wbr>upgradeable_<wbr>instruction</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/loader_v4/index.html" title="mod solana_sdk::loader_v4">loader_<wbr>v4</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/loader_v4_instruction/index.html" title="mod solana_sdk::loader_v4_instruction">loader_<wbr>v4_<wbr>instruction</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/log/index.html" title="mod solana_sdk::log">log</a><wbr><span class="stab portability" title="Available on crate feature `program` only"><code>program</code></span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/native_loader/index.html" title="mod solana_sdk::native_loader">native_<wbr>loader</a></dt><dd>The native loader native program.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/net/index.html" title="mod solana_sdk::net">net</a></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/nonce/index.html" title="mod solana_sdk::nonce">nonce</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/nonce_account/index.html" title="mod solana_sdk::nonce_account">nonce_<wbr>account</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/packet/index.html" title="mod solana_sdk::packet">packet</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/poh_config/index.html" title="mod solana_sdk::poh_config">poh_<wbr>config</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/precompiles/index.html" title="mod solana_sdk::precompiles">precompiles</a><wbr><span class="stab deprecated" title="">Deprecated</span><wbr><span class="stab portability" title="Available on crate feature `full` only"><code>full</code></span></dt><dd>Solana precompiled programs.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/program/index.html" title="mod solana_sdk::program">program</a></dt><dd>Wrappers around <a href="https://docs.rs/solana-cpi/latest/solana_cpi/"><code>solana-cpi</code></a> with support for overwriting
+syscall stubs</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/program_error/index.html" title="mod solana_sdk::program_error">program_<wbr>error</a></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/program_stubs/index.html" title="mod solana_sdk::program_stubs">program_<wbr>stubs</a><wbr><span class="stab portability" title="Available on non-`target_os=&quot;solana&quot;` only">Non-<code>target_os="solana"</code></span></dt><dd>Implementations of syscalls used when <code>solana-program</code> is built for non-SBF targets.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/program_utils/index.html" title="mod solana_sdk::program_utils">program_<wbr>utils</a></dt><dd>Contains a single utility function for deserializing from <a href="https://docs.rs/bincode">bincode</a>.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/pubkey/index.html" title="mod solana_sdk::pubkey">pubkey</a></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/quic/index.html" title="mod solana_sdk::quic">quic</a><wbr><span class="stab deprecated" title="">Deprecated</span><wbr><span class="stab portability" title="Available on crate feature `full` only"><code>full</code></span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/rent_collector/index.html" title="mod solana_sdk::rent_collector">rent_<wbr>collector</a><wbr><span class="stab deprecated" title="">Deprecated</span><wbr><span class="stab portability" title="Available on crate feature `full` only"><code>full</code></span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/rent_debits/index.html" title="mod solana_sdk::rent_debits">rent_<wbr>debits</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/reserved_account_keys/index.html" title="mod solana_sdk::reserved_account_keys">reserved_<wbr>account_<wbr>keys</a><wbr><span class="stab deprecated" title="">Deprecated</span><wbr><span class="stab portability" title="Available on crate feature `full` only"><code>full</code></span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/reward_info/index.html" title="mod solana_sdk::reward_info">reward_<wbr>info</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/reward_type/index.html" title="mod solana_sdk::reward_type">reward_<wbr>type</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/rpc_port/index.html" title="mod solana_sdk::rpc_port">rpc_<wbr>port</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dd>RPC default port numbers.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/sdk_ids/index.html" title="mod solana_sdk::sdk_ids">sdk_ids</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/secp256k1_instruction/index.html" title="mod solana_sdk::secp256k1_instruction">secp256k1_<wbr>instruction</a><wbr><span class="stab deprecated" title="">Deprecated</span><wbr><span class="stab portability" title="Available on crate feature `full` only"><code>full</code></span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/secp256k1_program/index.html" title="mod solana_sdk::secp256k1_program">secp256k1_<wbr>program</a></dt><dd>The <a href="https://docs.solanalabs.com/runtime/programs#secp256k1-program">secp256k1 native program</a>.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/secp256k1_recover/index.html" title="mod solana_sdk::secp256k1_recover">secp256k1_<wbr>recover</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/signature/index.html" title="mod solana_sdk::signature">signature</a><wbr><span class="stab portability" title="Available on crate feature `full` only"><code>full</code></span></dt><dd>Functionality for public and private keys.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/signer/index.html" title="mod solana_sdk::signer">signer</a><wbr><span class="stab portability" title="Available on crate feature `full` only"><code>full</code></span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/signers/index.html" title="mod solana_sdk::signers">signers</a><wbr><span class="stab portability" title="Available on crate feature `full` only"><code>full</code></span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/simple_vote_transaction_checker/index.html" title="mod solana_sdk::simple_vote_transaction_checker">simple_<wbr>vote_<wbr>transaction_<wbr>checker</a><wbr><span class="stab portability" title="Available on crate feature `full` only"><code>full</code></span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/slot_hashes/index.html" title="mod solana_sdk::slot_hashes">slot_<wbr>hashes</a></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/slot_history/index.html" title="mod solana_sdk::slot_history">slot_<wbr>history</a></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/stake/index.html" title="mod solana_sdk::stake">stake</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/stake_history/index.html" title="mod solana_sdk::stake_history">stake_<wbr>history</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/syscalls/index.html" title="mod solana_sdk::syscalls">syscalls</a></dt><dd>Declarations of Solana program syscalls.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/system_instruction/index.html" title="mod solana_sdk::system_instruction">system_<wbr>instruction</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/system_program/index.html" title="mod solana_sdk::system_program">system_<wbr>program</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/system_transaction/index.html" title="mod solana_sdk::system_transaction">system_<wbr>transaction</a><wbr><span class="stab deprecated" title="">Deprecated</span><wbr><span class="stab portability" title="Available on crate feature `full` only"><code>full</code></span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/sysvar/index.html" title="mod solana_sdk::sysvar">sysvar</a></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/transaction/index.html" title="mod solana_sdk::transaction">transaction</a><wbr><span class="stab portability" title="Available on crate feature `full` only"><code>full</code></span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/transaction_context/index.html" title="mod solana_sdk::transaction_context">transaction_<wbr>context</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/transport/index.html" title="mod solana_sdk::transport">transport</a><wbr><span class="stab portability" title="Available on crate feature `full` only"><code>full</code></span></dt><dd>Defines the <a href="https://docs.rs/solana-sdk/latest/solana_sdk/transaction/enum.TransportError.html" title="enum solana_sdk::transaction::TransportError"><code>TransportError</code></a> type.</dd><dt><a class="mod" href="https://docs.rs/solana-sdk/latest/solana_sdk/vote/index.html" title="mod solana_sdk::vote">vote</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt></dl><h2 id="macros" class="section-header">Macros<a href="https://docs.rs/solana-sdk/latest/solana_sdk/#macros" class="anchor">§</a></h2><dl class="item-table"><dt><a class="macro" href="https://docs.rs/solana-sdk/latest/solana_sdk/macro.custom_heap_default.html" title="macro solana_sdk::custom_heap_default">custom_<wbr>heap_<wbr>default</a></dt><dd>Define the default global allocator.</dd><dt><a class="macro" href="https://docs.rs/solana-sdk/latest/solana_sdk/macro.custom_panic_default.html" title="macro solana_sdk::custom_panic_default">custom_<wbr>panic_<wbr>default</a></dt><dd>Define the default global panic handler.</dd><dt><a class="macro" href="https://docs.rs/solana-sdk/latest/solana_sdk/macro.declare_deprecated_id.html" title="macro solana_sdk::declare_deprecated_id">declare_<wbr>deprecated_<wbr>id</a></dt><dd>Same as <code>declare_id</code> except report that this id has been deprecated.</dd><dt><a class="macro" href="https://docs.rs/solana-sdk/latest/solana_sdk/macro.declare_deprecated_sysvar_id.html" title="macro solana_sdk::declare_deprecated_sysvar_id">declare_<wbr>deprecated_<wbr>sysvar_<wbr>id</a></dt><dd>Same as <a href="https://docs.rs/solana-sdk/latest/solana_sdk/macro.declare_sysvar_id.html" title="macro solana_sdk::declare_sysvar_id"><code>declare_sysvar_id</code></a> except that it reports that this ID has been deprecated.</dd><dt><a class="macro" href="https://docs.rs/solana-sdk/latest/solana_sdk/macro.declare_id.html" title="macro solana_sdk::declare_id">declare_<wbr>id</a></dt><dd>Convenience macro to declare a static public key and functions to interact with it.</dd><dt><a class="macro" href="https://docs.rs/solana-sdk/latest/solana_sdk/macro.declare_sysvar_id.html" title="macro solana_sdk::declare_sysvar_id">declare_<wbr>sysvar_<wbr>id</a></dt><dd>Declares an ID that implements <a href="https://docs.rs/solana-sdk/latest/solana_sdk/sysvar/trait.SysvarId.html" title="trait solana_sdk::sysvar::SysvarId"><code>SysvarId</code></a>.</dd><dt><a class="macro" href="https://docs.rs/solana-sdk/latest/solana_sdk/macro.impl_sysvar_get.html" title="macro solana_sdk::impl_sysvar_get">impl_<wbr>sysvar_<wbr>get</a></dt><dd>Implements the <a href="https://docs.rs/solana-sdk/latest/solana_sdk/sysvar/trait.Sysvar.html#method.get" title="associated function solana_sdk::sysvar::Sysvar::get"><code>Sysvar::get</code></a> method for both SBF and host targets.</dd><dt><a class="macro" href="https://docs.rs/solana-sdk/latest/solana_sdk/macro.msg.html" title="macro solana_sdk::msg">msg</a></dt><dd>Print a message to the log.</dd><dt><a class="macro" href="https://docs.rs/solana-sdk/latest/solana_sdk/macro.pubkey.html" title="macro solana_sdk::pubkey">pubkey</a></dt><dd>Convenience macro to define a static public key.</dd><dt><a class="macro" href="https://docs.rs/solana-sdk/latest/solana_sdk/macro.pubkeys.html" title="macro solana_sdk::pubkeys">pubkeys</a></dt><dd>Convenience macro to define multiple static public keys.</dd><dt><a class="macro" href="https://docs.rs/solana-sdk/latest/solana_sdk/macro.saturating_add_assign.html" title="macro solana_sdk::saturating_add_assign">saturating_<wbr>add_<wbr>assign</a><wbr><span class="stab deprecated" title="">Deprecated</span></dt><dd>Convenience macro for <code>AddAssign</code> with saturating arithmetic.</dd><dt><a class="macro" href="https://docs.rs/solana-sdk/latest/solana_sdk/macro.unchecked_div_by_const.html" title="macro solana_sdk::unchecked_div_by_const">unchecked_<wbr>div_<wbr>by_<wbr>const</a></dt><dd>Convenience macro for doing integer division where the operation’s safety
+can be checked at compile-time.</dd></dl><script type="text/json" id="notable-traits-data">{"&<Vec<T, A> as Index<I>>::Output":"<h3>Notable traits for <code><a class=\"struct\" href=\"https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html\" title=\"struct alloc::vec::Vec\">Vec</a>&lt;<a class=\"primitive\" href=\"https://doc.rust-lang.org/nightly/std/primitive.u8.html\">u8</a>, A&gt;</code></h3><pre><code><div class=\"where\">impl&lt;A&gt; <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/std/io/trait.Write.html\" title=\"trait std::io::Write\">Write</a> for <a class=\"struct\" href=\"https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html\" title=\"struct alloc::vec::Vec\">Vec</a>&lt;<a class=\"primitive\" href=\"https://doc.rust-lang.org/nightly/std/primitive.u8.html\">u8</a>, A&gt;<div class=\"where\">where\n    A: <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/alloc/trait.Allocator.html\" title=\"trait core::alloc::Allocator\">Allocator</a>,</div></div>","&mut <Vec<T, A> as Index<I>>::Output":"<h3>Notable traits for <code><a class=\"struct\" href=\"https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html\" title=\"struct alloc::vec::Vec\">Vec</a>&lt;<a class=\"primitive\" href=\"https://doc.rust-lang.org/nightly/std/primitive.u8.html\">u8</a>, A&gt;</code></h3><pre><code><div class=\"where\">impl&lt;A&gt; <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/std/io/trait.Write.html\" title=\"trait std::io::Write\">Write</a> for <a class=\"struct\" href=\"https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html\" title=\"struct alloc::vec::Vec\">Vec</a>&lt;<a class=\"primitive\" href=\"https://doc.rust-lang.org/nightly/std/primitive.u8.html\">u8</a>, A&gt;<div class=\"where\">where\n    A: <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/alloc/trait.Allocator.html\" title=\"trait core::alloc::Allocator\">Allocator</a>,</div></div>","<Vec<T, A> as IntoIterator>::IntoIter":"<h3>Notable traits for <code><a class=\"struct\" href=\"https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html\" title=\"struct alloc::vec::Vec\">Vec</a>&lt;<a class=\"primitive\" href=\"https://doc.rust-lang.org/nightly/std/primitive.u8.html\">u8</a>, A&gt;</code></h3><pre><code><div class=\"where\">impl&lt;A&gt; <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/std/io/trait.Write.html\" title=\"trait std::io::Write\">Write</a> for <a class=\"struct\" href=\"https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html\" title=\"struct alloc::vec::Vec\">Vec</a>&lt;<a class=\"primitive\" href=\"https://doc.rust-lang.org/nightly/std/primitive.u8.html\">u8</a>, A&gt;<div class=\"where\">where\n    A: <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/alloc/trait.Allocator.html\" title=\"trait core::alloc::Allocator\">Allocator</a>,</div></div>","<Vec<T> as IntoDeserializer<'de, E>>::Deserializer":"<h3>Notable traits for <code><a class=\"struct\" href=\"https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html\" title=\"struct alloc::vec::Vec\">Vec</a>&lt;<a class=\"primitive\" href=\"https://doc.rust-lang.org/nightly/std/primitive.u8.html\">u8</a>, A&gt;</code></h3><pre><code><div class=\"where\">impl&lt;A&gt; <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/std/io/trait.Write.html\" title=\"trait std::io::Write\">Write</a> for <a class=\"struct\" href=\"https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html\" title=\"struct alloc::vec::Vec\">Vec</a>&lt;<a class=\"primitive\" href=\"https://doc.rust-lang.org/nightly/std/primitive.u8.html\">u8</a>, A&gt;<div class=\"where\">where\n    A: <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/alloc/trait.Allocator.html\" title=\"trait core::alloc::Allocator\">Allocator</a>,</div></div>","<Vec<T> as IntoParallelIterator>::Iter":"<h3>Notable traits for <code><a class=\"struct\" href=\"https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html\" title=\"struct alloc::vec::Vec\">Vec</a>&lt;<a class=\"primitive\" href=\"https://doc.rust-lang.org/nightly/std/primitive.u8.html\">u8</a>, A&gt;</code></h3><pre><code><div class=\"where\">impl&lt;A&gt; <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/std/io/trait.Write.html\" title=\"trait std::io::Write\">Write</a> for <a class=\"struct\" href=\"https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html\" title=\"struct alloc::vec::Vec\">Vec</a>&lt;<a class=\"primitive\" href=\"https://doc.rust-lang.org/nightly/std/primitive.u8.html\">u8</a>, A&gt;<div class=\"where\">where\n    A: <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/alloc/trait.Allocator.html\" title=\"trait core::alloc::Allocator\">Allocator</a>,</div></div>"}</script></section></div></main></div></body></html>
