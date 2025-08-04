@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<!-- saved from url=(0136)https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_batched_verify_range_proof_u128.html -->
+<html lang="en" data-theme="dark" data-docs-rs-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Create a `VerifyBatchedRangeProofU128` instruction."><title>verify_batched_verify_range_proof_u128 in solana_zk_token_sdk::zk_token_proof_instruction - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="/-/rustdoc.static/${f}">`).join(""))</script><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceSerif4-Regular-6b053e98.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Italic-81dc35de.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Regular-0fe48ade.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-MediumItalic-ccf7e434.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/FiraSans-Medium-e1aa3f0a.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Regular-8badfe75.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://docs.rs/-/rustdoc.static/SourceCodePro-Semibold-aa29a496.ttf.woff2"><link rel="stylesheet" href="./verify_batched_verify_range_proof_u128 in solana_zk_token_sdk__zk_token_proof_instruction - Rust_files/normalize-9960930a.css"><link rel="stylesheet" href="./verify_batched_verify_range_proof_u128 in solana_zk_token_sdk__zk_token_proof_instruction - Rust_files/vendored.css" media="all"><link rel="stylesheet" href="./verify_batched_verify_range_proof_u128 in solana_zk_token_sdk__zk_token_proof_instruction - Rust_files/rustdoc-aa0817cf.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="/-/rustdoc.static/" data-current-crate="solana_zk_token_sdk" data-themes="" data-resource-suffix="-20250703-1.90.0-nightly-da58c0513" data-rustdoc-version="1.90.0-nightly (da58c0513 2025-07-03)" data-channel="nightly" data-search-js="search-179e01a3.js" data-settings-js="settings-5514c975.js"><script src="./verify_batched_verify_range_proof_u128 in solana_zk_token_sdk__zk_token_proof_instruction - Rust_files/storage-4e99c027.js.Без названия"></script><script defer="" src="./verify_batched_verify_range_proof_u128 in solana_zk_token_sdk__zk_token_proof_instruction - Rust_files/sidebar-items-20250703-1.90.0-nightly-da58c0513.js.Без названия"></script><script defer="" src="./verify_batched_verify_range_proof_u128 in solana_zk_token_sdk__zk_token_proof_instruction - Rust_files/main-673ee1e0.js.Без названия"></script><noscript><link rel="stylesheet" href="/-/rustdoc.static/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="https://docs.rs/-/rustdoc.static/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="https://docs.rs/-/rustdoc.static/favicon-044be391.svg"><link rel="stylesheet" href="./verify_batched_verify_range_proof_u128 in solana_zk_token_sdk__zk_token_proof_instruction - Rust_files/rustdoc-2021-12-05.css" media="all"><link rel="stylesheet" href="./verify_batched_verify_range_proof_u128 in solana_zk_token_sdk__zk_token_proof_instruction - Rust_files/font-awesome.css" media="all">
+
+        <link rel="search" href="https://docs.rs/-/static/opensearch.xml" type="application/opensearchdescription+xml" title="Docs.rs">
+
+        <script type="text/javascript">(function() {
+    function applyTheme(theme) {
+        if (theme) {
+            document.documentElement.dataset.docsRsTheme = theme;
+        }
+    }
+
+    window.addEventListener("storage", ev => {
+        if (ev.key === "rustdoc-theme") {
+            applyTheme(ev.newValue);
+        }
+    });
+
+    // see ./storage-change-detection.html for details
+    window.addEventListener("message", ev => {
+        if (ev.data && ev.data.storage && ev.data.storage.key === "rustdoc-theme") {
+            applyTheme(ev.data.storage.value);
+        }
+    });
+
+    applyTheme(window.localStorage.getItem("rustdoc-theme"));
+})();</script></head><div style="display: none; position: fixed; width: 100%; height: 100%; z-index: 1;"></div><body class="rustdoc-page">
+<div class="nav-container">
+    <div class="container">
+        <div class="pure-menu pure-menu-horizontal" role="navigation" aria-label="Main navigation">
+            <form action="https://docs.rs/releases/search" method="GET" id="nav-search-form" class="landing-search-form-nav  ">
+
+                
+                <a href="https://docs.rs/" class="pure-menu-heading pure-menu-link docsrs-logo" aria-label="Docs.rs">
+                    <span title="Docs.rs"><span class="fa fa-solid fa-cubes " aria-hidden="true"></span></span>
+                    <span class="title">Docs.rs</span>
+                </a><ul class="pure-menu-list">
+    <script id="crate-metadata" type="application/json">
+        
+        {
+            "name": "solana-zk-token-sdk",
+            "version": "2.3.3"
+        }
+    </script><li class="pure-menu-item pure-menu-has-children">
+            <a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_batched_verify_range_proof_u128.html#" class="pure-menu-link crate-name" title="Solana Zk Token SDK" aria-haspopup="menu">
+                <span class="fa fa-solid fa-cube " aria-hidden="true"></span>
+                <span class="title">solana-zk-token-sdk-2.3.3</span>
+            </a><div class="pure-menu-children package-details-menu" role="menu">
+                
+                <ul class="pure-menu-list menu-item-divided">
+                    <li class="pure-menu-heading" id="crate-title">
+                        solana-zk-token-sdk 2.3.3
+                        <span id="clipboard" class="svg-clipboard" title="Copy crate name and version information"></span>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/solana-zk-token-sdk/2.3.3/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_batched_verify_range_proof_u128.html" class="pure-menu-link description" id="permalink" title="Get a link to this specific version">
+                            <span class="fa fa-solid fa-link " aria-hidden="true"></span> Permalink
+                        </a>
+                    </li><li class="pure-menu-item">
+                        <a href="https://docs.rs/crate/solana-zk-token-sdk/latest" class="pure-menu-link description" title="See solana-zk-token-sdk in docs.rs">
+                            <span class="fa fa-solid fa-cube " aria-hidden="true"></span> Docs.rs crate page
+                        </a>
+                    </li><li class="pure-menu-item">
+                            <span class="pure-menu-link description"><span class="fa fa-solid fa-scale-unbalanced-flip " aria-hidden="true"></span>
+                            <a href="https://spdx.org/licenses/Apache-2.0" class="pure-menu-sublink">Apache-2.0</a></span>
+                        </li></ul>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Links</li>
+
+                            <li class="pure-menu-item">
+                                    <a href="https://anza.xyz/" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-house " aria-hidden="true"></span> Homepage
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                    <a href="https://github.com/anza-xyz/agave" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-code-branch " aria-hidden="true"></span> Repository
+                                    </a>
+                                </li><li class="pure-menu-item">
+                                <a href="https://crates.io/crates/solana-zk-token-sdk" class="pure-menu-link" title="See solana-zk-token-sdk in crates.io">
+                                    <span class="fa fa-solid fa-cube " aria-hidden="true"></span> crates.io
+                                </a>
+                            </li>
+
+                            
+                            <li class="pure-menu-item">
+                                <a href="https://docs.rs/crate/solana-zk-token-sdk/latest/source/" title="Browse source of solana-zk-token-sdk-2.3.3" class="pure-menu-link">
+                                    <span class="fa fa-solid fa-folder-open " aria-hidden="true"></span> Source
+                                </a>
+                            </li>
+                        </ul>
+                    </div><div class="pure-u-1-2">
+                        <ul class="pure-menu-list" id="topbar-owners">
+                            <li class="pure-menu-heading">Owners</li><li class="pure-menu-item">
+                                    <a href="https://crates.io/users/anza-team" class="pure-menu-link">
+                                        <span class="fa fa-solid fa-user " aria-hidden="true"></span> anza-team
+                                    </a>
+                                </li></ul>
+                    </div>
+                </div>
+
+                <div class="pure-g menu-item-divided">
+                    <div class="pure-u-1-2 right-border">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Dependencies</li>
+
+                            
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" tabindex="-1">
+                                    <ul class="pure-menu-list">
+                                        
+    <li class="pure-menu-item"><a href="https://docs.rs/base64/%5E0.22.1" class="pure-menu-link">
+                        base64 ^0.22.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/bytemuck/%5E1.23.0" class="pure-menu-link">
+                        bytemuck ^1.23.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/bytemuck_derive/%5E1.9.3" class="pure-menu-link">
+                        bytemuck_derive ^1.9.3
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/num-derive/%5E0.4" class="pure-menu-link">
+                        num-derive ^0.4
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/num-traits/%5E0.2" class="pure-menu-link">
+                        num-traits ^0.2
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-curve25519/=2.3.3" class="pure-menu-link">
+                        solana-curve25519 =2.3.3
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-instruction/%5E2.3.0" class="pure-menu-link">
+                        solana-instruction ^2.3.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-pubkey/%5E2.4.0" class="pure-menu-link">
+                        solana-pubkey ^2.4.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-sdk-ids/%5E2.2.1" class="pure-menu-link">
+                        solana-sdk-ids ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/thiserror/%5E2.0.12" class="pure-menu-link">
+                        thiserror ^2.0.12
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-keypair/%5E2.2.1" class="pure-menu-link">
+                        solana-keypair ^2.2.1
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/tiny-bip39/%5E0.8.2" class="pure-menu-link">
+                        tiny-bip39 ^0.8.2
+                        
+                            <i class="dependencies dev">dev</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/aes-gcm-siv/%5E0.11.1" class="pure-menu-link">
+                        aes-gcm-siv ^0.11.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/bincode/%5E1.3.3" class="pure-menu-link">
+                        bincode ^1.3.3
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/curve25519-dalek/%5E4.1.3" class="pure-menu-link">
+                        curve25519-dalek ^4.1.3
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/itertools/%5E0.12.1" class="pure-menu-link">
+                        itertools ^0.12.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/merlin/%5E3" class="pure-menu-link">
+                        merlin ^3
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/rand/%5E0.8.5" class="pure-menu-link">
+                        rand ^0.8.5
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/serde/%5E1.0.219" class="pure-menu-link">
+                        serde ^1.0.219
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/serde_derive/%5E1.0.219" class="pure-menu-link">
+                        serde_derive ^1.0.219
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/serde_json/%5E1.0.140" class="pure-menu-link">
+                        serde_json ^1.0.140
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/sha3/%5E0.10.8" class="pure-menu-link">
+                        sha3 ^0.10.8
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-derivation-path/%5E2.2.1" class="pure-menu-link">
+                        solana-derivation-path ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-seed-derivable/%5E2.2.1" class="pure-menu-link">
+                        solana-seed-derivable ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-seed-phrase/%5E2.2.1" class="pure-menu-link">
+                        solana-seed-phrase ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-signature/%5E2.3.0" class="pure-menu-link">
+                        solana-signature ^2.3.0
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/solana-signer/%5E2.2.1" class="pure-menu-link">
+                        solana-signer ^2.2.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/subtle/%5E2.6.1" class="pure-menu-link">
+                        subtle ^2.6.1
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            <li class="pure-menu-item"><a href="https://docs.rs/zeroize/%5E1.7" class="pure-menu-link">
+                        zeroize ^1.7
+                        
+                            <i class="dependencies normal">normal</i>
+                            
+                        
+                    </a>
+                </li>
+            
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pure-u-1-2">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-heading">Versions</li>
+
+                            <li class="pure-menu-item">
+                                <div class="pure-menu pure-menu-scrollable sub-menu" id="releases-list" tabindex="-1" data-url="/crate/solana-zk-token-sdk/latest/menus/releases/x86_64-unknown-linux-gnu/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_batched_verify_range_proof_u128.html">
+                                    <span class="rotate"><span class="fa fa-solid fa-spinner " aria-hidden="true"></span></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                    
+                    
+                    <div class="pure-g">
+                        <div class="pure-u-1">
+                            <ul class="pure-menu-list">
+                                <li>
+                                    <a href="https://docs.rs/crate/solana-zk-token-sdk/latest" class="pure-menu-link">
+                                        <b>47.26%</b>
+                                        of the crate is documented
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div></div>
+        </li><li class="pure-menu-item pure-menu-has-children">
+                <a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_batched_verify_range_proof_u128.html#" class="pure-menu-link" aria-label="Platform" aria-haspopup="menu">
+                    <span class="fa fa-solid fa-gears " aria-hidden="true"></span>
+                    <span class="title">Platform</span>
+                </a>
+
+                
+                <ul class="pure-menu-children" id="platforms" data-url="/crate/solana-zk-token-sdk/latest/menus/platforms/x86_64-unknown-linux-gnu/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_batched_verify_range_proof_u128.html" role="menu"><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/solana-zk-token-sdk/latest/target-redirect/i686-pc-windows-msvc/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_batched_verify_range_proof_u128.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">i686-pc-windows-msvc</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/solana-zk-token-sdk/latest/target-redirect/i686-unknown-linux-gnu/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_batched_verify_range_proof_u128.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">i686-unknown-linux-gnu</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/solana-zk-token-sdk/latest/target-redirect/x86_64-apple-darwin/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_batched_verify_range_proof_u128.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">x86_64-apple-darwin</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/solana-zk-token-sdk/latest/target-redirect/x86_64-pc-windows-msvc/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_batched_verify_range_proof_u128.html" class="pure-menu-link" data-fragment="retain" rel="nofollow">x86_64-pc-windows-msvc</a>
+        </li><li class="pure-menu-item">
+            <a href="https://docs.rs/crate/solana-zk-token-sdk/latest/target-redirect/x86_64-unknown-linux-gnu/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_batched_verify_range_proof_u128.html" class="pure-menu-link current" data-fragment="retain" rel="nofollow">x86_64-unknown-linux-gnu</a>
+        </li></ul>
+            </li><li class="pure-menu-item">
+                <a href="https://docs.rs/crate/solana-zk-token-sdk/latest/features" title="Browse available feature flags of solana-zk-token-sdk-2.3.3" class="pure-menu-link">
+                    <span class="fa fa-solid fa-flag " aria-hidden="true"></span>
+                    <span class="title">Feature flags</span>
+                </a>
+            </li>
+        
+    
+</ul><div class="spacer"></div>
+                
+                
+
+<ul class="pure-menu-list">
+                    <li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_batched_verify_range_proof_u128.html#" class="pure-menu-link" aria-label="docs.rs" aria-haspopup="menu">docs.rs</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://docs.rs/about">
+            About docs.rs
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://foundation.rust-lang.org/policies/privacy-policy/#docs.rs" target="_blank">
+            Privacy policy
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="pure-menu-list"><li class="pure-menu-item pure-menu-has-children">
+                        <a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_batched_verify_range_proof_u128.html#" class="pure-menu-link" aria-label="Rust" aria-haspopup="menu">Rust</a>
+                        <ul class="pure-menu-children" role="menu">
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://www.rust-lang.org/" target="_blank">
+            Rust website
+        </a>
+    </li>
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/book/" target="_blank">
+            The Book
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/std/" target="_blank">
+            Standard Library API Reference
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/rust-by-example/" target="_blank">
+            Rust by Example
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/cargo/guide/" target="_blank">
+            The Cargo Guide
+        </a>
+    </li>
+
+
+                            
+    <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://doc.rust-lang.org/nightly/clippy" target="_blank">
+            Clippy Documentation
+        </a>
+    </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div id="search-input-nav">
+                    <label for="nav-search">
+                        <span class="fa fa-solid fa-magnifying-glass " aria-hidden="true"></span>
+                    </label>
+
+                    
+                    
+                    <input id="nav-search" name="query" type="text" aria-label="Find crate by search query" tabindex="-1" placeholder="Find crate">
+                </div>
+            </form>
+        </div>
+    </div>
+</div><div class="rustdoc fn container-rustdoc" id="rustdoc_body_wrapper" tabindex="-1"><script async="" src="./verify_batched_verify_range_proof_u128 in solana_zk_token_sdk__zk_token_proof_instruction - Rust_files/menu.js.Без названия"></script>
+<script async="" src="./verify_batched_verify_range_proof_u128 in solana_zk_token_sdk__zk_token_proof_instruction - Rust_files/index.js.Без названия"></script>
+
+<iframe src="./verify_batched_verify_range_proof_u128 in solana_zk_token_sdk__zk_token_proof_instruction - Rust_files/storage-change-detection.html" width="0" height="0" style="display: none"></iframe><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button><h2 class="location"></h2></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/index.html">solana_<wbr>zk_<wbr>token_<wbr>sdk</a><span class="version">2.3.3</span></h2></div><div class="sidebar-elems"><div id="rustdoc-modnav"><h2><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/index.html">In solana_<wbr>zk_<wbr>token_<wbr>sdk::<wbr>zk_<wbr>token_<wbr>proof_<wbr>instruction</a></h2><h3><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/index.html#structs">Structs</a></h3><ul class="block struct"><li><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/struct.ContextStateInfo.html">ContextStateInfo</a></li></ul><h3><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/index.html#enums">Enums</a></h3><ul class="block enum"><li><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/enum.ProofInstruction.html">ProofInstruction</a></li></ul><h3><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/index.html#functions">Functions</a></h3><ul class="block fn"><li><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/fn.close_context_state.html">close_context_state</a></li><li><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_batched_grouped_ciphertext_3_handles_validity.html">verify_batched_grouped_ciphertext_3_handles_validity</a></li><li class="current"><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_batched_verify_range_proof_u128.html">verify_batched_verify_range_proof_u128</a></li><li><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_batched_verify_range_proof_u256.html">verify_batched_verify_range_proof_u256</a></li><li><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_batched_verify_range_proof_u64.html">verify_batched_verify_range_proof_u64</a></li><li><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_ciphertext_ciphertext_equality.html">verify_ciphertext_ciphertext_equality</a></li><li><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_ciphertext_commitment_equality.html">verify_ciphertext_commitment_equality</a></li><li><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_grouped_ciphertext_3_handles_validity.html">verify_grouped_ciphertext_3_handles_validity</a></li><li><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_pubkey_validity.html">verify_pubkey_validity</a></li><li><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_range_proof_u64.html">verify_range_proof_u64</a></li><li><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_transfer.html">verify_transfer</a></li><li><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_transfer_with_fee.html">verify_transfer_with_fee</a></li><li><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_withdraw.html">verify_withdraw</a></li><li><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/fn.verify_zero_balance.html">verify_zero_balance</a></li></ul></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search><nav class="sub">
+            <form class="search-form">
+                <span></span> <!-- This empty span is a hacky fix for Safari - See #93184 -->
+                <div id="sidebar-button" tabindex="-1">
+                    <a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/all.html" title="show sidebar"></a>
+                </div>
+                <input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search">
+            </form>
+        </nav></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/index.html">solana_zk_token_sdk</a>::<wbr><a href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/index.html">zk_token_proof_instruction</a></div><h1>Function <span class="fn">verify_batched_verify_range_proof_u128</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar>
+        <div id="settings-menu" tabindex="-1">
+            <a href="https://docs.rs/solana-zk-token-sdk/latest/settings.html"><span class="label">Settings</span></a>
+        </div>
+        <div id="help-button" tabindex="-1">
+            <a href="https://docs.rs/solana-zk-token-sdk/latest/help.html"><span class="label">Help</span></a>
+        </div>
+        <button id="toggle-all-docs"><span class="label">Summary</span></button></rustdoc-toolbar><span class="sub-heading"><a class="src" href="https://docs.rs/solana-zk-token-sdk/latest/src/solana_zk_token_sdk/zk_token_proof_instruction.rs.html#447-453">Source</a> </span></div><pre class="rust item-decl"><code>pub fn verify_batched_verify_range_proof_u128(
+    context_state_info: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/zk_token_proof_instruction/struct.ContextStateInfo.html" title="struct solana_zk_token_sdk::zk_token_proof_instruction::ContextStateInfo">ContextStateInfo</a>&lt;'_&gt;&gt;,
+    proof_data: &amp;<a class="struct" href="https://docs.rs/solana-zk-token-sdk/latest/solana_zk_token_sdk/instruction/batched_range_proof/batched_range_proof_u128/struct.BatchedRangeProofU128Data.html" title="struct solana_zk_token_sdk::instruction::batched_range_proof::batched_range_proof_u128::BatchedRangeProofU128Data">BatchedRangeProofU128Data</a>,
+) -&gt; <a class="struct" href="https://docs.rs/solana-instruction/2.3.0/x86_64-unknown-linux-gnu/solana_instruction/struct.Instruction.html" title="struct solana_instruction::Instruction">Instruction</a></code></pre><details class="toggle top-doc" open=""><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Create a <code>VerifyBatchedRangeProofU128</code> instruction.</p>
+</div></details></section></div></main></div></body></html>
