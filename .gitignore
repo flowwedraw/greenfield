@@ -1,0 +1,7 @@
+# Ignore build artifacts
+/target/
+# Ignore environment variables
+.env
+
+# Ignore backup files
+**/*.rs.bk
